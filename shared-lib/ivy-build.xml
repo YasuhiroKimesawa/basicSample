@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project basedir="." default="resolve" name="resolve" xmlns:ivy="antlib:org.apache.ivy.ant">
+  <property name="ivy.lib.dir" value="src/main/lib/"/>
+  <target name="resolve">
+    <ivy:retrieve />
+  </target>
+</project>
