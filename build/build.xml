@@ -1,0 +1,43 @@
+<project name="all" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+	<property name="ivy.jar.dir" value="${user.home}/.ivy2/jars" />
+	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+
+	<property name="build.dir" value="build" />
+	<property name="src.dir" value="src" />
+
+	<target name="load-ivy">
+		<path id="ivy.lib.path">
+			<pathelement location="${ivy.jar.file}" />
+		</path>
+		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path" />
+	</target>
+
+	<target name="buildlist" depends="load-ivy">
+		<ivy:buildlist reference="build-path">
+			<fileset dir="../" includes="base*/**/build.xml" />
+			<fileset dir="../" includes="dataaccess-*/**/build.xml" />
+			<fileset dir="../" includes="model-*/**/build.xml" />
+			<fileset dir="../" includes="service-*/**/build.xml" />
+			<fileset dir="../" includes="web-base/**/build.xml" />
+		</ivy:buildlist>
+	</target>
+
+	<target name="publish-all" depends="clean, buildlist"
+		description="compile, jar and publish all projects in the right order">
+
+		<subant target="publish" buildpathref="build-path" />
+		<subant target="junit" buildpathref="build-path" />
+	</target>
+
+	<target name="clean-all" depends="buildlist" description="clean all projects">
+		<subant target="clean" buildpathref="build-path" />
+	</target>
+
+	<target name="clean" depends="clean-all, load-ivy"
+		description="delete repository, ivy cache, and all projects">
+
+		<delete dir="repository" />
+		<ivy:cleancache />
+	</target>
+</project>
