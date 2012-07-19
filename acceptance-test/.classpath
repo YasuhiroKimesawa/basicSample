@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="test/resources"/>
+	<classpathentry kind="src" path="test/groovy"/>
+	<classpathentry kind="src" path="test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/cucumber-core-1.0.11.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/cucumber-html-0.2.1.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/main/lib/cucumber-junit-1.0.11-javadoc.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/main/lib/cucumber-junit-1.0.11-sources.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/cucumber-junit-1.0.11.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/gherkin-2.11.1.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/hamcrest-core-1.1.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/cucumber-groovy-1.0.11.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/groovy-all-2.0.0.jar"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>

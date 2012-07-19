@@ -25,6 +25,7 @@
         status="integration">
 	</info>
 	<dependencies>
-        <dependency org="info.cukes" name="cucumber-junit" rev="1.0.11"/>
+        <dependency org="info.cukes" name="cucumber-junit" rev="1.0.11" conf="*->*,!sources,!javadoc"/>
+        <dependency org="info.cukes" name="cucumber-groovy" rev="1.0.11" conf="*->*,!sources,!javadoc"/>
     </dependencies>
 </ivy-module>
