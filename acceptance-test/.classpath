@@ -13,5 +13,7 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/junit-4.10.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/cucumber-groovy-1.0.11.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/groovy-all-2.0.0.jar"/>
+	<classpathentry exported="true" kind="con" path="GROOVY_SUPPORT"/>
+	<classpathentry exported="true" kind="con" path="GROOVY_DSL_SUPPORT"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>
