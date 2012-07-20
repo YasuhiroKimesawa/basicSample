@@ -24,7 +24,7 @@
 	</target>
 
 	<target name="publish-all" depends="clean, buildlist" description="compile, jar and publish all projects in the right order">
-		<subant target="jar" buildpathref="build-path" />
+		<subant target="publish" buildpathref="build-path" />
 		<!-- <subant target="junit"   buildpathref="build-path" /> -->
 	</target>
 
