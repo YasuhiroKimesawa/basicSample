@@ -8,7 +8,7 @@
     </configurations>
 
     <publications>
-      <artifact name="model-eventer" type="jar" conf="core" />
+      <artifact name="model-eventer" type="jar" />
     </publications>
 
     <dependencies>
