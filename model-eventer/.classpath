@@ -6,5 +6,7 @@
 	<classpathentry kind="src" path="src/test/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/model-base"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/lombok-0.11.2.jar"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>

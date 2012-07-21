@@ -1,11 +1,11 @@
 package com.pilgrim_lifestyle.model.eventer;
 
-import java.io.Serializable;
+import com.pilgrim_lifestyle.model.eventer.profile.Profile;
 
-public class Eventer implements Serializable
+import lombok.ToString;
+
+@ToString
+public class Eventer
 {
-
-
-    private static final long serialVersionUID = -8843305370051331015L;
-
+    private Profile profile;
 }
