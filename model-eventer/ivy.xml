@@ -4,15 +4,15 @@
     <info organisation="com.pilgrim-lifestyle" module="model-eventer" status="integration"></info>
 
     <configurations>
-      <conf name="core"/>
+      <conf name="main"/>
     </configurations>
 
     <publications>
-      <artifact name="model-eventer" type="jar" />
+      <artifact name="model-eventer" type="jar" conf="main" />
     </publications>
 
     <dependencies>
-    	<dependency name="model-base" rev="latest.integration" conf="core"></dependency>
+    	<dependency org="com.pilgrim-lifestyle" name="model-base" rev="latest.integration" ></dependency>
     </dependencies>
 </ivy-module>
 

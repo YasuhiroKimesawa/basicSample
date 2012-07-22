@@ -23,17 +23,17 @@
 
 	<!-- setup ivy default configuration with some custom info -->
 	<property name="ivy.local.default.root" value="${repository.dir}/local"/>
-	<property name="ivy.shared.default.root" value="${repository.dir}/shared"/>
+	<property name="ivy.shared.default.root" value="${repository.dir}/main"/>
 
 	 <!-- =================================
 	      target: resolve
 	     ================================= -->
-	<target name="resolve" depends="clean-lib, load-ivy" description="--> resolve and retrieve dependencies with ivy">
-	    <mkdir dir="${lib.dir}"/> <!-- not usually necessary, ivy creates the directory IF there are dependencies -->
+	<target name="resolve" depends="load-ivy" description="--> resolve and retrieve dependencies with ivy">
+		<!-- <mkdir dir="${lib.dir}"/> not usually necessary, ivy creates the directory IF there are dependencies -->
 
 		<!-- the call to resolve is not mandatory, retrieve makes an implicit call if we don't -->
 		<ivy:resolve file="${ivy.file}"/>
-		<ivy:retrieve pattern="${lib.dir}/[artifact].[ext]" />
+		<ivy:retrieve pattern="${lib.dir}/[artifact]-[revision].[ext]" />
 	</target>
 
 	<!-- =================================
@@ -70,7 +70,7 @@
     </target>
 
 	<target name="version" depends="ivy-new-version">
-    	<!-- create version file in classpath for later inclusion in jar -->
+    	<!-- create version file in classpath for later inclusion in jar  -->
         <mkdir dir="${classes.dir}"/>
 		<echo message="version=${ivy.new.revision}" file="${classes.dir}/${ant.project.name}.properties" append="false" />
 
@@ -96,9 +96,11 @@
          ================================= -->
 	<target name="publish" depends="clean-build, jar" description="--> publish this project in the ivy repository">
 		<ivy:publish artifactspattern="${build.dir}/[artifact].[ext]"
-    			           resolver="shared"
+    			           resolver="main"
     			           pubrevision="${version}"
     			           status="release"
+			               overwrite="true"
+
     	/>
 		<echo message="project ${ant.project.name} released with version ${version}" />
 	</target>
