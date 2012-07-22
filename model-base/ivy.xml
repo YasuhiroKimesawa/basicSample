@@ -8,6 +8,6 @@
     </configurations>
 
     <publications>
-      <artifact name="model-eventer" type="jar" conf="core" />
+      <artifact name="model-base" type="jar" conf="core" />
     </publications>
 </ivy-module>
