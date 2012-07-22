@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project basedir="." default="resolve" name="resolve" xmlns:ivy="antlib:org.apache.ivy.ant">
-  <property name="ivy.lib.dir" value="src/[conf]/lib/"/>
+  <property name="ivy.lib.dir" value="${basedir}/../shared-lib/src/[conf]/lib" />
   <target name="resolve">
     <ivy:retrieve pattern="${ivy.lib.dir}/[artifact]-[revision].[ext]"/>
   </target>

@@ -1,5 +1,7 @@
 <project name="all" xmlns:ivy="antlib:org.apache.ivy.ant" default="publish-all">
 
+	<import file="./ivy-build.xml"/>
+
 	<property name="ivy.jar.dir" value="${basedir}/../shared-lib/src/main/lib" />
 	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
 
@@ -23,7 +25,8 @@
 		</ivy:buildlist>
 	</target>
 
-	<target name="publish-all" depends="clean, buildlist" description="compile, jar and publish all projects in the right order">
+	<target name="publish-all" depends="resolve, buildlist" description="compile, jar and publish all projects in the right order">
+
 		<subant target="jar" buildpathref="build-path" />
 		<!-- <subant target="junit"   buildpathref="build-path" /> -->
 	</target>
