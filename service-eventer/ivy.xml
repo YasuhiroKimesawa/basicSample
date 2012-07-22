@@ -10,5 +10,9 @@
     <publications>
       <artifact name="service-eventer" type="jar" conf="core" />
     </publications>
+
+    <dependencies>
+    	<dependency name="model-eventer" rev="latest.integration" conf="core"></dependency>
+    </dependencies>
 </ivy-module>
 
