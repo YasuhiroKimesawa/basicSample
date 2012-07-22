@@ -122,8 +122,7 @@
 	<!-- =================================
           target: clean-local
          ================================= -->
-	<target name="clean-local" depends="load-ivy"
-		description="--> cleans the local repository for the current module">
+	<target name="clean-local" depends="load-ivy" description="--> cleans the local repository for the current module">
 		<ivy:info file="${ivy.file}" />
 		<delete dir="${ivy.local.default.root}/${ivy.organisation}/${ivy.module}"/>
 	</target>
@@ -145,5 +144,5 @@
 	<!-- =================================
           target: clean
          ================================= -->
-	<target name="clean" depends="clean-build, clean-lib" description="--> clean the project" />
+	<target name="clean" depends="clean-build" description="--> clean the project" />
 </project>
