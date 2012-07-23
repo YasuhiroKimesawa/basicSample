@@ -6,6 +6,7 @@
 	<configurations>
     	<conf name="main" description="This is this configuration that describes modules need to build our project"/>
     	<conf name="test" description="This is this configuration that describes modules need to run test on our project"/>
+    	<conf name="project" description="This is this configuration that describes modules need to run build on our project"/>
     </configurations>
 
 	<dependencies>

@@ -36,6 +36,5 @@
 
 	<target name="clean" depends="clean-all, load-ivy" description="delete repository, ivy cache, and all projects">
 		<delete dir="repository" />
-		<!-- <ivy:cleancache /> -->
 	</target>
 </project>

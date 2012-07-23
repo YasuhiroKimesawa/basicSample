@@ -4,11 +4,11 @@
     <info organisation="com.pilgrim-lifestyle" module="dataaccess-eventer" status="release"/>
 
     <configurations>
-      <conf name="main"/>
+      <conf name="project"/>
     </configurations>
 
     <publications>
-      <artifact name="dataaccess-eventer" type="jar" conf="main"/>
+      <artifact name="dataaccess-eventer" type="jar" conf="project"/>
     </publications>
 
     <dependencies>

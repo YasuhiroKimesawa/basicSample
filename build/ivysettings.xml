@@ -13,6 +13,9 @@
       <filesystem name="main">
         <artifact pattern="${ivy.settings.dir}/repository/main/[artifact]-[revision].[ext]" />
       </filesystem>
+      <filesystem name="project">
+        <artifact pattern="${ivy.settings.dir}/repository/project/[artifact]-[revision].[ext]" />
+      </filesystem>
     </chain>
   </resolvers>
 </ivysettings>

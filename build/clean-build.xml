@@ -1,0 +1,18 @@
+<project name="all" xmlns:ivy="antlib:org.apache.ivy.ant" default="clean-lib-publish">
+
+	<import file="./build.xml" />
+
+	<target name="clean-lib-publish" depends="clean-lib, resolve, buildlist"
+		description="delete shared-lib and delete chash and publish">
+
+		<subant target="publish" buildpathref="build-path" />
+	</target>
+
+	<target name="clean-lib" depends="cleanchash" description="delete shared-lib">
+		<delete includeemptydirs="true" dir="${ivy.jar.dir}" excludes="ivy.jar"/>
+	</target>
+
+	<target name="cleanchash" description="delete ~/ivy2/cache">
+		<ivy:cleancache/>
+	</target>
+</project>

@@ -5,11 +5,11 @@
     <info organisation="com.pilgrim-lifestyle" module="service-eventer" status="integration"></info>
 
     <configurations>
-      <conf name="main"/>
+      <conf name="project"/>
     </configurations>
 
     <publications>
-      <artifact name="service-eventer" type="jar" conf="main" />
+      <artifact name="service-eventer" type="jar" conf="project" />
     </publications>
 
     <dependencies>

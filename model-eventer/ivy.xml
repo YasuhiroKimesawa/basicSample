@@ -4,11 +4,11 @@
     <info organisation="com.pilgrim-lifestyle" module="model-eventer" status="integration"></info>
 
     <configurations>
-      <conf name="main"/>
+      <conf name="project"/>
     </configurations>
 
     <publications>
-      <artifact name="model-eventer" type="jar" conf="main" />
+      <artifact name="model-eventer" type="jar" conf="project" />
     </publications>
 
     <dependencies>

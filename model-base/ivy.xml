@@ -4,10 +4,10 @@
     <info organisation="com.pilgrim-lifestyle" module="model-base" status="integration"></info>
 
     <configurations>
-      <conf name="main"/>
+      <conf name="project"/>
     </configurations>
 
     <publications>
-      <artifact name="model-base" type="jar" conf="main" />
+      <artifact name="model-base" type="jar" conf="project" />
     </publications>
 </ivy-module>

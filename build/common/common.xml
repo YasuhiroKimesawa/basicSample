@@ -15,6 +15,7 @@
 
 	<path id="lib.path.id">
 		<fileset dir="${lib.dir}" />
+		<fileset dir ="${project.lib.dir}" />
 	</path>
 	<path id="run.path.id">
 		<path refid="lib.path.id" />
@@ -23,7 +24,7 @@
 
 	<!-- setup ivy default configuration with some custom info -->
 	<property name="ivy.local.default.root" value="${repository.dir}/local"/>
-	<property name="ivy.shared.default.root" value="${repository.dir}/main"/>
+	<property name="ivy.shared.default.root" value="${repository.dir}/project"/>
 
 	 <!-- =================================
 	      target: resolve
@@ -33,7 +34,7 @@
 
 		<!-- the call to resolve is not mandatory, retrieve makes an implicit call if we don't -->
 		<ivy:resolve file="${ivy.file}"/>
-		<ivy:retrieve pattern="${lib.dir}/[artifact]-[revision].[ext]" />
+		<ivy:retrieve pattern="${project.lib.dir}/[artifact]-[revision].[ext]" />
 	</target>
 
 	<!-- =================================
@@ -125,13 +126,6 @@
 	<target name="clean-local" depends="load-ivy" description="--> cleans the local repository for the current module">
 		<ivy:info file="${ivy.file}" />
 		<delete dir="${ivy.local.default.root}/${ivy.organisation}/${ivy.module}"/>
-	</target>
-
-	<!-- =================================
-          target: clean-lib
-         ================================= -->
-	<target name="clean-lib" description="--> clean the project libraries directory (dependencies)">
-		<delete includeemptydirs="true" dir="${lib.dir}" excludes="ivy.jar"/>
 	</target>
 
 	<!-- =================================
