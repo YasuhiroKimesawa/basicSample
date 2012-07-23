@@ -6,6 +6,9 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
+        <dependent-module archiveName="lombok-0.11.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/lombok-0.11.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="web-basic_sample"/>
         <property name="java-output-path" value="/web-basic_sample/target/eclipse-output"/>
     </wb-module>
