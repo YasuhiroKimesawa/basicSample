@@ -1,0 +1,26 @@
+<form>
+<table>
+<tbody>
+<tr>
+<th>お名前</th>
+<td></td>
+</tr>
+<tr>
+<th>電話番号</th>
+<td></td>
+</tr>
+<tr>
+<th>メールアドレス</th>
+<td></td>
+</tr>
+<tr>
+<th>お名前</th>
+<td></td>
+</tr>
+<tr colspan="2">
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</form>

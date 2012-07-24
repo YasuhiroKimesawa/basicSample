@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<tools>
+  <toolbox scope="application">
+    <!--
+    <tool class="org.apache.velocity.tools.generic.EscapeTool" />
+    -->
+    <tool class="com.systemsekkei.base.web.view.velocity.tool.EscapeTool" />
+    <tool class="com.systemsekkei.base.web.view.velocity.tool.HtmlTool" />
+    <tool class="org.apache.velocity.tools.generic.DateTool"
+          format="yyyy/MM/dd HH:mm:ss"/>
+    <tool class="org.apache.velocity.tools.generic.MathTool" />
+    <tool class="com.systemsekkei.base.web.view.velocity.tool.EscapeTool" />
+  </toolbox>
+</tools>

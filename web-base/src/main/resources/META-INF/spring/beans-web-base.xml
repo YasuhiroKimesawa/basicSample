@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:mvc="http://www.springframework.org/schema/mvc"
+  xsi:schemaLocation="
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+      http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+  <!-- パッケージ名に変更する必要あり -->
+  <context:component-scan base-package="com.pilgrim_lifestyle.web" />
+  <context:component-scan base-package="com.pilgrim_lifestyle.form" />
+
+  <mvc:annotation-driven conversion-service="conversionService" />
+
+  <bean id="conversionService"
+        class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+  </bean>
+
+<!-- HandlerExceptionResolver
+  <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver">
+    <property name="order" value="0"/>
+  </bean>
+  <bean class="org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver">
+    <property name="order" value="1"/>
+  </bean>
+  <bean class="com.systemsekkei.base.web.mvc.LoggingHandlerExceptionResolver">
+    <property name="order" value="2"/>
+  </bean>
+  <bean class="org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver">
+    <property name="order" value="3"/>
+  </bean>
+-->
+
+<!-- Error Page
+  <mvc:view-controller path="/error/pageNotFound" view-name="/error/pageNotFound"/>
+  <mvc:view-controller path="/error/accessDenied" view-name="/error/accessDenied"/>
+  <mvc:view-controller path="/error/exception" view-name="/error/exception"/>
+-->
+
+  <bean id="velocityConfigurer"
+        class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+    <property name="resourceLoaderPath" value="/WEB-INF/views/" />
+    <property name="velocityProperties">
+      <props>
+        <prop key="input.encoding">UTF-8</prop>
+        <prop key="output.encoding">UTF-8</prop>
+        <prop key="velocimacro.library">/META-INF/velocity/checkboxes-macro.vm</prop>
+      </props>
+    </property>
+  </bean>
+
+  <bean id="velocityViewResolver"
+        class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+    <property name="viewClass" value="com.systemsekkei.base.web.view.velocity.tool.VelocityToolbox2View"/>
+    <property name="contentType">
+      <value>text/html;charset=UTF-8</value>
+    </property>
+    <!-- attributesMapで指定しておくと、自動的にModelに追加される
+     <property name="attributesMap">
+     <map>
+      <entry key="userinfo">
+      -->
+      <!-- Beanとして定義するため、@Autowireのインジェクションが有効
+        <bean class="jp.pis.service.userinfo.UserInfoService"/>
+      </entry>
+      <entry key="xTracking" value-ref="analytics"/>
+    </map>
+  	</property>
+    -->
+    <property name="prefix" value="/" />
+    <property name="suffix" value=".vm" />
+    <property name="toolboxConfigLocation"
+              value="/META-INF/velocity/velocity-toolbox-generic.xml,
+                     /META-INF/velocity/velocity-toolbox-view.xml,
+                     /META-INF/velocity/velocity-toolbox-security.xml" />
+  </bean>
+</beans>
