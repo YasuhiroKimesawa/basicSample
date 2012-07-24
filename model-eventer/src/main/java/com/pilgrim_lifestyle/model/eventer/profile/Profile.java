@@ -6,4 +6,9 @@ import lombok.ToString;
 public class Profile
 {
     private PersonName personName;
+
+    public Profile( PersonName personName )
+    {
+        this.personName = personName;
+    }
 }

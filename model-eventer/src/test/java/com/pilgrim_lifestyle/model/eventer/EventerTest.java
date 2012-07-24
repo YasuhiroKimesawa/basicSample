@@ -17,7 +17,7 @@ public class EventerTest
         @Before
         public void init()
         {
-            eventer = new Eventer();
+            fail( "まだ実装されていません" );
         }
     }
 

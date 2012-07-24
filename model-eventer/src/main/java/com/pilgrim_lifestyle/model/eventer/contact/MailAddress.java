@@ -6,4 +6,9 @@ import lombok.ToString;
 public class MailAddress
 {
     private String mailAddress;
+
+    public MailAddress( String mailAddress )
+    {
+        this.mailAddress = mailAddress;
+    }
 }

@@ -11,4 +11,10 @@ public class Eventer
     private Profile profile;
 
     private Contact contact;
+
+	public Eventer( Profile profile, Contact contact )
+	{
+		this.profile = profile;
+		this.contact = contact;
+	}
 }

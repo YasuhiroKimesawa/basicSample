@@ -9,4 +9,10 @@ public class Contact
 
     private TelephoneNumber telephoneNumber;
 
+    public Contact( MailAddress mailAddress, TelephoneNumber telephoneNumber )
+    {
+        this.mailAddress = mailAddress;
+        this.telephoneNumber = telephoneNumber;
+    }
+
 }

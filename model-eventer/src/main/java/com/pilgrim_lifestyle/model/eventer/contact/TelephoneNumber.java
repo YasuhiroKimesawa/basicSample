@@ -6,4 +6,9 @@ import lombok.ToString;
 public class TelephoneNumber
 {
     private String number;
+
+    public TelephoneNumber( String number )
+    {
+        this.number = number;
+    }
 }
