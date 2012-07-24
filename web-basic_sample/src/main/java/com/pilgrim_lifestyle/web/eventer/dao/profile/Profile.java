@@ -1,4 +1,4 @@
-package com.pilgrim_lifestyle.dao.eventer.profile;
+package com.pilgrim_lifestyle.web.eventer.dao.profile;
 
 import java.io.Serializable;
 

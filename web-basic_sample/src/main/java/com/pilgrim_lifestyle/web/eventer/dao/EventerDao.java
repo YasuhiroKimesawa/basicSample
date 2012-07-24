@@ -1,11 +1,11 @@
-package com.pilgrim_lifestyle.dao.eventer;
+package com.pilgrim_lifestyle.web.eventer.dao;
 
 import java.io.Serializable;
 
 import lombok.Data;
 
-import com.pilgrim_lifestyle.dao.eventer.contact.Contact;
-import com.pilgrim_lifestyle.dao.eventer.profile.Profile;
+import com.pilgrim_lifestyle.web.eventer.dao.contact.Contact;
+import com.pilgrim_lifestyle.web.eventer.dao.profile.Profile;
 
 public @Data class EventerDao implements Serializable
 {

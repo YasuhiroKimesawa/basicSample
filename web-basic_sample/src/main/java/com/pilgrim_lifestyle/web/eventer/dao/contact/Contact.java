@@ -1,4 +1,4 @@
-package com.pilgrim_lifestyle.dao.eventer.contact;
+package com.pilgrim_lifestyle.web.eventer.dao.contact;
 
 import java.io.Serializable;
 

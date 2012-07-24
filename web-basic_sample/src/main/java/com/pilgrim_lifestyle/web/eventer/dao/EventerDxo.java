@@ -1,4 +1,4 @@
-package com.pilgrim_lifestyle.dao.eventer;
+package com.pilgrim_lifestyle.web.eventer.dao;
 
 import com.pilgrim_lifestyle.model.eventer.Eventer;
 
