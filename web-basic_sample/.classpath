@@ -16,8 +16,11 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/dataaccess-base"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/dataaccess-eventer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/model-base"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/model-eventer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/service-base"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/service-eventer"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/web-base"/>
 	<classpathentry kind="lib" path="/dataaccess-eventer/target/eclipse-output">
@@ -36,6 +39,21 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/web-base/target/eclipse-output">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/dataaccess-base/target/eclipse-output">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/service-base/target/eclipse-output">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/model-base/target/eclipse-output">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
 		</attributes>

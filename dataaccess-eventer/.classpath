@@ -23,7 +23,6 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.com.lowagie.text-2.0.8.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.com.mchange.v2.c3p0-0.9.1.2.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.com.sun.syndication-1.0.0.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.freemarker-2.3.15.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.javax.ejb-3.0.0.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.javax.el-1.0.0.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.javax.faces-1.2.0.08.jar"/>
@@ -59,12 +58,6 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.apache.log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.apache.poi-3.0.2.FINAL.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.apache.taglibs.standard-1.1.2.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.apache.tiles-2.1.2.osgi.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.apache.tiles.core-2.1.2.osgi.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.apache.tiles.jsp-2.1.2.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.apache.tiles.servlet-2.1.2.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.apache.velocity-1.5.0.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.apache.velocity.tools.view-1.4.0.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.codehaus.jackson-1.4.2.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.codehaus.jackson.mapper-1.4.2.jar"/>

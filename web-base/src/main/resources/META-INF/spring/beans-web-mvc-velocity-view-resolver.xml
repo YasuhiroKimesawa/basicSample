@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+  <bean id="velocityViewResolver"
+        class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+    <property name="viewClass" value="com.systemsekkei.base.web.view.velocity.tool.VelocityToolbox2View"/>
+    <property name="contentType">
+      <value>text/html;charset=UTF-8</value>
+    </property>
+    <property name="prefix" value="/" />
+    <property name="suffix" value=".vm" />
+    <property name="toolboxConfigLocation"
+              value="/META-INF/velocity/velocity-toolbox-generic.xml,
+                     /META-INF/velocity/velocity-toolbox-view.xml,
+                     /META-INF/velocity/velocity-toolbox-security.xml" />
+  </bean>
+</beans>

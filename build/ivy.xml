@@ -13,7 +13,15 @@
 		<dependency org="org.springframework" name="org.springframework.aop" rev="3.1.2.RELEASE" conf="main->*,!sources,!javadoc" />
 		<dependency org="org.springframework" name="org.springframework.web" rev="3.1.2.RELEASE" conf="main->*,!sources,!javadoc" />
 		<dependency org="org.springframework" name="org.springframework.jdbc" rev="3.1.2.RELEASE" conf="main->*,!sources,!javadoc" />
-		<dependency org="org.springframework" name="org.springframework.web.servlet" rev="3.1.2.RELEASE" conf="main->*,!sources,!javadoc" />
+		<dependency org="org.springframework" name="org.springframework.web.servlet" rev="3.1.2.RELEASE" conf="main->*,!sources,!javadoc"  >
+			<exclude name="com.springsource.org.apache.velocity.tools.view" />
+			<exclude name="com.springsource.org.apache.velocity" />
+			<exclude name="com.springsource.org.apache.tiles.jsp" />
+			<exclude name="com.springsource.org.apache.tiles.servlet" />
+			<exclude name="com.springsource.org.apache.tiles.core" />
+			<exclude name="com.springsource.org.apache.tiles" />
+			<exclude name="com.springsource.freemarker" />
+		</dependency>
 		<dependency org="org.springframework" name="org.springframework.transaction" rev="3.1.2.RELEASE" conf="main->*,!sources,!javadoc" />
 		<dependency org="org.springframework.security" name="spring-security-core" rev="3.1.1.RELEASE" conf="main->*,!sources,!javadoc" />
 		<dependency org="org.springframework.security" name="spring-security-web" rev="3.1.1.RELEASE" conf="main->*,!sources,!javadoc" />

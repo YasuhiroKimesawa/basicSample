@@ -1,0 +1,50 @@
+##
+## <html>タグの出力
+##
+##
+#macro( html )
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+#end
+
+## <head>タグの中身の出力
+##引数
+##  title : title内で表示させる文字列
+##
+#macro( head $title $description $keywords )
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Language" content="ja" />
+  <title>${title}</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <meta name="copyright" content="Pilgrim-Lifestyle, Inc." />
+  <!-- <link rel="shortcut icon" type="image/x-icon" href="ca.ico" /> -->
+  <link rel="start" href="http://www.pilgrim-lifestyle.com/" title="home" />
+  <!-- <link rel="stylesheet" type="text/css" href="https://www.cyberagent.co.jp/css/base.css" media="all" /> -->
+
+  <!-- <script type="text/javascript" src="https://www.cyberagent.co.jp/js/common.js"></script> -->
+
+  <!-- <script type="text/javascript" language="javascript" src="$link.contextPath/js/jquery-1.7.1.js"></script> -->
+#end
+
+##
+## フッター情報一元管理 用マクロ
+##
+#macro( footer )
+  </body>
+  </html>
+#end
+
+##
+##  指定のオブジェクトのエラーを表示するマクロ
+##
+##引数
+##  path : Spring Macroで使用するobjectのパス
+#macro( errorMessage $path )
+    #springBind( $path )
+    #if( $status.error )
+        $status.errorMessage
+    #end
+#end
