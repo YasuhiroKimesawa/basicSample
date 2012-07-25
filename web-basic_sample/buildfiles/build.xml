@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration>
-<project name="web-basic_sample" default="war" basedir=".">
-	<property file="build.properties" />
+<!DOCTYPE project>
+<project name="web-basic_sample" default="compile" basedir=".">
+	<property file="build.properties"/>
 
-	<import file="${common.dir}/common.xml" />
-
-	<property name="target.dir" location="${basedir}/target" />
-	<property name="target.classes.dir" location="${target.dir}/classes" />
-	<property name="target.webapps.dir" location="${target.dir}/webapp" />
-	<property name="target.webapps.lib.dir" location="${target.webapps.dir}/WEB-INF/lib" />
-
-	<target name="war" depends="compile">
-		<war destfile="${target.dir}/${war.name}" webxml="${target.webapps.dir}/WEB-INF/web.xml">
-			<fileset dir="${target.webapps.dir}" />
-			<classes dir="${target.classes.dir}" />
-		</war>
-	</target>
+	<import file="${common.dir}/common.xml"/>
 </project>

@@ -23,10 +23,17 @@
 			<fileset dir="../" includes="service-*/**/build.xml" />
 			<fileset dir="../" includes="web-base/**/build.xml" />
 		</ivy:buildlist>
+		<ivy:buildlist reference="web-build-path">
+			<fileset dir="../" includes="web-basic_sample/**/build.xml" />
+		</ivy:buildlist>
+		<delete dir="../web-basic_sample/target" />
+		<mkdir dir="../web-basic_sample/target/webapp" />
+		<mkdir dir="../web-basic_sample/target/classes" />
 	</target>
 
 	<target name="publish-all" depends="clean, resolve, buildlist" description="compile, jar and publish all projects in the right order">
 		<subant target="publish" buildpathref="build-path" />
+		<subant target="war" buildpathref="web-build-path" />
 		<!-- <subant target="junit"   buildpathref="build-path" /> -->
 	</target>
 
