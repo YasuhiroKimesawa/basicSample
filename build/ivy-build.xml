@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project basedir="." default="report" name="resolve" xmlns:ivy="antlib:org.apache.ivy.ant">
-  <property name="ivy.lib.dir" value="${basedir}/../shared-lib/src/[conf]/lib" />
+
+	<property file="./build.properties" />
+
+	<property name="ivy.lib.dir" value="${lib.dir}/[conf]/lib" />
 
 	<target name="load-ivy">
 		<path id="ivy.lib.path">
-			<pathelement location="${basedir}/../shared-lib/src/main/lib/ivy.jar" />
+			<pathelement location="${ivy.jar}" />
 		</path>
 		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path" />
 	</target>
 
-  <target name="resolve" depends="load-ivy">
-  	<ivy:resolve file="${basedir}/ivy.xml" />
-    <ivy:retrieve pattern="${ivy.lib.dir}/[artifact]-[revision].[ext]"/>
-  </target>
+	<target name="resolve" depends="load-ivy">
+		<ivy:resolve file="${basedir}/ivy.xml" />
+		<ivy:retrieve pattern="${ivy.lib.dir}/[artifact]-[revision].[ext]" />
+	</target>
 
-  <target name="report" depends="resolve" description="--> generates a report of dependencies">
-	 <ivy:report todir="${basedir}/../shared-lib/report"/>
-   </target>
+	<target name="report" depends="resolve" description="--> generates a report of dependencies">
+		<ivy:report todir="${report.dir}" />
+	</target>
 </project>
