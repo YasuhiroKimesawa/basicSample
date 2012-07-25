@@ -1,5 +1,0 @@
-<project name="service-base" default="compile" basedir=".">
-	<property file="build.properties"/>
-
-	<import file="${common.dir}/common.xml"/>
-</project>
