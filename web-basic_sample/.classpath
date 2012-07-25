@@ -19,6 +19,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/dataaccess-eventer"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/model-eventer"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/service-eventer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/web-base"/>
 	<classpathentry kind="lib" path="/dataaccess-eventer/target/eclipse-output">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
@@ -34,7 +35,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/web-base"/>
 	<classpathentry kind="lib" path="/web-base/target/eclipse-output">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>

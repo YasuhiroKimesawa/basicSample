@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+    <info organisation="com.pilgrim-lifestyle" module="service-eventer" status="integration"></info>
+
+    <configurations>
+      <conf name="project"/>
+    </configurations>
+
+    <publications>
+      <artifact name="service-eventer" type="jar" conf="project" />
+    </publications>
+
+    <dependencies>
+    	<dependency org="com.pilgrim-lifestyle" name="model-eventer" rev="latest.integration" ></dependency>
+    	<dependency org="com.pilgrim-lifestyle" name="service-base" rev="latest.integration" ></dependency>
+    </dependencies>
+</ivy-module>
+

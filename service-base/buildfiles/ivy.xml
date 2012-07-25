@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+    <info organisation="com.pilgrim-lifestyle" module="service-base" status="release"/>
+
+    <configurations>
+      <conf name="project"/>
+    </configurations>
+
+    <publications>
+      <artifact name="service-base" type="jar" conf="project"/>
+    </publications>
+</ivy-module>

@@ -1,9 +1,9 @@
 <project name="common" xmlns:ivy="antlib:org.apache.ivy.ant">
+	<property name="common.dir" location="${basedir}/../../build/common" />
 	<property file="${common.dir}/build.properties"/>
-	<!-- <property file="build.properties" /> -->
 
-	<property name="ivy.jar.dir" value="${wkspace.dir}/shared-lib/src/main/lib" />
-	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+	<property name="ivy.jar.dir" location="${wkspace.dir}/shared-lib/src/main/lib" />
+	<property name="ivy.jar.file" location="${ivy.jar.dir}/ivy.jar" />
 
 	<target name="load-ivy">
 		<mkdir dir="${ivy.jar.dir}" />
@@ -23,8 +23,8 @@
 	</path>
 
 	<!-- setup ivy default configuration with some custom info -->
-	<property name="ivy.local.default.root" value="${repository.dir}/local"/>
-	<property name="ivy.shared.default.root" value="${repository.dir}/project"/>
+	<property name="ivy.local.default.root" location="${repository.dir}/local"/>
+	<property name="ivy.shared.default.root" location="${repository.dir}/project"/>
 
 	 <!-- =================================
 	      target: resolve
