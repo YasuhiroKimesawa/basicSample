@@ -3,7 +3,9 @@
 	<target name="tomcat-stop">
 		<exec executable="/usr/local/tomcat-dev/bin/shutdown.sh" />
 
-		<exec executable="ps -ef | grep tomcat-dev | grep -v grep" outputproperty="tomcat.running" />
+		<exec executable="ps" outputproperty="tomcat.running" >
+			<arg value="-ef | grep tomcat-dev | grep -v grep"/>
+		</exec>
 
 		<fail message="tomcatが停止できません。" if="tomcat.running" />
 	</target>
