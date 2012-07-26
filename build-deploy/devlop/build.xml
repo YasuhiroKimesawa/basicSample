@@ -3,11 +3,12 @@
 	<target name="tomcat-stop">
 		<exec executable="/usr/local/tomcat-dev/bin/shutdown.sh" />
 
-		<waitfor maxwait="60" maxwaitunit="second">
-			<exec executable="ps" outputproperty="tomcat.running" >
-				<arg value="-ef | grep tomcat-dev | grep -v grep"/>
-			</exec>
-		</waitfor>
+		<sleep seconds="30" />
+
+		<exec executable="ps" outputproperty="tomcat.running" >
+			<arg value="-ef | grep tomcat-dev | grep -v grep"/>
+		</exec>
+
 
 		<fail message="tomcatが停止できません。" if="tomcat.running" />
 	</target>
@@ -52,9 +53,9 @@
 	<target name="tomcat-start" depends="deploy-app, deploy-sharedlib, apache-start">
 		<exec executable="/usr/local/tomcat-dev/bin/startup.sh" />
 
-		<waitfor maxwait="60" maxwaitunit="second">
-			<exec executable="ps -ef | grep tomcat-dev | grep -v grep" outputproperty="tomcat.running" />
-		</waitfor>
+		<sleep seconds="30" />
+
+		<exec executable="ps -ef | grep tomcat-dev | grep -v grep" outputproperty="tomcat.running" />
 
 		<fail message="tomcatが起動できません。" unless="tomcat.running" />
 	</target>
