@@ -1,0 +1,57 @@
+<project name="deploy" default="tomcat-start" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+	<target name="tomcat-stop">
+		<exec executable="shutdown.sh" dir="/usr/local/tomcat-dev/bin" />
+
+		<exec executable="ps -ef | grep tomcat-dev | grep -v grep" outputproperty="tomcat.running" />
+
+		<fail message="tomcatが停止できません。" if="tomcat.running" />
+	</target>
+
+	<target name="deploy-sharedlib" depends="tomcat-stop">
+		<mkdir dir="/usr/local/tomcat-dev/shared-lib" />
+		<copy todir="/usr/local/tomcat-dev/shared-lib">
+			<fileset dir="/usr/local/jenkins/jobs/basicSample-personal/workspace/shared-lib/src/main/lib">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="/usr/local/jenkins/shared-lib/src/project/lib">
+				<include name="*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="deploy-static" depends="tomcat-stop">
+		<delete dir="/var/www/html/web-basic_sample" />
+		<mkdir dir="/var/www/html/web-basic_sample" />
+		<copy todir="/usr/local/tomcat-dev/shared-lib">
+			<fileset dir="/usr/local/jenkins/jobs/basicSample-personal/workspace/web-basic_sample-static/src/main/webapp" />
+		</copy>
+	</target>
+
+	<target name="apache-start" depends="deploy-static">
+		<exec executable="httpd" dir="/etc/init.d" >
+			<arg value="restart" />
+		</exec>
+
+		<exec executable="ps -ef | grep httpd | grep -v grep" outputproperty="httpd.running"/>
+
+		<fail message="apacheが起動できません。" unless="httpd.running" />
+	</target>
+
+	<target name="deploy-app" depends="tomcat-stop">
+		<delete dir="/usr/local/tomcat-dev/webapps/web-basic_sample" />
+		<delete file="/usr/local/tomcat-dev/webapps/web-basic_sample.war" />
+		<copy file="/usr/local/jenkins/jobs/basicSample-personal/workspace/web-basic_sample/target/web-basic_sample.war"
+			tofile="/usr/local/tomcat-dev/webapps/web-basic_sample.war" />
+	</target>
+
+	<target name="tomcat-start" depends="deploy-app, deploy-sharedlib, apache-start">
+		<exec executable="startup.sh" dir="/usr/local/tomcat-dev/bin" />
+
+		<waitfor maxwait="60" maxwaitunit="second">
+			<exec executable="ps -ef | grep tomcat-dev | grep -v grep" outputproperty="tomcat.running" />
+		</waitfor>
+
+		<fail message="tomcatが起動できません。" unless="tomcat.running" />
+	</target>
+</project>
