@@ -3,9 +3,11 @@
 	<target name="tomcat-stop">
 		<exec executable="/usr/local/tomcat-dev/bin/shutdown.sh" />
 
-		<exec executable="ps" outputproperty="tomcat.running" >
-			<arg value="-ef | grep tomcat-dev | grep -v grep"/>
-		</exec>
+		<waitfor maxwait="60" maxwaitunit="second">
+			<exec executable="ps" outputproperty="tomcat.running" >
+				<arg value="-ef | grep tomcat-dev | grep -v grep"/>
+			</exec>
+		</waitfor>
 
 		<fail message="tomcatが停止できません。" if="tomcat.running" />
 	</target>
