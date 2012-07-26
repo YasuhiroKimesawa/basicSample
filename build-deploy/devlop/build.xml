@@ -1,7 +1,7 @@
 <project name="deploy" default="tomcat-start" xmlns:ivy="antlib:org.apache.ivy.ant">
 
 	<target name="tomcat-stop">
-		<exec executable="shutdown.sh" dir="/usr/local/tomcat-dev/bin" />
+		<exec executable="/usr/local/tomcat-dev/bin/shutdown.sh" />
 
 		<exec executable="ps -ef | grep tomcat-dev | grep -v grep" outputproperty="tomcat.running" />
 
@@ -29,7 +29,7 @@
 	</target>
 
 	<target name="apache-start" depends="deploy-static">
-		<exec executable="httpd" dir="/etc/init.d" >
+		<exec executable="/etc/init.d/httpd" >
 			<arg value="restart" />
 		</exec>
 
@@ -46,7 +46,7 @@
 	</target>
 
 	<target name="tomcat-start" depends="deploy-app, deploy-sharedlib, apache-start">
-		<exec executable="startup.sh" dir="/usr/local/tomcat-dev/bin" />
+		<exec executable="/usr/local/tomcat-dev/bin/startup.sh" />
 
 		<waitfor maxwait="60" maxwaitunit="second">
 			<exec executable="ps -ef | grep tomcat-dev | grep -v grep" outputproperty="tomcat.running" />
