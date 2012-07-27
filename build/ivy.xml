@@ -118,7 +118,6 @@
     	<exclude module="jsr250-api" />
     	<exclude module="logkit" />
     	<exclude module="ognl" />
-    	<exclude module="oro" />
     	<exclude module="sslext" />
     	<exclude module="werken-xpath" />
     </dependencies>
