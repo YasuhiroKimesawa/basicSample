@@ -3,13 +3,16 @@
 	<target name="tomcat-stop">
 		<exec executable="/usr/local/tomcat-dev/bin/shutdown.sh" />
 
-		<sleep seconds="30" />
-
-		<exec executable="ps" outputproperty="tomcat.running" >
-			<arg value="-ef | grep tomcat-dev | grep -v grep"/>
+		<sleep seconds="15" />
+		<exec executable="bash" output="./running">
+			<arg value="-c" />
+			<arg value="ps -ef  | grep tomcat-dev | grep -v grep" />
 		</exec>
 
+		<loadfile property="tomcat.running" srcFile="./running" />
 
+		<echo message="tomcat.running => ${tomcat.running}" />
+		<delete file="./running" />
 		<fail message="tomcatが停止できません。" if="tomcat.running" />
 	</target>
 
@@ -19,7 +22,7 @@
 			<fileset dir="/usr/local/jenkins/jobs/basicSample-personal/workspace/shared-lib/src/main/lib">
 				<include name="*.jar" />
 			</fileset>
-			<fileset dir="/usr/local/jenkins/shared-lib/src/project/lib">
+			<fileset dir="/usr/local/jenkins/jobs/basicSample-personal/workspace/shared-lib/src/project/lib/">
 				<include name="*.jar" />
 			</fileset>
 		</copy>
@@ -28,17 +31,26 @@
 	<target name="deploy-static" depends="tomcat-stop">
 		<delete dir="/var/www/html/web-basic_sample" />
 		<mkdir dir="/var/www/html/web-basic_sample" />
-		<copy todir="/usr/local/tomcat-dev/shared-lib">
+		<copy todir="/var/www/html/web-basic_sample">
 			<fileset dir="/usr/local/jenkins/jobs/basicSample-personal/workspace/web-basic_sample-static/src/main/webapp" />
 		</copy>
 	</target>
 
 	<target name="apache-start" depends="deploy-static">
-		<exec executable="/etc/init.d/httpd" >
+		<exec executable="httpd" dir="/etc/init.d">
 			<arg value="restart" />
 		</exec>
 
-		<exec executable="ps -ef | grep httpd | grep -v grep" outputproperty="httpd.running"/>
+		<sleep seconds="15" />
+		<exec executable="bash" output="./running">
+			<arg value="-c" />
+			<arg value="ps -ef  | grep httpd | grep -v grep" />
+		</exec>
+
+		<loadfile property="httpd.running" srcFile="./running" />
+
+		<echo message="httpd.running => ${httpd.running}" />
+		<delete file="./running" />
 
 		<fail message="apacheが起動できません。" unless="httpd.running" />
 	</target>
@@ -46,16 +58,22 @@
 	<target name="deploy-app" depends="tomcat-stop">
 		<delete dir="/usr/local/tomcat-dev/webapps/web-basic_sample" />
 		<delete file="/usr/local/tomcat-dev/webapps/web-basic_sample.war" />
-		<copy file="/usr/local/jenkins/jobs/basicSample-personal/workspace/web-basic_sample/target/web-basic_sample.war"
-			tofile="/usr/local/tomcat-dev/webapps/web-basic_sample.war" />
+		<copy file="/usr/local/jenkins/jobs/basicSample-personal/workspace/web-basic_sample/target/web-basic_sample.war" tofile="/usr/local/tomcat-dev/webapps/web-basic_sample.war" />
 	</target>
 
 	<target name="tomcat-start" depends="deploy-app, deploy-sharedlib, apache-start">
-		<exec executable="/usr/local/tomcat-dev/bin/startup.sh" />
+		<exec executable="/usr/local/tomcat-dev/binstartup.sh" />
 
-		<sleep seconds="30" />
+		<sleep seconds="15" />
+		<exec executable="bash" output="./running">
+			<arg value="-c" />
+			<arg value="ps -ef  | grep tomcat-dev | grep -v grep" />
+		</exec>
 
-		<exec executable="ps -ef | grep tomcat-dev | grep -v grep" outputproperty="tomcat.running" />
+		<loadfile property="tomcat.running" srcFile="./running" />
+
+		<echo message="tomcat.running => ${tomcat.running}" />
+		<delete file="./running" />
 
 		<fail message="tomcatが起動できません。" unless="tomcat.running" />
 	</target>
