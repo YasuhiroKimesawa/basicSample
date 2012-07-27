@@ -23,9 +23,11 @@
 			<exclude name="com.springsource.freemarker" />
 		</dependency>
 		<dependency org="org.springframework" name="org.springframework.transaction" rev="3.1.2.RELEASE" conf="main->*,!sources,!javadoc" />
+
 		<dependency org="org.springframework.security" name="spring-security-core" rev="3.1.1.RELEASE" conf="main->*,!sources,!javadoc" />
 		<dependency org="org.springframework.security" name="spring-security-web" rev="3.1.1.RELEASE" conf="main->*,!sources,!javadoc" />
 		<dependency org="org.springframework.security" name="spring-security-config" rev="3.1.1.RELEASE" conf="main->*,!sources,!javadoc" />
+
 		<dependency org="commons-dbcp" name="commons-dbcp" rev="20030825.184428" conf="main->*,!sources,!javadoc" />
 		<dependency org="commons-pool" name="commons-pool" rev="20030825.183949" conf="main->*,!sources,!javadoc" />
 		<dependency org="commons-collections" name="commons-collections" rev="3.2.1" conf="main->*,!sources,!javadoc" />
@@ -47,5 +49,21 @@
         <dependency org="info.cukes" name="cucumber-groovy" rev="1.0.11" conf="test->*,!sources,!javadoc"/>
         <dependency org="org.dbunit" name="dbunit" rev="2.4.8" conf="test->*,!sources,!javadoc"/>
         <dependency org="com.googlecode.jmockit" name="jmockit" rev="0.999.8" conf="test->*,!sources,!javadoc"/>
+
+    	<exclude module="spring-batch-core" />
+    	<exclude module="spring-aop" />
+    	<exclude module="spring-asm" />
+    	<exclude module="spring-beans" />
+    	<exclude module="spring-context" />
+    	<exclude module="spring-core" />
+    	<exclude module="spring-expression" />
+    	<exclude module="spring-jdbc" />
+    	<exclude module="spring-web" />
+    	<exclude module="spring-tx" />
+    	<exclude module="struts-core" />
+    	<exclude module="struts-taglib" />
+    	<exclude module="struts-tiles" />
     </dependencies>
+
+
 </ivy-module>
