@@ -17,6 +17,7 @@
 	</target>
 
 	<target name="deploy-sharedlib" depends="tomcat-stop">
+		<delete dir="/usr/local/tomcat-dev/shared-lib"></delete>
 		<mkdir dir="/usr/local/tomcat-dev/shared-lib" />
 		<copy todir="/usr/local/tomcat-dev/shared-lib">
 			<fileset dir="/usr/local/jenkins/jobs/basicSample-personal/workspace/shared-lib/src/main/lib">
