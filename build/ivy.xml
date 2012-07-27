@@ -113,7 +113,6 @@
     	<exclude module="dom4j" />
     	<exclude module="ehcache" />
     	<exclude module="hibernate-jpa-2.0-api" />
-    	<exclude module="jboss-logging" />
     	<exclude module="jdom" />
     	<exclude module="jsoup" />
     	<exclude module="jsr250-api" />
