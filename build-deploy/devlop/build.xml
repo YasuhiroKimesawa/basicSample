@@ -37,7 +37,7 @@
 	</target>
 
 	<target name="apache-start" depends="deploy-static">
-		<exec executable="httpd" dir="/etc/init.d">
+		<exec executable="/etc/init.d/httpd">
 			<arg value="restart" />
 		</exec>
 
@@ -62,7 +62,7 @@
 	</target>
 
 	<target name="tomcat-start" depends="deploy-app, deploy-sharedlib, apache-start">
-		<exec executable="/usr/local/tomcat-dev/binstartup.sh" />
+		<exec executable="/usr/local/tomcat-dev/bin/startup.sh" />
 
 		<sleep seconds="15" />
 		<exec executable="bash" output="./running">
