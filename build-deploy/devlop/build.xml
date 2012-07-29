@@ -1,12 +1,16 @@
 <project name="deploy" default="tomcat-start" xmlns:ivy="antlib:org.apache.ivy.ant">
 
+	<import file="../../build/ivy-build.xml"/>
+
 	<target name="tomcat-stop">
-		<exec executable="/usr/local/tomcat-dev/bin/shutdown.sh" />
+		<exec executable="/etc/init.d/tomcat" >
+			<arg value="stop" />
+		</exec>
 
 		<sleep seconds="15" />
 		<exec executable="bash" output="./running">
 			<arg value="-c" />
-			<arg value="ps -ef  | grep tomcat-dev | grep -v grep" />
+			<arg value="ps -ef  | grep tomcat | grep -v grep" />
 		</exec>
 
 		<loadfile property="tomcat.running" srcFile="./running" />
@@ -16,14 +20,14 @@
 		<fail message="tomcatが停止できません。" if="tomcat.running" />
 	</target>
 
-	<target name="deploy-sharedlib" depends="tomcat-stop">
-		<delete dir="/usr/local/tomcat-dev/shared-lib"></delete>
-		<mkdir dir="/usr/local/tomcat-dev/shared-lib" />
-		<copy todir="/usr/local/tomcat-dev/shared-lib">
-			<fileset dir="/usr/local/jenkins/jobs/basicSample-personal/workspace/shared-lib/src/main/lib">
+	<target name="deploy-sharedlib" depends="tomcat-stop, resolve">
+		<delete dir="/usr/local/tomcat/shared-lib"></delete>
+		<mkdir dir="/usr/local/tomcat/shared-lib" />
+		<copy todir="/usr/local/tomcat/shared-lib">
+			<fileset dir="/usr/local/jenkins/jobs/basicSample-localDeploy/workspace/shared-lib/src/main/lib">
 				<include name="*.jar" />
 			</fileset>
-			<fileset dir="/usr/local/jenkins/jobs/basicSample-personal/workspace/shared-lib/src/project/lib/">
+			<fileset dir="/usr/local/jenkins/jobs/basicSample-localDeploy/workspace/shared-lib/src/project/lib/">
 				<include name="*.jar" />
 			</fileset>
 		</copy>
@@ -33,7 +37,7 @@
 		<delete dir="/var/www/html/web-basic_sample" />
 		<mkdir dir="/var/www/html/web-basic_sample" />
 		<copy todir="/var/www/html/web-basic_sample">
-			<fileset dir="/usr/local/jenkins/jobs/basicSample-personal/workspace/web-basic_sample-static/src/main/webapp" />
+			<fileset dir="/usr/local/jenkins/jobs/basicSample-localDeploy/workspace/web-basic_sample-static/src/main/webapp" />
 		</copy>
 	</target>
 
@@ -57,18 +61,20 @@
 	</target>
 
 	<target name="deploy-app" depends="tomcat-stop">
-		<delete dir="/usr/local/tomcat-dev/webapps/web-basic_sample" />
-		<delete file="/usr/local/tomcat-dev/webapps/web-basic_sample.war" />
-		<copy file="/usr/local/jenkins/jobs/basicSample-personal/workspace/web-basic_sample/target/web-basic_sample.war" tofile="/usr/local/tomcat-dev/webapps/web-basic_sample.war" />
+		<delete dir="/usr/local/tomcat/webapps/web-basic_sample" />
+		<delete file="/usr/local/tomcat/webapps/web-basic_sample.war" />
+		<copy file="build/web-basic_sample.war" tofile="/usr/local/tomcat/webapps/web-basic_sample.war" />
 	</target>
 
 	<target name="tomcat-start" depends="deploy-app, deploy-sharedlib, apache-start">
-		<exec executable="/usr/local/tomcat-dev/bin/startup.sh" />
+		<exec executable="/etc/init.d/tomcat" >
+			<arg value="start" />
+		</exec>
 
 		<sleep seconds="15" />
 		<exec executable="bash" output="./running">
 			<arg value="-c" />
-			<arg value="ps -ef  | grep tomcat-dev | grep -v grep" />
+			<arg value="ps -ef  | grep tomcat | grep -v grep" />
 		</exec>
 
 		<loadfile property="tomcat.running" srcFile="./running" />
