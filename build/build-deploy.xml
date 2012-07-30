@@ -74,7 +74,7 @@
 		<sleep seconds="15" />
 		<exec executable="bash" output="./running">
 			<arg value="-c" />
-			<arg value="ps -ef  | grep tomcat | grep -v grep | grep ant" />
+			<arg value="ps -ef  | grep tomcat | grep -v grep | grep -v ant" />
 		</exec>
 
 		<loadfile property="tomcat.running" srcFile="./running" />
