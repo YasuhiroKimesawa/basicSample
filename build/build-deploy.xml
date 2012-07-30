@@ -63,7 +63,7 @@
 	<target name="deploy-app" depends="tomcat-stop">
 		<delete dir="/usr/local/tomcat/webapps/web-basic_sample" />
 		<delete file="/usr/local/tomcat/webapps/web-basic_sample.war" />
-		<copy file="../build/web-basic_sample/target/web-basic_sample.war" tofile="/usr/local/tomcat/webapps/web-basic_sample.war" />
+		<copy file="./web-basic_sample/target/web-basic_sample.war" tofile="/usr/local/tomcat/webapps/web-basic_sample.war" />
 	</target>
 
 	<target name="tomcat-start" depends="deploy-app, deploy-sharedlib, apache-start">
