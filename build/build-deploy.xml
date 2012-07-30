@@ -1,6 +1,6 @@
 <project name="deploy" default="tomcat-start" xmlns:ivy="antlib:org.apache.ivy.ant">
 
-	<import file="../../build/ivy-build.xml"/>
+	<import file="../build/ivy-build.xml"/>
 
 	<target name="tomcat-stop">
 		<exec executable="/etc/init.d/tomcat" >
@@ -10,7 +10,7 @@
 		<sleep seconds="15" />
 		<exec executable="bash" output="./running">
 			<arg value="-c" />
-			<arg value="ps -ef  | grep tomcat | grep -v grep" />
+			<arg value="ps -ef  | grep tomcat | grep -v grep | grep -v ant" />
 		</exec>
 
 		<loadfile property="tomcat.running" srcFile="./running" />
@@ -24,10 +24,10 @@
 		<delete dir="/usr/local/tomcat/shared-lib"></delete>
 		<mkdir dir="/usr/local/tomcat/shared-lib" />
 		<copy todir="/usr/local/tomcat/shared-lib">
-			<fileset dir="/usr/local/jenkins/jobs/basicSample-localDeploy/workspace/shared-lib/src/main/lib">
+			<fileset dir="../shared-lib/src/main/lib">
 				<include name="*.jar" />
 			</fileset>
-			<fileset dir="/usr/local/jenkins/jobs/basicSample-localDeploy/workspace/shared-lib/src/project/lib/">
+			<fileset dir="../shared-lib/src/project/lib/">
 				<include name="*.jar" />
 			</fileset>
 		</copy>
@@ -37,7 +37,7 @@
 		<delete dir="/var/www/html/web-basic_sample" />
 		<mkdir dir="/var/www/html/web-basic_sample" />
 		<copy todir="/var/www/html/web-basic_sample">
-			<fileset dir="/usr/local/jenkins/jobs/basicSample-localDeploy/workspace/web-basic_sample-static/src/main/webapp" />
+			<fileset dir="../web-basic_sample-static/src/main/webapp" />
 		</copy>
 	</target>
 
@@ -49,7 +49,7 @@
 		<sleep seconds="15" />
 		<exec executable="bash" output="./running">
 			<arg value="-c" />
-			<arg value="ps -ef  | grep httpd | grep -v grep" />
+			<arg value="ps -ef  | grep httpd | grep -v grep | grep -v ant" />
 		</exec>
 
 		<loadfile property="httpd.running" srcFile="./running" />
@@ -63,7 +63,7 @@
 	<target name="deploy-app" depends="tomcat-stop">
 		<delete dir="/usr/local/tomcat/webapps/web-basic_sample" />
 		<delete file="/usr/local/tomcat/webapps/web-basic_sample.war" />
-		<copy file="build/web-basic_sample.war" tofile="/usr/local/tomcat/webapps/web-basic_sample.war" />
+		<copy file="../build/web-basic_sample/target/web-basic_sample.war" tofile="/usr/local/tomcat/webapps/web-basic_sample.war" />
 	</target>
 
 	<target name="tomcat-start" depends="deploy-app, deploy-sharedlib, apache-start">
@@ -74,7 +74,7 @@
 		<sleep seconds="15" />
 		<exec executable="bash" output="./running">
 			<arg value="-c" />
-			<arg value="ps -ef  | grep tomcat | grep -v grep" />
+			<arg value="ps -ef  | grep tomcat | grep -v grep | grep ant" />
 		</exec>
 
 		<loadfile property="tomcat.running" srcFile="./running" />
