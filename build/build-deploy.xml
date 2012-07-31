@@ -1,43 +1,34 @@
 <project name="deploy" default="tomcat-start" xmlns:ivy="antlib:org.apache.ivy.ant">
 
-	<import file="../build/ivy-build.xml"/>
+	<import file="../build/ivy-build.xml" />
+	<property file="build-deploy.properties" />
 
 	<target name="tomcat-stop">
-		<exec executable="/etc/init.d/tomcat" >
+		<exec executable="/etc/init.d/tomcat">
 			<arg value="stop" />
 		</exec>
 
-		<sleep seconds="15" />
-		<exec executable="bash" output="./running">
-			<arg value="-c" />
-			<arg value="ps -ef  | grep tomcat | grep -v grep | grep -v ant" />
-		</exec>
-
-		<loadfile property="tomcat.running" srcFile="./running" />
-
-		<echo message="tomcat.running => ${tomcat.running}" />
-		<delete file="./running" />
-		<fail message="tomcatが停止できません。" if="tomcat.running" />
+		<isRunning applicationname="tomcat" sleepsconds="15"/>
 	</target>
 
 	<target name="deploy-sharedlib" depends="tomcat-stop, resolve">
-		<delete dir="/usr/local/tomcat/shared-lib"></delete>
-		<mkdir dir="/usr/local/tomcat/shared-lib" />
-		<copy todir="/usr/local/tomcat/shared-lib">
-			<fileset dir="../shared-lib/src/main/lib">
+		<delete dir="${server.shared-lib.dir}" />
+		<mkdir dir="${server.shared-lib.dir}" />
+		<copy todir="${server.shared-lib.dir}">
+			<fileset dir="${shared-lib.main.dir}">
 				<include name="*.jar" />
 			</fileset>
-			<fileset dir="../shared-lib/src/project/lib/">
+			<fileset dir="${shared-lib.project.dir}">
 				<include name="*.jar" />
 			</fileset>
 		</copy>
 	</target>
 
 	<target name="deploy-static" depends="tomcat-stop">
-		<delete dir="/var/www/html/web-basic_sample" />
-		<mkdir dir="/var/www/html/web-basic_sample" />
-		<copy todir="/var/www/html/web-basic_sample">
-			<fileset dir="../web-basic_sample-static/src/main/webapp" />
+		<delete dir="${server.static.deploy.dir}" />
+		<mkdir dir="${server.static.deploy.dir}" />
+		<copy todir="${server.static.deploy.dir}">
+			<fileset dir="${static.dir}" />
 		</copy>
 	</target>
 
@@ -46,42 +37,37 @@
 			<arg value="restart" />
 		</exec>
 
-		<sleep seconds="15" />
-		<exec executable="bash" output="./running">
-			<arg value="-c" />
-			<arg value="ps -ef  | grep httpd | grep -v grep | grep -v ant" />
-		</exec>
-
-		<loadfile property="httpd.running" srcFile="./running" />
-
-		<echo message="httpd.running => ${httpd.running}" />
-		<delete file="./running" />
-
-		<fail message="apacheが起動できません。" unless="httpd.running" />
+		<isRunning applicationname="httpd" sleepsconds="15"/>
 	</target>
 
 	<target name="deploy-app" depends="tomcat-stop">
-		<delete dir="/usr/local/tomcat/webapps/web-basic_sample" />
-		<delete file="/usr/local/tomcat/webapps/web-basic_sample.war" />
-		<copy file="./web-basic_sample/target/web-basic_sample.war" tofile="/usr/local/tomcat/webapps/web-basic_sample.war" />
+		<delete dir="${server.webapp.deploy.dir}/${application.name}" />
+		<delete file="${server.webapp.deploy.dir}/${war.name}" />
+		<copy file="${war.name}" tofile="${server.webapp.deploy.dir}/${war.name}" />
 	</target>
 
 	<target name="tomcat-start" depends="deploy-app, deploy-sharedlib, apache-start">
-		<exec executable="/etc/init.d/tomcat" >
+		<exec executable="/etc/init.d/tomcat">
 			<arg value="start" />
 		</exec>
 
-		<sleep seconds="15" />
-		<exec executable="bash" output="./running">
-			<arg value="-c" />
-			<arg value="ps -ef  | grep tomcat | grep -v grep | grep -v ant" />
-		</exec>
-
-		<loadfile property="tomcat.running" srcFile="./running" />
-
-		<echo message="tomcat.running => ${tomcat.running}" />
-		<delete file="./running" />
-
-		<fail message="tomcatが起動できません。" unless="tomcat.running" />
+		<isRunning applicationname="tomcat" sleepsconds="15"/>
 	</target>
+
+	<macrodef name="isRunning">
+		<attribute name="applicationname" />
+		<attribute name="sleepsconds"/>
+		<sequential>
+			<sleep seconds="@{sleepSconds}" />
+			<exec executable="bash" output="./running">
+				<arg value="-c" />
+				<arg value="ps -ef  | grep @{applicationName} | grep -v grep | grep -v ant" />
+			</exec>
+			<loadfile property="@{applicationName}.running" srcFile="./running" />
+			<echo message="@{applicationName}.running => ${@{applicationName}.running}" />
+			<delete file="./running" />
+
+			<fail message="@{applicationName}が起動できません。" unless="@{applicationName}.running" />
+		</sequential>
+	</macrodef>
 </project>
