@@ -1,14 +1,13 @@
 package com.pilgrim_lifestyle.form.eventer;
 
-import org.springframework.stereotype.Component;
-
-
 import com.pilgrim_lifestyle.model.eventer.Eventer;
 import com.pilgrim_lifestyle.model.eventer.contact.Contact;
 import com.pilgrim_lifestyle.model.eventer.contact.MailAddress;
 import com.pilgrim_lifestyle.model.eventer.contact.TelephoneNumber;
 import com.pilgrim_lifestyle.model.eventer.profile.PersonName;
 import com.pilgrim_lifestyle.model.eventer.profile.Profile;
+
+import org.springframework.stereotype.Component;
 
 @Component( "eventerFormDxo" )
 public class EventerFormDxo

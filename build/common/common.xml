@@ -52,6 +52,10 @@
 		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
 	</target>
 
+
+	<!-- =================================
+	          target: versioning
+	         ================================= -->
 	<target name="ivy-new-version" depends="load-ivy" unless="ivy.new.revision">
 		<!-- default module version prefix value -->
 		<property name="module.version.prefix" value="${module.version.target}-dev-b" />

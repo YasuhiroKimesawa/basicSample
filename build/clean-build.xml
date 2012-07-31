@@ -2,17 +2,24 @@
 
 	<import file="./build.xml" />
 
-	<target name="clean-lib-publish" depends="clean-lib, resolve, buildlist"
+	<target name="load-ivy">
+		<path id="ivy.lib.path">
+			<pathelement location="${ivy.jar.file}" />
+		</path>
+		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path" />
+	</target>
+
+	<target name="clean-lib-publish" depends="load-ivy, clean-lib, resolve, buildlist"
 		description="delete shared-lib and delete chash and publish">
 
 		<subant target="publish" buildpathref="build-path" />
 	</target>
 
-	<target name="clean-lib" depends="cleanchash" description="delete shared-lib">
+	<target name="clean-lib" depends="load-ivy, cleanchash" description="delete shared-lib">
 		<delete includeemptydirs="true" dir="${ivy.jar.dir}" excludes="ivy.jar"/>
 	</target>
 
-	<target name="cleanchash" description="delete ~/ivy2/cache">
+	<target name="cleanchash" depends="load-ivy" description="delete ~/ivy2/cache">
 		<ivy:cleancache/>
 	</target>
 </project>
