@@ -1,6 +1,5 @@
 <project name="deploy" default="tomcat-start" xmlns:ivy="antlib:org.apache.ivy.ant">
 
-	<import file="../build/ivy-build.xml" />
 	<property file="build-deploy.properties" />
 
 	<target name="tomcat-stop">
@@ -8,10 +7,10 @@
 			<arg value="stop" />
 		</exec>
 
-		<isRunning applicationname="tomcat" sleepsconds="15" if=""/>
+		<couldStop applicationname="tomcat" sleepsconds="15" />
 	</target>
 
-	<target name="deploy-sharedlib" depends="tomcat-stop, resolve">
+	<target name="deploy-sharedlib" depends="tomcat-stop">
 		<delete dir="${server.shared-lib.dir}" />
 		<mkdir dir="${server.shared-lib.dir}" />
 		<copy todir="${server.shared-lib.dir}">
@@ -37,7 +36,7 @@
 			<arg value="restart" />
 		</exec>
 
-		<isRunning applicationname="httpd" sleepsconds="15" if="true"/>
+		<couldStart applicationname="httpd" sleepsconds="15" />
 	</target>
 
 	<target name="deploy-app" depends="tomcat-stop">
@@ -51,13 +50,12 @@
 			<arg value="start" />
 		</exec>
 
-		<isRunning applicationname="tomcat" sleepsconds="15" if="true"/>
+		<couldStart applicationname="tomcat" sleepsconds="15" />
 	</target>
 
-	<macrodef name="isRunning">
+	<macrodef name="activation">
 		<attribute name="applicationname" />
-		<attribute name="sleepsconds"/>
-		<attribute name="if" />
+		<attribute name="sleepsconds" />
 		<sequential>
 			<sleep seconds="@{sleepSconds}" />
 			<exec executable="bash" output="./running">
@@ -65,16 +63,29 @@
 				<arg value="ps -ef  | grep @{applicationName} | grep -v grep | grep -v ant" />
 			</exec>
 
-			<echo file="./isstart" message="@{if}" />
-			<loadfile property="isstart" srcfile="./isstart" />
 			<loadfile property="@{applicationName}.running" srcFile="./running" />
 			<echo message="@{applicationName}.running => ${@{applicationName}.running}" />
-			<echo message="isstart => ${isstart}" />
 			<delete file="./running" />
-			<delete file="./isstart" />
+		</sequential>
+	</macrodef>
 
-			<fail message="@{applicationName}が起動できません。" unless="@{applicationName}.running" if="isstart" />
-			<fail message="@{applicationName}が停止できません。" if="@{applicationName}.running" unless="isstart" />
+	<macrodef name="couldStart">
+		<attribute name="applicationname" />
+		<attribute name="sleepsconds" />
+		<sequential>
+			<activation applicationname="@{applicationName}" sleepsconds="@{sleepsconds}" />
+
+			<fail message="@{applicationName}が起動できません。" unless="@{applicationName}.running" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="couldStop">
+		<attribute name="applicationname" />
+		<attribute name="sleepsconds" />
+		<sequential>
+			<activation applicationname="@{applicationName}" sleepsconds="@{sleepsconds}" />
+
+			<fail message="@{applicationName}が起動できません。" if="@{applicationName}.running" />
 		</sequential>
 	</macrodef>
 </project>
