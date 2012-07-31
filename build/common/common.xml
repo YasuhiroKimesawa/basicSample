@@ -33,7 +33,7 @@
 		<!-- <mkdir dir="${lib.dir}"/> not usually necessary, ivy creates the directory IF there are dependencies -->
 
 		<!-- the call to resolve is not mandatory, retrieve makes an implicit call if we don't -->
-		<ivy:resolve file="${ivy.file}" changing="yes" />
+		<ivy:resolve file="${ivy.file}" />
 		<ivy:retrieve pattern="${project.lib.dir}/[artifact]-[revision].[ext]" overwritemode="always"/>
 	</target>
 
@@ -70,6 +70,10 @@
 			<format property="now" pattern="yyyyMMddHHmmss" />
 		</tstamp>
 		<property name="ivy.new.revision" value="${module.version.target}-local-${now}" />
+	</target>
+
+	<target name="snapshot-version">
+		<property name="ivy.new.revision" value="${module.version.target}-SNAPSHOT" />
 	</target>
 
 	<target name="version" depends="ivy-new-version">
@@ -117,15 +121,23 @@
           target: publish
          ================================= -->
 	<target name="publish" depends="clean-build, jar, war" description="--> publish this project in the ivy repository">
-		<ivy:publish artifactspattern="${build.dir}/[artifact].[ext]" resolver="main" pubrevision="${version}" status="release" overwrite="true" />
+		<ivy:publish artifactspattern="${build.dir}/[artifact].[ext]" resolver="main" pubrevision="${version}" status="release" overwrite="true"   />
 		<echo message="project ${ant.project.name} released with version ${version}" />
 	</target>
 
 	<!-- =================================
           target: publish-local
          ================================= -->
-	<target name="publish-local" depends="local-version, jar, war" description="--> publish this project in the local ivy repository">
+	<target name="publish-local" depends="clean-build, local-version, jar, war" description="--> publish this project in the local ivy repository">
 		<ivy:publish artifactspattern="${build.dir}/[artifact].[ext]" resolver="local" pubrevision="${version}" pubdate="${now}" status="integration" forcedeliver="true" />
+		<echo message="project ${ant.project.name} published locally with version ${version}" />
+	</target>
+
+	<!-- =================================
+	          target: publish-snapshot
+	         ================================= -->
+	<target name="publish-snapshot" depends="clean-build, snapshot-version, jar, war" description="--> publish this project in the snapshot ivy repository">
+		<ivy:publish artifactspattern="${build.dir}/[artifact].[ext]" resolver="project" pubrevision="${version}" status="integration" overwrite="true" />
 		<echo message="project ${ant.project.name} published locally with version ${version}" />
 	</target>
 
@@ -135,6 +147,7 @@
 	<target name="clean-local" depends="load-ivy" description="--> cleans the local repository for the current module">
 		<ivy:info file="${ivy.file}" />
 		<delete dir="${ivy.local.default.root}/${ivy.organisation}/${ivy.module}" />
+		<delete dir="${ivy.shared.default.root}/${ivy.organisation}/${ivy.module}" />
 	</target>
 
 	<!-- =================================

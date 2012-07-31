@@ -3,6 +3,7 @@
 	<import file="./ivy-build.xml"/>
 
 	<property name="ivy.jar.dir" value="${basedir}/../shared-lib/src/main/lib" />
+	<property name="ivy.jar.project.dir" value="${basedir}/../shared-lib/src/project/lib" />
 	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
 
 	<property name="build.dir" value="build" />
@@ -32,7 +33,7 @@
 	</target>
 
 	<target name="publish-all" depends="clean, resolve, buildlist" description="compile, jar and publish all projects in the right order">
-		<subant target="publish" buildpathref="build-path" />
+		<subant target="publish-snapshot" buildpathref="build-path" />
 		<subant target="war" buildpathref="web-build-path" />
 		<!-- <subant target="junit"   buildpathref="build-path" /> -->
 	</target>

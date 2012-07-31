@@ -9,14 +9,13 @@
 		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path" />
 	</target>
 
-	<target name="clean-lib-publish" depends="load-ivy, clean-lib, resolve, buildlist"
+	<target name="clean-lib-publish" depends="clean-lib, publish-all"
 		description="delete shared-lib and delete chash and publish">
-
-		<subant target="publish" buildpathref="build-path" />
 	</target>
 
-	<target name="clean-lib" depends="load-ivy, cleanchash" description="delete shared-lib">
-		<delete includeemptydirs="true" dir="${ivy.jar.dir}" excludes="ivy.jar"/>
+	<target name="clean-lib" depends="cleanchash" description="delete shared-lib">
+		<delete includeemptydirs="true" dir="${ivy.jar.dir}" excludes="ivy.jar, com.systemsekkei.base-1.0.0.jar" />
+		<delete includeemptydirs="true" dir="${ivy.jar.project.dir}" includes="*.jar" />
 	</target>
 
 	<target name="cleanchash" depends="load-ivy" description="delete ~/ivy2/cache">
