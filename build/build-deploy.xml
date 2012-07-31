@@ -63,11 +63,12 @@
 				<arg value="-c" />
 				<arg value="ps -ef  | grep @{applicationName} | grep -v grep | grep -v ant" />
 			</exec>
-			<loadfile property="@{applicationName}.running" srcFile="./running" />
-			<echo message="@{applicationName}.running => ${@{applicationName}.running}" />
+			<loadfile property="application.running" srcFile="./running" />
+			<echo message="application.running => ${application.running}" />
 			<delete file="./running" />
 
-			<fail message="@{applicationName}が起動できません。" unless="@{applicationName}.running" />
+			<fail message="@{applicationName}が起動できません。" unless="application.running" />
+
 		</sequential>
 	</macrodef>
 </project>
