@@ -65,13 +65,16 @@
 				<arg value="ps -ef  | grep @{applicationName} | grep -v grep | grep -v ant" />
 			</exec>
 
+			<echo file="./isstart" message="@{if}" />
+			<loadfile property="isstart" srcfile="./isstart" />
 			<loadfile property="@{applicationName}.running" srcFile="./running" />
 			<echo message="@{applicationName}.running => ${@{applicationName}.running}" />
-			<echo message="if => @{if}" />
+			<echo message="isstart => ${isstart}" />
 			<delete file="./running" />
+			<delete file="./isstart" />
 
-			<fail message="@{applicationName}が起動できません。" unless="@{applicationName}.running" if="@{if}" />
-			<fail message="@{applicationName}が停止できません。" if="@{applicationName}.running" unless="@{if}" />
+			<fail message="@{applicationName}が起動できません。" unless="@{applicationName}.running" if="isstart" />
+			<fail message="@{applicationName}が停止できません。" if="@{applicationName}.running" unless="isstart" />
 		</sequential>
 	</macrodef>
 </project>
