@@ -8,7 +8,7 @@
 			<arg value="stop" />
 		</exec>
 
-		<isRunning applicationname="tomcat" sleepsconds="15"/>
+		<isRunning applicationname="tomcat" sleepsconds="15" if="true"/>
 	</target>
 
 	<target name="deploy-sharedlib" depends="tomcat-stop, resolve">
@@ -57,18 +57,19 @@
 	<macrodef name="isRunning">
 		<attribute name="applicationname" />
 		<attribute name="sleepsconds"/>
+		<attribute name="if" />
 		<sequential>
 			<sleep seconds="@{sleepSconds}" />
 			<exec executable="bash" output="./running">
 				<arg value="-c" />
 				<arg value="ps -ef  | grep @{applicationName} | grep -v grep | grep -v ant" />
 			</exec>
-			<loadfile property="application.running" srcFile="./running" />
-			<echo message="application.running => ${application.running}" />
+			<loadfile property="@{applicationName}.running" srcFile="./running" />
+			<echo message="@{applicationName}.running => ${@{applicationName}.running}" />
 			<delete file="./running" />
 
-			<fail message="@{applicationName}が起動できません。" unless="application.running" />
-
+			<fail message="@{applicationName}が起動できません。" unless="@{applicationName}.running, @{if}" />
+			<fail message="@{applicationName}が起動できません。" if="@{applicationName}.running, @{if}" />
 		</sequential>
 	</macrodef>
 </project>
