@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.expression-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.transaction-3.1.2.RELEASE.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/model-eventer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/service-base"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>

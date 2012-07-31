@@ -1,0 +1,29 @@
+<form id="eventer" method="post" action="$link.relative("/eventer")" >
+<table class="table table-bordered">
+<tbody>
+<tr>
+<td>姓名(全角文字)</td>
+<td>
+<dt><label>姓</label></dt>
+<dd>#springFormInput( "eventer.lastName", 'class="formtext" maxlength="30" size=""' )<br />例：佐藤</dd>
+<dt><label>名</label></dt>
+<dd>#springFormInput( "eventer.lastName", 'class="formtext" maxlength="30" size=""' )<br />例：太郎</dd>
+</td>
+</tr>
+<tr>
+<td>メールアドレス(半角英数字)</td>
+<td>#springFormInput( "eventer.mailAddress", 'class="formtext" maxlength="70" size=""' )<br />例：sato@mail.com</td>
+</tr>
+<tr>
+<td>電話番号(半角数字)</td>
+<td>#springFormInput( "eventer.telophoneNumber", 'class="formtext" maxlength="70" size=""' )<br />例：09011112222</td>
+</tr>
+
+<tr>
+<td colspan="2">
+<input type="submit" value="確認画面へ" style="padding: 2px 12px;" class="btn">
+</td>
+</tr>
+</tbody>
+</table>
+</form>
