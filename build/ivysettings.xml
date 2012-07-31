@@ -1,7 +1,7 @@
 <ivysettings>
   <settings defaultResolver="chained"/>
   <resolvers>
-    <chain name="chained" returnFirst="true">
+    <chain name="chained" returnFirst="true" checkUpToDate="true">
       <ibiblio name="SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases" m2compatible="true" root="http://repository.springsource.com/maven/bundles/release" />
 	  <ibiblio name="SpringSource Enterprise Bundle Repository - External Bundle Releases" m2compatible="true" root="http://repository.springsource.com/maven/bundles/external" />
 	  <ibiblio name="javelindev maven repository" m2compatible="true" root="http://maven2.javelindev.jp/repository" />
@@ -13,8 +13,7 @@
       <filesystem name="main">
         <artifact pattern="${ivy.settings.dir}/repository/main/[artifact]-[revision].[ext]" />
       </filesystem>
-      <filesystem name="project" checkmodified="true" changingPattern="*dev-b*.jar">
-        <ivy pattern="${ivy.settings.dir}/ivy.xml" />
+      <filesystem name="project" checkmodified="true">
         <artifact pattern="${ivy.settings.dir}/repository/project/[artifact]-[revision].[ext]" />
       </filesystem>
     </chain>
