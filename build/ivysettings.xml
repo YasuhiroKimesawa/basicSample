@@ -13,7 +13,7 @@
       <filesystem name="main">
         <artifact pattern="${ivy.settings.dir}/repository/main/[artifact]-[revision].[ext]" />
       </filesystem>
-      <filesystem name="project" checkmodified="true" changingPattern="*dev-b*">
+      <filesystem name="project" checkmodified="true" changingPattern="*dev-b*.jar">
         <ivy pattern="${ivy.settings.dir}/repository/project/[artifact]-[revision].[ext]" />
         <artifact pattern="${ivy.settings.dir}/repository/project/[artifact]-[revision].[ext]" />
       </filesystem>
