@@ -8,7 +8,7 @@
 			<arg value="stop" />
 		</exec>
 
-		<isRunning applicationname="tomcat" sleepsconds="15" />
+		<isRunning applicationname="tomcat" sleepsconds="15" if=""/>
 	</target>
 
 	<target name="deploy-sharedlib" depends="tomcat-stop, resolve">
