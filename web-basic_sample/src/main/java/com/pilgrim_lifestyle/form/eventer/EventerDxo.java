@@ -6,6 +6,8 @@ import com.pilgrim_lifestyle.model.eventer.contact.MailAddress;
 import com.pilgrim_lifestyle.model.eventer.contact.TelephoneNumber;
 import com.pilgrim_lifestyle.model.eventer.profile.PersonName;
 import com.pilgrim_lifestyle.model.eventer.profile.Profile;
+import com.pilgrim_lifestyle.model.eventer.security.Password;
+import com.pilgrim_lifestyle.model.eventer.security.Passwords;
 
 import org.springframework.stereotype.Component;
 
@@ -20,7 +22,9 @@ public class EventerDxo
 
         Contact contact = this.fromContactDTO( eventerForm.getContact() );
 
-        return new Eventer( DEFAULT_EVENTER_ID, profile, contact );
+        Passwords passwords = this.fromPasswordsDTO( eventerForm.getPasswords() );
+
+        return new Eventer( DEFAULT_EVENTER_ID, profile, contact, passwords );
     }
 
     public Profile fromProfileDTO( ProfileDTO profileDTO )
@@ -36,5 +40,13 @@ public class EventerDxo
         TelephoneNumber telephoneNumber = new TelephoneNumber( contactDTO.getTelephoneNumber() );
 
         return new Contact( mailAddress, telephoneNumber );
+    }
+
+    public Passwords fromPasswordsDTO( PasswordsDTO passwordsDTO )
+    {
+        Password password = new Password( passwordsDTO.getPassword() );
+        Password confirm = new Password( passwordsDTO.getConfirm() );
+
+        return new Passwords( password, confirm );
     }
 }

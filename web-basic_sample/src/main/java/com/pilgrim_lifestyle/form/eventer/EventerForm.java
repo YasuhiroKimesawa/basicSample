@@ -10,5 +10,7 @@ public @Data class EventerForm implements Serializable
 
     private ProfileDTO profile;
 
+    private PasswordsDTO passwords;
+
     private static final long serialVersionUID = 436655971888812569L;
 }

@@ -45,5 +45,6 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/slf4j-api-1.6.2.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/slf4j-log4j12-1.6.2.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/validation-api-1.0.0.GA.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/com.systemsekkei.base.test-1.0.0.jar"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>

@@ -1,7 +1,10 @@
 package com.pilgrim_lifestyle.model.eventer;
 
+import javax.validation.Valid;
+
 import com.pilgrim_lifestyle.model.eventer.contact.Contact;
 import com.pilgrim_lifestyle.model.eventer.profile.Profile;
+import com.pilgrim_lifestyle.model.eventer.security.Passwords;
 
 import lombok.ToString;
 
@@ -10,14 +13,20 @@ public class Eventer
 {
     private Integer id;
 
+    @Valid
     private Profile profile;
 
+    @Valid
     private Contact contact;
 
-	public Eventer( Integer id, Profile profile, Contact contact )
+    @Valid
+    private Passwords passwords;
+
+	public Eventer( Integer id, Profile profile, Contact contact, Passwords passwords )
 	{
 	    this.id = id;
 		this.profile = profile;
 		this.contact = contact;
+		this.passwords = passwords;
 	}
 }
