@@ -50,7 +50,13 @@
         <dependency org="org.dbunit" name="dbunit" rev="2.4.8" conf="test->*,!sources,!javadoc"/>
         <dependency org="com.googlecode.jmockit" name="jmockit" rev="0.999.8" conf="test->*,!sources,!javadoc"/>
 
-		<dependency org="org.liquibase" name="liquibase-core" rev="2.0.5"/>
+		<dependency org="org.liquibase" name="liquibase-core" rev="2.0.5" conf="main->*,!sources,!javadoc" >
+			<exclude org="ant" />
+			<exclude org="javax.servlet" />
+			<exclude org="junit" />
+			<exclude org="org.easymock" />
+			<exclude org="org.springframework" />
+		</dependency>
 
 		<!-- excludes -->
     	<exclude module="spring-batch-core" />
