@@ -21,6 +21,7 @@ public class PasswordsTest
             Password password = new Password( "testpassword" );
             Password confirm = new Password( "testpassword" );
             passwords = new Passwords( password, confirm );
+            passwords.toString();
         }
 
         @Test

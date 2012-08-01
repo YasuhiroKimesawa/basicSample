@@ -19,6 +19,7 @@ public class ProfileTest extends BaseModelTest<Profile>
         {
             PersonName personName = new PersonName( "", "達也" );
             profile = new Profile( personName );
+            profile.toString();
         }
 
         @Test

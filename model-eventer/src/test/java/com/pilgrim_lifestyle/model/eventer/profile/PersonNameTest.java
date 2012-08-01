@@ -1,10 +1,19 @@
 package com.pilgrim_lifestyle.model.eventer.profile;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
+import org.junit.experimental.theories.ParameterSignature;
+import org.junit.experimental.theories.ParameterSupplier;
+import org.junit.experimental.theories.ParametersSuppliedBy;
+import org.junit.experimental.theories.PotentialAssignment;
+import org.junit.experimental.theories.Theories;
+import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
 import com.systemsekkei.base.test.model.BaseModelTest;
@@ -21,6 +30,7 @@ public class PersonNameTest extends BaseModelTest<PersonName>
         public void setup()
         {
             name = new PersonName( "１２３４５６７８９０１２", "１２３４５６７８９０１２" );
+            name.toString();
         }
 
         @Test
@@ -30,34 +40,63 @@ public class PersonNameTest extends BaseModelTest<PersonName>
         }
     }
 
-    public static class エラーあり状態 extends BaseModelTest<PersonName>
+    public static class 空状態 extends BaseModelTest<PersonName>
     {
-        @Test
-        public void 姓が空だとエラー()
+        PersonName lastNameEmpty;
+        PersonName firstNameEmpty;
+
+        @Before
+        public void setup()
         {
-            PersonName name = new PersonName( "", "達也" );
-            validateAndAssert( "lastName", NotEmpty.class, name );
+            lastNameEmpty = new PersonName( "", "達也" );
+            firstNameEmpty = new PersonName( "田中", "" );
         }
 
         @Test
-        public void 名が空だとエラー()
+        public void 空だとエラー()
         {
-            PersonName name = new PersonName( "田中", "" );
-            validateAndAssert( "firstName", NotEmpty.class, name );
+            validateAndAssert( "lastName", NotEmpty.class, lastNameEmpty );
+            validateAndAssert( "firstName", NotEmpty.class, firstNameEmpty );
+        }
+    }
+
+    @RunWith( Theories.class )
+    public static class 文字数が多い extends BaseModelTest<PersonName>
+    {
+        public static class LastNameSupplier extends ParameterSupplier
+        {
+            @Override
+            public List<PotentialAssignment> getValueSources( ParameterSignature arg0 )
+            {
+                return Arrays.asList( new PotentialAssignment[]{
+                        PotentialAssignment.forValue( "13文字小文字", new PersonName( "12345678901234", "達也" ) ),
+                        PotentialAssignment.forValue( "13文字大文字", new PersonName( "１２３４５６７８９０１２３４", "達也" ) )
+                } );
+            }
         }
 
-        @Test
-        public void 姓が12を超えるとエラー()
+        public static class FirstNameSupplier extends ParameterSupplier
         {
-            PersonName name = new PersonName( "１２３４５６７８９０１２３", "達也" );
-            validateAndAssert( "lastName", Length.class, name );
+            @Override
+            public List<PotentialAssignment> getValueSources( ParameterSignature arg0 )
+            {
+                return Arrays.asList( new PotentialAssignment[]{
+                        PotentialAssignment.forValue( "13文字小文字", new PersonName( "田中", "12345678901234" ) ),
+                        PotentialAssignment.forValue( "13文字大文字", new PersonName( "田中", "１２３４５６７８９０１２３４" ) )
+                } );
+            }
         }
 
-        @Test
-        public void 名が12を超えるとエラー()
+        @Theory
+        public void 姓が14文字の場合はエラー( @ParametersSuppliedBy( LastNameSupplier.class ) PersonName personName )
         {
-            PersonName name = new PersonName( "田中", "１２３４５６７８９０１２３" );
-            validateAndAssert( "firstName", Length.class, name );
+            validateAndAssert( "lastName", Length.class, personName );
+        }
+
+        @Theory
+        public void 名が14文字の場合はエラー( @ParametersSuppliedBy( FirstNameSupplier.class ) PersonName personName )
+        {
+            validateAndAssert( "firstName", Length.class, personName );
         }
     }
 

@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class TelephoneNumber
 {
-    @Pattern( regexp="^[0-9]{4}[-][0-9]{4}[-][0-9]{4}|", message="電話番号は「4桁内-4桁内-4桁」形式で入力して下さい")
+    @Pattern( regexp="^[0-9]{0,4}[-][0-9]{0,4}[-][0-9]{4}|", message="電話番号は「4桁内-4桁内-4桁」形式で入力して下さい")
     @NotEmpty( message="電話番号を入力して下さい。" )
     private String number;
 
