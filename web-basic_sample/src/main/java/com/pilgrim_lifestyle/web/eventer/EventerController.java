@@ -3,7 +3,7 @@ package com.pilgrim_lifestyle.web.eventer;
 import com.pilgrim_lifestyle.model.eventer.Eventer;
 import com.pilgrim_lifestyle.service.eventer.EventerService;
 import com.pilgrim_lifestyle.form.eventer.EventerForm;
-import com.pilgrim_lifestyle.form.eventer.EventerFormDxo;
+import com.pilgrim_lifestyle.form.eventer.EventerDxo;
 
 import javax.validation.Valid;
 
@@ -24,7 +24,7 @@ public class EventerController
     private EventerService eventerService;
 
     @Autowired
-    private EventerFormDxo eventerFormDxo;
+    private EventerDxo eventerDxo;
 
     private static final String EVENTER = "eventer";
 
@@ -42,7 +42,7 @@ public class EventerController
             @Valid @ModelAttribute( EVENTER ) EventerForm eventerForm,
             WebRequest request, Model model )
     {
-        Eventer eventer = eventerFormDxo.convert( eventerForm );
+        Eventer eventer = eventerDxo.fromDTO( eventerForm );
 
         eventerService.add( eventer );
 

@@ -6,13 +6,9 @@ import java.io.Serializable;
 
 public @Data class EventerForm implements Serializable
 {
-    private String lastName;
+    private ContactDTO contact;
 
-    private String firstName;
-
-    private String mailAddress;
-
-    private String telophoneNumber;
+    private ProfileDTO profile;
 
     private static final long serialVersionUID = 436655971888812569L;
 }

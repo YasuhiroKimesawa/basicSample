@@ -8,12 +8,15 @@ import lombok.ToString;
 @ToString
 public class Eventer
 {
+    private Integer id;
+
     private Profile profile;
 
     private Contact contact;
 
-	public Eventer( Profile profile, Contact contact )
+	public Eventer( Integer id, Profile profile, Contact contact )
 	{
+	    this.id = id;
 		this.profile = profile;
 		this.contact = contact;
 	}

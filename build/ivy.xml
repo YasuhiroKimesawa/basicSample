@@ -50,6 +50,9 @@
         <dependency org="org.dbunit" name="dbunit" rev="2.4.8" conf="test->*,!sources,!javadoc"/>
         <dependency org="com.googlecode.jmockit" name="jmockit" rev="0.999.8" conf="test->*,!sources,!javadoc"/>
 
+		<dependency org="org.liquibase" name="liquibase-core" rev="2.0.5"/>
+
+		<!-- excludes -->
     	<exclude module="spring-batch-core" />
     	<exclude module="spring-aop" />
     	<exclude module="spring-asm" />
