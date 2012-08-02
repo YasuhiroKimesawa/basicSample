@@ -34,7 +34,7 @@
 			<test name="com.pilgrim_lifestyle.model.eventer.AllTest" todir="${junit.report.dir}" />
 			<formatter type="xml" />
 
-			<classpath location="${test.lib.dir}/cobertura-1.9.4.1.jar"/>
+			<classpath location="${test.lib.dir}/cobertura.jar"/>
 			<classpath location="${instrumented.dir}"  />
 			<classpath>
 				<fileset dir="${lib.dir}" includes="*.jar"/>
@@ -58,7 +58,7 @@
 	</target>
 
 	<target name="coverage-report" depends="unittest">
-		<cobertura-report srcdir="src/main/java" destdir="${cobertura.report.dir}" format="xml" />
+		<cobertura-report srcdir="${projects.dir}/src/main/java" destdir="${cobertura.report.dir}" format="xml" />
 	</target>
 
 </project>

@@ -48,8 +48,11 @@
          ================================= -->
 	<target name="compile" depends="resolve" description="--> compile the project">
 		<mkdir dir="${classes.dir}" />
-		<mkdir dir="${test.classes.dir}" />
 		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
+	</target>
+
+	<target name="test-compile" description="--> compile the project">
+		<mkdir dir="${test.classes.dir}" />
 		<javac srcdir="${test.src.dir}" destdir="${test.classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
 	</target>
 

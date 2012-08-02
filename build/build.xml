@@ -39,6 +39,7 @@
 
 	<target name="publish-all" depends="clean, resolve, buildlist" description="compile, jar and publish all projects in the right order">
 		<subant target="publish-snapshot" buildpathref="build-path" />
+		<subant target="test-compile" buildpathref="unittest-path"/>
 		<subant target="war" buildpathref="web-build-path" />
 	</target>
 
