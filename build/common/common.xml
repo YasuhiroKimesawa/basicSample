@@ -1,8 +1,8 @@
 <project name="common" xmlns:ivy="antlib:org.apache.ivy.ant">
-	<import file="${common.dir}/../test/test.xml"/>
 
 	<property name="common.dir" location="${basedir}/../../build/common" />
 	<property file="${common.dir}/build.properties" />
+	<import file="${common.dir}/../test/test.xml"/>
 
 	<property name="ivy.jar.dir" location="${wkspace.dir}/shared-lib/src/main/lib" />
 	<property name="ivy.jar.file" location="${ivy.jar.dir}/ivy.jar" />
@@ -48,8 +48,9 @@
          ================================= -->
 	<target name="compile" depends="resolve" description="--> compile the project">
 		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${test.classes.dir}" />
 		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
-		<javac srcdir="${test.src.dir}" destdir="${classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
+		<javac srcdir="${test.src.dir}" destdir="${test.classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
 	</target>
 
 
