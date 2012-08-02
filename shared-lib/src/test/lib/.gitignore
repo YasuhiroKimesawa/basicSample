@@ -1,2 +1,3 @@
 /*.jar
 !com.systemsekkei.base.test-1.0.0.jar
+!cobertura.jar
