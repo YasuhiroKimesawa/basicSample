@@ -9,13 +9,6 @@
 		<fileset dir="${project.lib.dir}" />
 	</path>
 
-	<target name="load-junit">
-		<path id="junit.lib.path">
-			<fileset dir="${test.lib.dir}" includes="*.jar" />
-		</path>
-		<taskdef resource="org/apache/tools/ant/taskdefs/optional/junit" classpathref="junit.lib.path" />
-	</target>
-
 	<target name="load-cobertura">
 		<path id="cobertura.lib.path">
 			<fileset dir="${test.lib.dir}" includes="*.jar" />
@@ -24,7 +17,7 @@
 	</target>
 
 	<!-- test -->
-	<target name="unittest" depends="instrument, load-junit">
+	<target name="unittest" depends="instrument">
 		<mkdir dir="${junit.report.dir}" />
 		<junit haltonfailure="false">
 			<test name="com.pilgrim_lifestyle.model.eventer.AllTest" todir="${junit.report.dir}" />
