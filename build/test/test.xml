@@ -11,7 +11,7 @@
 
 	<target name="load-junit">
 		<path id="junit.lib.path">
-			<fileset dir="${test.lib.dir}" includes="*.jar" />
+			<fileset dir="${test.lib.dir}" includes="ant-junit-1.8.4.jar" />
 		</path>
 		<taskdef resource="org.apache.tools.ant.taskdefs.optional.junit" classpathref="junit.lib.path" />
 	</target>
