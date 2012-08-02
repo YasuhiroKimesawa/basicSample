@@ -24,8 +24,13 @@
 			<fileset dir="../" includes="service-*/**/build.xml" />
 			<fileset dir="../" includes="web-base/**/build.xml" />
 		</ivy:buildlist>
+
 		<ivy:buildlist reference="web-build-path">
 			<fileset dir="../" includes="web-basic_sample/**/build.xml" />
+		</ivy:buildlist>
+
+		<ivy:buildlist reference="unittest-path">
+			<fileset dir="../" includes="model-*/**/build.xml" excludes="model-base/**/build.xml" />
 		</ivy:buildlist>
 		<delete dir="../web-basic_sample/target" />
 		<mkdir dir="../web-basic_sample/target/webapp" />
@@ -35,7 +40,6 @@
 	<target name="publish-all" depends="clean, resolve, buildlist" description="compile, jar and publish all projects in the right order">
 		<subant target="publish-snapshot" buildpathref="build-path" />
 		<subant target="war" buildpathref="web-build-path" />
-		<!-- <subant target="junit"   buildpathref="build-path" /> -->
 	</target>
 
 	<target name="clean-all" depends="buildlist" description="clean all projects">
@@ -44,5 +48,9 @@
 
 	<target name="clean" depends="clean-all, load-ivy" description="delete repository, ivy cache, and all projects">
 		<delete dir="repository" />
+	</target>
+
+	<target name="unittest" depends="publish-all">
+		<subant target="coverage-report" buildpathref="unittest-path" />
 	</target>
 </project>

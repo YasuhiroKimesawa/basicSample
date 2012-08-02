@@ -1,4 +1,6 @@
 <project name="common" xmlns:ivy="antlib:org.apache.ivy.ant">
+	<import file="${common.dir}/../test/test.xml"/>
+
 	<property name="common.dir" location="${basedir}/../../build/common" />
 	<property file="${common.dir}/build.properties" />
 
@@ -15,11 +17,8 @@
 
 	<path id="lib.path.id">
 		<fileset dir="${lib.dir}" />
+		<fileset dir="${test.lib.dir}" />
 		<fileset dir="${project.lib.dir}" />
-	</path>
-	<path id="run.path.id">
-		<path refid="lib.path.id" />
-		<path location="${classes.dir}" />
 	</path>
 
 	<!-- setup ivy default configuration with some custom info -->
@@ -50,6 +49,7 @@
 	<target name="compile" depends="resolve" description="--> compile the project">
 		<mkdir dir="${classes.dir}" />
 		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
+		<javac srcdir="${test.src.dir}" destdir="${classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
 	</target>
 
 
@@ -90,7 +90,7 @@
          ================================= -->
 	<target name="jar" depends="version, compile" unless="target.webapps.dir" description="--> make a jar file for this project">
 		<jar destfile="${jar.file}">
-			<fileset dir="${classes.dir}" />
+			<fileset dir="${classes.dir}" excludes="**/*Test*.class"/>
 			<manifest>
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Build-Version" value="${module.version.target}" />
@@ -135,7 +135,7 @@
 
 	<!-- =================================
 	          target: publish-snapshot
-	         ================================= -->
+	     ================================= -->
 	<target name="publish-snapshot" depends="clean-build, snapshot-version, jar, war" description="--> publish this project in the snapshot ivy repository">
 		<ivy:publish artifactspattern="${build.dir}/[artifact].[ext]" resolver="project" pubrevision="${version}" status="integration" overwrite="true" />
 		<echo message="project ${ant.project.name} published locally with version ${version}" />
