@@ -19,7 +19,7 @@
 	<!-- test -->
 	<target name="unittest" depends="instrument">
 		<mkdir dir="${junit.report.dir}" />
-		<junit haltonfailure="false" >
+		<junit haltonfailure="false" fork="yes" forkmode="once">
 			<test name="com.pilgrim_lifestyle.model.eventer.AllTest" todir="${junit.report.dir}" />
 			<formatter type="xml" />
 			<classpath path="${instrumented.dir}" />
