@@ -6,11 +6,17 @@
 	<path id="lib.path.id" >
 		<fileset dir="${lib.dir}" />
 		<fileset dir="${test.lib.dir}" />
-		<fileset dir="${project.lib.dir}" />
+		<fileset dir="${project.lib.dir}" excludes="${ant.project.name}-*.jar" />
 	</path>
 
-	<path id="test.path.id" >
-		<fileset dir="${classes.dir}" includes="**/*Test*.class"/>
+	<path id="test.path.id">
+
+		<fileset dir="${lib.dir}" />
+		<fileset dir="${test.lib.dir}" />
+		<fileset dir="${project.lib.dir}"/>
+
+		<pathelement location="${test.classes.dir}" />
+		<pathelement location="${instrumented.dir}" />
 	</path>
 
 	<target name="load-cobertura">
@@ -22,13 +28,21 @@
 
 	<!-- test -->
 	<target name="unittest" depends="instrument">
+		<echo message="${ant.project.name}.jar"></echo>
 		<mkdir dir="${junit.report.dir}"/>
 		<junit haltonfailure="false" fork="yes" forkmode="once">
 			<test name="com.pilgrim_lifestyle.model.eventer.AllTest" todir="${junit.report.dir}" />
 			<formatter type="xml" />
-			<classpath path="${test.classes.dir}" />
-			<classpath path="${instrumented.dir}" />
-			<classpath refid="lib.path.id" />
+
+			<classpath location="${test.lib.dir}/cobertura-1.9.4.1.jar"/>
+			<classpath location="${instrumented.dir}"  />
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<fileset dir="${test.lib.dir}" includes="*.jar"/>
+				<fileset dir="${project.lib.dir}" includes="*.jar" excludes="${ant.project.name}-*.jar"/>
+				<pathelement location="${test.classes.dir}" />
+				<pathelement location="${classes.dir}" />
+			</classpath>
 		</junit>
 	</target>
 
