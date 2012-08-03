@@ -28,6 +28,8 @@ public class PasswordTest extends BaseModelTest<Password>
         {
             Password password = new Password( "!!assaa*" );
             password.toString();
+            password.equals( password );
+            password.hashCode();
             validateAndAssertCount( 0, password );
         }
     }

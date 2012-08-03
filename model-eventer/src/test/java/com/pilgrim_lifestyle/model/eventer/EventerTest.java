@@ -35,6 +35,7 @@ public class EventerTest extends BaseModelTest<Eventer>
         passwords = new Passwords( password, confirm );
 
         eventer = new Eventer( 1, profile, contact, passwords );
+        eventer.toString();
     }
 
     @Test
