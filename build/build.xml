@@ -4,6 +4,7 @@
 
 	<property name="ivy.jar.dir" value="${basedir}/../shared-lib/src/main/lib" />
 	<property name="ivy.jar.project.dir" value="${basedir}/../shared-lib/src/project/lib" />
+	<property name="ivy.jar.test.dir" value="${basedir}/../shared-lib/src/test/lib" />
 	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
 
 	<property name="build.dir" value="build" />

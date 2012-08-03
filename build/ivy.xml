@@ -50,11 +50,12 @@
         <dependency org="info.cukes" name="cucumber-groovy" rev="1.0.11" conf="test->*,!sources,!javadoc"/>
         <dependency org="org.dbunit" name="dbunit" rev="2.4.8" conf="test->*,!sources,!javadoc"/>
         <dependency org="com.googlecode.jmockit" name="jmockit" rev="0.999.8" conf="test->*,!sources,!javadoc" />
-        <!--   <dependency org="net.sourceforge.cobertura" name="cobertura" rev="1.9.4.1"  conf="test->*,!sources,!javadoc">
-        	<exclude org="ant" />
-        	<exclude org="log4j" />
-        </dependency>
-		-->
+		<dependency org="org.jacoco" name="org.jacoco.agent" rev="0.5.9.201207300726" conf="test->*,!sources,!javadoc" />
+		<dependency org="org.jacoco" name="org.jacoco.ant" rev="0.5.9.201207300726" conf="test->*,!sources,!javadoc" />
+		<dependency org="org.jacoco" name="org.jacoco.core" rev="0.5.9.201207300726" conf="test->*,!sources,!javadoc" />
+		<dependency org="org.jacoco" name="org.jacoco.report" rev="0.5.9.201207300726" conf="test->*,!sources,!javadoc" />
+		<dependency org="asm" name="asm" rev="3.3.1" conf="test->*,!sources,!javadoc" />
+
 		<!-- database -->
 		<dependency org="org.liquibase" name="liquibase-core" rev="2.0.5" conf="main->*,!sources,!javadoc" >
 			<exclude org="ant" />
@@ -80,7 +81,7 @@
     	<exclude module="struts-tiles" />
 
     	<exclude module="ant" />
-    	<exclude module="asm" />
+    	<exclude module="asm" conf="main->*"/>
     	<exclude module="aspectjrt" />
     	<exclude module="aspectjweaver" />
     	<exclude module="cglib" />

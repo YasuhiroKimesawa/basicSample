@@ -7,7 +7,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/model-base"/>
-	<classpathentry kind="lib" path="/shared-lib/src/main/lib/lombok-0.11.2.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/aopalliance-1.0.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.javax.transaction-1.1.0.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.aopalliance-1.0.0.jar"/>
@@ -29,11 +28,16 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/commons-validator-1.3.1.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/hibernate-validator-4.3.0.Final.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/ivy.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/javax.servlet-3.0.0.v201103241009.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/javax.servlet-api-3.0.1.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/jboss-logging-3.1.0.CR2.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/joda-time-1.6.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/liquibase-core-2.0.5.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/lombok-0.11.2.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/mybatis-3.1.1.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/mybatis-spring-1.1.1.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.aop-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.asm-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.beans-3.1.2.RELEASE.jar"/>
@@ -41,10 +45,23 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.context.support-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.core-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.expression-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.jdbc-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.oxm-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.transaction-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.web-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.web.servlet-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/oro-2.0.8.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/postgresql-9.0-801.jdbc4.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/servlet-api-2.5.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/slf4j-api-1.6.2.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/slf4j-log4j12-1.6.2.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/spring-security-config-3.1.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/spring-security-core-3.1.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/spring-security-web-3.1.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/validation-api-1.0.0.GA.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/velocity-1.7.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/velocity-tools-2.0.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/com.systemsekkei.base.test-1.0.0.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/org.springframework.test-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>
