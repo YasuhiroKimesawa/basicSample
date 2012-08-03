@@ -1,5 +1,8 @@
 package com.pilgrim_lifestyle.model.eventer.contact;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.junit.Test;
@@ -20,6 +23,23 @@ public class MailAddressTest extends BaseModelTest<MailAddress>
     {
         MailAddress mailAddress = new MailAddress( "" );
         validateAndAssert( "mailAddress", NotEmpty.class, mailAddress );
+    }
+
+    @Test
+    public void 文字90以上は不正()
+    {
+        StringBuffer mailAddressBuffer = new StringBuffer();
+        int maxLength = 51;
+
+        for( int i = 0; i < maxLength;  i++ )
+        {
+            mailAddressBuffer.append( "a" );
+        }
+
+        MailAddress mailAddress = new MailAddress( mailAddressBuffer.toString() );
+
+        assertThat( mailAddressBuffer.length(), is( 51 ) );
+        validateAndAssertCount( 2, mailAddress );
     }
 
     @Test
