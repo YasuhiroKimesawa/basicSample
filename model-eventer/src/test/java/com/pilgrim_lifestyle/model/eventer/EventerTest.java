@@ -30,8 +30,8 @@ public class EventerTest extends BaseModelTest<Eventer>
         PersonName personName = new PersonName( "田中", "達也" );
         profile = new Profile( personName );
 
-        Password password = new Password( "testpassword" );
-        Password confirm = new Password( "testpassword" );
+        Password password = new Password( "testtes" );
+        Password confirm = new Password( "testtes" );
         passwords = new Passwords( password, confirm );
 
         eventer = new Eventer( 1, profile, contact, passwords );
