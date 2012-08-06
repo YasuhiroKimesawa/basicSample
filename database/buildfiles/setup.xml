@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>
+
+<project name="setup-database" basedir="." default="create-database">
+
+    <property file="${basedir}/build.properties" />
+
+    <path id="library.path" description="ライブラリまでのパス">
+		<fileset dir="${wkspace.dir}/shared-lib/src/main/lib">
+			<include name="liquibase-core-2.0.5.jar" />
+			<include name="postgresql-9.0-801.jdbc4.jar" />
+		</fileset>
+	</path>
+
+    <property name="sql.dir"  location="${projects.dir}/src/setup" />
+
+    <target name="create-database" depends="create-user, create-role" description="databaseを作成する" >
+    	<execute-sql-query-postgresql sqlfile="${sql.dir}/create-database.sql"/>
+    </target>
+
+    <target name="create-role" depends="create-user" description="roleを作成する" >
+    	<execute-sql-query-postgresql sqlfile="${sql.dir}/create-role.sql"/>
+    </target>
+
+     <target name="create-user" depends="drop-role" description="userを作成する" >
+     	<execute-sql-query-postgresql sqlfile="${sql.dir}/create-user.sql"/>
+     </target>
+
+	<target name="drop-user" depends="drop-role" description="userを削除する" >
+		<execute-sql-query-postgresql sqlfile="${sql.dir}/drop-user.sql"/>
+	</target>
+
+	<target name="drop-role" depends="drop-database" description="roleを削除する" >
+		 <execute-sql-query-postgresql sqlfile="${sql.dir}/drop-role.sql"/>
+	</target>
+
+	<target name="drop-database" description="databaseを削除する" >
+	     <execute-sql-query-postgresql sqlfile="${sql.dir}/drop-database.sql"/>
+	</target>
+
+	<macrodef name="execute-sql-query-postgresql">
+		<attribute name="sqlfile" />
+		<sequential>
+			<sql
+            driver="${database.driver}"
+            url="${database.url.postgres}"
+            userid="${database.username.postgres}"
+            password="${database.password.postgres}"
+            autocommit="true"
+            print="yes"
+            onerror="abort"
+            classpathref="library.path"
+            encoding="UTF-8"
+            src="@{sqlfile}" />
+		</sequential>
+	</macrodef>
+
+</project>
