@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>
+
+<project name="database" basedir="." default="update-database" >
+
+    <property file="${basedir}/build.properties" />
+
+    <property name="changelog.dir"  location="${basedir}/main/changelog" />
+
+	<property name="db.update.file" location="${changelog.dir}/update.xml" />
+
+    <path id="library.path" description="ライブラリまでのパス">
+        <fileset dir="${wkspace.dir}/shared-lib/src/main/lib">
+            <include name="liquibase-core-2.0.5.jar"/>
+            <include name="postgresql-9.0-801.jdbc4.jar"/>
+        </fileset>
+    </path>
+
+    <taskdef resource="liquibasetasks.properties">
+        <classpath refid="library.path"/>
+    </taskdef>
+
+	<target name="update-database">
+	    <updateDatabase
+	            changeLogFile="${db.update.file}"
+	            driver="${database.driver}"
+	            url="${database.url}"
+	            username="${database.username}"
+	            password="${database.password}"
+	            promptOnNonLocalDatabase="fasle"
+	            dropFirst="false"
+	            classpathref="library.path"
+	    />
+	</target>
+
+</project>
