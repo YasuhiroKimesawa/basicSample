@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pilgrim_lifestyle.dataaccess.eventer.EventerDataAccess">
+
+	<select id="nextId" resultType="java.lang.Integer">
+		SELECT nextval('eventer.eventer_id')
+	</select>
+
+	<insert id="save" parameterType="com.pilgrim_lifestyle.table.eventer.EventerTable">
+	    INSERT INTO eventer.eventer
+	    (
+	        id
+	        , last_name
+	        , first_name
+	        , telephone_number
+	        , mail_address
+	        , create_date
+	        , update_date
+
+	    )
+	    VALUES
+	    (
+	        #{id}
+	        , #{lastName}
+	        , #{firstName}
+	        , #{telephoneNumber}
+	        , #{mailAddress}
+	        , current_date
+	        , current_date
+	    )
+	</insert>
+
+	<insert id="savePassword" parameterType="com.pilgrim_lifestyle.table.eventer.EventerTable">
+	    INSERT INTO eventer.eventer_account
+	    (
+	        eventer_id
+	        , password
+	        , create_date
+	        , update_date
+
+	    )
+	    VALUES
+	    (
+	        #{id}
+	        , #{eventerPasswordTable.password}
+	        , current_date
+	        , current_date
+	    )
+	</insert>
+
+</mapper>

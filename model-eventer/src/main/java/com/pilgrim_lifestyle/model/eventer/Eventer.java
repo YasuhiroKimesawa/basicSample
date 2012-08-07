@@ -1,10 +1,10 @@
 package com.pilgrim_lifestyle.model.eventer;
 
-import javax.validation.Valid;
-
 import com.pilgrim_lifestyle.model.eventer.contact.Contact;
 import com.pilgrim_lifestyle.model.eventer.profile.Profile;
 import com.pilgrim_lifestyle.model.eventer.security.Passwords;
+
+import javax.validation.Valid;
 
 import lombok.ToString;
 
@@ -29,4 +29,5 @@ public class Eventer
 		this.contact = contact;
 		this.passwords = passwords;
 	}
+
 }

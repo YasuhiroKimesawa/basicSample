@@ -18,7 +18,7 @@
 			<column name="first_name" type="varchar(12)" remarks="名">
 				<constraints nullable="false"/>
 			</column>
-			<column name="telephone_number" type="varchar(12)" remarks="電話番号">
+			<column name="telephone_number" type="varchar(14)" remarks="電話番号">
 				<constraints nullable="false"/>
 			</column>
 			<column name="mail_address" type="varchar(50)" remarks="メールアドレス">

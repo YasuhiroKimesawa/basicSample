@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="ja-JP">
+<head>
+<title>イベント主催者</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="$link.contextPath/bootstrap/css/bootstrap.css" type="text/css" />
+<script src="$link.contextPath/js/jquery-1.7.2.min.js" ></script>
+<script src="$link.contextPath/bootstrap/js/bootstrap.js"></script>
+</head>
+<body id="eventer_register">
+<div class="container">
+<div class="row">
+<div class="span12">
+<h3>登録完了しました。</h3>
+<a href="$link.relative('/eventer/new')">戻る</a>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -123,7 +123,6 @@
     	<exclude module="com.springsource.org.hsqldb" />
     	<exclude module="com.springsource.org.jdom" />
     	<exclude module="commons-chain" />
-    	<exclude module="commons-dbcp" />
     	<exclude module="commons-digester" />
     	<exclude module="commons-pool" />
     	<exclude module="dom4j" />
