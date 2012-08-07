@@ -9,10 +9,10 @@
 
     <changeSet author="kimesawa" id="1-1">
         <sql>
-            CREATE SCHEMA basicsample AUTHORIZATION basicsample
+            CREATE SCHEMA eventer AUTHORIZATION basicsample
         </sql>
         <rollback>
-            DROP SCHEMA basicsample
+            DROP SCHEMA eventer
         </rollback>
     </changeSet>
 
