@@ -1,4 +1,4 @@
-<form id="eventer" method="post" action="$link.relative("/eventer/new/confirm")" >
+<form id="eventer" method="post" action="$link.relative("/eventer")" >
 <table class="table table-bordered">
 <tbody>
 <tr>
@@ -41,6 +41,7 @@
 <tbody>
 <tr>
 <td colspan="2">
+<input type="hidden" value="yes" name="draft" id="draft">
 <input type="submit" value="確認画面へ" style="padding: 2px 12px;" class="btn">
 </td>
 </tr>

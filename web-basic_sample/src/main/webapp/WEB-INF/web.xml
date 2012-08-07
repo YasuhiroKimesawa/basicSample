@@ -1,26 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
   <display-name>web-basic_sample</display-name>
+
+  <!-- The master configuration file for this Spring web application -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:/META-INF/spring/beans-all-basic_sample.xml</param-value>
   </context-param>
-  <context-param>
-    <param-name>defaultHtmlEscape</param-name>
-    <param-value>true</param-value>
-  </context-param>
-  <listener>
-    <listener-class>
-      org.springframework.web.context.ContextLoaderListener
-    </listener-class>
-  </listener>
-  <context-param>
-    <param-name>log4jConfigLocation</param-name>
-    <param-value>classpath:log4j.xml</param-value>
-  </context-param>
-  <listener>
-    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-  </listener>
+
   <filter>
     <filter-name>characterEncodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -33,6 +20,35 @@
     <filter-name>characterEncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
+  <!-- Enables use of HTTP methods PUT and DELETE -->
+  <filter>
+    <filter-name>httpMethodFilter</filter-name>
+	<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+  </filter>
+  <filter-mapping>
+	<filter-name>httpMethodFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <context-param>
+    <param-name>defaultHtmlEscape</param-name>
+    <param-value>true</param-value>
+  </context-param>
+
+  <listener>
+    <listener-class>
+      org.springframework.web.context.ContextLoaderListener
+    </listener-class>
+  </listener>
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath:log4j.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+
 
   <servlet>
     <servlet-name>web-basic_sample</servlet-name>

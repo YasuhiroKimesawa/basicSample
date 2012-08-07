@@ -49,7 +49,7 @@ public class EventerController
         return "eventer/register/register";
     }
 
-    @RequestMapping( value= "new/confirm", method = RequestMethod.POST )
+    @RequestMapping( value= "", method = RequestMethod.POST, params="draft=yes" )
     public String confirmEventer(
             @Valid @ModelAttribute( EVENTER ) EventerForm eventerForm,
             BindingResult result,
@@ -70,7 +70,17 @@ public class EventerController
         return "eventer/register/confirm/confirm";
     }
 
-    @RequestMapping( value= "", method = RequestMethod.POST )
+    @RequestMapping( value="", method = RequestMethod.PUT, params="draft=yes" )
+    public String backNewEventer( WebRequest request, Model model )
+    {
+        EventerForm eventerForm = (EventerForm) request.getAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
+
+        model.addAttribute( EVENTER, eventerForm );
+
+        return "eventer/register/register";
+    }
+
+    @RequestMapping( value= "", method = RequestMethod.POST, params="draft=no" )
     public String registerEventer( WebRequest request, Model model )
     {
         EventerForm eventerForm = (EventerForm) request.getAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
