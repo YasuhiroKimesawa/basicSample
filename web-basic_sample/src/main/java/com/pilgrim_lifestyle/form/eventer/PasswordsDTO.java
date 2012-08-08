@@ -1,8 +1,8 @@
 package com.pilgrim_lifestyle.form.eventer;
 
-import java.io.Serializable;
-
 import lombok.Data;
+
+import java.io.Serializable;
 
 public @Data class PasswordsDTO implements Serializable
 {
