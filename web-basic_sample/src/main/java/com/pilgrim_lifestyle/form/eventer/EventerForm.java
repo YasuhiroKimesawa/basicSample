@@ -12,5 +12,12 @@ public @Data class EventerForm implements Serializable
 
     private PasswordsDTO passwords;
 
+    public EventerForm()
+    {
+        this.contact = new ContactDTO();
+        this.profile = new ProfileDTO();
+        this.passwords = new PasswordsDTO();
+    }
+
     private static final long serialVersionUID = 436655971888812569L;
 }

@@ -24,6 +24,12 @@ public @Data class ContactDTO implements Serializable
         return Trim.trim( mailAddress );
     }
 
+    public ContactDTO()
+    {
+        this.telephoneNumber = "";
+        this.mailAddress = "";
+    }
+
     private static final long serialVersionUID = 1647513382395277415L;
 
 }

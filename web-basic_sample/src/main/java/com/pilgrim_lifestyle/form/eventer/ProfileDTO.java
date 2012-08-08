@@ -23,6 +23,12 @@ public @Data class ProfileDTO implements Serializable
         return Trim.trim( firstName );
     }
 
+    public ProfileDTO()
+    {
+        this.lastName = "";
+        this.firstName = "";
+    }
+
     private static final long serialVersionUID = -7824510476829185831L;
 
 }

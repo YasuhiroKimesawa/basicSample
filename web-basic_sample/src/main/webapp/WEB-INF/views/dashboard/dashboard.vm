@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="ja-JP">
 <head>
-<title>イベント主催者</title>
+<title>イベントアプリケーション</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet" href="$link.contextPath/bootstrap/css/bootstrap.css" type="text/css" />
 <script src="$link.contextPath/js/jquery-1.7.2.min.js" ></script>
@@ -11,8 +11,9 @@
 <div class="container">
 <div class="row">
 <div class="span12">
-<h3>登録完了しました。</h3>
-<a href="$link.relative('/')">戻る</a>
+<div class="well">
+  <a href="$link.relative('/eventer/new')" class="btn large disabled">主催者側登録</a>
+</div><!--.well-->
 </div>
 </div>
 </div>

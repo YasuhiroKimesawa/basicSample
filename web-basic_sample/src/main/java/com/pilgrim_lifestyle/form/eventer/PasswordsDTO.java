@@ -11,6 +11,12 @@ public @Data class PasswordsDTO implements Serializable
 
     private String confirm;
 
+    public PasswordsDTO()
+    {
+        this.password = "";
+        this.confirm = "";
+    }
+
     private static final long serialVersionUID = 2553067987698913675L;
 
 }
