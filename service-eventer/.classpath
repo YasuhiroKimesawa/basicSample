@@ -5,6 +5,7 @@
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="src/test/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/jmockit-0.999.8.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.aop-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.asm-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.beans-3.1.2.RELEASE.jar"/>
@@ -15,5 +16,25 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/org.springframework.transaction-3.1.2.RELEASE.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/model-eventer"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/service-base"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/asm-3.3.1.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/asm-commons-3.3.1.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/asm-tree-3.3.1.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/cucumber-core-1.0.11.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/cucumber-html-0.2.1.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/cucumber-junit-1.0.11.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/poi-3.2-FINAL.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/testng-5.14.6.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/gherkin-2.11.1.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/dbunit-2.4.8.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/groovy-all-2.0.0.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/hamcrest-core-1.1.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/cucumber-groovy-1.0.11.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/cucumber-java-1.0.11.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/org.springframework.test-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>
