@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/groovy"/>
 	<classpathentry kind="src" path="src/test/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/jmockit-0.999.8.jar"/>
@@ -31,10 +32,14 @@
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/testng-5.14.6.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/gherkin-2.11.1.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/dbunit-2.4.8.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/test/lib/groovy-all-2.0.0.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/hamcrest-core-1.1.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/cucumber-groovy-1.0.11.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/cucumber-java-1.0.11.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/org.springframework.test-3.1.2.RELEASE.jar"/>
+	<classpathentry exported="true" kind="con" path="GROOVY_DSL_SUPPORT"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/spock-core-0.7-groovy-2.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/groovy-all-2.0.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/cglib-nodep-2.2.2.jar"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>

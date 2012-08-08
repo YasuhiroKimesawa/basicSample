@@ -56,6 +56,7 @@
 		<dependency org="org.jacoco" name="org.jacoco.core" rev="0.5.9.201207300726" conf="test->*,!sources,!javadoc" />
 		<dependency org="org.jacoco" name="org.jacoco.report" rev="0.5.9.201207300726" conf="test->*,!sources,!javadoc" />
 		<dependency org="asm" name="asm" rev="3.3.1" conf="test->*,!sources,!javadoc" />
+		<dependency org="org.spockframework" name="spock-core" rev="0.7-groovy-2.0-SNAPSHOT" conf="test->*,!sources,!javadoc" />
 
 		<!-- database -->
 		<dependency org="org.liquibase" name="liquibase-core" rev="2.0.5" conf="main->*,!sources,!javadoc" >
