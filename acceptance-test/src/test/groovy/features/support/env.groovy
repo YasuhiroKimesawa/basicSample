@@ -1,4 +1,4 @@
-package cucumber.support
+package features.support
 
 import geb.Browser
 import geb.binding.BindingUpdater

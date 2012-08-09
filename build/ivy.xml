@@ -59,6 +59,7 @@
 		<dependency org="org.spockframework" name="spock-core" rev="0.7-groovy-2.0-SNAPSHOT" conf="test->*,!sources,!javadoc" />
 		<dependency org="org.codehaus.geb" name="geb-core" rev="0.7.0" conf="test->*,!sources,!javadoc" />
 		<dependency org="org.codehaus.geb" name="geb-spock" rev="0.7.0" conf="test->*,!sources,!javadoc" />
+		<dependency org="org.codehaus.geb" name="geb-junit4" rev="0.7.0" conf="test->*,!sources,!javadoc"/>
 		<dependency org="org.seleniumhq.selenium" name="selenium-chrome-driver" rev="2.24.1" conf="test->*,!sources,!javadoc" />
 		<dependency org="org.seleniumhq.selenium" name="selenium-firefox-driver" rev="2.24.1" conf="test->*,!sources,!javadoc" />
 		<dependency org="org.seleniumhq.selenium" name="selenium-remote-driver" rev="2.24.1" conf="test->*,!sources,!javadoc" />

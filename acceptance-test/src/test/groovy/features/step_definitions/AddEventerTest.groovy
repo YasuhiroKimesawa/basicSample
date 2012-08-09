@@ -1,4 +1,4 @@
-package cucumber.eventer
+package features.step_definitions
 
 import cucumber.runtime.PendingException
 import geb.pages.dashboard.DashBoardPage
