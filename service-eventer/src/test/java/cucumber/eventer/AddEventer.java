@@ -4,10 +4,6 @@ import mockit.Deencapsulation;
 import mockit.Expectations;
 import mockit.Mocked;
 
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-
 import com.pilgrim_lifestyle.model.eventer.Eventer;
 import com.pilgrim_lifestyle.model.eventer.EventerRepository;
 import com.pilgrim_lifestyle.model.eventer.contact.Contact;
@@ -36,8 +32,7 @@ public class AddEventer
     @Mocked( capture = 1 )
     private Eventer eventer;
 
-    //@もし("^: 主催者情報 名前 田中 達也 メール mail@mail.com 電話番号 (\\d+)-(\\d+)-(\\d+) パスワード (\\d+)aaaa を入力して保存する$")
-    @Test
+    @もし("^: 主催者情報 名前 田中 達也 メール mail@mail.com 電話番号 (\\d+)-(\\d+)-(\\d+) パスワード (\\d+)aaaa を入力して保存する$")
     public void _主催者情報_名前_田中_達也_メール_mail_mail_com_電話番号_パスワード_aaaa_を入力して保存する(int arg1, int arg2, int arg3, int arg4) throws Throwable
     {
         PersonName personName = new PersonName( "田中", "達也" );
@@ -51,8 +46,7 @@ public class AddEventer
         contact = new Contact( mailAddress, telephoneNumber );
     }
 
-    //@ならば("^: 登録完了になる$")
-    @Test
+    @ならば("^: 登録完了になる$")
     public void _登録完了になる() throws Throwable
     {
         Deencapsulation.setField( eventerService, eventerRepository );

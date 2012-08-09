@@ -1,9 +1,5 @@
 package com.pilgrim_lifestyle.service.eventer
 
-import mockit.Deencapsulation;
-import mockit.Expectations;
-import mockit.Mocked;
-
 import com.pilgrim_lifestyle.model.eventer.Eventer;
 import com.pilgrim_lifestyle.model.eventer.EventerRepository;
 import com.pilgrim_lifestyle.model.eventer.contact.Contact;
@@ -14,41 +10,40 @@ import com.pilgrim_lifestyle.model.eventer.profile.Profile;
 import com.pilgrim_lifestyle.model.eventer.security.Password;
 import com.pilgrim_lifestyle.model.eventer.security.Passwords;
 
-import groovy.transform.TypeChecked
-import spock.lang.Specification
-
 import mockit.Deencapsulation;
 import mockit.Expectations;
 import mockit.Mocked;
 
+import spock.lang.*
+
 class AddEventerTest extends Specification
 {
-    private Contact contact;
-    private Profile profile;
-    private Passwords passwords;
+    def eventerService = new EventerService()
 
-    private EventerService eventerService = new EventerService();
-
+    @Mocked
+    EventerRepository eventerRepository
 
     @Mocked( capture = 1 )
-    private Eventer eventer;
+    Eventer eventer
 
-    @TypeChecked
+    def personName = new PersonName( "田中", "達也" )
+    def telephoneNumber = new TelephoneNumber( "080-9999-1111" )
+    def mailAddress = new MailAddress( "mail@mail.com" )
+    def password = new Password( "1111aaaa" )
+    def confirm = new Password( "1111aaaa" )
+
     def "主催者を登録する"()
     {
-        expect:
-        PersonName personName = new PersonName( "田中", "達也" );
-        TelephoneNumber telephoneNumber = new TelephoneNumber( "080-9999-1111" );
-        MailAddress mailAddress = new MailAddress( "mail@mail.com" );
-        Password password = new Password( "1111aaaa" );
-        Password confirm = new Password( "1111aaaa" );
+        setup:
+        def profile = new Profile( personName );
+        def passwords = new Passwords( password, confirm );
+        def contact = new Contact( mailAddress, telephoneNumber );
 
-        profile = new Profile( personName );
-        passwords = new Passwords( password, confirm );
-        contact = new Contact( mailAddress, telephoneNumber );
+        when:
+        Deencapsulation.setField( eventerService, eventerRepository );
 
-        where:
+        then:
+        eventerService.add( eventer )
 
-        eventerService.add( contact, profile, passwords );
     }
 }
