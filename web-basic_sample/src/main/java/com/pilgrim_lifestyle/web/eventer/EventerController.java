@@ -5,12 +5,14 @@ import com.pilgrim_lifestyle.model.eventer.contact.Contact;
 import com.pilgrim_lifestyle.model.eventer.profile.Profile;
 import com.pilgrim_lifestyle.model.eventer.security.Passwords;
 import com.pilgrim_lifestyle.service.eventer.EventerService;
+import com.pilgrim_lifestyle.web.WebBase;
 import com.pilgrim_lifestyle.form.eventer.EventerForm;
 import com.pilgrim_lifestyle.form.eventer.EventerDxo;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,11 +20,13 @@ import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping( "/eventer" )
+@RequestMapping( "/eventers" )
 public class EventerController
 {
     @Autowired
@@ -32,26 +36,48 @@ public class EventerController
     private EventerDxo eventerDxo;
 
     @Autowired
+    private WebBase webBase;
+
+    @Autowired
     private Validator validator;
 
-    private static final String EVENTER = "eventer";
+    private static final String EVENTER_FORM = "eventerForm";
+
+    private static final String DRAFT = "draft";
 
     @RequestMapping( value = "new", method = RequestMethod.GET )
     public String newEventer( WebRequest request, Model model )
     {
-        request.removeAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
+        webBase.initializeToken( request, model );
 
-        EventerForm eventer = new EventerForm();
+        if( request.getAttribute( DRAFT, RequestAttributes.SCOPE_SESSION ) == "yes" )
+        {
+            return this.newConfirmRedirect( request, model );
+        }
 
-        model.addAttribute( EVENTER, eventer );
+        if( request.getAttribute( DRAFT, RequestAttributes.SCOPE_SESSION ) == "no" )
+        {
+            return this.newRegisterRedirect( request, model );
+        }
+
+        if( model.containsAttribute( EVENTER_FORM ) )
+        {
+            return "eventer/register/register";
+        }
+
+        request.removeAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
+
+        EventerForm eventerForm = new EventerForm();
+
+        model.addAttribute( EVENTER_FORM, eventerForm );
 
         return "eventer/register/register";
     }
 
-    @RequestMapping( value= "", method = RequestMethod.POST, params="draft=yes" )
-    public String confirmEventer(
-            @Valid @ModelAttribute( EVENTER ) EventerForm eventerForm,
-            BindingResult result,
+    @RequestMapping( value= "new", method = RequestMethod.POST, params="draft=yes" )
+    @ResponseStatus( value = HttpStatus.SEE_OTHER )
+    public String newConfirm( @Valid @ModelAttribute( EVENTER_FORM ) EventerForm eventerForm,
+            BindingResult result, RedirectAttributes redirectAttributes,
             WebRequest request, Model model )
     {
         Eventer eventer = eventerDxo.fromDTO( eventerForm );
@@ -60,29 +86,37 @@ public class EventerController
 
         if( result.hasErrors() )
         {
-            model.addAttribute( EVENTER, eventerForm );
+            model.addAttribute( EVENTER_FORM, eventerForm );
             return "eventer/register/register";
         }
 
-        request.setAttribute( EVENTER, eventerForm, RequestAttributes.SCOPE_SESSION );
+        request.setAttribute( EVENTER_FORM, eventerForm, RequestAttributes.SCOPE_SESSION );
+        request.setAttribute( DRAFT, "yes", RequestAttributes.SCOPE_SESSION );
 
+        return "redirect:new";
+    }
+
+    private String newConfirmRedirect( WebRequest request, Model model )
+    {
         return "eventer/register/confirm/confirm";
     }
 
-    @RequestMapping( value="", method = RequestMethod.PUT, params="draft=yes" )
-    public String backNewEventer( WebRequest request, Model model )
+    @RequestMapping( value="new", method = RequestMethod.PUT, params="draft=yes" )
+    public String newModify( WebRequest request, Model model, RedirectAttributes redirectAttributes )
     {
-        EventerForm eventerForm = (EventerForm) request.getAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
+        EventerForm eventerForm = (EventerForm) request.getAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
 
-        model.addAttribute( EVENTER, eventerForm );
+        redirectAttributes.addFlashAttribute( EVENTER_FORM, eventerForm );
 
-        return "eventer/register/register";
+        request.removeAttribute( DRAFT, RequestAttributes.SCOPE_SESSION );
+
+        return "redirect:new";
     }
 
-    @RequestMapping( value= "", method = RequestMethod.POST, params="draft=no" )
-    public String registerEventer( WebRequest request, Model model )
+    @RequestMapping( value= "new", method = RequestMethod.POST, params="draft=no" )
+    public String newRegister( WebRequest request, Model model )
     {
-        EventerForm eventerForm = (EventerForm) request.getAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
+        EventerForm eventerForm = (EventerForm) request.getAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
 
         Contact contact = eventerDxo.fromContactDTO( eventerForm.getContact() );
         Profile profile = eventerDxo.fromProfileDTO( eventerForm.getProfile() );
@@ -90,8 +124,14 @@ public class EventerController
 
         eventerService.add( contact, profile, passwords );
 
-        request.removeAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
+        request.removeAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
+        request.setAttribute( DRAFT, "no", RequestAttributes.SCOPE_SESSION );
 
+        return "redirect:new";
+    }
+
+    private String newRegisterRedirect( WebRequest request, Model model )
+    {
         return "eventer/register/completion/completion";
     }
 }

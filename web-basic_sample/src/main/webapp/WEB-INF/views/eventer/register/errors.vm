@@ -1,0 +1,7 @@
+#springBind( "eventerForm.*" )
+#if( $status.error )
+<div class="alert alert-error">
+<p>#errorMessage( "eventerForm.profile.lastName" )</p>
+<p>#errorMessage( "eventerForm.passwords.conform" )</p>
+</div><br />
+#end

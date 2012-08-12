@@ -12,7 +12,7 @@
 <div class="row">
 <div class="span12">
 <div class="well">
-  <a href="$link.relative('/eventer/new')" class="btn large disabled">主催者側登録</a>
+  <a href="$link.relative('/eventers/new')" class="btn large disabled">主催者側登録</a>
 </div><!--.well-->
 </div>
 </div>

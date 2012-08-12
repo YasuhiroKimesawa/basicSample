@@ -11,6 +11,7 @@
 <div class="container">
 <div class="row">
 <div class="span12">
+#parse( "eventer/register/errors.vm" )
 #parse( "eventer/register/fieldForInput.vm" )
 </div>
 </div>
