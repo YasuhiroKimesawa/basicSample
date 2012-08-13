@@ -29,23 +29,24 @@ public class EventerDxo
 
     public Profile fromProfileDTO( ProfileDTO profileDTO )
     {
-        PersonName personName = new PersonName( profileDTO.getLastName(), profileDTO.getLastName() );
+        PersonName personName = new PersonName( profileDTO.getPersonName().getLastName(),
+                profileDTO.getPersonName().getFirstName() );
 
         return new Profile( personName );
     }
 
     public Contact fromContactDTO( ContactDTO contactDTO )
     {
-        MailAddress mailAddress = new MailAddress( contactDTO.getMailAddress() );
-        TelephoneNumber telephoneNumber = new TelephoneNumber( contactDTO.getTelephoneNumber() );
+        MailAddress mailAddress = new MailAddress( contactDTO.getMailAddress().getMailAddress() );
+        TelephoneNumber telephoneNumber = new TelephoneNumber( contactDTO.getTelephoneNumber().getNumber() );
 
         return new Contact( mailAddress, telephoneNumber );
     }
 
     public Passwords fromPasswordsDTO( PasswordsDTO passwordsDTO )
     {
-        Password password = new Password( passwordsDTO.getPassword() );
-        Password confirm = new Password( passwordsDTO.getConfirm() );
+        Password password = new Password( passwordsDTO.getPassword().getPassword() );
+        Password confirm = new Password( passwordsDTO.getConfirm().getPassword() );
 
         return new Passwords( password, confirm );
     }

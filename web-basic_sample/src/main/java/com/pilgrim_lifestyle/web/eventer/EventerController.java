@@ -102,6 +102,7 @@ public class EventerController
     }
 
     @RequestMapping( value="new", method = RequestMethod.PUT, params="draft=yes" )
+    @ResponseStatus( value = HttpStatus.SEE_OTHER )
     public String newModify( WebRequest request, Model model, RedirectAttributes redirectAttributes )
     {
         EventerForm eventerForm = (EventerForm) request.getAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
@@ -114,6 +115,7 @@ public class EventerController
     }
 
     @RequestMapping( value= "new", method = RequestMethod.POST, params="draft=no" )
+    @ResponseStatus( value = HttpStatus.SEE_OTHER )
     public String newRegister( WebRequest request, Model model )
     {
         EventerForm eventerForm = (EventerForm) request.getAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );

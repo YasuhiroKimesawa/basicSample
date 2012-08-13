@@ -4,18 +4,18 @@
 <td>姓名(全角文字)</td>
 <td>
 <dt><label>姓</label></dt>
-<dd>$esc.html( ${eventerForm.profile.lastName} )</dd>
+<dd>$esc.html( ${eventerForm.profile.personName.lastName} )</dd>
 <dt><label>名</label></dt>
-<dd>$esc.html( ${eventerForm.profile.firstName} )</dd>
+<dd>$esc.html( ${eventerForm.profile.personName.firstName} )</dd>
 </td>
 </tr>
 <tr>
 <td>メールアドレス(半角英数字)</td>
-<td>$esc.html( ${eventerForm.contact.mailAddress} )</td>
+<td>$esc.html( ${eventerForm.contact.mailAddress.mailAddress} )</td>
 </tr>
 <tr>
 <td>電話番号(半角数字)</td>
-<td>$esc.html( ${eventerForm.contact.telephoneNumber} )</td>
+<td>$esc.html( ${eventerForm.contact.telephoneNumber.number} )</td>
 </tr>
 
 </tbody>
