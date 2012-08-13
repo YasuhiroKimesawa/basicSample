@@ -5,4 +5,6 @@ public interface EventerRepository
     Integer nextId();
 
     void add( Eventer eventer );
+
+    boolean isEmailExist( Eventer eventer );
 }

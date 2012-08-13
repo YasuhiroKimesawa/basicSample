@@ -34,4 +34,15 @@ public class EventerDataAccess implements EventerRepository
         sqlSessionTemplate.insert( this.getClass().getName() + ".savePassword", eventerTable );
     }
 
+    @Override
+    public boolean isEmailExist( Eventer eventer )
+    {
+        EventerTable eventerTable = eventerTableDxo.toDto( eventer );
+        int countEmail = sqlSessionTemplate.selectOne( this.getClass().getName() + ".countEmail", eventerTable );
+
+        if( countEmail == 0 ) return false;
+
+        return true;
+    }
+
 }

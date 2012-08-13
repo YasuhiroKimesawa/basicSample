@@ -1,6 +1,7 @@
 package com.pilgrim_lifestyle.web.eventer;
 
 import com.pilgrim_lifestyle.model.eventer.Eventer;
+import com.pilgrim_lifestyle.model.eventer.RegisterEventerPolicy;
 import com.pilgrim_lifestyle.model.eventer.contact.Contact;
 import com.pilgrim_lifestyle.model.eventer.profile.Profile;
 import com.pilgrim_lifestyle.model.eventer.security.Passwords;
@@ -32,6 +33,9 @@ public class EventerController
 {
     @Autowired
     private EventerService eventerService;
+
+    @Autowired
+    private RegisterEventerPolicy registerEventerPolicy;
 
     @Autowired
     private EventerDxo eventerDxo;
@@ -74,6 +78,7 @@ public class EventerController
         Eventer eventer = eventerDxo.fromDTO( eventerForm );
 
         validator.validate( eventer, result );
+        registerEventerPolicy.validate( eventer, result );
 
         if( result.hasErrors() )
         {

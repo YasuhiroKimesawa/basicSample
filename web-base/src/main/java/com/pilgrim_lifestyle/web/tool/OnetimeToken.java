@@ -2,11 +2,8 @@ package com.pilgrim_lifestyle.web.tool;
 
 import java.util.Random;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
 @Component( "onetimeToken" )
@@ -45,13 +42,6 @@ public class OnetimeToken
     public void removeToken( WebRequest request )
     {
         request.removeAttribute( TOKEN, WebRequest.SCOPE_SESSION );
-    }
-
-    @ExceptionHandler( { BadTokenException.class } )
-    @ResponseStatus( value=HttpStatus.BAD_REQUEST )
-    public void BadTokenExceptionHandler( BadTokenException badTokenException )
-    {
-      return;
     }
 
     private String generateToken( WebRequest request )

@@ -49,4 +49,10 @@
 	    )
 	</insert>
 
+	<select id="countEmail" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM eventer.eventer
+		WHERE mail_address =  #{mailAddress}
+	</select>
+
 </mapper>
