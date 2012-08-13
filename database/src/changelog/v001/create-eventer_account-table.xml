@@ -11,7 +11,7 @@
 				<constraints primaryKey="true" primaryKeyName="pk_eventer_id" nullable="false"
 					references="eventer.eventer(id)" foreignKeyName="fk_eventer_account_eventer" deleteCascade="true" />
 			</column>
-			<column name="password" type="varchar(8)" remarks="パスワード">
+			<column name="password" type="bytea" remarks="パスワード">
 				<constraints nullable="false"/>
 			</column>
 			<column name="create_date" type="timestamp without time zone" remarks="作成日時">

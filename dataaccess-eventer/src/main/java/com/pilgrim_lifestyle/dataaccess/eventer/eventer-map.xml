@@ -43,7 +43,7 @@
 	    VALUES
 	    (
 	        #{id}
-	        , #{eventerPasswordTable.password}
+	        , encrypt(decode(#{eventerPasswordTable.password}, 'escape'), decode('PA-rec-log', 'escape'), 'bf')
 	        , current_date
 	        , current_date
 	    )

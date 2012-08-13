@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project>
 
-<project name="setup-database" basedir="." default="create-database">
+<project name="setup-database" basedir="." default="setup">
 
     <property file="${basedir}/build.properties" />
 
@@ -14,28 +14,43 @@
 
     <property name="sql.dir"  location="${projects.dir}/src/setup" />
 
-    <target name="create-database" depends="create-user, create-role" description="databaseを作成する" >
+	<target name="setup" depends="
+		drop-database
+		,drop-role
+		,drop-user
+		,create-user
+		,create-role
+		,create-database
+		,pgcrypto
+		">
+	</target>
+
+    <target name="create-database" description="databaseを作成する" >
     	<execute-sql-query-postgresql sqlfile="${sql.dir}/create-database.sql"/>
     </target>
 
-    <target name="create-role" depends="create-user" description="roleを作成する" >
+    <target name="create-role" description="roleを作成する" >
     	<execute-sql-query-postgresql sqlfile="${sql.dir}/create-role.sql"/>
     </target>
 
-     <target name="create-user" depends="drop-role" description="userを作成する" >
+     <target name="create-user" description="userを作成する" >
      	<execute-sql-query-postgresql sqlfile="${sql.dir}/create-user.sql"/>
      </target>
 
-	<target name="drop-user" depends="drop-role" description="userを削除する" >
+	<target name="drop-user" description="userを削除する" >
 		<execute-sql-query-postgresql sqlfile="${sql.dir}/drop-user.sql"/>
 	</target>
 
-	<target name="drop-role" depends="drop-database" description="roleを削除する" >
+	<target name="drop-role" description="roleを削除する" >
 		 <execute-sql-query-postgresql sqlfile="${sql.dir}/drop-role.sql"/>
 	</target>
 
 	<target name="drop-database" description="databaseを削除する" >
 	     <execute-sql-query-postgresql sqlfile="${sql.dir}/drop-database.sql"/>
+	</target>
+
+	<target name="pgcrypto" description="pgcrypto" >
+		 <execute-sql-query-basicsample-userpostgres sqlfile="${sql.dir}/pgcrypto.sql"/>
 	</target>
 
 	<macrodef name="execute-sql-query-postgresql">
@@ -54,5 +69,23 @@
             src="@{sqlfile}" />
 		</sequential>
 	</macrodef>
+
+	<macrodef name="execute-sql-query-basicsample-userpostgres">
+		<attribute name="sqlfile" />
+		<sequential>
+			<sql
+	            driver="${database.driver}"
+	            url="${database.url}"
+	            userid="${database.username.postgres}"
+	            password="${database.password.postgres}"
+	            autocommit="true"
+	            print="yes"
+	            onerror="abort"
+	            classpathref="library.path"
+	            encoding="UTF-8"
+	            src="@{sqlfile}" />
+		</sequential>
+	</macrodef>
+
 
 </project>
