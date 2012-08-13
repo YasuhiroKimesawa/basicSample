@@ -39,3 +39,13 @@ this.metaClass.mixin(cucumber.runtime.groovy.JA)
     // Express the Regexp above with the code you wish you had
     throw new PendingException()
 }
+
+もし(~'^: 修正ボタンを押す$') { ->
+    // Express the Regexp above with the code you wish you had
+    throw new PendingException()
+}
+
+ならば(~'^: 登録ページが表示される$') { ->
+    // Express the Regexp above with the code you wish you had
+    throw new PendingException()
+}
