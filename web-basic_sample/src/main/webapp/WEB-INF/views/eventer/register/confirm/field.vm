@@ -42,12 +42,14 @@
 
 <form id="eventer" method="post" action="$link.relative("/eventers/new")" >
 <input type="hidden" value="no" name="draft" id="draft">
+<input type="hidden" value="$!{requestToken}" name="requestToken" id="requestToken">
 <input type="submit" value="登録" style="padding: 2px 12px;" class="btn">
 </form>
 
 <form id="eventerput" method="post" action="$link.relative("/eventers/new")" >
 <input type="hidden" name="_method" value="PUT"/>
 <input type="hidden" value="yes" name="draft" id="draft">
+<input type="hidden" value="$!{requestToken}" name="requestToken" id="requestToken">
 <input type="submit" value="修正" style="padding: 2px 12px;" class="btn">
 </form>
 

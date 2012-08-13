@@ -1,13 +1,16 @@
-package com.pilgrim_lifestyle.web;
+package com.pilgrim_lifestyle.web.tool;
 
 import java.util.Random;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
-@Component( "webBase" )
-public class WebBase
+@Component( "onetimeToken" )
+public class OnetimeToken
 {
     private static final String TOKEN = "token";
 
@@ -22,7 +25,7 @@ public class WebBase
        model.addAttribute( REQUEST_TOKEN, token );
     }
 
-    public boolean checkToken( WebRequest request )
+    public boolean checkToken( WebRequest request ) throws BadTokenException
     {
         String sessionToken = (String)request.getAttribute( TOKEN, WebRequest.SCOPE_SESSION );
 
@@ -30,18 +33,25 @@ public class WebBase
 
         this.removeToken( request );
 
-        if( !isEmpty( parameterToken ) ) return false;
+        if( isEmpty( parameterToken ) ) throw new BadTokenException( "token error" );
 
-        if( !isEmpty( sessionToken ) ) return false;
+        if( isEmpty( sessionToken ) ) throw new BadTokenException( "token error" );
 
-        if( parameterToken.equals( sessionToken )  ) return true;
+        if( ! parameterToken.equals( sessionToken )  ) throw new BadTokenException( "token error" );
 
-        return false;
+        return true;
     }
 
     public void removeToken( WebRequest request )
     {
         request.removeAttribute( TOKEN, WebRequest.SCOPE_SESSION );
+    }
+
+    @ExceptionHandler( { BadTokenException.class } )
+    @ResponseStatus( value=HttpStatus.BAD_REQUEST )
+    public void BadTokenExceptionHandler( BadTokenException badTokenException )
+    {
+      return;
     }
 
     private String generateToken( WebRequest request )

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="ja-JP">
 <head>
-<title>404NotFound</title>
+<title>500Error</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet" href="$link.contextPath/bootstrap/css/bootstrap.css" type="text/css" />
 <script src="$link.contextPath/js/jquery-1.7.2.min.js" ></script>
@@ -11,7 +11,7 @@
 <div class="container">
 <div class="row">
 <div class="span12">
-ご指定のページは見つかりません。
+エラーが発生しました。
 <a href="$link.relative('/')">戻る</a>
 </div>
 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="ja-JP">
 <head>
-<title>イベント主催者</title>
+<title>イベント主催者（確認）</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet" href="$link.contextPath/bootstrap/css/bootstrap.css" type="text/css" />
 <script src="$link.contextPath/js/jquery-1.7.2.min.js" ></script>

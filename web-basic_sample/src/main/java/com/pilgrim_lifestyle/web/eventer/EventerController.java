@@ -5,7 +5,8 @@ import com.pilgrim_lifestyle.model.eventer.contact.Contact;
 import com.pilgrim_lifestyle.model.eventer.profile.Profile;
 import com.pilgrim_lifestyle.model.eventer.security.Passwords;
 import com.pilgrim_lifestyle.service.eventer.EventerService;
-import com.pilgrim_lifestyle.web.WebBase;
+import com.pilgrim_lifestyle.web.tool.BadTokenException;
+import com.pilgrim_lifestyle.web.tool.OnetimeToken;
 import com.pilgrim_lifestyle.form.eventer.EventerForm;
 import com.pilgrim_lifestyle.form.eventer.EventerDxo;
 
@@ -36,7 +37,7 @@ public class EventerController
     private EventerDxo eventerDxo;
 
     @Autowired
-    private WebBase webBase;
+    private OnetimeToken onetimeToken;
 
     @Autowired
     private Validator validator;
@@ -46,20 +47,8 @@ public class EventerController
     private static final String DRAFT = "draft";
 
     @RequestMapping( value = "new", method = RequestMethod.GET )
-    public String newEventer( WebRequest request, Model model )
+    public String newEventer( WebRequest request, Model model, RedirectAttributes redirectAttributes )
     {
-        webBase.initializeToken( request, model );
-
-        if( request.getAttribute( DRAFT, RequestAttributes.SCOPE_SESSION ) == "yes" )
-        {
-            return this.newConfirmRedirect( request, model );
-        }
-
-        if( request.getAttribute( DRAFT, RequestAttributes.SCOPE_SESSION ) == "no" )
-        {
-            return this.newRegisterRedirect( request, model );
-        }
-
         if( model.containsAttribute( EVENTER_FORM ) )
         {
             return "eventer/register/register";
@@ -78,8 +67,10 @@ public class EventerController
     @ResponseStatus( value = HttpStatus.SEE_OTHER )
     public String newConfirm( @Valid @ModelAttribute( EVENTER_FORM ) EventerForm eventerForm,
             BindingResult result, RedirectAttributes redirectAttributes,
-            WebRequest request, Model model )
+            WebRequest request, Model model ) throws BadTokenException
     {
+        String draft = request.getParameter( DRAFT );
+
         Eventer eventer = eventerDxo.fromDTO( eventerForm );
 
         validator.validate( eventer, result );
@@ -91,33 +82,38 @@ public class EventerController
         }
 
         request.setAttribute( EVENTER_FORM, eventerForm, RequestAttributes.SCOPE_SESSION );
-        request.setAttribute( DRAFT, "yes", RequestAttributes.SCOPE_SESSION );
+
+        redirectAttributes.addFlashAttribute( DRAFT, draft ).addAttribute( DRAFT, draft );
 
         return "redirect:new";
     }
 
-    private String newConfirmRedirect( WebRequest request, Model model )
+    @RequestMapping( value= "new", method = RequestMethod.GET, params="draft=yes" )
+    public String newConfirmRedirect( WebRequest request, Model model )
     {
+        onetimeToken.initializeToken( request, model );
         return "eventer/register/confirm/confirm";
     }
 
     @RequestMapping( value="new", method = RequestMethod.PUT, params="draft=yes" )
     @ResponseStatus( value = HttpStatus.SEE_OTHER )
-    public String newModify( WebRequest request, Model model, RedirectAttributes redirectAttributes )
+    public String newModify( WebRequest request, Model model, RedirectAttributes redirectAttributes ) throws BadTokenException
     {
         EventerForm eventerForm = (EventerForm) request.getAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
 
         redirectAttributes.addFlashAttribute( EVENTER_FORM, eventerForm );
-
-        request.removeAttribute( DRAFT, RequestAttributes.SCOPE_SESSION );
 
         return "redirect:new";
     }
 
     @RequestMapping( value= "new", method = RequestMethod.POST, params="draft=no" )
     @ResponseStatus( value = HttpStatus.SEE_OTHER )
-    public String newRegister( WebRequest request, Model model )
+    public String newRegister( WebRequest request, Model model, RedirectAttributes redirectAttributes ) throws BadTokenException
     {
+        onetimeToken.checkToken( request );
+
+        String draft = request.getParameter( DRAFT );
+
         EventerForm eventerForm = (EventerForm) request.getAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
 
         Contact contact = eventerDxo.fromContactDTO( eventerForm.getContact() );
@@ -127,12 +123,14 @@ public class EventerController
         eventerService.add( contact, profile, passwords );
 
         request.removeAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
-        request.setAttribute( DRAFT, "no", RequestAttributes.SCOPE_SESSION );
+        onetimeToken.removeToken( request );
+        redirectAttributes.addFlashAttribute( DRAFT, draft ).addAttribute( DRAFT, draft );
 
         return "redirect:new";
     }
 
-    private String newRegisterRedirect( WebRequest request, Model model )
+    @RequestMapping( value= "new", method = RequestMethod.GET, params="draft=no" )
+    public String newRegisterRedirect( WebRequest request, Model model )
     {
         return "eventer/register/completion/completion";
     }
