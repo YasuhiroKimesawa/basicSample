@@ -38,7 +38,7 @@ public class EventerDataAccess implements EventerRepository
     public boolean isEmailExist( Eventer eventer )
     {
         EventerTable eventerTable = eventerTableDxo.toDto( eventer );
-        int countEmail = sqlSessionTemplate.selectOne( this.getClass().getName() + ".countEmail", eventerTable );
+        int countEmail = ( Integer )sqlSessionTemplate.selectOne( this.getClass().getName() + ".countEmail", eventerTable );
 
         if( countEmail == 0 ) return false;
 
