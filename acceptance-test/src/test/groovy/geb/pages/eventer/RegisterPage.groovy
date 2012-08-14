@@ -9,11 +9,15 @@ class RegisterPage extends Page
     static at = { $( 'body', id :'eventer_register' )  }
     static content =
     {
-
         // こんな書き方もＯＫ↓がこれらは遅い。
         // firstName { $( "input" , name: "applicant.profile.name.firstName") }
         // lastName { $("form#entryData").find( "input" , name: "applicant.profile.name.lastName") }
-        lastName { $( "input#applicant\\.profile\\.name\\.lastName") }
+        lastName { $( "input#profile\\.personName\\.lastName") }
+        firstName { $( "input#profile\\.personName\\.firstName") }
+        mailAddress { $( "input#contact\\.mailAddress\\.mailAddress") }
+        number { $( "input#contact\\.telephoneNumber\\.number") }
+        password { $( "input#passwords\\.password\\.password") }
+        confirm { $( "input#passwords\\.confirm\\.password") }
 
         buttonConfirm { $( "input[type='submit']") }
     }
