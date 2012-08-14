@@ -1,9 +1,12 @@
 package com.pilgrim_lifestyle.web.tool;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.WebRequest;
 
 @Component( "onetimeToken" )
@@ -28,8 +31,6 @@ public class OnetimeToken
 
         String parameterToken = (String)request.getParameter( REQUEST_TOKEN );
 
-        this.removeToken( request );
-
         if( isEmpty( parameterToken ) ) throw new BadTokenException( "token error" );
 
         if( isEmpty( sessionToken ) ) throw new BadTokenException( "token error" );
@@ -42,6 +43,16 @@ public class OnetimeToken
     public void removeToken( WebRequest request )
     {
         request.removeAttribute( TOKEN, WebRequest.SCOPE_SESSION );
+    }
+
+    public boolean isContain( WebRequest request )
+    {
+        List<String> sessionList = Arrays.asList( request.getAttributeNames( RequestAttributes.SCOPE_SESSION ) );
+        if( sessionList.contains( TOKEN ) )
+        {
+            return true;
+        }
+        return false;
     }
 
     private String generateToken( WebRequest request )

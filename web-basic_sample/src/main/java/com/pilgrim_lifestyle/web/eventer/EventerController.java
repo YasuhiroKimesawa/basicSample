@@ -1,5 +1,8 @@
 package com.pilgrim_lifestyle.web.eventer;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.pilgrim_lifestyle.model.eventer.Eventer;
 import com.pilgrim_lifestyle.model.eventer.RegisterEventerPolicy;
 import com.pilgrim_lifestyle.model.eventer.contact.Contact;
@@ -59,6 +62,7 @@ public class EventerController
         }
 
         request.removeAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
+        onetimeToken.removeToken( request );
 
         EventerForm eventerForm = new EventerForm();
 
@@ -71,7 +75,7 @@ public class EventerController
     @ResponseStatus( value = HttpStatus.SEE_OTHER )
     public String newConfirm( @Valid @ModelAttribute( EVENTER_FORM ) EventerForm eventerForm,
             BindingResult result, RedirectAttributes redirectAttributes,
-            WebRequest request, Model model ) throws BadTokenException
+            WebRequest request, Model model )
     {
         String draft = request.getParameter( DRAFT );
 
@@ -88,7 +92,8 @@ public class EventerController
 
         request.setAttribute( EVENTER_FORM, eventerForm, RequestAttributes.SCOPE_SESSION );
 
-        redirectAttributes.addFlashAttribute( DRAFT, draft ).addAttribute( DRAFT, draft );
+        redirectAttributes.addFlashAttribute( DRAFT, draft )
+                          .addAttribute( DRAFT, draft );
 
         return "redirect:new";
     }
@@ -96,13 +101,19 @@ public class EventerController
     @RequestMapping( value= "new", method = RequestMethod.GET, params="draft=yes" )
     public String newConfirmRedirect( WebRequest request, Model model )
     {
+        List<String> sessionList = Arrays.asList( request.getAttributeNames( RequestAttributes.SCOPE_SESSION ) );
+        if( ! sessionList.contains( EVENTER_FORM ) )
+        {
+            return "error/pageNotFound";
+        }
+
         onetimeToken.initializeToken( request, model );
         return "eventer/register/confirm/confirm";
     }
 
     @RequestMapping( value="new", method = RequestMethod.PUT, params="draft=yes" )
     @ResponseStatus( value = HttpStatus.SEE_OTHER )
-    public String newModify( WebRequest request, Model model, RedirectAttributes redirectAttributes ) throws BadTokenException
+    public String newModify( WebRequest request, Model model, RedirectAttributes redirectAttributes )
     {
         EventerForm eventerForm = (EventerForm) request.getAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
 
@@ -128,8 +139,9 @@ public class EventerController
         eventerService.add( contact, profile, passwords );
 
         request.removeAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
-        onetimeToken.removeToken( request );
-        redirectAttributes.addFlashAttribute( DRAFT, draft ).addAttribute( DRAFT, draft );
+
+        redirectAttributes.addFlashAttribute( DRAFT, draft )
+                          .addAttribute( DRAFT, draft );
 
         return "redirect:new";
     }
@@ -137,6 +149,12 @@ public class EventerController
     @RequestMapping( value= "new", method = RequestMethod.GET, params="draft=no" )
     public String newRegisterRedirect( WebRequest request, Model model )
     {
+        List<String> sessionList = Arrays.asList( request.getAttributeNames( RequestAttributes.SCOPE_SESSION ) );
+        if( ! onetimeToken.isContain( request ) ||  sessionList.contains( EVENTER_FORM )  )
+        {
+            return "error/pageNotFound";
+        }
+
         return "eventer/register/completion/completion";
     }
 }
