@@ -5,7 +5,7 @@
 <p>#errorMessage( "eventerForm.profile.personName.firstName" )</p>
 <p>#errorMessage( "eventerForm.contact.mailAddress.mailAddress" )</p>
 <p>#errorMessage( "eventerForm.contact.telephoneNumber.number" )</p>
-<p>#errorMessage( "eventerForm.passwords.password" )</p>
+<p>#errorMessage( "eventerForm.passwords.password.password" )</p>
 <p>#errorMessage( "eventerForm.passwords.conform" )</p>
 </div><br />
 #end
