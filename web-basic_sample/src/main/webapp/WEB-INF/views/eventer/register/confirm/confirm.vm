@@ -7,7 +7,7 @@
 <script src="$link.contextPath/js/jquery-1.7.2.min.js" ></script>
 <script src="$link.contextPath/bootstrap/js/bootstrap.js"></script>
 </head>
-<body id="eventer_register">
+<body id="eventer_register_confirm">
 <div class="container">
 <div class="row">
 <div class="span12">

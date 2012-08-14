@@ -1,16 +1,14 @@
 package geb.pages.dashboard
 
-import geb.Page
 import geb.*
 
 class DashBoardPage extends Page
 {
     static url = "http://localhost/web-basic_sample";
-    static at = { $( 'body', id :'eventer_register' )  }
+    static at = { $( 'body', id :'dashboard' )  }
 
-    static content = {
-        button( to: GoogleResultsPage ) {
-            enterEventer { $( "a", value: buttonValue ) }
-        }
+    static content =
+    {
+        enterEventerLink { $( 'div.well > a' ) }
     }
 }
