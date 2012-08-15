@@ -19,6 +19,8 @@ class RegisterPage extends Page
         password { $( "input#passwords\\.password\\.password") }
         confirm { $( "input#passwords\\.confirm\\.password") }
 
+        errorMessages { $( 'p.error-message' ) }
+
         buttonConfirm { $( "input[type='submit']") }
     }
 }
