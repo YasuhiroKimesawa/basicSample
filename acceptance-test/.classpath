@@ -80,5 +80,7 @@
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/groovy-all-2.0.0.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/postgresql-9.0-801.jdbc4.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/slf4j-log4j12-1.6.2.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/commons-dbcp-20030825.184428.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.apache.commons.pool-1.5.3.jar"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>

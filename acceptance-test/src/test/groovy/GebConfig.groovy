@@ -6,5 +6,5 @@ driver = {
 
 
 waiting {
-    timeout = 2
+    timeout = 30
 }

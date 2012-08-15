@@ -1,66 +1,52 @@
 package dataaccess;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
+import javax.sql.DataSource;
 
 import org.dbunit.database.DatabaseConfig;
-import org.dbunit.database.DatabaseConnection;
-import org.dbunit.database.DatabaseDataSet;
-import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.database.DatabaseDataSourceConnection;
 import org.dbunit.database.QueryDataSet;
+import org.dbunit.dataset.datatype.IDataTypeFactory;
 import org.dbunit.ext.postgresql.PostgresqlDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+
+@ContextConfiguration( value = "classpath:META-INF/spring/beans-dataaccess.xml" )
+@RunWith( SpringJUnit4ClassRunner.class )
 public class DataBaseSetup
 {
+    @Autowired
+    private DataSource dataSource;
+
+    private DatabaseDataSourceConnection dbunitConnection;
+
+    @Before
+    public void before() throws Exception
+    {
+        dbunitConnection = new DatabaseDataSourceConnection( dataSource );
+        DatabaseConfig databaseConfig = dbunitConnection.getConfig();
+        databaseConfig.setProperty( DatabaseConfig.PROPERTY_DATATYPE_FACTORY, getDataTypeFactory() );
+        databaseConfig.setProperty( DatabaseConfig.FEATURE_QUALIFIED_TABLE_NAMES, true );
+
+    }
+
+    private IDataTypeFactory getDataTypeFactory()
+    {
+        return new PostgresqlDataTypeFactory();
+    }
+
     @Test
-    public void databaseSetUp() throws SQLException
+    public void databaseSetUp() throws Exception
     {
-        IDatabaseConnection connection = null;
-        try
-        {
-            connection = getConnection();
+        QueryDataSet initDataSet = new QueryDataSet( dbunitConnection );
+        initDataSet.addTable( "eventer.eventer" );
+        DatabaseOperation.DELETE_ALL.execute( dbunitConnection, initDataSet );
 
-            DatabaseConfig databaseConfig = connection.getConfig();
-            databaseConfig.setProperty( DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new PostgresqlDataTypeFactory() );
-
-            QueryDataSet queryDataSet = new QueryDataSet( connection );
-            org.dbunit.database.DatabaseDataSet databaseDataSet = new DatabaseDataSet( connection, true );
-            String[] a = databaseDataSet.getTableNames();
-
-
-            for ( String tableName : Tables.tableMap.values() )
-            {
-                queryDataSet.addTable( tableName );
-            }
-
-            DatabaseOperation.DELETE_ALL.execute( connection, databaseDataSet );
-
-        }
-        catch ( Exception e )
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            if( connection != null ) connection.close();
-        }
     }
 
-    private static IDatabaseConnection getConnection() throws Exception
-    {
-        ResourceBundle bundle = ResourceBundle.getBundle("META-INF/spring/jdbc");
-        String className = bundle.getString( "jdbc.driverClassName" );
-        String url = bundle.getString( "jdbc.url" );
-        String username = bundle.getString( "jdbc.username" );
-        String password = bundle.getString( "jdbc.password" );
-
-        Class.forName( className );
-        Connection connection = DriverManager.getConnection( url, username, password );
-
-        return new DatabaseConnection( connection );
-    }
 }
