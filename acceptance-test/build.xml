@@ -1,0 +1,84 @@
+<project name="acceptance-test" default="runcukes" basedir=".">
+	<property file="build.properties" />
+
+	<path id="lib.path.id">
+		<fileset dir="${main.lib.dir}" includes="*.jar" />
+		<fileset dir="${test.lib.dir}" includes="*.jar" excludes="groovy-all-2.0.1.jar"/>
+		<fileset dir="${project.lib.dir}" includes="*.jar" />
+	</path>
+
+	<path id="groovy.path">
+		<fileset dir="${test.lib.dir}" includes="groovy-all-2.0.0.jar" />
+	</path>
+	<taskdef name="groovyc" classname="org.codehaus.groovy.ant.Groovyc" classpathref="groovy.path" />
+
+	<target name="compile" description="--> compile the project">
+		<delete dir="${classes.dir}" />
+		<mkdir dir="${classes.dir}" />
+		<javac srcdir="${dbsetup.src.dir}" destdir="${classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
+		<groovyc encoding="UTF-8" srcdir="${cucumber.src.dir}" destdir="${classes.dir}" classpathref="lib.path.id">
+			<javac>
+				<classpath>
+					<path refid="lib.path.id"/>
+					<pathelement location="${classes.dir}" />
+				</classpath>
+				<include name="**/*.groovy" />
+			</javac>
+		</groovyc>
+	</target>
+
+	<target name="dbsetup" depends="compile">
+		<delete dir="${junit.report.dir}" />
+		<mkdir dir="${junit.report.dir}"/>
+
+		<copy todir="${classes.dir}">
+			<fileset dir="${resources.dir}" />
+		</copy>
+
+		<junit haltonfailure="false" fork="true" forkmode="once">
+			<formatter type="xml" />
+			<test name="dataaccess.DataBaseSetup" todir="${classes.dir}">
+			</test>
+			<classpath>
+				<path refid="lib.path.id"/>
+				<pathelement location="${classes.dir}" />
+			</classpath>
+		</junit>
+	</target>
+
+	<target name="runcukes" depends="dbsetup">
+		<delete dir="${cucumber.report.dir}" />
+		<mkdir dir="${cucumber.report.dir}"/>
+		<java classname="cucumber.cli.Main" fork="true" failonerror="false" resultproperty="cucumber.exitstatus">
+			<classpath>
+				<path refid="lib.path.id"/>
+				<pathelement location="${classes.dir}" />
+			</classpath>
+			<arg value="--format" />
+			<arg value="junit:target/cucumber/cucumber-junit-report/allcukes.xml"/>
+			<arg value="--format"/>
+			<arg value="pretty"/>
+			<arg value="--format"/>
+			<arg value="html:target/cucumber/cucumber-html-report"/>
+			<arg value="--glue"/>
+			<arg value="src/test/groovy/features"/>
+			<arg value="src/test/resources"/>
+		</java>
+
+		<junitreport todir="${cucumber.report.dir}">
+			<fileset dir="${cucumber.report.dir}">
+				<include name="allcukes.xml"/>
+			</fileset>
+			<report format="frames" todir="${cucumber.report.dir}"/>
+		</junitreport>
+
+		<fail message="Cucumber failed">
+			<condition>
+				<not>
+					<equals arg1="${cucumber.exitstatus}" arg2="0"/>
+				</not>
+			</condition>
+		</fail>
+	</target>
+
+</project>

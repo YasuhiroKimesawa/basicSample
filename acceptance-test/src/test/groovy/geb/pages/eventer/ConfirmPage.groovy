@@ -5,7 +5,7 @@ import geb.*
 
 class ConfirmPage extends Page
 {
-    static url = "http://localhost/web-basic_sample/eventers/new?draft=yes";
+    static url = "http://176.32.89.89/web-basic_sample/eventers/new?draft=yes";
     static at = { $( 'body', id :'eventer_register_confirm' )  }
 
     static content =

@@ -5,6 +5,6 @@ import cucumber.junit.Cucumber
 import geb.junit4.GebReportingTest
 
 @RunWith(Cucumber.class)
-@Cucumber.Options(format = ["pretty", "html:build/cucumber"])
+@Cucumber.Options(format = ["pretty", "html:target/cucumber"])
 class RunCukesSpec extends GebReportingTest {
 }
