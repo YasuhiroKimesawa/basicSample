@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="format-detection" content="telephone=no">
+<title>ログイン</title>
+</head>
+<body>
+
+<h1>ログイン</h1>
+#if ( $loginForm.loginFailed && $loginForm.allEntered )
+  ユーザ名とパスワードが一致しません。<br/>
+#end
+<form action="$link.relative('/login')" method="POST">
+<ul>
+<li>
+<label for="id">ID</label>
+<input type="text" name="j_username" value="$!loginForm.username"/>
+#if ($loginForm.loginFailed && $loginForm.usernameEmpty)
+<em>ユーザ名を入力してください</em>
+#end
+</li>
+<li>
+<label for="pw">Password</label>
+<input type="password" name="j_password" />
+#if ($loginForm.loginFailed && $loginForm.passwordEmpty)
+<em>パスワードを入力してください</em>
+#end
+</li>
+</ul>
+<input name="login" type="submit" value="ログイン" />
+</form>
+
+</body>
+</html>

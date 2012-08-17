@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+  <sec:http auto-config="true">
+    <sec:intercept-url pattern="/loginForm" access="ROLE_ANONYMOUS,ROLE_ADMIN" />
+    <sec:form-login login-page="/loginForm"
+      login-processing-url="/login" authentication-failure-handler-ref="authenticationFailureHandler"
+      default-target-url="/" />
+    <sec:logout logout-url="/logout" logout-success-url="/loginForm" />
+  </sec:http>
+
+  <sec:authentication-manager alias="authenticationManager">
+    <sec:authentication-provider user-service-ref="securityUserService" />
+  </sec:authentication-manager>
+
+  <sec:user-service id="securityUserService">
+    <sec:user name="admin" password="admin" authorities="ROLE_ADMIN" />
+  </sec:user-service>
+
+  <bean id="loginFormController" class="com.systemsekkei.base.security.web.login.LoginFormController">
+    <property name="loginFormAttributeName" value="loginForm" />
+    <property name="viewName" value="loginForm" />
+  </bean>
+
+  <bean id="authenticationFailureHandler" class="com.systemsekkei.base.security.web.login.LoginFormAuthenticationFailureHandler">
+    <property name="defaultFailureUrl" value="/loginForm" />
+  </bean>
+
+</beans>
