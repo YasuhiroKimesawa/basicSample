@@ -73,6 +73,12 @@
 			<exclude org="org.springframework" />
 		</dependency>
 
+		<!-- mule -->
+		<dependency org="org.mule" name="mule-core" rev="3.3.0" conf="main->*,!sources,!javadoc" >
+			<exclude org="javax.activation" />
+			<exclude org="org.apache.geronimo.specs" />
+		</dependency>
+
 		<!-- excludes -->
     	<exclude module="spring-batch-core" />
     	<exclude module="spring-aop" />

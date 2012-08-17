@@ -1,12 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="ja">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="format-detection" content="telephone=no">
-<title>ログイン</title>
-</head>
-<body>
-
 <h1>ログイン</h1>
 #if ( $loginForm.loginFailed && $loginForm.allEntered )
   ユーザ名とパスワードが一致しません。<br/>
@@ -28,8 +19,5 @@
 #end
 </li>
 </ul>
-<input name="login" type="submit" value="ログイン" />
+<input name="login" type="submit" value="ログイン" style="padding: 2px 12px;" class="btn"/>
 </form>
-
-</body>
-</html>

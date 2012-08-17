@@ -153,9 +153,6 @@
         <dependent-module archiveName="org.springframework.expression-3.1.2.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/org.springframework.expression-3.1.2.RELEASE.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="com.systemsekkei.base-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/com.systemsekkei.base-1.0.0.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="jboss-logging-3.1.0.CR2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/jboss-logging-3.1.0.CR2.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>

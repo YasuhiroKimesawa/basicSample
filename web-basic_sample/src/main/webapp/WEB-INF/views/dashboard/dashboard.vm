@@ -14,6 +14,15 @@
 <div class="well">
   <a href="$link.relative('/eventers/new')" class="btn large disabled">主催者側登録</a>
 </div><!--.well-->
+#if(!$auth.anonymous)
+<div class="well">
+<p>$!auth.user.username</p>
+<a href="$link.relative('/logout')" class="btn large disabled">logout</a>
+</div>
+#end
+<div class="well">
+  #parse( "dashboard/loginForm.vm" )
+</div><!--.well-->
 </div>
 </div>
 </div>
