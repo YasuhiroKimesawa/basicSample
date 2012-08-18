@@ -7,11 +7,18 @@ import org.springframework.security.core.userdetails.User;
 
 public class AccountUser extends User
 {
+    private String lastName;
 
-    public AccountUser( String username, String password, Collection<? extends GrantedAuthority> authorities )
+    public AccountUser( String mailaddress, String password, String lastName, Collection<? extends GrantedAuthority> authorities )
     {
-        super( username, password, authorities );
-        // TODO 自動生成されたコンストラクター・スタブ
+        super( mailaddress, password, authorities );
+
+        this.lastName = lastName;
+    }
+
+    public String getLastName()
+    {
+        return lastName;
     }
 
     private static final long serialVersionUID = -1192863938113385940L;

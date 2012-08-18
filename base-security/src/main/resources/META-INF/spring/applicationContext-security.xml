@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
   <!-- ユーザ情報Service（アプリケーション内で適用されるROLE情報を取得） -->
-  <bean id="loginEventUserService" class="jp.rhp.dataaccess.shop.LoginEventUserJdbcDaoImpl">
+  <bean id="loginEventUserService" class="com.pilgrim_lifestyle.security.service.UserDetailsService">
     <property name="dataSource" ref="dataSource" />
     <property name="usersByUsernameQuery">
       <!-- 以下の順で結果を返すSELECT文を定義する 1.ユーザ名,2:パスワード,3:有効/無効 -->
@@ -15,6 +15,7 @@
         SELECT
           mail_address
           , encode(decrypt(password, decode('PA-rec-log', 'escape'), 'bf'),'escape')
+          , true
           , last_name
         FROM
           eventer.eventer
@@ -30,12 +31,16 @@
       <!-- 以下の順で結果を返すSELECT文を定義する 1.ユーザ名,2:ロール名 -->
       <value>
         SELECT
-        shop_user_id,
-        CASE WHEN shop_id in(28) THEN 'ROLE_HR' ELSE 'ROLE_USER' END as role
+          authority.mail_address
+          , authority.type
         FROM
-        mobile.shop_user
+          account.authority
+        INNER JOIN
+          account.authority_type
+        ON
+          authority.type = authority_type.type
         WHERE
-        shop_user_id = ?
+          mail_address = ?
       </value>
     </property>
   </bean>

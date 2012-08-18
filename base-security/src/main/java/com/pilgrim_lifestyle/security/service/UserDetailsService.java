@@ -22,22 +22,24 @@ public class UserDetailsService extends JdbcDaoImpl
                 {
                              public UserDetails mapRow(ResultSet rs, int rowNum) throws SQLException
                              {
-                                String username = rs.getString(1);
-                                String password = rs.getString(2);
-                                return new AccountUser(username, password, AuthorityUtils.NO_AUTHORITIES);
+                                String mailAddress = rs.getString( 1 );
+                                String password = rs.getString( 2 );
+                                String lastname = rs.getString( 4 );
+                                return new AccountUser( mailAddress, password, lastname, AuthorityUtils.NO_AUTHORITIES);
                               }
                   });
     }
 
     @Override
-    protected UserDetails createUserDetails( String username, UserDetails userFromUserQuery, List<GrantedAuthority> combinedAuthorities )
+    protected UserDetails createUserDetails( String mailAddress, UserDetails userFromUserQuery, List<GrantedAuthority> combinedAuthorities )
     {
-        UserDetails user = super.createUserDetails( username, userFromUserQuery, combinedAuthorities );
+        UserDetails user = super.createUserDetails( mailAddress, userFromUserQuery, combinedAuthorities );
 
         if (userFromUserQuery instanceof AccountUser)
         {
             AccountUser accoutUser = ( AccountUser ) userFromUserQuery;
-            return new AccountUser( user.getUsername(), user.getPassword(), user.getAuthorities());
+
+            return new AccountUser( user.getUsername(), user.getPassword(), accoutUser.getLastName(), user.getAuthorities());
         }
         else
         {

@@ -8,8 +8,8 @@
       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
   <sec:http auto-config="true">
-    <sec:intercept-url pattern="/" access="ROLE_ANONYMOUS,ROLE_ADMIN" />
-    <sec:intercept-url pattern="/eventers/*" access="ROLE_ADMIN" />
+    <sec:intercept-url pattern="/" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_EVENTER" />
+    <sec:intercept-url pattern="/eventers/*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_EVENTER" />
     <sec:form-login login-page="/"
       login-processing-url="/login" authentication-failure-handler-ref="authenticationFailureHandler"
       default-target-url="/" />
@@ -17,12 +17,8 @@
   </sec:http>
 
   <sec:authentication-manager alias="authenticationManager">
-    <sec:authentication-provider user-service-ref="securityUserService" />
+    <sec:authentication-provider user-service-ref="loginEventUserService" />
   </sec:authentication-manager>
-
-  <sec:user-service id="securityUserService">
-    <sec:user name="admin" password="admin" authorities="ROLE_ADMIN" />
-  </sec:user-service>
 
   <bean id="loginFormController" class="com.systemsekkei.base.security.web.login.LoginFormController">
     <property name="loginFormAttributeName" value="loginForm" />
