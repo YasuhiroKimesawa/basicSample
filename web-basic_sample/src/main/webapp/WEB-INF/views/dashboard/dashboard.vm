@@ -22,9 +22,11 @@
 <a href="$link.relative('/logout')" class="btn large disabled">logout</a>
 </div>
 #end
+#if($auth.anonymous)
 <div class="well">
   #parse( "dashboard/loginForm.vm" )
 </div><!--.well-->
+#end
 </div>
 </div>
 </div>
