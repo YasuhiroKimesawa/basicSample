@@ -13,6 +13,8 @@
     </publications>
 
     <dependencies>
+        <dependency org="com.pilgrim-lifestyle" name="base-security" rev="latest.integration" ></dependency>
+        <dependency org="com.pilgrim-lifestyle" name="base-tools" rev="latest.integration" ></dependency>
     	<dependency org="com.pilgrim-lifestyle" name="dataaccess-base" rev="latest.integration" ></dependency>
     	<dependency org="com.pilgrim-lifestyle" name="dataaccess-eventer" rev="latest.integration" ></dependency>
     	<dependency org="com.pilgrim-lifestyle" name="model-base" rev="latest.integration" ></dependency>
