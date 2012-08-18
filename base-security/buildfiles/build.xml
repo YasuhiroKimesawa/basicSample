@@ -1,4 +1,4 @@
-<project name="base-tools" default="compile" basedir=".">
+<project name="base-security" default="compile" basedir=".">
 	<property file="build.properties"/>
 
 	<import file="${common.dir}/common.xml"/>
