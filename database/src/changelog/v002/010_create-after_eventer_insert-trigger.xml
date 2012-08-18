@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <changeSet author="kimesawa" id="010">
+    <createProcedure>
+    -- Trigger: after_eventer_insert on eventer.eventer
+
+    -- DROP TRIGGER after_eventer_insert ON eventer.eventer;
+
+    CREATE TRIGGER after_eventer_insert
+      AFTER INSERT
+      ON eventer.eventer
+      FOR EACH ROW
+      EXECUTE PROCEDURE eventer.insert_authority();
+
+    </createProcedure>
+  </changeSet>
+</databaseChangeLog>

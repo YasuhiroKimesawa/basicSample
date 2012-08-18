@@ -7,13 +7,13 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-  	<!-- kimesawa:1 -->
-    <include file="001_create-eventer-schema.xml" relativeToChangelogFile="true" />
-
-    <!-- kimesawa:2 -->
-    <include file="002_create-eventer-table.xml" relativeToChangelogFile="true" />
-
-    <!-- kimesawa:3 -->
-    <include file="003_create-eventer_account-table.xml" relativeToChangelogFile="true" />
+    <changeSet author="kimesawa" id="001">
+        <sql>
+            CREATE SCHEMA eventer AUTHORIZATION basicsample
+        </sql>
+        <rollback>
+            DROP SCHEMA eventer
+        </rollback>
+    </changeSet>
 
 </databaseChangeLog>

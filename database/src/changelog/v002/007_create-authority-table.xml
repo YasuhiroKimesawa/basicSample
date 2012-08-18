@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <changeSet author="kimesawa" id="007">
+    <createSequence sequenceName="authority_id" schemaName="account" startValue="1" />
+
+    <createTable tableName="authority" remarks="権限" schemaName="account">
+      <column name="id" type="integer" remarks="ID" defaultValueComputed="nextval('account.authority_id')" >
+        <constraints primaryKey="true" primaryKeyName="pk_authority" nullable="false"
+          references="eventer.eventer(id)" foreignKeyName="fk_authority_eventer" deleteCascade="true" />
+      </column>
+      <column name="mail_address" type="varchar(250)" remarks="メールアドレス">
+        <constraints nullable="false"/>
+      </column>
+      <column name="type" type="varchar(20)" remarks="権限タイプ">
+        <constraints nullable="false" references="account.authority_type(type)"
+        foreignKeyName="fk_authority_authority_type"/>
+      </column>
+      <column name="create_date" type="timestamp without time zone" remarks="作成日時">
+        <constraints nullable="false"/>
+      </column>
+      <column name="update_date" type="timestamp without time zone" remarks="更新日時">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  	<!-- kimesawa:4 -->
+    <include file="004_create-account-schema.xml" relativeToChangelogFile="true" />
+
+    <!-- kimesawa:5 -->
+    <include file="005_update-eventer-table.xml" relativeToChangelogFile="true" />
+
+    <!-- kimesawa:6 -->
+    <include file="006_create-authority_type-table.xml" relativeToChangelogFile="true" />
+
+    <!-- kimesawa:7 -->
+    <include file="007_create-authority-table.xml" relativeToChangelogFile="true" />
+
+    <!-- kimesawa:8 -->
+    <include file="008_load-authority_type.xml" relativeToChangelogFile="true"/>
+
+    <!-- kimesawa:9 -->
+    <include file="009_create-insert_authority-function.xml" relativeToChangelogFile="true"/>
+
+    <!-- kimesawa:10 -->
+    <include file="010_create-after_eventer_insert-trigger.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>

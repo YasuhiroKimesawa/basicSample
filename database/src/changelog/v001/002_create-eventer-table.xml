@@ -5,13 +5,23 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-	<changeSet author="kimesawa" id="1-3">
-		<createTable tableName="eventer_account" remarks="主催者アカウント" schemaName="eventer">
-			<column name="eventer_id" type="integer" remarks="主催者ID">
-				<constraints primaryKey="true" primaryKeyName="pk_eventer_id" nullable="false"
-					references="eventer.eventer(id)" foreignKeyName="fk_eventer_account_eventer" deleteCascade="true" />
+	<changeSet author="kimesawa" id="002">
+		<createSequence sequenceName="eventer_id" schemaName="eventer" startValue="1" />
+
+		<createTable tableName="eventer" remarks="主催者" schemaName="eventer">
+			<column name="id" type="integer" remarks="主催者ID">
+				<constraints primaryKey="true" nullable="false" primaryKeyName="pk_id" />
 			</column>
-			<column name="password" type="bytea" remarks="パスワード">
+			<column name="last_name" type="varchar(12)" remarks="姓">
+				<constraints nullable="false"/>
+			</column>
+			<column name="first_name" type="varchar(12)" remarks="名">
+				<constraints nullable="false"/>
+			</column>
+			<column name="telephone_number" type="varchar(14)" remarks="電話番号">
+				<constraints nullable="false"/>
+			</column>
+			<column name="mail_address" type="varchar(50)" remarks="メールアドレス">
 				<constraints nullable="false"/>
 			</column>
 			<column name="create_date" type="timestamp without time zone" remarks="作成日時">
