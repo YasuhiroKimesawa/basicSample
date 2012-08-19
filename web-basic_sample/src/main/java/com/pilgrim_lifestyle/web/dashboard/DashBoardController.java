@@ -1,18 +1,16 @@
 package com.pilgrim_lifestyle.web.dashboard;
 
 import com.pilgrim_lifestyle.web.tool.OnetimeToken;
-import com.systemsekkei.base.security.web.login.LoginForm;
+import com.pilgrim_lifestyle.web.dashboard.LoginForm;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.WebRequest;
 
 @Controller
-@RequestMapping( "/" )
 public class DashBoardController
 {
     @Autowired
@@ -24,7 +22,9 @@ public class DashBoardController
 
     private String loginFormAttributeName = "loginForm";
 
-    @RequestMapping( value = "", method = RequestMethod.GET )
+    private String viewName = "dashboard/dashboard";
+
+    @RequestMapping
     public String dashboard( WebRequest request, Model model )
     {
         onetimeToken.removeToken( request );
@@ -34,10 +34,9 @@ public class DashBoardController
 
         LoginForm preparedLoginForm = prepareShowLoginForm( loginForm, request );
 
-        request.setAttribute(
-                loginFormAttributeName, preparedLoginForm, WebRequest.SCOPE_REQUEST );
+        request.setAttribute( loginFormAttributeName, preparedLoginForm, WebRequest.SCOPE_REQUEST );
 
-        return "dashboard/dashboard";
+        return viewName;
     }
 
     protected LoginForm prepareShowLoginForm(LoginForm loginForm, WebRequest request)
@@ -62,5 +61,10 @@ public class DashBoardController
     public void setLoginFormAttributeName(String loginFormAttributeName)
     {
         this.loginFormAttributeName = loginFormAttributeName;
+    }
+
+    public void setViewName(String viewName)
+    {
+        this.viewName = viewName;
     }
 }

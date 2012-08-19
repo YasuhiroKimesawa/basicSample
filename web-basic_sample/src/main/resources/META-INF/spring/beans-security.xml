@@ -20,12 +20,12 @@
     <sec:authentication-provider user-service-ref="loginEventUserService" />
   </sec:authentication-manager>
 
-  <bean id="loginFormController" class="com.systemsekkei.base.security.web.login.LoginFormController">
+  <bean id="dashBoardController" class="com.pilgrim_lifestyle.web.dashboard.DashBoardController">
     <property name="loginFormAttributeName" value="loginForm" />
-    <property name="viewName" value="loginForm" />
+    <property name="viewName" value="dashboard/dashboard" />
   </bean>
 
-  <bean id="authenticationFailureHandler" class="com.systemsekkei.base.security.web.login.LoginFormAuthenticationFailureHandler">
+  <bean id="authenticationFailureHandler" class="com.pilgrim_lifestyle.web.dashboard.LoginFormAuthenticationFailureHandler">
     <property name="defaultFailureUrl" value="/" />
   </bean>
 

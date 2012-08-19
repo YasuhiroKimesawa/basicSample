@@ -1,4 +1,4 @@
-package com.systemsekkei.base.security.web.login;
+package com.pilgrim_lifestyle.web.dashboard;
 
 import java.io.IOException;
 
@@ -11,9 +11,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.pilgrim_lifestyle.web.dashboard.LoginForm;
 
-public class LoginFormAuthenticationFailureHandler
-                extends SimpleUrlAuthenticationFailureHandler
+public class LoginFormAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler
 {
     protected String usernameParameterName
         = UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY;
@@ -47,7 +47,7 @@ public class LoginFormAuthenticationFailureHandler
             LoginForm loginForm, HttpServletRequest request)
     {
         HttpSession session = request.getSession();
-        session.setAttribute( LoginFormController.LOGIN_FORM_SESSION_NAME, loginForm );
+        session.setAttribute( DashBoardController.LOGIN_FORM_SESSION_NAME, loginForm );
     }
 
     public void setUsernameParameterName( String usernameParameterName )

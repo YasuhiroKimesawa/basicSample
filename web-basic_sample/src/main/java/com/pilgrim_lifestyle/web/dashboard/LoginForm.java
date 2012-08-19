@@ -1,4 +1,4 @@
-package com.systemsekkei.base.security.web.login;
+package com.pilgrim_lifestyle.web.dashboard;
 
 public class LoginForm implements java.io.Serializable
 {
