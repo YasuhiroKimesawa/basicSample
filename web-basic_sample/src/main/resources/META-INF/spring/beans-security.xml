@@ -6,7 +6,7 @@
       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-
+<!--
   <sec:http auto-config="true">
     <sec:intercept-url pattern="/" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_EVENTER" />
     <sec:intercept-url pattern="/eventers/*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_EVENTER" />
@@ -28,5 +28,19 @@
   <bean id="authenticationFailureHandler" class="com.pilgrim_lifestyle.web.dashboard.LoginFormAuthenticationFailureHandler">
     <property name="defaultFailureUrl" value="/" />
   </bean>
+-->
 
+<sec:http auto-config="true">
+  <sec:intercept-url pattern="/**" access="ROLE_ADMIN" />
+  <sec:logout logout-url="/logout" />
+</sec:http>
+
+  <sec:authentication-manager alias="authenticationManager">
+    <sec:authentication-provider
+      user-service-ref="securityUserService" />
+  </sec:authentication-manager>
+
+  <sec:user-service id="securityUserService">
+    <sec:user name="admin" password="admin" authorities="ROLE_ADMIN" />
+  </sec:user-service>
 </beans>
