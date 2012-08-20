@@ -1,8 +1,10 @@
 package com.pilgrim_lifestyle.web.dashboard;
 
+import com.pilgrim_lifestyle.security.service.UserDetailsService;
 import com.pilgrim_lifestyle.web.tool.OnetimeToken;
 import com.pilgrim_lifestyle.web.dashboard.LoginForm;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,7 @@ public class DashBoardController
     @RequestMapping
     public String dashboard( WebRequest request, Model model )
     {
+        logger.info(  "dashboard start" );
         onetimeToken.removeToken( request );
         request.removeAttribute( DRAFT, RequestAttributes.SCOPE_SESSION );
 
@@ -36,6 +39,7 @@ public class DashBoardController
 
         request.setAttribute( loginFormAttributeName, preparedLoginForm, WebRequest.SCOPE_REQUEST );
 
+        logger.info(  "dashboard end" );
         return viewName;
     }
 
@@ -67,4 +71,6 @@ public class DashBoardController
     {
         this.viewName = viewName;
     }
+
+    private static Logger logger= Logger.getLogger( UserDetailsService.class );
 }
