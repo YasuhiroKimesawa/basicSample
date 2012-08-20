@@ -1,8 +1,0 @@
-##
-##  表示内容(text)に含まれる改行文字を '<br/>' に変換するマクロ 
-##
-##引数
-##  text : 改行文字が含まれる表示内容
-#macro( nl2br $text )
-$!{text.replaceAll("\r\n|\r|\n","<br/>")}
-#end
