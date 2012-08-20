@@ -27,9 +27,6 @@
         <dependent-module archiveName="com.springsource.org.h2-1.0.71.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/com.springsource.org.h2-1.0.71.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="spring-security-config-3.1.1.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/spring-security-config-3.1.1.RELEASE.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="org.springframework.context-3.1.2.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/org.springframework.context-3.1.2.RELEASE.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -40,9 +37,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="com.springsource.org.apache.commons.beanutils-1.8.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/com.springsource.org.apache.commons.beanutils-1.8.0.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="spring-security-core-3.1.1.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/spring-security-core-3.1.1.RELEASE.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="servlet-api-2.5.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/servlet-api-2.5.jar">
@@ -111,9 +105,6 @@
         <dependent-module archiveName="com.springsource.org.apache.commons.digester-1.8.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/com.springsource.org.apache.commons.digester-1.8.1.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="spring-security-web-3.1.1.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/spring-security-web-3.1.1.RELEASE.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="ivy.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/ivy.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -163,6 +154,18 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="commons-dbcp-20030825.184428.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/commons-dbcp-20030825.184428.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-security-core-3.1.2.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/spring-security-core-3.1.2.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-security-web-3.1.2.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/spring-security-web-3.1.2.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-security-config-3.1.2.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/spring-security-config-3.1.2.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="com.systemsekkei.base-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/com.systemsekkei.base-1.0.0.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="web-basic_sample"/>

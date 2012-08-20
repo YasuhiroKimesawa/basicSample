@@ -24,9 +24,9 @@
 		</dependency>
 		<dependency org="org.springframework" name="org.springframework.transaction" rev="3.1.2.RELEASE" conf="main->*,!sources,!javadoc" />
 
-		<dependency org="org.springframework.security" name="spring-security-core" rev="3.1.1.RELEASE" conf="main->*,!sources,!javadoc" />
-		<dependency org="org.springframework.security" name="spring-security-web" rev="3.1.1.RELEASE" conf="main->*,!sources,!javadoc" />
-		<dependency org="org.springframework.security" name="spring-security-config" rev="3.1.1.RELEASE" conf="main->*,!sources,!javadoc" />
+		<dependency org="org.springframework.security" name="spring-security-core" rev="3.1.2.RELEASE" conf="main->*,!sources,!javadoc" />
+		<dependency org="org.springframework.security" name="spring-security-web" rev="3.1.2.RELEASE" conf="main->*,!sources,!javadoc" />
+		<dependency org="org.springframework.security" name="spring-security-config" rev="3.1.2.RELEASE" conf="main->*,!sources,!javadoc" />
 
 		<dependency org="commons-dbcp" name="commons-dbcp" rev="20030825.184428" conf="main->*,!sources,!javadoc" />
 		<dependency org="commons-pool" name="commons-pool" rev="20030825.183949" conf="main->*,!sources,!javadoc" />
