@@ -10,6 +10,8 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 
+import org.apache.log4j.Logger;
+
 import com.pilgrim_lifestyle.security.model.AccountUser;
 
 public class UserDetailsService extends JdbcDaoImpl
@@ -17,6 +19,7 @@ public class UserDetailsService extends JdbcDaoImpl
     @Override
     protected List<UserDetails> loadUsersByUsername( String username )
     {
+        logger.info(  "loadUsersByUsername start" );
         return getJdbcTemplate().query(getUsersByUsernameQuery(), new String[] { username },
                 new RowMapper<UserDetails>()
                 {
@@ -33,6 +36,7 @@ public class UserDetailsService extends JdbcDaoImpl
     @Override
     protected UserDetails createUserDetails( String mailAddress, UserDetails userFromUserQuery, List<GrantedAuthority> combinedAuthorities )
     {
+        logger.info(  "createUserDetails start" );
         UserDetails user = super.createUserDetails( mailAddress, userFromUserQuery, combinedAuthorities );
 
         if (userFromUserQuery instanceof AccountUser)
@@ -46,5 +50,7 @@ public class UserDetailsService extends JdbcDaoImpl
              return user;
         }
     }
+
+    private static Logger logger= Logger.getLogger( UserDetailsService.class );
 
 }
