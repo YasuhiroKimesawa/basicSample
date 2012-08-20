@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:sec="http://www.springframework.org/schema/security"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
   xmlns:context="http://www.springframework.org/schema/context"
   xmlns:mvc="http://www.springframework.org/schema/mvc"
   xsi:schemaLocation="
@@ -10,33 +9,21 @@
       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-  <mvc:annotation-driven/>
+  <mvc:annotation-driven />
 
-  <bean id="dashBoardController" class="com.pilgrim_lifestyle.web.dashboard.DashBoardController">
-    <property name="loginFormAttributeName" value="loginForm" />
-    <property name="viewName" value="dashboard/dashboard" />
-  </bean>
-
-  <sec:http>
-    <sec:form-login
-      login-page="/dashboard"
-      login-processing-url="/login"
-      authentication-failure-handler-ref="authenticationFailureHandler"
-      default-target-url="/dashboard"
-      always-use-default-target="true"/>
-
-    <sec:logout logout-url="/logout" logout-success-url="/dashboard" />
-
-    <sec:intercept-url pattern="/dashboard" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_EVENTER" />
-    <sec:intercept-url pattern="/eventers/*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_EVENTER" />
+  <sec:http auto-config="true">
+    <sec:intercept-url pattern="/**" access="ROLE_ADMIN" />
+    <sec:logout logout-url="/logout" />
   </sec:http>
 
   <sec:authentication-manager alias="authenticationManager">
-    <sec:authentication-provider user-service-ref="loginEventUserService" />
+    <sec:authentication-provider
+      user-service-ref="securityUserService" />
   </sec:authentication-manager>
 
-  <bean id="authenticationFailureHandler" class="com.pilgrim_lifestyle.web.dashboard.LoginFormAuthenticationFailureHandler">
-    <property name="defaultFailureUrl" value="/dashboard" />
-  </bean>
+
+  <sec:user-service id="securityUserService">
+    <sec:user name="admin" password="admin" authorities="ROLE_ADMIN" />
+  </sec:user-service>
 
 </beans>

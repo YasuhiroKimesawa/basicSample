@@ -24,7 +24,7 @@
 #end
 #if($auth.anonymous)
 <div class="well">
-  #parse( "dashboard/loginForm.vm" )
+##  #parse( "dashboard/loginForm.vm" )
 </div><!--.well-->
 #end
 </div>
