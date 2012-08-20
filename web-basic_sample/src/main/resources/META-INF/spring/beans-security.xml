@@ -12,12 +12,16 @@
 
   <mvc:annotation-driven/>
 
+  <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <property name="mappings" value="/loginForm=dashBoardController"/>
+  </bean>
+
   <bean id="dashBoardController" class="com.pilgrim_lifestyle.web.dashboard.DashBoardController">
     <property name="loginFormAttributeName" value="loginForm" />
     <property name="viewName" value="dashboard/dashboard" />
   </bean>
 
-  <sec:http auto-config="true">
+  <sec:http>
     <sec:form-login
       login-page="/"
       login-processing-url="/login"

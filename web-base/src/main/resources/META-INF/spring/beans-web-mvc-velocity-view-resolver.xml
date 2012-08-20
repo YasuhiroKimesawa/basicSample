@@ -15,6 +15,5 @@
       value="/META-INF/velocity/velocity-toolbox-generic.xml,
                      /META-INF/velocity/velocity-toolbox-view.xml,
                      /META-INF/velocity/velocity-toolbox-security.xml" />
-    <property name="requestContextAttribute" value="rc" />
   </bean>
 </beans>
