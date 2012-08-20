@@ -12,10 +12,6 @@
 
   <mvc:annotation-driven/>
 
-  <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-    <property name="mappings" value="/loginForm=dashBoardController"/>
-  </bean>
-
   <bean id="dashBoardController" class="com.pilgrim_lifestyle.web.dashboard.DashBoardController">
     <property name="loginFormAttributeName" value="loginForm" />
     <property name="viewName" value="dashboard/dashboard" />
@@ -23,15 +19,15 @@
 
   <sec:http>
     <sec:form-login
-      login-page="/"
+      login-page="/dashboard"
       login-processing-url="/login"
       authentication-failure-handler-ref="authenticationFailureHandler"
-      default-target-url="/"
+      default-target-url="/dashboard"
       always-use-default-target="true"/>
 
-    <sec:logout logout-url="/logout" logout-success-url="/" />
+    <sec:logout logout-url="/logout" logout-success-url="/dashboard" />
 
-    <sec:intercept-url pattern="/" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_EVENTER" />
+    <sec:intercept-url pattern="/dashboard" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_EVENTER" />
     <sec:intercept-url pattern="/eventers/*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_EVENTER" />
   </sec:http>
 
@@ -40,7 +36,7 @@
   </sec:authentication-manager>
 
   <bean id="authenticationFailureHandler" class="com.pilgrim_lifestyle.web.dashboard.LoginFormAuthenticationFailureHandler">
-    <property name="defaultFailureUrl" value="/" />
+    <property name="defaultFailureUrl" value="/dashboard" />
   </bean>
 
 </beans>

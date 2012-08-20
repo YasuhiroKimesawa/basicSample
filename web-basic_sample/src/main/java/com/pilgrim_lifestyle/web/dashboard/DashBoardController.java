@@ -26,7 +26,7 @@ public class DashBoardController
 
     private String viewName = "dashboard/dashboard";
 
-    @RequestMapping
+    @RequestMapping( value = "dashboard" )
     public String dashboard( WebRequest request, Model model )
     {
         logger.info(  "dashboard start" );
