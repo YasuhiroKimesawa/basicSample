@@ -7,12 +7,6 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <property name="changelog" value="changelog.xml"/>
-
-	<include file="v001/${changelog}" relativeToChangelogFile="true"/>
-
-    <include file="v002/${changelog}" relativeToChangelogFile="true"/>
-
-    <include file="v003/${changelog}" relativeToChangelogFile="true"/>
-
+    <!-- kimesawa:11 -->
+    <include file="011_create-trim_full_width-function.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

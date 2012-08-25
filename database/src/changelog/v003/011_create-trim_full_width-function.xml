@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <changeSet author="kimesawa" id="011">
+    <createProcedure>
+    CREATE OR REPLACE FUNCTION trim_full_width(chr character varying)
+    RETURNS character varying AS
+    $BODY$DECLARE
+      result1 character varying;
+      result2 character varying;
+      result3 character varying;
+      result4 character varying;
+    BEGIN
+      result1 = ltrim( chr );
+      result2 = ltrim( result1, '　' );
+      result3 = rtrim( result2 );
+      result4 = rtrim( result3, '　' );
+
+      return result4;
+    END;$BODY$
+    LANGUAGE plpgsql VOLATILE
+    COST 100;
+    ALTER FUNCTION trim_full_width(character varying) OWNER TO basicsample;
+
+    </createProcedure>
+  </changeSet>
+</databaseChangeLog>
