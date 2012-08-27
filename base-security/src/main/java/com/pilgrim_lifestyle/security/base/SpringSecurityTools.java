@@ -1,4 +1,4 @@
-package com.systemsekkei.base.web.view.velocity.tool.security;
+package com.pilgrim_lifestyle.security.base;
 
 import java.util.Arrays;
 import java.util.Collection;
