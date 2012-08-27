@@ -18,13 +18,13 @@
 #end
 #if(!$auth.anonymous)
 <div class="well">
-<p>$!auth.user.lastName</p>
+<p>$!auth.user.fullName</p>
 <a href="$link.relative('/logout')" class="btn large disabled">logout</a>
 </div>
 #end
 #if($auth.anonymous)
 <div class="well">
-##  #parse( "dashboard/loginForm.vm" )
+#parse( "dashboard/loginForm.vm" )
 </div><!--.well-->
 #end
 </div>

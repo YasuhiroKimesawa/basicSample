@@ -16,7 +16,7 @@
           mail_address
           , encode(decrypt(password, decode('PA-rec-log', 'escape'), 'bf'),'escape')
           , true
-          , last_name
+          , last_name || ' ' || first_name
         FROM
           eventer.eventer
         INNER JOIN

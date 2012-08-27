@@ -11,7 +11,6 @@
       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
   <context:component-scan base-package="com.pilgrim_lifestyle.web" />
-  <context:component-scan base-package="com.pilgrim_lifestyle.form" />
 
   <mvc:annotation-driven conversion-service="conversionService" />
 

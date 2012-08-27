@@ -27,8 +27,8 @@ public class UserDetailsService extends JdbcDaoImpl
                              {
                                 String mailAddress = rs.getString( 1 );
                                 String password = rs.getString( 2 );
-                                String lastname = rs.getString( 4 );
-                                return new AccountUser( mailAddress, password, lastname, AuthorityUtils.NO_AUTHORITIES);
+                                String fullName = rs.getString( 4 );
+                                return new AccountUser( mailAddress, password, fullName, AuthorityUtils.NO_AUTHORITIES);
                               }
                   });
     }
@@ -43,7 +43,7 @@ public class UserDetailsService extends JdbcDaoImpl
         {
             AccountUser accoutUser = ( AccountUser ) userFromUserQuery;
 
-            return new AccountUser( user.getUsername(), user.getPassword(), accoutUser.getLastName(), user.getAuthorities());
+            return new AccountUser( user.getUsername(), user.getPassword(), accoutUser.getFullName(), user.getAuthorities());
         }
         else
         {

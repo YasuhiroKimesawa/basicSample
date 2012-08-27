@@ -12,18 +12,33 @@
   <mvc:annotation-driven />
 
   <sec:http auto-config="true">
+    <sec:intercept-url pattern="/" access="ROLE_ANONYMOUS, ROLE_EVENTER, ROLE_ADMIN" />
+    <sec:intercept-url pattern="/eventers/new" access="ROLE_ANONYMOUS, ROLE_ADMIN" />
     <sec:intercept-url pattern="/**" access="ROLE_ADMIN" />
+
     <sec:logout logout-url="/logout" />
+    <sec:form-login
+        login-page="/"
+        login-processing-url="/login"
+        authentication-failure-handler-ref="authenticationFailureHandler"
+        default-target-url="/"/>
   </sec:http>
+
+  <bean id="dashBoardController" class="com.pilgrim_lifestyle.web.dashboard.DashBoardController">
+    <property name="accountAttributeName" value="account"/>
+  </bean>
+
+  <bean id="authenticationFailureHandler"
+        class="com.pilgrim_lifestyle.web.dashboard.LoginFormAuthenticationFailureHandler">
+    <property name="defaultFailureUrl" value="/"/>
+  </bean>
 
   <sec:authentication-manager alias="authenticationManager">
     <sec:authentication-provider
-      user-service-ref="securityUserService" />
+      user-service-ref="loginEventUserService" />
   </sec:authentication-manager>
 
 
-  <sec:user-service id="securityUserService">
-    <sec:user name="admin" password="admin" authorities="ROLE_ADMIN" />
-  </sec:user-service>
+
 
 </beans>

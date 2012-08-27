@@ -7,18 +7,18 @@ import org.springframework.security.core.userdetails.User;
 
 public class AccountUser extends User
 {
-    private String lastName;
+    private String fullName;
 
-    public AccountUser( String mailaddress, String password, String lastName, Collection<? extends GrantedAuthority> authorities )
+    public AccountUser( String mailaddress, String password, String fullName, Collection<? extends GrantedAuthority> authorities )
     {
         super( mailaddress, password, authorities );
 
-        this.lastName = lastName;
+        this.fullName = fullName;
     }
 
-    public String getLastName()
+    public String getFullName()
     {
-        return lastName;
+        return fullName;
     }
 
     private static final long serialVersionUID = -1192863938113385940L;
