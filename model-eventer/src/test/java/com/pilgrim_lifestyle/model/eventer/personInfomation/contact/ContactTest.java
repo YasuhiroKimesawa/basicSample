@@ -1,7 +1,10 @@
-package com.pilgrim_lifestyle.model.eventer.contact;
+package com.pilgrim_lifestyle.model.eventer.personInfomation.contact;
 
 import org.junit.Test;
 
+import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.Contact;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.MailAddress;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.TelephoneNumber;
 import com.systemsekkei.base.test.model.BaseModelTest;
 
 public class ContactTest extends BaseModelTest<Contact>

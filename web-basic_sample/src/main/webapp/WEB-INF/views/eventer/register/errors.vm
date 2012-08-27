@@ -1,11 +1,11 @@
-#springBind( "eventerForm.*" )
+#springBind( "eventer.*" )
 #if( $status.error )
 <div class="alert alert-error">
-<p class="error-message">#errorMessage( "eventerForm.profile.personName.lastName" )</p>
-<p class="error-message">#errorMessage( "eventerForm.profile.personName.firstName" )</p>
-<p class="error-message">#errorMessage( "eventerForm.contact.mailAddress.mailAddress" )</p>
-<p class="error-message">#errorMessage( "eventerForm.contact.telephoneNumber.number" )</p>
-<p class="error-message">#errorMessage( "eventerForm.passwords.password.password" )</p>
-<p class="error-message">#errorMessage( "eventerForm.passwords.conform" )</p>
+<p class="error-message">#errorMessage( "eventer.eventerDetail.personalInfomation.profile.personName.lastName" )</p>
+<p class="error-message">#errorMessage( "eventer.eventerDetail.personalInfomation.profile.personName.firstName" )</p>
+<p class="error-message">#errorMessage( "eventer.eventerDetail.personalInfomation.contact.mailAddress.mailAddress" )</p>
+<p class="error-message">#errorMessage( "eventer.eventerDetail.personalInfomation.contact.telephoneNumber.number" )</p>
+<p class="error-message">#errorMessage( "eventer.eventerDetail.passwords.password.password" )</p>
+<p class="error-message">#errorMessage( "eventer.eventerDetail.passwords.confirm.password" )</p>
 </div><br />
 #end

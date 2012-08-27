@@ -9,26 +9,8 @@
     </layout>
   </appender>
 
-  <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
-    <param name="File" value="/usr/local/tomcat/logs/basic-sample.log"/>
-    <param name="DatePattern" value="'.'yyyy-MM-dd"/>
-    <layout class="org.apache.log4j.PatternLayout">
-      <param name="ConversionPattern" value="%d %-5p (%F:%L - %M) - %m%n" />
-    </layout>
-  </appender>
-
   <category name="java.sql">
     <priority value="debug"/>
-  </category>
-
-  <category name="com.pilgrim_lifestyle.security.service" additivity="false">
-    <priority value="info" />
-    <appender-ref ref="file" />
-  </category>
-
-  <category name="com.pilgrim_lifestyle.web.dashboard" additivity="false">
-    <priority value="info" />
-    <appender-ref ref="file" />
   </category>
 
   <root>

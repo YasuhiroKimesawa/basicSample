@@ -7,7 +7,7 @@
 		SELECT nextval('eventer.eventer_id')
 	</select>
 
-	<insert id="save" parameterType="com.pilgrim_lifestyle.table.eventer.EventerTable">
+	<insert id="save" parameterType="com.pilgrim_lifestyle.model.eventer.Eventer">
 	    INSERT INTO eventer.eventer
 	    (
 	        id
@@ -22,16 +22,16 @@
 	    VALUES
 	    (
 	        #{id}
-	        , #{lastName}
-	        , #{firstName}
-	        , #{telephoneNumber}
-	        , #{mailAddress}
+	        , #{eventerDetail.personalInfomation.profile.personName.lastName}
+	        , #{eventerDetail.personalInfomation.profile.personName.firstName}
+	        , #{eventerDetail.personalInfomation.contact.telephoneNumber.number}
+	        , #{eventerDetail.personalInfomation.contact.mailAddress.mailAddress}
 	        , current_date
 	        , current_date
 	    )
 	</insert>
 
-	<insert id="savePassword" parameterType="com.pilgrim_lifestyle.table.eventer.EventerTable">
+	<insert id="savePassword" parameterType="com.pilgrim_lifestyle.model.eventer.Eventer">
 	    INSERT INTO eventer.eventer_account
 	    (
 	        eventer_id
@@ -43,7 +43,7 @@
 	    VALUES
 	    (
 	        #{id}
-	        , encrypt(decode(#{eventerPasswordTable.password}, 'escape'), decode('PA-rec-log', 'escape'), 'bf')
+	        , encrypt(decode(#{eventerDetail.passwords.password.password}, 'escape'), decode('PA-rec-log', 'escape'), 'bf')
 	        , current_date
 	        , current_date
 	    )
@@ -52,7 +52,7 @@
 	<select id="countEmail" resultType="java.lang.Integer">
 		SELECT count(*)
 		FROM eventer.eventer
-		WHERE mail_address =  #{mailAddress}
+		WHERE mail_address =  #{eventerDetail.personalInfomation.contact.mailAddress.mailAddress}
 	</select>
 
 </mapper>

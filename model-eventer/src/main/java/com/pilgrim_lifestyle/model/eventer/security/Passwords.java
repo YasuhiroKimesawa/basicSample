@@ -3,10 +3,10 @@ package com.pilgrim_lifestyle.model.eventer.security;
 import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 
-import lombok.ToString;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@ToString
-public class Passwords
+public @Data @NoArgsConstructor class Passwords
 {
     @Valid
     private Password password;
@@ -23,5 +23,13 @@ public class Passwords
     public Boolean isConform()
     {
         return password.equals( confirm );
+    }
+
+    public static Passwords draft()
+    {
+        Password password = new Password( "" );
+        Password confirm = new Password( "" );
+
+        return new Passwords( password, confirm );
     }
 }

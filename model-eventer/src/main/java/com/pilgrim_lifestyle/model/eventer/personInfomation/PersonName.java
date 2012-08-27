@@ -1,12 +1,12 @@
-package com.pilgrim_lifestyle.model.eventer.profile;
+package com.pilgrim_lifestyle.model.eventer.personInfomation;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import lombok.ToString;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@ToString
-public class PersonName
+public @Data @NoArgsConstructor class PersonName
 {
     @NotEmpty( message="姓を入力して下さい。" )
     @Length( max=12, message="姓は12文字以内で入力して下さい" )

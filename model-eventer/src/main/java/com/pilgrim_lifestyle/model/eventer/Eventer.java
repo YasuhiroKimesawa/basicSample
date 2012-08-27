@@ -1,33 +1,31 @@
 package com.pilgrim_lifestyle.model.eventer;
 
-import com.pilgrim_lifestyle.model.eventer.contact.Contact;
-import com.pilgrim_lifestyle.model.eventer.profile.Profile;
-import com.pilgrim_lifestyle.model.eventer.security.Passwords;
-
 import javax.validation.Valid;
 
-import lombok.ToString;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@ToString
-public class Eventer
+
+public @Data @NoArgsConstructor class Eventer
 {
     private Integer id;
 
     @Valid
-    private Profile profile;
+    private EventerDetail eventerDetail;
 
-    @Valid
-    private Contact contact;
+    public Eventer( Integer id, EventerDetail eventerDetail )
+    {
+        this.id = id;
 
-    @Valid
-    private Passwords passwords;
+        this.eventerDetail = eventerDetail;
+    }
 
-	public Eventer( Integer id, Profile profile, Contact contact, Passwords passwords )
-	{
-	    this.id = id;
-		this.profile = profile;
-		this.contact = contact;
-		this.passwords = passwords;
-	}
+    public static Eventer draft()
+    {
+        EventerDetail eventerDetail = EventerDetail.draft();
 
+        Integer id = 0;
+
+        return new Eventer( id, eventerDetail );
+    }
 }

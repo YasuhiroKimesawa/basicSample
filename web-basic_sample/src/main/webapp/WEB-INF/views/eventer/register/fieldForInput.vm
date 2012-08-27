@@ -5,18 +5,18 @@
 <td>姓名(全角文字)</td>
 <td>
 <dt><label>姓</label></dt>
-<dd>#springFormInput( "eventerForm.profile.personName.lastName", 'class="formtext" maxlength="30" size=""' )<br />例：佐藤</dd>
+<dd>#springFormInput( "eventer.eventerDetail.personalInfomation.profile.personName.lastName", 'class="formtext" maxlength="30" size=""' )<br />例：佐藤</dd>
 <dt><label>名</label></dt>
-<dd>#springFormInput( "eventerForm.profile.personName.firstName", 'class="formtext" maxlength="30" size=""' )<br />例：太郎</dd>
+<dd>#springFormInput( "eventer.eventerDetail.personalInfomation.profile.personName.firstName", 'class="formtext" maxlength="30" size=""' )<br />例：太郎</dd>
 </td>
 </tr>
 <tr>
 <td>メールアドレス(半角英数字)</td>
-<td>#springFormInput( "eventerForm.contact.mailAddress.mailAddress", 'class="formtext" maxlength="70" size=""' )<br />例：sato@mail.com</td>
+<td>#springFormInput( "eventer.eventerDetail.personalInfomation.contact.mailAddress.mailAddress", 'class="formtext" maxlength="70" size=""' )<br />例：sato@mail.com</td>
 </tr>
 <tr>
 <td>電話番号(半角数字)</td>
-<td>#springFormInput( "eventerForm.contact.telephoneNumber.number", 'class="formtext" maxlength="70" size=""' )<br />例：090-1111-2222</td>
+<td>#springFormInput( "eventer.eventerDetail.personalInfomation.contact.telephoneNumber.number", 'class="formtext" maxlength="70" size=""' )<br />例：090-1111-2222</td>
 </tr>
 
 </tbody>
@@ -28,9 +28,9 @@
 <td>パスワードを入力して下さい。</td>
 <td>
 <dt><label>パスワード</label></dt>
-<dd>#springFormPasswordInput( "eventerForm.passwords.password.password", 'class="formtext" maxlength="30" size=""' )</dd>
+<dd>#springFormPasswordInput( "eventer.eventerDetail.passwords.password.password", 'class="formtext" maxlength="30" size=""' )</dd>
 <dt><label>確認</label></dt>
-<dd>#springFormPasswordInput( "eventerForm.passwords.confirm.password", 'class="formtext" maxlength="30" size=""' )</dd>
+<dd>#springFormPasswordInput( "eventer.eventerDetail.passwords.confirm.password", 'class="formtext" maxlength="30" size=""' )</dd>
 </td>
 </tr>
 

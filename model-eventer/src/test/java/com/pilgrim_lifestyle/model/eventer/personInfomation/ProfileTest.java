@@ -1,10 +1,12 @@
-package com.pilgrim_lifestyle.model.eventer.profile;
+package com.pilgrim_lifestyle.model.eventer.personInfomation;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 
+import com.pilgrim_lifestyle.model.eventer.personInfomation.PersonName;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.Profile;
 import com.systemsekkei.base.test.model.BaseModelTest;
 
 @RunWith( Enclosed.class )

@@ -1,18 +1,13 @@
 package com.pilgrim_lifestyle.web.eventer;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.pilgrim_lifestyle.model.eventer.Eventer;
 import com.pilgrim_lifestyle.model.eventer.RegisterEventerPolicy;
-import com.pilgrim_lifestyle.model.eventer.contact.Contact;
-import com.pilgrim_lifestyle.model.eventer.profile.Profile;
-import com.pilgrim_lifestyle.model.eventer.security.Passwords;
-import com.pilgrim_lifestyle.service.eventer.EventerService;
+import com.pilgrim_lifestyle.service.eventer.RegisterEventerService;
 import com.pilgrim_lifestyle.web.tool.BadTokenException;
 import com.pilgrim_lifestyle.web.tool.OnetimeToken;
-import com.pilgrim_lifestyle.form.eventer.EventerForm;
-import com.pilgrim_lifestyle.form.eventer.EventerDxo;
+
+import java.util.Arrays;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -35,13 +30,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class EventerController
 {
     @Autowired
-    private EventerService eventerService;
+    private RegisterEventerService eventerService;
 
     @Autowired
     private RegisterEventerPolicy registerEventerPolicy;
-
-    @Autowired
-    private EventerDxo eventerDxo;
 
     @Autowired
     private OnetimeToken onetimeToken;
@@ -49,48 +41,46 @@ public class EventerController
     @Autowired
     private Validator validator;
 
-    private static final String EVENTER_FORM = "eventerForm";
+    private static final String EVENTER = "eventer";
 
     private static final String DRAFT = "draft";
 
     @RequestMapping( value = "new", method = RequestMethod.GET )
     public String newEventer( WebRequest request, Model model, RedirectAttributes redirectAttributes )
     {
-        if( model.containsAttribute( EVENTER_FORM ) )
+        if( model.containsAttribute( EVENTER ) )
         {
             return "eventer/register/register";
         }
 
-        request.removeAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
+        request.removeAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
         onetimeToken.removeToken( request );
 
-        EventerForm eventerForm = new EventerForm();
+        Eventer eventer = Eventer.draft();
 
-        model.addAttribute( EVENTER_FORM, eventerForm );
+        model.addAttribute( EVENTER, eventer );
 
         return "eventer/register/register";
     }
 
     @RequestMapping( value= "new", method = RequestMethod.POST, params="draft=yes" )
     @ResponseStatus( value = HttpStatus.SEE_OTHER )
-    public String newConfirm( @Valid @ModelAttribute( EVENTER_FORM ) EventerForm eventerForm,
+    public String newConfirm( @Valid @ModelAttribute( EVENTER ) Eventer eventer,
             BindingResult result, RedirectAttributes redirectAttributes,
             WebRequest request, Model model )
     {
         String draft = request.getParameter( DRAFT );
-
-        Eventer eventer = eventerDxo.fromDTO( eventerForm );
 
         validator.validate( eventer, result );
         registerEventerPolicy.validate( eventer, result );
 
         if( result.hasErrors() )
         {
-            model.addAttribute( EVENTER_FORM, eventerForm );
+            model.addAttribute( EVENTER, eventer );
             return "eventer/register/register";
         }
 
-        request.setAttribute( EVENTER_FORM, eventerForm, RequestAttributes.SCOPE_SESSION );
+        request.setAttribute( EVENTER, eventer, RequestAttributes.SCOPE_SESSION );
 
         redirectAttributes.addFlashAttribute( DRAFT, draft )
                           .addAttribute( DRAFT, draft );
@@ -102,7 +92,7 @@ public class EventerController
     public String newConfirmRedirect( WebRequest request, Model model )
     {
         List<String> sessionList = Arrays.asList( request.getAttributeNames( RequestAttributes.SCOPE_SESSION ) );
-        if( ! sessionList.contains( EVENTER_FORM ) )
+        if( ! sessionList.contains( EVENTER ) )
         {
             return "error/pageNotFound";
         }
@@ -115,9 +105,9 @@ public class EventerController
     @ResponseStatus( value = HttpStatus.SEE_OTHER )
     public String newModify( WebRequest request, Model model, RedirectAttributes redirectAttributes )
     {
-        EventerForm eventerForm = (EventerForm) request.getAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
+        Eventer eventer = ( Eventer ) request.getAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
 
-        redirectAttributes.addFlashAttribute( EVENTER_FORM, eventerForm );
+        redirectAttributes.addFlashAttribute( EVENTER, eventer );
 
         return "redirect:new";
     }
@@ -130,15 +120,11 @@ public class EventerController
 
         String draft = request.getParameter( DRAFT );
 
-        EventerForm eventerForm = (EventerForm) request.getAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
+        Eventer eventer = ( Eventer ) request.getAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
 
-        Contact contact = eventerDxo.fromContactDTO( eventerForm.getContact() );
-        Profile profile = eventerDxo.fromProfileDTO( eventerForm.getProfile() );
-        Passwords passwords = eventerDxo.fromPasswordsDTO( eventerForm.getPasswords() );
+        eventerService.register( eventer );
 
-        eventerService.add( contact, profile, passwords );
-
-        request.removeAttribute( EVENTER_FORM, RequestAttributes.SCOPE_SESSION );
+        request.removeAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
 
         redirectAttributes.addFlashAttribute( DRAFT, draft )
                           .addAttribute( DRAFT, draft );
@@ -150,7 +136,7 @@ public class EventerController
     public String newRegisterRedirect( WebRequest request, Model model )
     {
         List<String> sessionList = Arrays.asList( request.getAttributeNames( RequestAttributes.SCOPE_SESSION ) );
-        if( ! onetimeToken.isContain( request ) ||  sessionList.contains( EVENTER_FORM )  )
+        if( ! onetimeToken.isContain( request ) ||  sessionList.contains( EVENTER )  )
         {
             return "error/pageNotFound";
         }

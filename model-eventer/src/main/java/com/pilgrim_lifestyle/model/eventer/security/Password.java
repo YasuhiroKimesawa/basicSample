@@ -5,12 +5,10 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@ToString
-@EqualsAndHashCode
-public class Password
+public @Data @NoArgsConstructor class Password
 {
     @Pattern( regexp = "^[a-zA-Z!-~]*|", message = "パスワードに使用できる文字は半角英数字記号です。")
     @Length( min = 4, max = 8, message = "パスワードは４文字以上8文字以下で入力してください。" )

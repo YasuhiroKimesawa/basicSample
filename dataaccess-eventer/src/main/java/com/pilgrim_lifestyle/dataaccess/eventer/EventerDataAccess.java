@@ -2,8 +2,6 @@ package com.pilgrim_lifestyle.dataaccess.eventer;
 
 import com.pilgrim_lifestyle.model.eventer.Eventer;
 import com.pilgrim_lifestyle.model.eventer.EventerRepository;
-import com.pilgrim_lifestyle.table.eventer.EventerTable;
-import com.pilgrim_lifestyle.table.eventer.EventerTableDxo;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +14,6 @@ public class EventerDataAccess implements EventerRepository
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
 
-    @Autowired
-    EventerTableDxo eventerTableDxo;
-
     @Override
     public Integer nextId()
     {
@@ -28,17 +23,15 @@ public class EventerDataAccess implements EventerRepository
     @Override
     public void add( Eventer eventer )
     {
-        EventerTable eventerTable = eventerTableDxo.toDto( eventer );
+        sqlSessionTemplate.insert( this.getClass().getName() + ".save", eventer );
 
-        sqlSessionTemplate.insert( this.getClass().getName() + ".save", eventerTable );
-        sqlSessionTemplate.insert( this.getClass().getName() + ".savePassword", eventerTable );
+        sqlSessionTemplate.insert( this.getClass().getName() + ".savePassword", eventer );
     }
 
     @Override
     public boolean isEmailExist( Eventer eventer )
     {
-        EventerTable eventerTable = eventerTableDxo.toDto( eventer );
-        int countEmail = ( Integer )sqlSessionTemplate.selectOne( this.getClass().getName() + ".countEmail", eventerTable );
+        int countEmail = ( Integer )sqlSessionTemplate.selectOne( this.getClass().getName() + ".countEmail", eventer );
 
         if( countEmail == 0 ) return false;
 

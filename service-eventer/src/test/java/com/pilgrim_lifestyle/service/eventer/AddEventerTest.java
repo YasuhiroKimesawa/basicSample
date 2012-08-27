@@ -1,15 +1,17 @@
 package com.pilgrim_lifestyle.service.eventer;
 
 import com.pilgrim_lifestyle.model.eventer.Eventer;
+import com.pilgrim_lifestyle.model.eventer.EventerDetail;
 import com.pilgrim_lifestyle.model.eventer.EventerRepository;
-import com.pilgrim_lifestyle.model.eventer.contact.Contact;
-import com.pilgrim_lifestyle.model.eventer.contact.MailAddress;
-import com.pilgrim_lifestyle.model.eventer.contact.TelephoneNumber;
-import com.pilgrim_lifestyle.model.eventer.profile.PersonName;
-import com.pilgrim_lifestyle.model.eventer.profile.Profile;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.PersonName;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.PersonalInfomation;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.Profile;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.Contact;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.MailAddress;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.TelephoneNumber;
 import com.pilgrim_lifestyle.model.eventer.security.Password;
 import com.pilgrim_lifestyle.model.eventer.security.Passwords;
-import com.pilgrim_lifestyle.service.eventer.EventerService;
+import com.pilgrim_lifestyle.service.eventer.RegisterEventerService;
 
 import mockit.Mocked;
 import mockit.NonStrictExpectations;
@@ -20,11 +22,7 @@ import org.junit.Test;
 
 public class AddEventerTest
 {
-    private Contact contact;
-    private Profile profile;
-    private Passwords passwords;
-
-    private EventerService eventerService = new EventerService();
+    private RegisterEventerService eventerService = new RegisterEventerService();
 
     @Mocked
     private EventerRepository eventerRepository;
@@ -41,9 +39,14 @@ public class AddEventerTest
         Password password = new Password( "1111aaaa" );
         Password confirm = new Password( "1111aaaa" );
 
-        profile = new Profile( personName );
-        passwords = new Passwords( password, confirm );
-        contact = new Contact( mailAddress, telephoneNumber );
+        Profile profile = new Profile( personName );
+        Passwords passwords = new Passwords( password, confirm );
+        Contact contact = new Contact( mailAddress, telephoneNumber );
+
+        PersonalInfomation personalInfomation = new PersonalInfomation( profile, contact );
+        EventerDetail eventerDetail = new EventerDetail( personalInfomation, passwords );
+
+        eventer = new Eventer( 0, eventerDetail );
     }
 
     @Test
@@ -55,10 +58,9 @@ public class AddEventerTest
             eventerRepository.nextId(); result = 1;
 
             eventerRepository.add( eventer );
-
         }};
 
-        eventerService.add( contact, profile, passwords );
+        eventerService.register( eventer );
 
         new Verifications()
         {
@@ -66,7 +68,6 @@ public class AddEventerTest
                 eventerRepository.nextId();
 
                 eventerRepository.add( eventer );
-
             }
 
         };

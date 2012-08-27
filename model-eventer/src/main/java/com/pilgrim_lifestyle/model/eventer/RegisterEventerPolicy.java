@@ -31,7 +31,7 @@ public class RegisterEventerPolicy implements Validator
 
         if(! isDuplicate ) return;
 
-        String path =  "contact.mailAddress.mailAddress";
+        String path =  "eventerDetail.personalInfomation.contact.mailAddress.mailAddress";
         String message = "指定のEmailアドレスは既に登録されています。";
 
         errors.rejectValue( path, null, message );

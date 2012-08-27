@@ -1,4 +1,4 @@
-package com.pilgrim_lifestyle.model.eventer.contact;
+package com.pilgrim_lifestyle.model.eventer.personInfomation.contact;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.junit.Test;
 
+import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.MailAddress;
 import com.systemsekkei.base.test.model.BaseModelTest;
 
 public class MailAddressTest extends BaseModelTest<MailAddress>

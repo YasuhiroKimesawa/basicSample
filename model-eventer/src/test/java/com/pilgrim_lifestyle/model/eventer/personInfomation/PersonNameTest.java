@@ -1,4 +1,4 @@
-package com.pilgrim_lifestyle.model.eventer.profile;
+package com.pilgrim_lifestyle.model.eventer.personInfomation;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +16,7 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
+import com.pilgrim_lifestyle.model.eventer.personInfomation.PersonName;
 import com.systemsekkei.base.test.model.BaseModelTest;
 
 @RunWith( Enclosed.class )

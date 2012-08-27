@@ -1,10 +1,10 @@
 package com.pilgrim_lifestyle.model.eventer;
 
-import com.pilgrim_lifestyle.model.eventer.contact.ContactTest;
-import com.pilgrim_lifestyle.model.eventer.contact.MailAddressTest;
-import com.pilgrim_lifestyle.model.eventer.contact.TelephoneNumberTest;
-import com.pilgrim_lifestyle.model.eventer.profile.PersonNameTest;
-import com.pilgrim_lifestyle.model.eventer.profile.ProfileTest;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.PersonNameTest;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.ProfileTest;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.ContactTest;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.MailAddressTest;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.TelephoneNumberTest;
 import com.pilgrim_lifestyle.model.eventer.security.PasswordTest;
 import com.pilgrim_lifestyle.model.eventer.security.PasswordsTest;
 
