@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-	<changeSet author="kimesawa" id="002">
+	<changeSet author="kimesawa" id="007">
 		<createSequence sequenceName="eventer_id" schemaName="eventer" startValue="1" />
 
 		<createTable tableName="eventer" remarks="主催者" schemaName="eventer">
@@ -22,7 +22,8 @@
 				<constraints nullable="false"/>
 			</column>
 			<column name="mail_address" type="varchar(50)" remarks="メールアドレス">
-				<constraints nullable="false"/>
+				<constraints nullable="false" unique="true" uniqueConstraintName="uq_eventer_mail_address"
+                    foreignKeyName="fk_eventer_account" references="account.account(mail_address)" deleteCascade="true"/>
 			</column>
 			<column name="create_date" type="timestamp without time zone" remarks="作成日時">
 				<constraints nullable="false"/>

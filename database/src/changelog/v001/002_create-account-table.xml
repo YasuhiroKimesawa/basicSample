@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <changeSet author="kimesawa" id="002">
+    <createTable tableName="account" remarks="アカウント" schemaName="account">
+      <column name="mail_address" type="varchar(250)" remarks="メールアドレス">
+        <constraints primaryKey="true" nullable="false" primaryKeyName="pk_account" />
+      </column>
+      <column name="password" type="varchar(8)" remarks="パスワード">
+        <constraints nullable="false" />
+      </column>
+      <column name="last_name" type="varchar(12)" remarks="姓">
+        <constraints nullable="false" />
+      </column>
+      <column name="first_name" type="varchar(12)" remarks="名">
+        <constraints nullable="false" />
+      </column>
+      <column name="create_date" type="timestamp without time zone"
+        remarks="作成日時">
+        <constraints nullable="false" />
+      </column>
+      <column name="update_date" type="timestamp without time zone"
+        remarks="更新日時">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>

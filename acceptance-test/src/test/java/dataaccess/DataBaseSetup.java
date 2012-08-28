@@ -1,11 +1,17 @@
 package dataaccess;
 
+import java.io.File;
+import java.io.InputStream;
+import java.util.ResourceBundle;
+
 import javax.sql.DataSource;
 
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseDataSourceConnection;
 import org.dbunit.database.QueryDataSet;
+import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.datatype.IDataTypeFactory;
+import org.dbunit.dataset.excel.XlsDataSet;
 import org.dbunit.ext.postgresql.PostgresqlDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
@@ -43,10 +49,16 @@ public class DataBaseSetup
     @Test
     public void databaseSetUp() throws Exception
     {
+        // clean
         QueryDataSet initDataSet = new QueryDataSet( dbunitConnection );
         initDataSet.addTable( "eventer.eventer" );
         DatabaseOperation.DELETE_ALL.execute( dbunitConnection, initDataSet );
 
+        // insert
+        InputStream str =  ClassLoader.class.getResourceAsStream( "/basicsample.xls" );
+
+        IDataSet dataset = new XlsDataSet( str );
+        DatabaseOperation.CLEAN_INSERT.execute( dbunitConnection, dataset );
     }
 
 }

@@ -8,5 +8,5 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <!-- kimesawa:11 -->
-    <include file="011_create-trim_full_width-function.xml" relativeToChangelogFile="true" />
+    <include file="008_create-trim_full_width-function.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

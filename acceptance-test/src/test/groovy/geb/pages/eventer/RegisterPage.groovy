@@ -12,12 +12,12 @@ class RegisterPage extends Page
         // こんな書き方もＯＫ↓がこれらは遅い。
         // firstName { $( "input" , name: "applicant.profile.name.firstName") }
         // lastName { $("form#entryData").find( "input" , name: "applicant.profile.name.lastName") }
-        lastName { $( "input#profile\\.personName\\.lastName") }
-        firstName { $( "input#profile\\.personName\\.firstName") }
-        mailAddress { $( "input#contact\\.mailAddress\\.mailAddress") }
-        number { $( "input#contact\\.telephoneNumber\\.number") }
-        password { $( "input#passwords\\.password\\.password") }
-        confirm { $( "input#passwords\\.confirm\\.password") }
+        lastName { $( "input#eventerDetail\\.personalInfomation\\.profile\\.personName\\.lastName") }
+        firstName { $( "input#eventerDetail\\.personalInfomation\\.profile\\.personName\\.firstName") }
+        mailAddress { $( "input#eventerDetail\\.personalInfomation\\.contact\\.mailAddress\\.mailAddress") }
+        number { $( "input#eventerDetail\\.personalInfomation\\.contact\\.telephoneNumber\\.number") }
+        password { $( "input#eventerDetail\\.passwords\\.password\\.password") }
+        confirm { $( "input#eventerDetail\\.passwords\\.confirm\\.password") }
 
         errorMessages { $( 'p.error-message' ) }
 

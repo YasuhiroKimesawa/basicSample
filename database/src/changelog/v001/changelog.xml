@@ -8,12 +8,18 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
   	<!-- kimesawa:1 -->
-    <include file="001_create-eventer-schema.xml" relativeToChangelogFile="true" />
+    <include file="001_create_account-schema.xml" relativeToChangelogFile="true" />
 
     <!-- kimesawa:2 -->
-    <include file="002_create-eventer-table.xml" relativeToChangelogFile="true" />
+    <include file="002_create-account-table.xml" relativeToChangelogFile="true" />
 
     <!-- kimesawa:3 -->
-    <include file="003_create-eventer_account-table.xml" relativeToChangelogFile="true" />
+    <include file="003_create-authority_type-table.xml" relativeToChangelogFile="true" />
+
+    <!-- kimesawa:4 -->
+    <include file="004_create-authority-table.xml" relativeToChangelogFile="true" />
+
+    <!-- kimesawa:5 -->
+    <include file="005_load-authority_type.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>

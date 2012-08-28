@@ -5,16 +5,11 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-  <changeSet author="kimesawa" id="007">
-    <createSequence sequenceName="authority_id" schemaName="account" startValue="1" />
-
+  <changeSet author="kimesawa" id="004">
     <createTable tableName="authority" remarks="権限" schemaName="account">
-      <column name="id" type="integer" remarks="ID" defaultValueComputed="nextval('account.authority_id')" >
+      <column name="mail_address" type="varchar(250)" remarks="メールアドレス" >
         <constraints primaryKey="true" primaryKeyName="pk_authority" nullable="false"
-          references="eventer.eventer(id)" foreignKeyName="fk_authority_eventer" deleteCascade="true" />
-      </column>
-      <column name="mail_address" type="varchar(250)" remarks="メールアドレス">
-        <constraints nullable="false"/>
+          references="account.account(mail_address)" foreignKeyName="fk_authority_account" deleteCascade="true" />
       </column>
       <column name="type" type="varchar(20)" remarks="権限タイプ">
         <constraints nullable="false" references="account.authority_type(type)"
