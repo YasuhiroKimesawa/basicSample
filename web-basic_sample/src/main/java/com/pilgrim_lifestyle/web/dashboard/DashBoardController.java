@@ -50,11 +50,11 @@ public class DashBoardController
 
     private static final Account loadAndRemoveFromSession( WebRequest request )
     {
-        Account loginForm = ( Account ) request.getAttribute( ACCOUNT_SESSION_NAME, WebRequest.SCOPE_SESSION );
+        Account account = ( Account ) request.getAttribute( ACCOUNT_SESSION_NAME, WebRequest.SCOPE_SESSION );
 
         request.removeAttribute( ACCOUNT_SESSION_NAME, WebRequest.SCOPE_SESSION );
 
-        return loginForm;
+        return account;
     }
 
     public void setAccountAttributeName( String accountAttributeName )

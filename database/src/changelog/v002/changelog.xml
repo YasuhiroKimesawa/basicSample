@@ -7,6 +7,6 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <!-- kimesawa:6 -->
-    <include file="006_create-trim_full_width-function.xml" relativeToChangelogFile="true" />
+    <!-- kimesawa:7 -->
+    <include file="007_create-trim_full_width-function.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

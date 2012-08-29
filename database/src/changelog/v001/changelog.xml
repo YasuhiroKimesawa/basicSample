@@ -22,4 +22,7 @@
     <!-- kimesawa:5 -->
     <include file="005_load-authority_type.xml" relativeToChangelogFile="true" />
 
+    <!-- kimesawa:6 -->
+    <include file="006_create-account_id-sequence.xml" relativeToChangelogFile="true" />
+
 </databaseChangeLog>

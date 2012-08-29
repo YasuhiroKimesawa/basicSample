@@ -8,13 +8,14 @@
 	</select>
 
 	<insert id="save" parameterType="com.pilgrim_lifestyle.model.eventer.Eventer">
-	    INSERT INTO eventer.eventer
+	    INSERT INTO account.account
 	    (
 	        id
+            , mail_address
+            , password
 	        , last_name
 	        , first_name
 	        , telephone_number
-	        , mail_address
 	        , create_date
 	        , update_date
 
@@ -22,28 +23,11 @@
 	    VALUES
 	    (
 	        #{id}
+            , #{eventerDetail.personalInfomation.contact.mailAddress.mailAddress}
+            , encrypt(decode(#{eventerDetail.passwords.password.password}, 'escape'), decode('PA-rec-log', 'escape'), 'bf')
 	        , #{eventerDetail.personalInfomation.profile.personName.lastName}
 	        , #{eventerDetail.personalInfomation.profile.personName.firstName}
 	        , #{eventerDetail.personalInfomation.contact.telephoneNumber.number}
-	        , #{eventerDetail.personalInfomation.contact.mailAddress.mailAddress}
-	        , current_date
-	        , current_date
-	    )
-	</insert>
-
-	<insert id="savePassword" parameterType="com.pilgrim_lifestyle.model.eventer.Eventer">
-	    INSERT INTO eventer.eventer_account
-	    (
-	        eventer_id
-	        , password
-	        , create_date
-	        , update_date
-
-	    )
-	    VALUES
-	    (
-	        #{id}
-	        , encrypt(decode(#{eventerDetail.passwords.password.password}, 'escape'), decode('PA-rec-log', 'escape'), 'bf')
 	        , current_date
 	        , current_date
 	    )
@@ -51,7 +35,7 @@
 
 	<select id="countEmail" resultType="java.lang.Integer">
 		SELECT count(*)
-		FROM eventer.eventer
+		FROM account.account
 		WHERE mail_address =  #{eventerDetail.personalInfomation.contact.mailAddress.mailAddress}
 	</select>
 
