@@ -8,7 +8,7 @@ public class Account
 
     private boolean loginFrailed = false;
 
-    public Account(String loginEmailAddress, String password)
+    public Account( String loginEmailAddress, String password )
     {
         this( loginEmailAddress, password, true );
     }

@@ -7,9 +7,9 @@
 
   <changeSet author="kimesawa" id="004">
     <createTable tableName="authority" remarks="権限" schemaName="account">
-      <column name="mail_address" type="varchar(250)" remarks="メールアドレス" >
+      <column name="account_id" type="integer" remarks="アカウントID" >
         <constraints primaryKey="true" primaryKeyName="pk_authority" nullable="false"
-          references="account.account(mail_address)" foreignKeyName="fk_authority_account" deleteCascade="true" />
+          references="account.account(id)" foreignKeyName="fk_authority_account" deleteCascade="true" />
       </column>
       <column name="type" type="varchar(20)" remarks="権限タイプ">
         <constraints nullable="false" references="account.authority_type(type)"

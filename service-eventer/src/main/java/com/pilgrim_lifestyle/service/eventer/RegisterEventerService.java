@@ -18,6 +18,11 @@ public class RegisterEventerService
 
         Eventer registerEventer = new Eventer( id, eventer.getEventerDetail() );
 
-        eventerRepository.add( registerEventer );
+        add( registerEventer );
+    }
+
+    private void add( Eventer eventer )
+    {
+        eventerRepository.add( eventer );
     }
 }

@@ -24,8 +24,6 @@ public class EventerDataAccess implements EventerRepository
     public void add( Eventer eventer )
     {
         sqlSessionTemplate.insert( this.getClass().getName() + ".save", eventer );
-
-        sqlSessionTemplate.insert( this.getClass().getName() + ".savePassword", eventer );
     }
 
     @Override

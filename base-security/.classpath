@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/servlet-api-2.5.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/velocity-1.7.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/velocity-tools-2.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/model-eventer"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>

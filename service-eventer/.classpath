@@ -39,5 +39,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/cglib-nodep-2.2.2.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/groovy-all-2.0.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/base-security"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>

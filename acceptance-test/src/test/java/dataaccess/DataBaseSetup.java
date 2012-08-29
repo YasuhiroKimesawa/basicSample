@@ -1,8 +1,6 @@
 package dataaccess;
 
-import java.io.File;
 import java.io.InputStream;
-import java.util.ResourceBundle;
 
 import javax.sql.DataSource;
 
