@@ -11,7 +11,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.pilgrim_lifestyle.security.model.Account;
+import com.pilgrim_lifestyle.security.model.LoginForm;
 
 
 public class LoginFormAuthenticationFailureHandler
@@ -29,24 +29,24 @@ public class LoginFormAuthenticationFailureHandler
             AuthenticationException exception ) throws IOException,
             ServletException
     {
-        Account account = createAccount( request, response, exception );
+        LoginForm account = createAccount( request, response, exception );
         saveToSession( account, request );
 
         super.onAuthenticationFailure( request, response, exception );
     }
 
-    protected Account createAccount(
+    protected LoginForm createAccount(
             HttpServletRequest request, HttpServletResponse response,
             AuthenticationException exception )
     {
         String username = request.getParameter( usernameParameterName );
         String password = request.getParameter( passwordParameterName );
 
-        return new Account( username, password );
+        return new LoginForm( username, password );
     }
 
     private static void saveToSession(
-            Account account, HttpServletRequest request)
+            LoginForm account, HttpServletRequest request)
     {
         HttpSession session = request.getSession();
         session.setAttribute( DashBoardController.ACCOUNT_SESSION_NAME, account );

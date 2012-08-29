@@ -1,6 +1,6 @@
 package com.pilgrim_lifestyle.web.dashboard;
 
-import com.pilgrim_lifestyle.security.model.Account;
+import com.pilgrim_lifestyle.security.model.LoginForm;
 import com.pilgrim_lifestyle.web.tool.OnetimeToken;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +19,9 @@ public class DashBoardController
 
     private static final String DRAFT = "draft";
 
-    static final String ACCOUNT_SESSION_NAME = Account.class.getName();
+    static final String ACCOUNT_SESSION_NAME = LoginForm.class.getName();
 
-    private String accountAttributeName = "account";
+    private String loginFormAttributeName = "loginForm";
 
     @RequestMapping( value = "" )
     public String dashboard( WebRequest request, Model model )
@@ -29,37 +29,37 @@ public class DashBoardController
         onetimeToken.removeToken( request );
         request.removeAttribute( DRAFT, RequestAttributes.SCOPE_SESSION );
 
-        Account account = loadAndRemoveFromSession( request );
+        LoginForm loginForm = loadAndRemoveFromSession( request );
 
-        Account preparedAccount = prepareShowLoginForm( account, request );
+        LoginForm preparedAccount = prepareShowLoginForm( loginForm, request );
 
-        request.setAttribute( accountAttributeName, preparedAccount, WebRequest.SCOPE_REQUEST );
+        request.setAttribute( loginFormAttributeName, preparedAccount, WebRequest.SCOPE_REQUEST );
 
         return "dashboard/dashboard";
     }
 
-    protected Account prepareShowLoginForm( Account account, WebRequest request )
+    protected LoginForm prepareShowLoginForm( LoginForm loginForm, WebRequest request )
     {
-        if ( account != null )
+        if ( loginForm != null )
         {
-            return account;
+            return loginForm;
         }
 
-        return new Account();
+        return new LoginForm();
     }
 
-    private static final Account loadAndRemoveFromSession( WebRequest request )
+    private static final LoginForm loadAndRemoveFromSession( WebRequest request )
     {
-        Account account = ( Account ) request.getAttribute( ACCOUNT_SESSION_NAME, WebRequest.SCOPE_SESSION );
+        LoginForm loginForm = ( LoginForm ) request.getAttribute( ACCOUNT_SESSION_NAME, WebRequest.SCOPE_SESSION );
 
         request.removeAttribute( ACCOUNT_SESSION_NAME, WebRequest.SCOPE_SESSION );
 
-        return account;
+        return loginForm;
     }
 
     public void setAccountAttributeName( String accountAttributeName )
     {
-        this.accountAttributeName = accountAttributeName;
+        this.loginFormAttributeName = accountAttributeName;
     }
 
 }

@@ -25,7 +25,7 @@
   </sec:http>
 
   <bean id="dashBoardController" class="com.pilgrim_lifestyle.web.dashboard.DashBoardController">
-    <property name="accountAttributeName" value="account"/>
+    <property name="accountAttributeName" value="loginForm"/>
   </bean>
 
   <bean id="authenticationFailureHandler"

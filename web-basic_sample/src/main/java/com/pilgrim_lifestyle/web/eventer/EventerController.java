@@ -1,8 +1,8 @@
 package com.pilgrim_lifestyle.web.eventer;
 
+import com.pilgrim_lifestyle.model.account.AccountPolicy;
 import com.pilgrim_lifestyle.model.eventer.Eventer;
-import com.pilgrim_lifestyle.model.eventer.RegisterEventerPolicy;
-import com.pilgrim_lifestyle.service.eventer.RegisterEventerService;
+import com.pilgrim_lifestyle.service.account.RegisterAccountService;
 import com.pilgrim_lifestyle.web.tool.BadTokenException;
 import com.pilgrim_lifestyle.web.tool.OnetimeToken;
 
@@ -30,10 +30,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class EventerController
 {
     @Autowired
-    private RegisterEventerService eventerService;
+    private RegisterAccountService registerAccountService;
 
     @Autowired
-    private RegisterEventerPolicy registerEventerPolicy;
+    private AccountPolicy accountPolicy;
 
     @Autowired
     private OnetimeToken onetimeToken;
@@ -72,7 +72,7 @@ public class EventerController
         String draft = request.getParameter( DRAFT );
 
         validator.validate( eventer, result );
-        registerEventerPolicy.validate( eventer, result );
+        accountPolicy.validate( eventer, result );
 
         if( result.hasErrors() )
         {
@@ -122,7 +122,7 @@ public class EventerController
 
         Eventer eventer = ( Eventer ) request.getAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
 
-        eventerService.register( eventer );
+        registerAccountService.register( eventer );
 
         request.removeAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
 

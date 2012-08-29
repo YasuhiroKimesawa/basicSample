@@ -1,6 +1,6 @@
 package com.pilgrim_lifestyle.security.model;
 
-public class Account
+public class LoginForm
 {
     private String loginEmailAddress;
 
@@ -8,16 +8,16 @@ public class Account
 
     private boolean loginFrailed = false;
 
-    public Account( String loginEmailAddress, String password )
+    public LoginForm( String loginEmailAddress, String password )
     {
         this( loginEmailAddress, password, true );
     }
 
-    public Account()
+    public LoginForm()
     {
     }
 
-    public Account(String loginEmailAddress, String password, boolean loginFailed)
+    public LoginForm(String loginEmailAddress, String password, boolean loginFailed)
     {
         this.loginEmailAddress = emptyToNull( loginEmailAddress );
         this.password = emptyToNull(password);

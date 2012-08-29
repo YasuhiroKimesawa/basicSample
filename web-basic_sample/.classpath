@@ -70,5 +70,23 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/dataaccess-account"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/model-account"/>
+	<classpathentry kind="lib" path="/dataaccess-account/target/eclipse-output">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/model-account/target/eclipse-output">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/service-account"/>
+	<classpathentry kind="lib" path="/service-account/target/eclipse-output">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>

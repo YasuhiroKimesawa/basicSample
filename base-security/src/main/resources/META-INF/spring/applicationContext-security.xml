@@ -18,11 +18,7 @@
           , true
           , last_name || ' ' || first_name
         FROM
-          eventer.eventer
-        INNER JOIN
-          eventer.eventer_account
-        ON
-          eventer.eventer.id = eventer.eventer_account.eventer_id
+          account.account
         WHERE
           mail_address = ?
       </value>
@@ -31,10 +27,14 @@
       <!-- 以下の順で結果を返すSELECT文を定義する 1.ユーザ名,2:ロール名 -->
       <value>
         SELECT
-          authority.mail_address
+          account.mail_address
           , authority.type
         FROM
+	      account.account
+	    INNER JOIN
           account.authority
+        ON
+          account.id = authority.account_id
         INNER JOIN
           account.authority_type
         ON
