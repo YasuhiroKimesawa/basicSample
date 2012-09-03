@@ -13,6 +13,7 @@
 
     <dependencies>
     	<dependency org="com.pilgrim-lifestyle" name="model-base" rev="latest.integration" ></dependency>
+        <dependency org="com.pilgrim-lifestyle" name="model-account" rev="latest.integration" ></dependency>
     </dependencies>
 </ivy-module>
 

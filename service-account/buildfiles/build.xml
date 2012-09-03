@@ -1,0 +1,5 @@
+<project name="service-account" default="compile" basedir=".">
+	<property file="build.properties"/>
+
+	<import file="${common.dir}/common.xml"/>
+</project>
