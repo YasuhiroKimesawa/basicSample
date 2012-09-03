@@ -13,7 +13,7 @@
     </publications>
 
     <dependencies>
-    	<dependency org="com.pilgrim-lifestyle" name="dataaccess-acount" rev="latest.integration" ></dependency>
+    	<dependency org="com.pilgrim-lifestyle" name="dataaccess-account" rev="latest.integration" ></dependency>
         <dependency org="com.pilgrim-lifestyle" name="service-base" rev="latest.integration" ></dependency>
     	<dependency org="com.pilgrim-lifestyle" name="model-account" rev="latest.integration" ></dependency>
         <dependency org="com.pilgrim-lifestyle" name="model-eventer" rev="latest.integration" ></dependency>
