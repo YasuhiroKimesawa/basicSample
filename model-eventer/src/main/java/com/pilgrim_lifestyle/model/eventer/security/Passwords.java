@@ -20,7 +20,7 @@ public @Data @NoArgsConstructor class Passwords
     }
 
     @AssertTrue( message = "パスワードが一致しません。" )
-    public Boolean isConform()
+    public boolean isMatch()
     {
         return password.equals( confirm );
     }

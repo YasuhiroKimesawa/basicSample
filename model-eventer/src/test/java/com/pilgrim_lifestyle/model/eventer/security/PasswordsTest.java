@@ -27,7 +27,7 @@ public class PasswordsTest
         @Test
         public void パスワードが一致する場合はTrueが返ること()
         {
-            assertThat( passwords.isConform(), is( true ) );
+            assertThat( passwords.isMatch(), is( true ) );
         }
     }
 
@@ -46,7 +46,7 @@ public class PasswordsTest
         @Test
         public void パスワードが一致しない場合はFalseが返ること()
         {
-            assertThat( passwords.isConform(), is( false ) );
+            assertThat( passwords.isMatch(), is( false ) );
         }
     }
 

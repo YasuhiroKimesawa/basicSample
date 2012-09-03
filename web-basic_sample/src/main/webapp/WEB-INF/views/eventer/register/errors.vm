@@ -7,5 +7,6 @@
 <p class="error-message">#errorMessage( "eventer.eventerDetail.personalInfomation.contact.telephoneNumber.number" )</p>
 <p class="error-message">#errorMessage( "eventer.eventerDetail.passwords.password.password" )</p>
 <p class="error-message">#errorMessage( "eventer.eventerDetail.passwords.confirm.password" )</p>
+<p class="error-message">#errorMessage( "eventer.eventerDetail.passwords.match" )</p>
 </div><br />
 #end
