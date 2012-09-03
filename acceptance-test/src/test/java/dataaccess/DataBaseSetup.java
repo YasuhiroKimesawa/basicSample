@@ -47,15 +47,22 @@ public class DataBaseSetup
     @Test
     public void databaseSetUp() throws Exception
     {
+        //現状のバックアップを取得
+        //QueryDataSet partialDataSet = new QueryDataSet( dbunitConnection );
+        //partialDataSet.addTable("account.account");
+        //File file=File.createTempFile("account",".xml");
+        //FlatXmlDataSet.write(partialDataSet, new FileOutputStream(file));
+
         // clean
         QueryDataSet initDataSet = new QueryDataSet( dbunitConnection );
-        initDataSet.addTable( "eventer.eventer" );
+        initDataSet.addTable( "account.account" );
         DatabaseOperation.DELETE_ALL.execute( dbunitConnection, initDataSet );
 
         // insert
         InputStream str =  ClassLoader.class.getResourceAsStream( "/basicsample.xls" );
 
         IDataSet dataset = new XlsDataSet( str );
+
         DatabaseOperation.CLEAN_INSERT.execute( dbunitConnection, dataset );
     }
 
