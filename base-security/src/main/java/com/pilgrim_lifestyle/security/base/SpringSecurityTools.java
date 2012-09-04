@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class SpringSecurityTools
 {
     private static final String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
+    private static final String ROLE_ADMIN = "ROLE_ADMIN";
 
     public Authentication getAuthentication()
     {
@@ -63,6 +64,11 @@ public class SpringSecurityTools
     public boolean isAnonymous()
     {
         return isGranted(ROLE_ANONYMOUS);
+    }
+
+    public boolean isAdmin()
+    {
+        return isGranted(ROLE_ADMIN);
     }
 
     private Set<String> getRoleNameSet() {

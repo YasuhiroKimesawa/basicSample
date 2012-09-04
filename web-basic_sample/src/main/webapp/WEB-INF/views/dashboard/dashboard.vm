@@ -18,7 +18,12 @@
 #end
 #if(!$auth.anonymous)
 <div class="well">
-<p>$!auth.user.fullName</p>
+<p>
+#if($auth.admin)
+<span>管理者 </span>
+#end
+$!auth.user.fullName
+</p>
 <a href="$link.relative('/logout')" class="btn large disabled">logout</a>
 </div>
 #end
