@@ -18,6 +18,7 @@ class DashBoardPage extends Page
         password{ $( "input#password" ) }
 
         loginUserName{ $( "div.well > p" ) }
+        adminInfo{ $( "div.well > p > span" ) }
 
         logoutButton{ $( "div.well > a" ) }
 
