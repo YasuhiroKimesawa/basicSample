@@ -10,29 +10,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @NoArgsConstructor
-public class DateStamp
+public class HourAndMinute
 {
-    @DateTimeFormat( pattern="yyyy/MM/dd" )
+    @DateTimeFormat( pattern="HH:mm" )
     private Date date;
 
-    public DateStamp( Date date )
+    public HourAndMinute( Date date )
     {
         this.date = date;
     }
 
     public String asText()
     {
-        return DateFormatUtils.format( date, "yyyy/MM/dd" );
-    }
-
-    public boolean before( DateStamp dateStamp )
-    {
-        return date.before( dateStamp.date );
-    }
-
-    public boolean isEmpty()
-    {
-        return false;
+        return DateFormatUtils.format( date, "HH:mm" );
     }
 
 }

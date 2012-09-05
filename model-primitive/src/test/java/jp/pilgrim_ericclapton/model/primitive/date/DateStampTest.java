@@ -62,4 +62,21 @@ public class DateStampTest
         }
     }
 
+    public static class 空がきた場合
+    {
+        DateStamp dateStamp;
+
+        @Before
+        public void setup()
+        {
+            dateStamp = new DateStamp();
+        }
+
+        @Test
+        public void tests()
+        {
+            assertThat( dateStamp.asText(), is( "" ) );
+        }
+    }
+
 }
