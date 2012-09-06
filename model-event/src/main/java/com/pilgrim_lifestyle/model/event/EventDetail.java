@@ -5,6 +5,8 @@ import java.text.ParseException;
 import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 
+import jp.pilgrim_ericclapton.model.primitive.date.TimeStamp;
+
 import com.pilgrim_lifestyle.model.event.application.Guideline;
 import com.pilgrim_lifestyle.model.event.content.Content;
 
@@ -21,9 +23,14 @@ public class EventDetail
     @Valid
     private Content content;
 
-    @AssertTrue
-    public boolean before() throws ParseException
+    @AssertTrue( message="イベント日時は募集終了日時より後の日時にして下さい。")
+    public boolean AfterDateOf() throws ParseException
     {
-        return guideline.getPeriod().getEndDate().getTimeStamp().before( content.getDateOf().getTimeStamp() );
+        TimeStamp dateOf = content.getDateOf().getTimeStamp();
+
+        TimeStamp endDate = guideline.endDateTimeStamp();
+
+        return endDate.before( dateOf );
     }
+
 }

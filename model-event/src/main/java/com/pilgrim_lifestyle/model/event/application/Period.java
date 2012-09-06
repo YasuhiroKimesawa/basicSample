@@ -5,6 +5,8 @@ import java.text.ParseException;
 import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 
+import jp.pilgrim_ericclapton.model.primitive.date.TimeStamp;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,10 +20,14 @@ public class Period
     @Valid
     private EndDate endDate;
 
-    @AssertTrue( message = "開始日が終了日より早くなければだめです。")
-    public boolean before() throws ParseException
+    @AssertTrue( message="募集開始日時は募集終了日時より前の日時にして下さい。")
+    public boolean isAfterEndDate() throws ParseException
     {
-        return startDate.getTimeStamp().before( endDate.getTimeStamp() );
+        TimeStamp start = startDate.getTimeStamp();
+
+        TimeStamp end = endDate.getTimeStamp();
+
+        return start.before( end );
     }
 
 }

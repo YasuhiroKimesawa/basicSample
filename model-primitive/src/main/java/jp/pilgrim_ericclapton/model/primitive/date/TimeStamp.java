@@ -3,6 +3,8 @@ package jp.pilgrim_ericclapton.model.primitive.date;
 import java.text.ParseException;
 import java.util.Date;
 
+import jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat;
+
 import lombok.NoArgsConstructor;
 
 import org.apache.commons.lang.time.DateUtils;
@@ -12,21 +14,21 @@ public class TimeStamp
 {
     private Date date;
 
-    public static TimeStamp create( DateStamp dateStamp, HourAndMinute hourAndMinute ) throws ParseException
+    public static TimeStamp create( TimeStampFormat timeStampFormat ) throws ParseException
     {
-        if( dateStamp.isEmpty() )
+        if( timeStampFormat.isEmpty() )
         {
             return new TimeStampEmpty();
         }
 
-        return new TimeStamp( dateStamp, hourAndMinute );
+        return new TimeStamp( timeStampFormat );
     }
 
-    private TimeStamp( DateStamp dateStamp, HourAndMinute hourAndMinute ) throws ParseException
+    private TimeStamp( TimeStampFormat timeStampFormat ) throws ParseException
     {
         String[] formats = { "yyyy/mm/dd HH:mm" };
 
-        String text = String.format( "%s %s", dateStamp.asText(), hourAndMinute.asText() );
+        String text = String.format( "%s %s", timeStampFormat.dateStampAsText(), timeStampFormat.hourMinuteAsText() );
 
         date = DateUtils.parseDateStrictly( text, formats );
     }

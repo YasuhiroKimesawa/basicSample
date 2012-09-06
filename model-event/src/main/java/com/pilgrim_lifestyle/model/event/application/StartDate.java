@@ -2,11 +2,8 @@ package com.pilgrim_lifestyle.model.event.application;
 
 import java.text.ParseException;
 
-import jp.pilgrim_ericclapton.model.primitive.date.DataStampEmpty;
-import jp.pilgrim_ericclapton.model.primitive.date.DateStamp;
-import jp.pilgrim_ericclapton.model.primitive.date.HourAndMinute;
-import jp.pilgrim_ericclapton.model.primitive.date.HourAndMinuteEmpty;
 import jp.pilgrim_ericclapton.model.primitive.date.TimeStamp;
+import jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,34 +12,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StartDate
 {
-    private DateStamp dateStamp;
-
-    private HourAndMinute hourAndMinute;
+    private TimeStampFormat timeStampFormat;
 
     public TimeStamp getTimeStamp() throws ParseException
     {
-        return TimeStamp.create( dateStamp, hourAndMinute );
+        return timeStampFormat.getTimeStamp();
     }
 
-    // use framework
-    public void setDateStamp( DateStamp dateStamp )
-    {
-        if( dateStamp.getDate() == null )
-        {
-            this.dateStamp = new DataStampEmpty();
-            return;
-        }
-
-        this.dateStamp = dateStamp;
-    }
-
-    public void setHourAndMinute( HourAndMinute hourAndMinute )
-    {
-        if( hourAndMinute.getDate() == null )
-        {
-            this.hourAndMinute = new HourAndMinuteEmpty();
-        }
-
-        this.hourAndMinute = hourAndMinute;
-    }
 }
