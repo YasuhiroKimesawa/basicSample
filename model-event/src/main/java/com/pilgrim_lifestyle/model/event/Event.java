@@ -11,6 +11,8 @@ public class Event
 {
     private Integer id;
 
+    private String name;
+
     @Valid
     private EventDetail eventDetail;
 

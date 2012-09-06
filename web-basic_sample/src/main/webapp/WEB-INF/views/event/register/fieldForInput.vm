@@ -1,0 +1,64 @@
+<form id="event" method="post" action="$link.relative("/evente/new")" >
+<table class="table table-bordered">
+<tbody>
+<tr>
+<td>イベント名</td>
+<td>
+<dd>#springFormInput( "event.name", 'class="formtext" maxlength="30" size=""' )</dd>
+</td>
+</tr>
+<tr>
+<td>イベント説明</td>
+<td>#springFormTextarea( "event.eventDetail.content.explanation.explanation", 'class="formtext" rows="15" cols="50"' )</td>
+</tr>
+<tr>
+<td>開催日</td>
+<td>
+#springFormInput( "event.eventDetail.content.dateOf.timeStampFormat.dateStamp.dateStamp", 'class="formtext" maxlength="70" size=""' )
+#springFormInput( "event.eventDetail.content.dateOf.timeStampFormat.hourMinute.hourMinute", 'class="formtext" maxlength="70" size=""' )
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<table class="table table-bordered">
+<tbody>
+<tr>
+<td>募集人数</td>
+<td>
+#springFormInput( "event.eventDetail.guideline.headCount", 'class="formtext" maxlength="5" size=""' )
+</td>
+</tr>
+
+<tr>
+<td>応募開始日</td>
+<td>
+#springFormInput( "event.eventDetail.guideline.startDate.timeStampFormat.dateStamp.dateStamp", 'class="formtext" maxlength="15" size=""' )
+#springFormInput( "event.eventDetail.guideline.startDate.timeStampFormat.hourMinute.hourMinute", 'class="formtext" maxlength="15" size=""' )
+</td>
+</tr>
+
+<tr>
+<td>応募終了日</td>
+<td>
+#springFormInput( "event.eventDetail.guideline.endDate.timeStampFormat.dateStamp.dateStamp", 'class="formtext" maxlength="15" size=""' )
+#springFormInput( "event.eventDetail.guideline.endDate.timeStampFormat.hourMinute.hourMinute", 'class="formtext" maxlength="15" size=""' )
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<table class="table table-bordered">
+<tbody>
+<tr>
+<td colspan="2">
+<input type="hidden" value="yes" name="draft" id="draft">
+<input type="hidden" value="$!{requestToken}" name="requestToken" id="requestToken">
+<input type="submit" value="確認画面へ" style="padding: 2px 12px;" class="btn">
+</td>
+</tr>
+</tbody>
+</table>
+</form>
