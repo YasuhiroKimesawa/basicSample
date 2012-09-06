@@ -32,8 +32,17 @@
 			classpathref="library.path" />
 	</target>
 
-	<target name="setup">
-
+	<target name="rollback">
+		<rollbackDatabase
+		            changeLogFile="${db.update.file}"
+		            driver="${database.driver}"
+		            url="${database.url}"
+		            username="${database.username}"
+		            password="${database.password}"
+		            classpathref="library.path"
+		            rollbackDate="2012/08/29"
+		            >
+		</rollbackDatabase>
 	</target>
 
 </project>

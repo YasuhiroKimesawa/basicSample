@@ -9,6 +9,9 @@
     <loadData tableName="account.authority_type" file="../src/changelog/v001/authority_type.csv" >
       <column name="type" type="STRING"/>
     </loadData>
+    <rollback>
+      TRUNCATE account.authority_type CASCADE;
+    </rollback>
   </changeSet>
 
 </databaseChangeLog>

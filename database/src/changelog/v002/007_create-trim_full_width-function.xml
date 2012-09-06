@@ -27,5 +27,8 @@
     ALTER FUNCTION trim_full_width(character varying) OWNER TO basicsample;
 
     </createProcedure>
+    <rollback>
+       DROP FUNCTION trim_full_width(character varying);
+     </rollback>
   </changeSet>
 </databaseChangeLog>

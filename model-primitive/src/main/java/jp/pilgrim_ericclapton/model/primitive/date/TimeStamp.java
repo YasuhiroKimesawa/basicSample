@@ -1,9 +1,9 @@
 package jp.pilgrim_ericclapton.model.primitive.date;
 
+import jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat;
+
 import java.text.ParseException;
 import java.util.Date;
-
-import jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat;
 
 import lombok.NoArgsConstructor;
 

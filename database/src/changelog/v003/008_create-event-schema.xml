@@ -7,12 +7,13 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <property name="changelog" value="changelog.xml"/>
-
-	<include file="v001/${changelog}" relativeToChangelogFile="true"/>
-
-    <include file="v002/${changelog}" relativeToChangelogFile="true"/>
-
-    <include file="v003/${changelog}" relativeToChangelogFile="true"/>
+    <changeSet author="kimesawa" id="008">
+        <sql>
+            CREATE SCHEMA event AUTHORIZATION basicsample
+        </sql>
+        <rollback>
+            DROP SCHEMA event
+        </rollback>
+    </changeSet>
 
 </databaseChangeLog>

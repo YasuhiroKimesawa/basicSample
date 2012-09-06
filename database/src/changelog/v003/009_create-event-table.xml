@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <changeSet author="kimesawa" id="009">
+    <createTable tableName="event" remarks="イベント" schemaName="event">
+      <column name="id" type="integer" remarks="id">
+        <constraints primaryKey="true" nullable="false" primaryKeyName="pk_eventer" />
+      </column>
+      <column name="name" type="varchar(50)" remarks="イベント名">
+        <constraints nullable="false" />
+      </column>
+      <column name="account_id" type="integer" remarks="アカウントID">
+        <constraints nullable="false" foreignKeyName="fk_event_account"
+                     references="account.account(id)"/>
+      </column>
+      <column name="date" type="timestamp without time zone" remarks="開催日">
+        <constraints nullable="false" />
+      </column>
+      <column name="head_count" type="integer" remarks="人数">
+        <constraints nullable="false" />
+      </column>
+      <column name="explanation" type="varchar(1500)" remarks="イベント説明">
+        <constraints nullable="false" />
+      </column>
+      <column name="application_start_date" type="timestamp without time zone" remarks="応募開始日">
+        <constraints nullable="false" />
+      </column>
+      <column name="application_end_date" type="timestamp without time zone" remarks="応募終了日">
+        <constraints nullable="false" />
+      </column>
+      <column name="create_date" type="timestamp without time zone" remarks="作成日時">
+        <constraints nullable="false" />
+      </column>
+      <column name="update_date" type="timestamp without time zone" remarks="更新日時">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>
