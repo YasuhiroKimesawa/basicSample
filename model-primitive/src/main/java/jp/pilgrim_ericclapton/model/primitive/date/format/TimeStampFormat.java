@@ -3,6 +3,7 @@ package jp.pilgrim_ericclapton.model.primitive.date.format;
 import java.text.ParseException;
 
 import jp.pilgrim_ericclapton.model.primitive.date.TimeStamp;
+import jp.pilgrim_ericclapton.model.primitive.date.TimeStampEmpty;
 import lombok.NoArgsConstructor;
 
 import lombok.Data;
@@ -14,6 +15,20 @@ public class TimeStampFormat
     private DateStampFormat dateStamp;
 
     private HourMinuteFormat hourMinute;
+
+    public TimeStampFormat( DateStampFormat dateStamp, HourMinuteFormat hourMinute )
+    {
+        this.dateStamp = dateStamp;
+        this.hourMinute = hourMinute;
+    }
+
+    public static TimeStampFormat draft()
+    {
+        DateStampFormat dateStampFormat = new DateStampFormat( "" );
+        HourMinuteFormat hourMinuteFormat = new HourMinuteFormat( "" );
+
+        return new TimeStampFormat( dateStampFormat, hourMinuteFormat );
+    }
 
     public boolean isEmpty()
     {
@@ -32,6 +47,13 @@ public class TimeStampFormat
 
     public TimeStamp getTimeStamp() throws ParseException
     {
+        if( ! canParse() ) return new TimeStampEmpty();
+
         return TimeStamp.create( this );
+    }
+
+    public boolean canParse() throws ParseException
+    {
+        return TimeStamp.canParse( this );
     }
 }

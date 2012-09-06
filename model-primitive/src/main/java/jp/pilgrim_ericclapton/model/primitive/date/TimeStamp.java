@@ -7,8 +7,6 @@ import java.util.Date;
 
 import lombok.NoArgsConstructor;
 
-import org.apache.commons.lang.time.DateUtils;
-
 @NoArgsConstructor
 public class TimeStamp
 {
@@ -26,11 +24,16 @@ public class TimeStamp
 
     private TimeStamp( TimeStampFormat timeStampFormat ) throws ParseException
     {
-        String[] formats = { "yyyy/mm/dd HH:mm" };
+        TimeStampParsing parsing = new TimeStampParsing( timeStampFormat );
 
-        String text = String.format( "%s %s", timeStampFormat.dateStampAsText(), timeStampFormat.hourMinuteAsText() );
+        date = parsing.parse();
+    }
 
-        date = DateUtils.parseDateStrictly( text, formats );
+    public static boolean canParse( TimeStampFormat timeStampFormat )
+    {
+        TimeStampParsing parsing = new TimeStampParsing( timeStampFormat );
+
+        return parsing.canParse();
     }
 
     public boolean before( TimeStamp timeStamp )

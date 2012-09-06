@@ -9,8 +9,14 @@ public class HourMinuteFormat
 {
     private String hourMinute;
 
+    public HourMinuteFormat( String hourMinute )
+    {
+        this.hourMinute = hourMinute;
+    }
+
     public boolean isEmpty()
     {
         return hourMinute.isEmpty();
     }
+
 }

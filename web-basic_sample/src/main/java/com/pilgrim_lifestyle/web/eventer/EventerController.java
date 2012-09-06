@@ -16,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,9 +36,6 @@ public class EventerController
 
     @Autowired
     private OnetimeToken onetimeToken;
-
-    @Autowired
-    private Validator validator;
 
     private static final String EVENTER = "eventer";
 
@@ -71,7 +67,6 @@ public class EventerController
     {
         String draft = request.getParameter( DRAFT );
 
-        validator.validate( eventer, result );
         accountPolicy.validate( eventer, result );
 
         if( result.hasErrors() )

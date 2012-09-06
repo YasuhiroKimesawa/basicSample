@@ -16,6 +16,7 @@ public class SpringSecurityTools
 {
     private static final String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
     private static final String ROLE_ADMIN = "ROLE_ADMIN";
+    private static final String ROLE_EVENTER = "ROLE_EVENTER";
 
     public Authentication getAuthentication()
     {
@@ -69,6 +70,11 @@ public class SpringSecurityTools
     public boolean isAdmin()
     {
         return isGranted(ROLE_ADMIN);
+    }
+
+    public boolean isEventer()
+    {
+        return isGranted(ROLE_EVENTER);
     }
 
     private Set<String> getRoleNameSet() {

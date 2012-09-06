@@ -19,8 +19,24 @@ public class Guideline
     @Valid
     private Period period;
 
+    public Guideline( HeadCount headCount, Period period )
+    {
+        this.headCount = headCount;
+        this.period = period;
+    }
+
+    public static Guideline draft()
+    {
+        HeadCount headCount = new HeadCount( "" );
+
+        Period period = Period.draft();
+
+        return new Guideline( headCount, period );
+    }
+
     public TimeStamp endDateTimeStamp() throws ParseException
     {
         return period.getEndDate().getTimeStamp();
     }
+
 }

@@ -20,6 +20,20 @@ public class Period
     @Valid
     private EndDate endDate;
 
+    public Period( StartDate startDate, EndDate endDate )
+    {
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    public static Period draft()
+    {
+        StartDate startDate = StartDate.draft();
+        EndDate endDate = EndDate.draft();
+
+        return new Period( startDate, endDate );
+    }
+
     @AssertTrue( message="募集開始日時は募集終了日時より前の日時にして下さい。")
     public boolean isAfterEndDate() throws ParseException
     {
@@ -29,5 +43,9 @@ public class Period
 
         return start.before( end );
     }
+
+
+
+
 
 }

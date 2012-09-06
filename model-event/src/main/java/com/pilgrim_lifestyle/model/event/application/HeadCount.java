@@ -1,5 +1,7 @@
 package com.pilgrim_lifestyle.model.event.application;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,5 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HeadCount
 {
-    private Integer headCount;
+    @NotEmpty( message = "人数を入力して下さい。" )
+    private String headCount;
+
+    public HeadCount( String headCount )
+    {
+        this.headCount = headCount;
+    }
 }

@@ -23,11 +23,11 @@
 	    VALUES
 	    (
 	        #{id}
-            , #{eventerDetail.personalInfomation.contact.mailAddress.mailAddress}
+            , trim_full_width(#{eventerDetail.personalInfomation.contact.mailAddress.mailAddress})
             , encrypt(decode(#{eventerDetail.passwords.password.password}, 'escape'), decode('PA-rec-log', 'escape'), 'bf')
-	        , #{eventerDetail.personalInfomation.profile.personName.lastName}
-	        , #{eventerDetail.personalInfomation.profile.personName.firstName}
-	        , #{eventerDetail.personalInfomation.contact.telephoneNumber.number}
+	        , trim_full_width(#{eventerDetail.personalInfomation.profile.personName.lastName})
+	        , trim_full_width(#{eventerDetail.personalInfomation.profile.personName.firstName})
+	        , trim_full_width(#{eventerDetail.personalInfomation.contact.telephoneNumber.number})
 	        , current_date
 	        , current_date
 	    )

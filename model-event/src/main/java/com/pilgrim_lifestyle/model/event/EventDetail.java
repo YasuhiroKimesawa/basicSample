@@ -23,6 +23,20 @@ public class EventDetail
     @Valid
     private Content content;
 
+    public EventDetail( Guideline guideline, Content content )
+    {
+        this.guideline = guideline;
+        this.content = content;
+    }
+
+    public static EventDetail draft()
+    {
+        Guideline guideline = Guideline.draft();
+        Content content = Content.draft();
+
+        return new EventDetail( guideline, content );
+    }
+
     @AssertTrue( message="イベント日時は募集終了日時より後の日時にして下さい。")
     public boolean AfterDateOf() throws ParseException
     {
@@ -32,5 +46,4 @@ public class EventDetail
 
         return endDate.before( dateOf );
     }
-
 }

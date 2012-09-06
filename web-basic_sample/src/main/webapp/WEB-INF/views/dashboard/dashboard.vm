@@ -16,6 +16,11 @@
   <a href="$link.relative('/eventers/new')" class="btn large disabled">主催者側登録</a>
 </div><!--.well-->
 #end
+#if($auth.eventer)
+<div class="well">
+  <a href="$link.relative('/events/new')" class="btn large disabled">イベント登録</a>
+</div><!--.well-->
+#end
 #if(!$auth.anonymous)
 <div class="well">
 <p>

@@ -18,10 +18,17 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/dataaccess-eventer"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/dataaccess-base"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/dataaccess-account"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/model-base"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/model-account"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/model-event"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/model-eventer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/model-primitive"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/service-base"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/service-account"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/service-eventer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/base-tools"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/base-security"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/web-base"/>
 	<classpathentry kind="lib" path="/model-eventer/target/eclipse-output">
 		<attributes>
@@ -58,20 +65,16 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/base-tools"/>
 	<classpathentry kind="lib" path="/base-tools/target/eclipse-output">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/base-security"/>
 	<classpathentry kind="lib" path="/base-security/target/eclipse-output">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/dataaccess-account"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/model-account"/>
 	<classpathentry kind="lib" path="/dataaccess-account/target/eclipse-output">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
@@ -82,8 +85,17 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/service-account"/>
 	<classpathentry kind="lib" path="/service-account/target/eclipse-output">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/model-event/target/eclipse-output">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/model-primitive/target/eclipse-output">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
 		</attributes>

@@ -1,4 +1,4 @@
-<form id="event" method="post" action="$link.relative("/evente/new")" >
+<form id="event" method="post" action="$link.relative("/events/new")" >
 <table class="table table-bordered">
 <tbody>
 <tr>
@@ -9,12 +9,13 @@
 </tr>
 <tr>
 <td>イベント説明</td>
-<td>#springFormTextarea( "event.eventDetail.content.explanation.explanation", 'class="formtext" rows="15" cols="50"' )</td>
+<td>#springFormTextarea( "event.eventDetail.content.explanation.explanation", 'class="formtext" rows="15" cols="180"' )</td>
 </tr>
 <tr>
 <td>開催日</td>
 <td>
 #springFormInput( "event.eventDetail.content.dateOf.timeStampFormat.dateStamp.dateStamp", 'class="formtext" maxlength="70" size=""' )
+<i class="icon-calendar"></i>
 #springFormInput( "event.eventDetail.content.dateOf.timeStampFormat.hourMinute.hourMinute", 'class="formtext" maxlength="70" size=""' )
 </td>
 </tr>
@@ -27,23 +28,25 @@
 <tr>
 <td>募集人数</td>
 <td>
-#springFormInput( "event.eventDetail.guideline.headCount", 'class="formtext" maxlength="5" size=""' )
+#springFormInput( "event.eventDetail.guideline.headCount.headCount", 'class="formtext" maxlength="5" size=""' )
 </td>
 </tr>
 
 <tr>
 <td>応募開始日</td>
 <td>
-#springFormInput( "event.eventDetail.guideline.startDate.timeStampFormat.dateStamp.dateStamp", 'class="formtext" maxlength="15" size=""' )
-#springFormInput( "event.eventDetail.guideline.startDate.timeStampFormat.hourMinute.hourMinute", 'class="formtext" maxlength="15" size=""' )
+#springFormInput( "event.eventDetail.guideline.period.startDate.timeStampFormat.dateStamp.dateStamp", 'class="formtext" maxlength="15" size=""' )
+<i class="icon-calendar"></i>
+#springFormInput( "event.eventDetail.guideline.period.startDate.timeStampFormat.hourMinute.hourMinute", 'class="formtext" maxlength="15" size=""' )
 </td>
 </tr>
 
 <tr>
 <td>応募終了日</td>
 <td>
-#springFormInput( "event.eventDetail.guideline.endDate.timeStampFormat.dateStamp.dateStamp", 'class="formtext" maxlength="15" size=""' )
-#springFormInput( "event.eventDetail.guideline.endDate.timeStampFormat.hourMinute.hourMinute", 'class="formtext" maxlength="15" size=""' )
+#springFormInput( "event.eventDetail.guideline.period.endDate.timeStampFormat.dateStamp.dateStamp", 'class="formtext" maxlength="15" size=""' )
+<i class="icon-calendar"></i>
+#springFormInput( "event.eventDetail.guideline.period.endDate.timeStampFormat.hourMinute.hourMinute", 'class="formtext" maxlength="15" size=""' )
 </td>
 </tr>
 
