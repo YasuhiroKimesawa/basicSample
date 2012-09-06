@@ -41,6 +41,7 @@
 		<dependency org="org.apache.velocity" name="velocity" rev="1.7" conf="main->*,!sources,!javadoc" />
 		<dependency org="org.apache.velocity" name="velocity-tools" rev="2.0" conf="main->*,!sources,!javadoc" />
 		<dependency org="org.mybatis" name="mybatis" rev="3.1.1" conf="main->*,!sources,!javadoc" />
+		<dependency org="cglib" name="cglib-nodep" rev="2.2.2" conf="main->*,!sources,!javadoc" />
 
 		<dependency org="org.projectlombok" name="lombok" rev="0.11.2" conf="main->*,!sources,!javadoc" />
 
@@ -56,13 +57,17 @@
 		<dependency org="org.jacoco" name="org.jacoco.core" rev="0.5.9.201207300726" conf="test->*,!sources,!javadoc" />
 		<dependency org="org.jacoco" name="org.jacoco.report" rev="0.5.9.201207300726" conf="test->*,!sources,!javadoc" />
 		<dependency org="asm" name="asm" rev="3.3.1" conf="test->*,!sources,!javadoc" />
-		<dependency org="org.spockframework" name="spock-core" rev="0.7-groovy-2.0-SNAPSHOT" conf="test->*,!sources,!javadoc" />
+		<dependency org="org.spockframework" name="spock-core" rev="0.7-groovy-2.0-SNAPSHOT" conf="test->*,!sources,!javadoc" >
+			<exclude org="cglib" name="cglib-nodep"></exclude>
+		</dependency>
 		<dependency org="org.codehaus.geb" name="geb-core" rev="0.7.0" conf="test->*,!sources,!javadoc" />
 		<dependency org="org.codehaus.geb" name="geb-spock" rev="0.7.0" conf="test->*,!sources,!javadoc" />
 		<dependency org="org.codehaus.geb" name="geb-junit4" rev="0.7.0" conf="test->*,!sources,!javadoc"/>
 		<dependency org="org.seleniumhq.selenium" name="selenium-chrome-driver" rev="2.24.1" conf="test->*,!sources,!javadoc" />
 		<dependency org="org.seleniumhq.selenium" name="selenium-firefox-driver" rev="2.24.1" conf="test->*,!sources,!javadoc" />
-		<dependency org="org.seleniumhq.selenium" name="selenium-remote-driver" rev="2.24.1" conf="test->*,!sources,!javadoc" />
+		<dependency org="org.seleniumhq.selenium" name="selenium-remote-driver" rev="2.24.1" conf="test->*,!sources,!javadoc" >
+			<exclude org="cglib" name="cglib-nodep"></exclude>
+		</dependency>
 
 		<!-- database -->
 		<dependency org="org.liquibase" name="liquibase-core" rev="2.0.5" conf="main->*,!sources,!javadoc" >

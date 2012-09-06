@@ -168,6 +168,9 @@
         <dependent-module archiveName="com.systemsekkei.base-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/com.systemsekkei.base-1.0.0.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="cglib-nodep-2.2.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/shared-lib/src/main/lib/cglib-nodep-2.2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="web-basic_sample"/>
         <property name="java-output-path" value="/web-basic_sample/target/eclipse-output"/>
     </wb-module>

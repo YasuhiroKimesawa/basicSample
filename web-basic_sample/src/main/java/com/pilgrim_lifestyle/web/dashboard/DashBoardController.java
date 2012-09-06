@@ -4,6 +4,7 @@ import com.pilgrim_lifestyle.security.model.LoginForm;
 import com.pilgrim_lifestyle.web.tool.OnetimeToken;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 
 @Controller
 @RequestMapping( value = "" )
+@Secured( {"ROLE_ANONYMOUS", "ROLE_EVENTER", "ROLE_ADMIN"} )
 public class DashBoardController
 {
     @Autowired

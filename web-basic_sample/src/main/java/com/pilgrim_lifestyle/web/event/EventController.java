@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,7 @@ import com.pilgrim_lifestyle.web.tool.OnetimeToken;
 
 @Controller
 @RequestMapping( "/events" )
+@Secured( "ROLE_EVENTER" )
 public class EventController
 {
     private static final String EVENT = "event";
