@@ -1,9 +1,7 @@
-package com.pilgrim_lifestyle.web.eventer;
+package com.pilgrim_lifestyle.web.eventer.register;
 
 import com.pilgrim_lifestyle.model.account.AccountPolicy;
 import com.pilgrim_lifestyle.model.eventer.Eventer;
-import com.pilgrim_lifestyle.service.account.RegisterAccountService;
-import com.pilgrim_lifestyle.web.tool.BadTokenException;
 import com.pilgrim_lifestyle.web.tool.OnetimeToken;
 
 import java.util.Arrays;
@@ -28,11 +26,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping( "/eventers" )
 @Secured({"ROLE_ANONYMOUS", "ROLE_ADMIN"})
-public class EventerController
+public class EventerConfirmController
 {
-    @Autowired
-    private RegisterAccountService registerAccountService;
-
     @Autowired
     private AccountPolicy accountPolicy;
 
@@ -42,24 +37,6 @@ public class EventerController
     private static final String EVENTER = "eventer";
 
     private static final String DRAFT = "draft";
-
-    @RequestMapping( value = "new", method = RequestMethod.GET )
-    public String newEventer( WebRequest request, Model model, RedirectAttributes redirectAttributes )
-    {
-        if( model.containsAttribute( EVENTER ) )
-        {
-            return "eventer/register/register";
-        }
-
-        request.removeAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
-        onetimeToken.removeToken( request );
-
-        Eventer eventer = Eventer.draft();
-
-        model.addAttribute( EVENTER, eventer );
-
-        return "eventer/register/register";
-    }
 
     @RequestMapping( value= "new", method = RequestMethod.POST, params="draft=yes" )
     @ResponseStatus( value = HttpStatus.SEE_OTHER )
@@ -109,35 +86,4 @@ public class EventerController
         return "redirect:new";
     }
 
-    @RequestMapping( value= "new", method = RequestMethod.POST, params="draft=no" )
-    @ResponseStatus( value = HttpStatus.SEE_OTHER )
-    public String newRegister( WebRequest request, Model model, RedirectAttributes redirectAttributes ) throws BadTokenException
-    {
-        onetimeToken.checkToken( request );
-
-        String draft = request.getParameter( DRAFT );
-
-        Eventer eventer = ( Eventer ) request.getAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
-
-        registerAccountService.register( eventer );
-
-        request.removeAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
-
-        redirectAttributes.addFlashAttribute( DRAFT, draft )
-                          .addAttribute( DRAFT, draft );
-
-        return "redirect:new";
-    }
-
-    @RequestMapping( value= "new", method = RequestMethod.GET, params="draft=no" )
-    public String newRegisterRedirect( WebRequest request, Model model )
-    {
-        List<String> sessionList = Arrays.asList( request.getAttributeNames( RequestAttributes.SCOPE_SESSION ) );
-        if( ! onetimeToken.isContain( request ) ||  sessionList.contains( EVENTER )  )
-        {
-            return "error/pageNotFound";
-        }
-
-        return "eventer/register/completion/completion";
-    }
 }

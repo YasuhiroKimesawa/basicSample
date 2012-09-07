@@ -1,4 +1,4 @@
-package com.pilgrim_lifestyle.web.event;
+package com.pilgrim_lifestyle.web.event.register;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +25,7 @@ import com.pilgrim_lifestyle.web.tool.OnetimeToken;
 @Controller
 @RequestMapping( "/events" )
 @Secured( "ROLE_EVENTER" )
-public class EventController
+public class EventConfirmController
 {
     private static final String EVENT = "event";
 
@@ -33,24 +33,6 @@ public class EventController
 
     @Autowired
     private OnetimeToken onetimeToken;
-
-    @RequestMapping( value = "new", method = RequestMethod.GET )
-    public String newEventer( WebRequest request, Model model, RedirectAttributes redirectAttributes )
-    {
-        if( model.containsAttribute( EVENT ) )
-        {
-            return "event/register/register";
-        }
-
-        request.removeAttribute( EVENT, RequestAttributes.SCOPE_SESSION );
-        onetimeToken.removeToken( request );
-
-        Event event = Event.draft();
-
-        model.addAttribute( EVENT, event );
-
-        return "event/register/register";
-    }
 
     @RequestMapping( value= "new", method = RequestMethod.POST, params="draft=yes" )
     @ResponseStatus( value = HttpStatus.SEE_OTHER )

@@ -38,7 +38,7 @@ public class EventDetail
     }
 
     @AssertTrue( message="イベント日時は募集終了日時より後の日時にして下さい。")
-    public boolean AfterDateOf() throws ParseException
+    public boolean isAfterDateOf() throws ParseException
     {
         TimeStamp dateOf = content.getDateOf().getTimeStamp();
 
