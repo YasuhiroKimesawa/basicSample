@@ -18,12 +18,16 @@
     	<dependency org="com.pilgrim-lifestyle" name="dataaccess-base" rev="latest.integration" ></dependency>
         <dependency org="com.pilgrim-lifestyle" name="dataaccess-account" rev="latest.integration" ></dependency>
     	<dependency org="com.pilgrim-lifestyle" name="dataaccess-eventer" rev="latest.integration" ></dependency>
+        <dependency org="com.pilgrim-lifestyle" name="dataaccess-event" rev="latest.integration" ></dependency>
     	<dependency org="com.pilgrim-lifestyle" name="model-base" rev="latest.integration" ></dependency>
         <dependency org="com.pilgrim-lifestyle" name="model-account" rev="latest.integration" ></dependency>
     	<dependency org="com.pilgrim-lifestyle" name="model-eventer" rev="latest.integration" ></dependency>
+        <dependency org="com.pilgrim-lifestyle" name="model-event" rev="latest.integration" ></dependency>
+        <dependency org="com.pilgrim-lifestyle" name="model-primitive" rev="latest.integration" ></dependency>
     	<dependency org="com.pilgrim-lifestyle" name="service-base" rev="latest.integration" ></dependency>
         <dependency org="com.pilgrim-lifestyle" name="service-account" rev="latest.integration" ></dependency>
     	<dependency org="com.pilgrim-lifestyle" name="service-eventer" rev="latest.integration" ></dependency>
+        <dependency org="com.pilgrim-lifestyle" name="service-event" rev="latest.integration" ></dependency>
     	<dependency org="com.pilgrim-lifestyle" name="web-base" rev="latest.integration" ></dependency>
     </dependencies>
 </ivy-module>
