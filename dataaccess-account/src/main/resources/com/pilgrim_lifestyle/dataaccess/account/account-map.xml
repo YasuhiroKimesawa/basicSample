@@ -7,7 +7,7 @@
     SELECT nextval('account.account_id')
   </select>
 
-  <insert id="save" parameterType="com.pilgrim_lifestyle.model.account.Account">
+  <insert id="insert" parameterType="com.pilgrim_lifestyle.model.account.Account">
 	    INSERT INTO account.account
 	    (
 	        id
@@ -33,7 +33,7 @@
 	    )
   </insert>
 
-    <insert id="saveAuthority" parameterType="com.pilgrim_lifestyle.model.account.Account">
+    <insert id="insertAuthority" parameterType="com.pilgrim_lifestyle.model.account.Account">
       INSERT INTO account.authority
       (
           account_id
