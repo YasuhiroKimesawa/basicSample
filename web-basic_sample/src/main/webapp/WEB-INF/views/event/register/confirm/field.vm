@@ -1,0 +1,54 @@
+<table class="table table-bordered">
+<tbody>
+<tr>
+<td>イベント名</td>
+<td>
+$esc.html( ${event.name} )
+</td>
+</tr>
+<tr>
+<td>イベント説明</td>
+<td>$esc.html( ${event.eventDetail.content.explanation.explanation} )</td>
+</tr>
+<tr>
+<td>開催日</td>
+<td>$esc.html( ${event.eventDetail.content.dateOf.timeStampFormat.timeStampAsText()} )</td>
+</tr>
+<tr>
+<td>募集人数</td>
+<td>$esc.html( ${event.eventDetail.guideline.headCount.headCount} )</td>
+</tr>
+<tr>
+<td>応募開始日</td>
+<td>$esc.html( ${event.eventDetail.guideline.period.startDate.timeStampFormat.timeStampAsText()} )</td>
+</tr>
+<tr>
+<td>応募終了日</td>
+<td>$esc.html( ${event.eventDetail.guideline.period.endDate.timeStampFormat.timeStampAsText()} )</td>
+</tr>
+
+</tbody>
+</table>
+
+<table class="table table-bordered">
+<tbody>
+<tr>
+<td colspan="2">
+
+<form id="eventer" method="post" action="$link.relative("/events/new")" >
+<input type="hidden" value="no" name="draft" id="draft">
+<input type="hidden" value="$!{requestToken}" name="requestToken" id="requestToken">
+<input type="submit" value="登録" style="padding: 2px 12px;" class="btn">
+</form>
+
+<form id="eventerput" method="post" action="$link.relative("/events/new")" >
+<input type="hidden" name="_method" value="PUT"/>
+<input type="hidden" value="yes" name="draft" id="draft">
+<input type="hidden" value="$!{requestToken}" name="requestToken" id="requestToken">
+<input type="submit" value="修正" style="padding: 2px 12px;" class="btn">
+</form>
+
+</td>
+</tr>
+</tbody>
+</table>

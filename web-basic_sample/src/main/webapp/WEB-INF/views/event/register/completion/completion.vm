@@ -1,17 +1,18 @@
 <!DOCTYPE HTML>
 <html lang="ja-JP">
 <head>
-<title>イベント（確認）</title>
+<title>イベント（完了）</title>
 <meta charset="UTF-8" />
 <link rel="stylesheet" href="$link.contextPath/bootstrap/css/bootstrap.css" type="text/css" />
 <script src="$link.contextPath/js/jquery-1.7.2.min.js" ></script>
 <script src="$link.contextPath/bootstrap/js/bootstrap.js"></script>
 </head>
-<body id="event_register_confirm">
+<body id="eventer_register_completion">
 <div class="container">
 <div class="row">
 <div class="span12">
-#parse( "event/register/confirm/field.vm" )
+<h3>登録完了しました。</h3>
+<a href="$link.relative('/')">戻る</a>
 </div>
 </div>
 </div>

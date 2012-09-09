@@ -35,6 +35,11 @@ public class TimeStampFormat
         return dateStamp.isEmpty() || hourMinute.isEmpty();
     }
 
+    public String timeStampAsText()
+    {
+        return String.format( "%s %s", dateStampAsText(),  hourMinuteAsText() );
+    }
+
     public String dateStampAsText()
     {
         return dateStamp.getDateStamp();

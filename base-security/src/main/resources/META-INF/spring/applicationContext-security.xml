@@ -13,7 +13,8 @@
       <!-- 以下の順で結果を返すSELECT文を定義する 1.ユーザ名,2:パスワード,3:有効/無効 -->
       <value>
         SELECT
-          mail_address
+          id
+          , mail_address
           , encode(decrypt(password, decode('PA-rec-log', 'escape'), 'bf'),'escape')
           , true
           , last_name || ' ' || first_name

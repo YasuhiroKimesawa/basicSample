@@ -25,10 +25,11 @@ public class UserDetailsService extends JdbcDaoImpl
                 {
                              public UserDetails mapRow(ResultSet rs, int rowNum) throws SQLException
                              {
-                                String mailAddress = rs.getString( 1 );
-                                String password = rs.getString( 2 );
-                                String fullName = rs.getString( 4 );
-                                return new AccountUser( mailAddress, password, fullName, AuthorityUtils.NO_AUTHORITIES);
+                                Integer id = rs.getInt( 1 );
+                                String mailAddress = rs.getString( 2 );
+                                String password = rs.getString( 3 );
+                                String fullName = rs.getString( 5 );
+                                return new AccountUser( id, mailAddress, password, fullName, AuthorityUtils.NO_AUTHORITIES);
                               }
                   });
     }
@@ -39,11 +40,11 @@ public class UserDetailsService extends JdbcDaoImpl
         logger.info(  "createUserDetails start" );
         UserDetails user = super.createUserDetails( mailAddress, userFromUserQuery, combinedAuthorities );
 
-        if (userFromUserQuery instanceof AccountUser)
+        if ( userFromUserQuery instanceof AccountUser )
         {
             AccountUser accoutUser = ( AccountUser ) userFromUserQuery;
 
-            return new AccountUser( user.getUsername(), user.getPassword(), accoutUser.getFullName(), user.getAuthorities());
+            return new AccountUser( accoutUser.getId(), user.getUsername(), user.getPassword(), accoutUser.getFullName(), user.getAuthorities());
         }
         else
         {

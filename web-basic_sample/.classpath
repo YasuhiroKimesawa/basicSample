@@ -100,5 +100,17 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/service-event"/>
+	<classpathentry kind="lib" path="/service-event/target/eclipse-output">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/dataaccess-event"/>
+	<classpathentry kind="lib" path="/dataaccess-event/target/eclipse-output">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/classes"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>

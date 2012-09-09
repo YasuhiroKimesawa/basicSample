@@ -16,4 +16,15 @@ public class HeadCount
     {
         this.headCount = headCount;
     }
+
+    public int getIntHeadCount()
+    {
+        return Integer.parseInt( headCount );
+    }
+
+    public void setIntHeadCount( int intHeadCount )
+    {
+        this.headCount = String.valueOf( intHeadCount );
+    }
+
 }

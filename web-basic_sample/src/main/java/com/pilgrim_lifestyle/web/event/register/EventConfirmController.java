@@ -68,4 +68,15 @@ public class EventConfirmController
         onetimeToken.initializeToken( request, model );
         return "event/register/confirm/confirm";
     }
+
+    @RequestMapping( value="new", method = RequestMethod.PUT, params="draft=yes" )
+    @ResponseStatus( value = HttpStatus.SEE_OTHER )
+    public String newModify( WebRequest request, Model model, RedirectAttributes redirectAttributes )
+    {
+        Event event = ( Event ) request.getAttribute( EVENT, RequestAttributes.SCOPE_SESSION );
+
+        redirectAttributes.addFlashAttribute( EVENT, event );
+
+        return "redirect:new";
+    }
 }

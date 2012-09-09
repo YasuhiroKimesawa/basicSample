@@ -7,13 +7,22 @@ import org.springframework.security.core.userdetails.User;
 
 public class AccountUser extends User
 {
+    private Integer id;
+
     private String fullName;
 
-    public AccountUser( String mailaddress, String password, String fullName, Collection<? extends GrantedAuthority> authorities )
+    public AccountUser( Integer id, String mailaddress, String password, String fullName, Collection<? extends GrantedAuthority> authorities )
     {
         super( mailaddress, password, authorities );
 
+        this.id = id;
+
         this.fullName = fullName;
+    }
+
+    public Integer getId()
+    {
+        return id;
     }
 
     public String getFullName()
