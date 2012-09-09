@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pilgrim_lifestyle.dataaccess.event.EventDataAccess">
+
+  <select id="nextId" resultType="java.lang.Integer">
+    SELECT nextval('event.event_id')
+  </select>
+
+  <insert id="insert" parameterType="com.pilgrim_lifestyle.model.event.Event">
+      INSERT INTO event.event
+      (
+            id
+            , name
+            , account_id
+            , date
+            , head_count
+            , explanation
+            , application_start_date
+            , application_end_date
+            , create_date
+            , update_date
+       )
+       VALUES
+       (
+            #{event.id}
+            , #{event.name}
+            , #{accountId}
+            , #{event.eventDetail.content.dateOf.timeStamp.date}
+            , #{event.eventDetail.guideline.headCount.intHeadCount}
+            , #{event.eventDetail.content.explanation.explanation}
+            , #{event.eventDetail.guideline.period.startDate.timeStamp.date}
+            , #{event.eventDetail.guideline.period.endDate.timeStamp.date}
+            , current_date
+            , current_date
+         );
+
+  </insert>
+
+</mapper>
