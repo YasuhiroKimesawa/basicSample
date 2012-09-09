@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.ParameterSignature;
@@ -77,6 +78,28 @@ public class PasswordTest extends BaseModelTest<Password>
         public void エラーになる( @ParametersSuppliedBy( PasswordSupplier.class ) Password password )
         {
             validateAndAssert( "password", Length.class, password );
+        }
+    }
+
+    public static class notest
+    {
+        Password password;
+
+        @Before
+        public void setup()
+        {
+            password = new Password();
+        }
+
+        @Test
+        public void notests()
+        {
+            password.equals( null );
+            password.equals( password );
+            password.equals( new Password() );
+            password.getPassword();
+            password.setPassword( null );
+            password.hashCode();
         }
     }
 

@@ -21,13 +21,34 @@ public class ProfileTest extends BaseModelTest<Profile>
         {
             PersonName personName = new PersonName( "", "達也" );
             profile = new Profile( personName );
-            profile.toString();
         }
 
         @Test
         public void PersonNameのバリデーションが実行される()
         {
             validateAndAssertCount( 1, profile );
+        }
+    }
+
+    public static class notest extends BaseModelTest<Profile>
+    {
+        Profile profile;
+
+        @Before
+        public void setup()
+        {
+            profile = new Profile();
+        }
+
+        @Test
+        public void notests()
+        {
+            profile.equals( null );
+            profile.equals( profile );
+            profile.equals( new Profile() );
+            profile.getPersonName();
+            profile.setPersonName( null );
+            profile.hashCode();
         }
     }
 

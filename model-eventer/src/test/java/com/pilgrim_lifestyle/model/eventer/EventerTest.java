@@ -49,4 +49,30 @@ public class EventerTest extends BaseModelTest<Eventer>
             validateAndAssertCount( 1, eventer );
         }
     }
+
+    public static class notest
+    {
+        Eventer eventer;
+
+        @Before
+        public void setup()
+        {
+            eventer = new Eventer();
+        }
+
+        @Test
+        public void notests()
+        {
+            Eventer.draft();
+            eventer.equals( eventer );
+            eventer.equals( null );
+            eventer.equals( new Eventer() );
+            eventer.getAuthority();
+            eventer.getEventerDetail();
+            eventer.getId();
+            eventer.setEventerDetail( null );
+            eventer.setId( null );
+            eventer.hashCode();
+        }
+    }
 }

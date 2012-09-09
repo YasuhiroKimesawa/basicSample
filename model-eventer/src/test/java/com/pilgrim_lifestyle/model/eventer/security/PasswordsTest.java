@@ -21,7 +21,10 @@ public class PasswordsTest
             Password password = new Password( "testpassword" );
             Password confirm = new Password( "testpassword" );
             passwords = new Passwords( password, confirm );
+
+            // no test
             passwords.toString();
+            Passwords.draft();
         }
 
         @Test
@@ -47,6 +50,30 @@ public class PasswordsTest
         public void パスワードが一致しない場合はFalseが返ること()
         {
             assertThat( passwords.isMatch(), is( false ) );
+        }
+    }
+
+    public static class notest
+    {
+        Passwords passwords;
+
+        @Before
+        public void setup()
+        {
+            passwords = new Passwords();
+        }
+
+        @Test
+        public void notests()
+        {
+            passwords.equals( null );
+            passwords.equals( passwords );
+            passwords.equals( new Passwords() );
+            passwords.getConfirm();
+            passwords.getPassword();
+            passwords.setConfirm( null );
+            passwords.setPassword( null );
+            passwords.hashCode();
         }
     }
 

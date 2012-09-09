@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.ParameterSignature;
@@ -64,6 +65,28 @@ public class TelephoneNumberTest extends BaseModelTest<TelephoneNumber>
         public void エラーになる( @ParametersSuppliedBy( TelephoneNumberSupplier.class ) TelephoneNumber telephoneNumber )
         {
             validateAndAssert( "number", Pattern.class, telephoneNumber );
+        }
+    }
+
+    public static class notest
+    {
+        TelephoneNumber telephoneNumber;
+
+        @Before
+        public void setup()
+        {
+            telephoneNumber = new TelephoneNumber();
+        }
+
+        @Test
+        public void notests()
+        {
+            telephoneNumber.equals( null );
+            telephoneNumber.equals( telephoneNumber );
+            telephoneNumber.equals( new TelephoneNumber() );
+            telephoneNumber.getNumber();
+            telephoneNumber.setNumber( null );
+            telephoneNumber.hashCode();
         }
     }
 

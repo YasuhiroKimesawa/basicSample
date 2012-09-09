@@ -50,4 +50,16 @@ public class MailAddressTest extends BaseModelTest<MailAddress>
         mailAddress.toString();
         validateAndAssertCount( 0, mailAddress );
     }
+
+    @Test
+    public void notest()
+    {
+        MailAddress mailAddress = new MailAddress();
+        mailAddress.equals( null );
+        mailAddress.equals( mailAddress );
+        mailAddress.equals( new MailAddress() );
+        mailAddress.getMailAddress();
+        mailAddress.setMailAddress( null );
+        mailAddress.hashCode();
+    }
 }

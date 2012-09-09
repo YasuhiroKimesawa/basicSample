@@ -12,10 +12,12 @@ import com.systemsekkei.base.test.model.BaseModelTest;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.runners.Enclosed;
+import org.junit.runner.RunWith;
 
+@RunWith( Enclosed.class )
 public class EventerDetailTest
 {
-
     public static class EventerDetailエラー状態 extends BaseModelTest<Eventer>
     {
         Eventer eventer;
@@ -39,13 +41,37 @@ public class EventerDetailTest
             EventerDetail eventerDetail = new EventerDetail( personalInfomation, passwords );
 
             eventer = new Eventer( 1, eventerDetail );
-            eventer.toString();
         }
 
         @Test
         public void EventerDetailのバリデーションが実行される()
         {
             validateAndAssertCount( 1, eventer );
+        }
+    }
+
+    public static class notest
+    {
+        EventerDetail eventerDetail;
+
+        @Before
+        public void setup()
+        {
+            eventerDetail = new EventerDetail();
+        }
+
+        @Test
+        public void notests()
+        {
+            EventerDetail.draft();
+            eventerDetail.equals( eventerDetail );
+            eventerDetail.equals( null );
+            eventerDetail.equals( new EventerDetail() );
+            eventerDetail.getPasswords();
+            eventerDetail.getPersonalInfomation();
+            eventerDetail.setPasswords( null );
+            eventerDetail.setPersonalInfomation( null );
+            eventerDetail.hashCode();
         }
     }
 

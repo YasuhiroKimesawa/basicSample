@@ -31,7 +31,6 @@ public class PersonNameTest extends BaseModelTest<PersonName>
         public void setup()
         {
             name = new PersonName( "１２３４５６７８９０１２", "１２３４５６７８９０１２" );
-            name.toString();
         }
 
         @Test
@@ -98,6 +97,30 @@ public class PersonNameTest extends BaseModelTest<PersonName>
         public void 名が14文字の場合はエラー( @ParametersSuppliedBy( FirstNameSupplier.class ) PersonName personName )
         {
             validateAndAssert( "firstName", Length.class, personName );
+        }
+    }
+
+    public static class notest extends BaseModelTest<PersonName>
+    {
+        PersonName name;
+
+        @Before
+        public void setup()
+        {
+            name = new PersonName();
+        }
+
+        @Test
+        public void notests()
+        {
+            name.equals( null );
+            name.equals( name );
+            name.equals( new PersonName() );
+            name.getFirstName();
+            name.getLastName();
+            name.setFirstName( null );
+            name.setLastName( null );
+            name.hashCode();
         }
     }
 

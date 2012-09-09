@@ -1,6 +1,7 @@
 package com.pilgrim_lifestyle.model.eventer;
 
 import com.pilgrim_lifestyle.model.eventer.personInfomation.PersonNameTest;
+import com.pilgrim_lifestyle.model.eventer.personInfomation.PersonalInfomationTest;
 import com.pilgrim_lifestyle.model.eventer.personInfomation.ProfileTest;
 import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.ContactTest;
 import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.MailAddressTest;
@@ -16,13 +17,16 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith( value = Suite.class )
 @SuiteClasses( value = {
         EventerTest.class,
+        EventerDetailTest.class,
+        PersonalInfomationTest.class,
+        PersonNameTest.class,
+        ProfileTest.class,
         ContactTest.class,
         MailAddressTest.class,
         TelephoneNumberTest.class,
-        PersonNameTest.class,
-        ProfileTest.class,
         PasswordsTest.class,
-        PasswordTest.class
+        PasswordTest.class,
+
 })
 public class AllTest
 {
