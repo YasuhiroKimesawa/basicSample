@@ -7,7 +7,7 @@ import org.apache.commons.lang.time.DateUtils;
 
 import jp.pilgrim_ericclapton.model.primitive.date.format.DateStampFormat;
 
-public class DateStampParsing
+class DateStampParsing
 {
     private static String[] formats = { "yyyy/MM/dd" };
 
