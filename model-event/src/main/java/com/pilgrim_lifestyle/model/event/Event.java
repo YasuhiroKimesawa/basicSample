@@ -1,6 +1,7 @@
 package com.pilgrim_lifestyle.model.event;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -14,6 +15,7 @@ public class Event
     private Integer id;
 
     @NotEmpty( message = "イベント名を入力して下さい。" )
+    @Size( max=50, message = "イベント名は50文字以内で入力して下さい。" )
     private String name;
 
     @Valid

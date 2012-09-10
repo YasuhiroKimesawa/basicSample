@@ -14,7 +14,8 @@ public class TimeStamp
 
     public static TimeStamp create( TimeStampFormat timeStampFormat ) throws ParseException
     {
-        if( timeStampFormat.isEmpty() )
+        TimeStampParsing parsing = new TimeStampParsing( timeStampFormat );
+        if( ! parsing.canParse() )
         {
             return new TimeStampEmpty();
         }

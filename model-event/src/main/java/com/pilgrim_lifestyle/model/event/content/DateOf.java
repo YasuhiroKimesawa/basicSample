@@ -1,12 +1,12 @@
 package com.pilgrim_lifestyle.model.event.content;
 
-import java.text.ParseException;
+import jp.pilgrim_ericclapton.model.primitive.date.TimeStamp;
+import jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat;
 
 import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.AssertTrue;
 
-import jp.pilgrim_ericclapton.model.primitive.date.TimeStamp;
-import jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat;
+import java.text.ParseException;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,6 +32,12 @@ public class DateOf
         TimeStampFormat timeStampFormat = TimeStampFormat.draft();
 
         return new  DateOf( timeStampFormat );
+    }
+
+    @AssertTrue( message = "本日以降の日付を入力して下さい。")
+    public boolean isAfterToday() throws ParseException
+    {
+        return timeStampFormat.getDateStamp().afterToday();
     }
 
     @AssertTrue( message = "日付が正しくありません。" )
