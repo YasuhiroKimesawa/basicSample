@@ -59,7 +59,7 @@
 <td colspan="2">
 <input type="hidden" value="yes" name="draft" id="draft">
 <input type="hidden" value="$!{requestToken}" name="requestToken" id="requestToken">
-<input type="submit" value="確認画面へ" style="padding: 2px 12px;" class="btn">
+<input type="submit" value="確認画面へ" style="padding: 2px 12px;" class="btn" id="confirm">
 </td>
 </tr>
 </tbody>

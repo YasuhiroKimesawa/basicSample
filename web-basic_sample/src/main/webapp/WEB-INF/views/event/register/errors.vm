@@ -1,0 +1,6 @@
+#springBind( "eventer.*" )
+#if( $status.error )
+<div class="alert alert-error">
+
+</div><br />
+#end
