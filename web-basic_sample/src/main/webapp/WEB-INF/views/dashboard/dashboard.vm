@@ -29,7 +29,7 @@
 #end
 $!auth.user.fullName
 </p>
-<a href="$link.relative('/logout')" class="btn large disabled">logout</a>
+<a id="logout" href="$link.relative('/logout')" class="btn large disabled">logout</a>
 </div>
 #end
 #if($auth.anonymous)

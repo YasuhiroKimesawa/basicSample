@@ -20,7 +20,7 @@ class DashBoardPage extends Page
         loginUserName{ $( "div.well > p" ) }
         adminInfo{ $( "div.well > p > span" ) }
 
-        logoutButton{ $( "div.well > a" ) }
+        logoutButton{ $( "a#logout" ) }
 
         loginFailureMessage{ $( "div.well > p.alert" ) }
     }

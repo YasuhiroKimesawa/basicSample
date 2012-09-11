@@ -1,7 +1,7 @@
 package features.step_definitions.registereventer
 
-import geb.pages.eventer.RegisterPage
-import geb.pages.eventer.ConfirmPage
+import geb.pages.eventer.register.RegisterPage
+import geb.pages.eventer.register.ConfirmPage
 
 this.metaClass.mixin(cucumber.runtime.groovy.JA)
 

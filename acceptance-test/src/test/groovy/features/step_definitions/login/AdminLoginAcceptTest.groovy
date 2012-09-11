@@ -2,9 +2,9 @@ package features.step_definitions.login
 
 import cucumber.runtime.PendingException
 import geb.pages.dashboard.DashBoardPage
-import geb.pages.eventer.RegisterPage
-import geb.pages.eventer.ConfirmPage
-import geb.pages.eventer.CompletionPage
+import geb.pages.eventer.register.RegisterPage
+import geb.pages.eventer.register.ConfirmPage
+import geb.pages.eventer.register.CompletionPage
 
 this.metaClass.mixin(cucumber.runtime.groovy.JA)
 
@@ -24,4 +24,5 @@ this.metaClass.mixin(cucumber.runtime.groovy.JA)
     page.adminInfo.text().contains( "管理者" )
 
     page.logoutButton.click()
+    waitFor{ at DashBoardPage }
 }

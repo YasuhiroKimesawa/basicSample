@@ -2,9 +2,9 @@ package features.step_definitions.login
 
 import cucumber.runtime.PendingException
 import geb.pages.dashboard.DashBoardPage
-import geb.pages.eventer.RegisterPage
-import geb.pages.eventer.ConfirmPage
-import geb.pages.eventer.CompletionPage
+import geb.pages.eventer.register.RegisterPage
+import geb.pages.eventer.register.ConfirmPage
+import geb.pages.eventer.register.CompletionPage
 
 this.metaClass.mixin(cucumber.runtime.groovy.JA)
 
@@ -20,4 +20,6 @@ this.metaClass.mixin(cucumber.runtime.groovy.JA)
 ならば(~'^: ログイン失敗エラーメッセージが表示される$') { ->
     waitFor{ at DashBoardPage }
     page.loginFailureMessage.text().contains( "ユーザ名とパスワードが一致しません" )
+
+    waitFor{ at DashBoardPage }
 }

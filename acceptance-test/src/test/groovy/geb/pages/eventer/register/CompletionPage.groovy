@@ -1,4 +1,4 @@
-package geb.pages.eventer
+package geb.pages.eventer.register
 
 import geb.Page
 import geb.*
