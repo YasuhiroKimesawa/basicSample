@@ -22,7 +22,7 @@ class TimeStampParsing
     {
         try
         {
-            DateUtils.parseDate( timeStamp, formats );
+            DateUtils.parseDateStrictly( timeStamp, formats );
         }
         catch ( ParseException parseException )
         {
@@ -34,6 +34,6 @@ class TimeStampParsing
 
     public Date parse() throws ParseException
     {
-        return DateUtils.parseDate( timeStamp, formats );
+        return DateUtils.parseDateStrictly( timeStamp, formats );
     }
 }
