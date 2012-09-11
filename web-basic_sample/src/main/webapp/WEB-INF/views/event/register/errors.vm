@@ -1,6 +1,16 @@
-#springBind( "eventer.*" )
+#springBind( "event.*" )
 #if( $status.error )
 <div class="alert alert-error">
-
+<p class="error-message">#errorMessage( "event.name" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.afterDateOf" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.guideline.period.afterEndDate" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.guideline.period.startDate.collectFormat" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.guideline.period.startDate.empty" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.guideline.period.endDate.collectFormat" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.guideline.period.endDate.empty" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.content.dateOf.afterToday" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.content.dateOf.collectFormat" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.content.dateOf.empty" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.content.explanation.explanation" )</p>
 </div><br />
 #end
