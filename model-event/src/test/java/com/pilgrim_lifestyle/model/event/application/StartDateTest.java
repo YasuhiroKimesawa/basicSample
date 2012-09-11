@@ -3,30 +3,33 @@ package com.pilgrim_lifestyle.model.event.application;
 import static org.junit.Assert.*;
 
 import java.text.ParseException;
-
-import jp.pilgrim_ericclapton.model.primitive.date.format.DateStampFormat;
-import jp.pilgrim_ericclapton.model.primitive.date.format.HourMinuteFormat;
-import jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 
+import com.pilgrim_lifestyle.model.event.EventData;
 import com.systemsekkei.base.test.model.BaseModelTest;
 
 @RunWith( Enclosed.class )
 public class StartDateTest
 {
+    private static StartDate createStartDate( String date, String hour )
+    {
+        Map<EventData, String> eventData = new HashMap<EventData, String>();
+        eventData.put( EventData.応募開始日にち, date );
+        eventData.put( EventData.応募開始時間,  hour );
+        return CreatingGuideline.instansOf( eventData ).createStartDate();
+    }
 
     public static class 正しい日付チェック extends BaseModelTest<StartDate>
     {
         @Test
         public void 正しくない日付() throws ParseException
         {
-            DateStampFormat dateStampFormat = new DateStampFormat( "2012/01/aa" );
-            HourMinuteFormat hourMinuteFormat = new HourMinuteFormat( "11:00" );
-            TimeStampFormat timeStampFormat = new TimeStampFormat( dateStampFormat, hourMinuteFormat );
-            StartDate startDate = new StartDate( timeStampFormat );
+            StartDate startDate = createStartDate( "2012/01/aa", "11:00" );
 
             assertFalse( startDate.isCollectFormat() );
         }
@@ -34,10 +37,7 @@ public class StartDateTest
         @Test
         public void 正しい日付() throws ParseException
         {
-            DateStampFormat dateStampFormat = new DateStampFormat( "2012/01/22" );
-            HourMinuteFormat hourMinuteFormat = new HourMinuteFormat( "11:00" );
-            TimeStampFormat timeStampFormat = new TimeStampFormat( dateStampFormat, hourMinuteFormat );
-            StartDate startDate = new StartDate( timeStampFormat );
+            StartDate startDate = createStartDate( "2012/01/22", "11:00" );
 
             assertTrue( startDate.isCollectFormat() );
         }
@@ -48,10 +48,7 @@ public class StartDateTest
         @Test
         public void 日付が空() throws ParseException
         {
-            DateStampFormat dateStampFormat = new DateStampFormat( "" );
-            HourMinuteFormat hourMinuteFormat = new HourMinuteFormat( "11:00" );
-            TimeStampFormat timeStampFormat = new TimeStampFormat( dateStampFormat, hourMinuteFormat );
-            StartDate startDate = new StartDate( timeStampFormat );
+            StartDate startDate = createStartDate( "", "11:00" );
 
             assertTrue( startDate.isEmpty() );
         }
@@ -59,10 +56,7 @@ public class StartDateTest
         @Test
         public void 時間が空() throws ParseException
         {
-            DateStampFormat dateStampFormat = new DateStampFormat( "2012/01/22" );
-            HourMinuteFormat hourMinuteFormat = new HourMinuteFormat( "" );
-            TimeStampFormat timeStampFormat = new TimeStampFormat( dateStampFormat, hourMinuteFormat );
-            StartDate startDate = new StartDate( timeStampFormat );
+            StartDate startDate = createStartDate( "2012/01/22", "" );
 
             assertTrue( startDate.isEmpty() );
         }
@@ -70,10 +64,7 @@ public class StartDateTest
         @Test
         public void 両方空() throws ParseException
         {
-            DateStampFormat dateStampFormat = new DateStampFormat( "" );
-            HourMinuteFormat hourMinuteFormat = new HourMinuteFormat( "" );
-            TimeStampFormat timeStampFormat = new TimeStampFormat( dateStampFormat, hourMinuteFormat );
-            StartDate startDate = new StartDate( timeStampFormat );
+            StartDate startDate = createStartDate( "", "" );
 
             assertTrue( startDate.isEmpty() );
         }
@@ -81,10 +72,7 @@ public class StartDateTest
         @Test
         public void 空ではない() throws ParseException
         {
-            DateStampFormat dateStampFormat = new DateStampFormat( "2012/01/22" );
-            HourMinuteFormat hourMinuteFormat = new HourMinuteFormat( "11：00" );
-            TimeStampFormat timeStampFormat = new TimeStampFormat( dateStampFormat, hourMinuteFormat );
-            StartDate startDate = new StartDate( timeStampFormat );
+            StartDate startDate = createStartDate( "2012/01/22", "11：00" );
 
             assertFalse( startDate.isEmpty() );
         }

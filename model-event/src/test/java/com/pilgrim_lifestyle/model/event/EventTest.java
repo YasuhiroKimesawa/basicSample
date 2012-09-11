@@ -1,24 +1,13 @@
 package com.pilgrim_lifestyle.model.event;
 
-import com.pilgrim_lifestyle.model.event.application.EndDate;
-import com.pilgrim_lifestyle.model.event.application.Guideline;
-import com.pilgrim_lifestyle.model.event.application.HeadCount;
-import com.pilgrim_lifestyle.model.event.application.Period;
-import com.pilgrim_lifestyle.model.event.application.StartDate;
-import com.pilgrim_lifestyle.model.event.content.Content;
-import com.pilgrim_lifestyle.model.event.content.DateOf;
-import com.pilgrim_lifestyle.model.event.content.Explanation;
-
-import jp.pilgrim_ericclapton.model.primitive.date.format.DateStampFormat;
-import jp.pilgrim_ericclapton.model.primitive.date.format.HourMinuteFormat;
-import jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -79,49 +68,33 @@ public class EventTest
         }
     }
 
-    public static class EventDetailのバリデーションを実行する場合 extends BaseModelTest<HeadCount>
+    public static class EventDetailのバリデーションを実行する場合 extends BaseModelTest<Event>
     {
         private Event event;
 
         @Before
         public void setup()
         {
-            String headCountStr = "";
+            Map<EventData, String> eventData = new HashMap<EventData, String>();
+            eventData.put( EventData.応募人数, "" );
 
-            HeadCount headCount = new HeadCount( headCountStr );
+            eventData.put( EventData.ID, "1" );
+            eventData.put( EventData.イベント名, "イベント" );
+            eventData.put( EventData.応募開始日にち, "2011/01/01" );
+            eventData.put( EventData.応募開始時間, "10:30" );
+            eventData.put( EventData.応募終了日にち, "2011/03/01" );
+            eventData.put( EventData.応募終了時間, "10:30" );
+            eventData.put( EventData.開催日にち, "2011/06/01" );
+            eventData.put( EventData.開催時間, "10:30" );
+            eventData.put( EventData.説明, "イベントです。楽しいですよ" );
 
-            DateStampFormat startDateDateStamp = new DateStampFormat( "2011/01/01" );
-            HourMinuteFormat startDateHourMinutes = new HourMinuteFormat( "10:30" );
-            TimeStampFormat startDateFormat = new TimeStampFormat( startDateDateStamp, startDateHourMinutes );
-            StartDate startDate = new StartDate( startDateFormat );
-
-            DateStampFormat eneDateDateStamp = new DateStampFormat( "2011/03/01" );
-            HourMinuteFormat endDateHourMinutes = new HourMinuteFormat( "10:30" );
-            TimeStampFormat endDateFormat = new TimeStampFormat( eneDateDateStamp, endDateHourMinutes );
-            EndDate endDate = new EndDate( endDateFormat );
-
-            Period period = new Period( startDate, endDate );
-
-            Guideline guideline = new Guideline( headCount, period );
-
-            DateStampFormat dateOfDateDateStamp = new DateStampFormat( "2011/06/01" );
-            HourMinuteFormat dateOfDateHourMinutes = new HourMinuteFormat( "10:30" );
-            TimeStampFormat dateOfDateFormat = new TimeStampFormat( dateOfDateDateStamp, dateOfDateHourMinutes );
-            DateOf dateOf = new DateOf( dateOfDateFormat );
-
-            Explanation explanation = new Explanation( "aaa" );
-
-            Content content = new Content( dateOf, explanation );
-
-            EventDetail eventDetail = new EventDetail( guideline, content );
-
-            event = new Event( 1, "nameaaaaaa", eventDetail );
+            event = CreatingEvent.instansOf( eventData ).createEvent();
         }
 
         @Test
         public void validationが稼働する()
         {
-            validateAndAssert( "headCount", NotEmpty.class, event.getEventDetail().getGuideline().getHeadCount() );
+            validateAndAssertCount( 2, event );
         }
     }
 

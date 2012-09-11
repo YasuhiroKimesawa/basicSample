@@ -1,14 +1,14 @@
 package com.pilgrim_lifestyle.model.event.application;
 
-import jp.pilgrim_ericclapton.model.primitive.date.format.DateStampFormat;
-import jp.pilgrim_ericclapton.model.primitive.date.format.HourMinuteFormat;
-import jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 
+import com.pilgrim_lifestyle.model.event.EventData;
 import com.systemsekkei.base.test.model.BaseModelTest;
 
 @RunWith( Enclosed.class )
@@ -22,23 +22,14 @@ public class GuidelineTest
         @Before
         public void setup()
         {
-            String headCountStr = "";
+            Map<EventData, String> eventData = new HashMap<EventData, String>();
+            eventData.put( EventData.応募人数, "" );
+            eventData.put( EventData.応募開始日にち, "2011/04/01" );
+            eventData.put( EventData.応募開始時間, "10:30" );
+            eventData.put( EventData.応募終了日にち, "2011/03/01" );
+            eventData.put( EventData.応募終了時間, "10:30" );
 
-            HeadCount headCount = new HeadCount( headCountStr );
-
-            DateStampFormat startDateDateStamp = new DateStampFormat( "2011/04/01" );
-            HourMinuteFormat startDateHourMinutes = new HourMinuteFormat( "10:30" );
-            TimeStampFormat startDateFormat = new TimeStampFormat( startDateDateStamp, startDateHourMinutes );
-            StartDate startDate = new StartDate( startDateFormat );
-
-            DateStampFormat eneDateDateStamp = new DateStampFormat( "2011/03/01" );
-            HourMinuteFormat endDateHourMinutes = new HourMinuteFormat( "10:30" );
-            TimeStampFormat endDateFormat = new TimeStampFormat( eneDateDateStamp, endDateHourMinutes );
-            EndDate endDate = new EndDate( endDateFormat );
-
-            Period period = new Period( startDate, endDate );
-
-            guideline = new Guideline( headCount, period );
+            guideline = CreatingGuideline.instansOf( eventData ).createGuideline();
         }
 
         @Test

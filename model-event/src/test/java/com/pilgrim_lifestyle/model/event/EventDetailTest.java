@@ -1,17 +1,8 @@
 package com.pilgrim_lifestyle.model.event;
 
-import jp.pilgrim_ericclapton.model.primitive.date.format.DateStampFormat;
-import jp.pilgrim_ericclapton.model.primitive.date.format.HourMinuteFormat;
-import jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat;
+import java.util.HashMap;
+import java.util.Map;
 
-import com.pilgrim_lifestyle.model.event.application.EndDate;
-import com.pilgrim_lifestyle.model.event.application.Guideline;
-import com.pilgrim_lifestyle.model.event.application.HeadCount;
-import com.pilgrim_lifestyle.model.event.application.Period;
-import com.pilgrim_lifestyle.model.event.application.StartDate;
-import com.pilgrim_lifestyle.model.event.content.Content;
-import com.pilgrim_lifestyle.model.event.content.DateOf;
-import com.pilgrim_lifestyle.model.event.content.Explanation;
 import com.systemsekkei.base.test.model.BaseModelTest;
 
 import org.junit.Before;
@@ -30,34 +21,18 @@ public class EventDetailTest
         @Before
         public void setup()
         {
-            String headCountStr = "";
+            Map<EventData, String> eventData = new HashMap<EventData, String>();
+            eventData.put( EventData.応募人数, "" );
 
-            HeadCount headCount = new HeadCount( headCountStr );
+            eventData.put( EventData.応募開始日にち, "2011/01/01" );
+            eventData.put( EventData.応募開始時間, "10:30" );
+            eventData.put( EventData.応募終了日にち, "2011/03/01" );
+            eventData.put( EventData.応募終了時間, "10:30" );
+            eventData.put( EventData.開催日にち, "2011/06/01" );
+            eventData.put( EventData.開催時間, "10:30" );
+            eventData.put( EventData.説明, "イベントです。楽しいですよ" );
 
-            DateStampFormat startDateDateStamp = new DateStampFormat( "2011/01/01" );
-            HourMinuteFormat startDateHourMinutes = new HourMinuteFormat( "10:30" );
-            TimeStampFormat startDateFormat = new TimeStampFormat( startDateDateStamp, startDateHourMinutes );
-            StartDate startDate = new StartDate( startDateFormat );
-
-            DateStampFormat eneDateDateStamp = new DateStampFormat( "2011/03/01" );
-            HourMinuteFormat endDateHourMinutes = new HourMinuteFormat( "10:30" );
-            TimeStampFormat endDateFormat = new TimeStampFormat( eneDateDateStamp, endDateHourMinutes );
-            EndDate endDate = new EndDate( endDateFormat );
-
-            Period period = new Period( startDate, endDate );
-
-            Guideline guideline = new Guideline( headCount, period );
-
-            DateStampFormat dateOfDateDateStamp = new DateStampFormat( "2011/06/01" );
-            HourMinuteFormat dateOfDateHourMinutes = new HourMinuteFormat( "10:30" );
-            TimeStampFormat dateOfDateFormat = new TimeStampFormat( dateOfDateDateStamp, dateOfDateHourMinutes );
-            DateOf dateOf = new DateOf( dateOfDateFormat );
-
-            Explanation explanation = new Explanation( "イベントです。楽しいですよ" );
-
-            Content content = new Content( dateOf, explanation );
-
-            eventDetail = new EventDetail( guideline, content );
+            eventDetail = CreatingEvent.instansOf( eventData ).createEventDetail();
         }
 
         @Test

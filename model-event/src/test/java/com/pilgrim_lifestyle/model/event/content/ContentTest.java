@@ -1,8 +1,9 @@
 package com.pilgrim_lifestyle.model.event.content;
 
-import jp.pilgrim_ericclapton.model.primitive.date.format.DateStampFormat;
-import jp.pilgrim_ericclapton.model.primitive.date.format.HourMinuteFormat;
-import jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat;
+import com.pilgrim_lifestyle.model.event.EventData;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,14 +23,13 @@ public class ContentTest
         @Before
         public void setup()
         {
-            DateStampFormat dateOfDateDateStamp = new DateStampFormat( "2011/aa/01" );
-            HourMinuteFormat dateOfDateHourMinutes = new HourMinuteFormat( "10:30" );
-            TimeStampFormat dateOfDateFormat = new TimeStampFormat( dateOfDateDateStamp, dateOfDateHourMinutes );
-            DateOf dateOf = new DateOf( dateOfDateFormat );
+            Map<EventData, String> eventData = new HashMap<EventData, String>();
+            eventData.put( EventData.開催日にち, "2011/aa/01" );
+            eventData.put( EventData.開催時間, "10:30" );
 
-            Explanation explanation = new Explanation( "" );
+            eventData.put( EventData.説明, "" );
 
-            content = new Content( dateOf, explanation );
+            content = CreatingContent.instansOf( eventData ).createContent();
         }
 
         @Test

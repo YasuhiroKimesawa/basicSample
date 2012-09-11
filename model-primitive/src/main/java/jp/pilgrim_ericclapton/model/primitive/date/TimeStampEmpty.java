@@ -7,4 +7,6 @@ public class TimeStampEmpty extends TimeStamp
     {
         return false;
     }
+
+
 }

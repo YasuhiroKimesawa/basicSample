@@ -1,16 +1,16 @@
 package com.pilgrim_lifestyle.model.event.application;
 
-import javax.validation.constraints.AssertTrue;
+import java.util.HashMap;
+import java.util.Map;
 
-import jp.pilgrim_ericclapton.model.primitive.date.format.DateStampFormat;
-import jp.pilgrim_ericclapton.model.primitive.date.format.HourMinuteFormat;
-import jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat;
+import javax.validation.constraints.AssertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 
+import com.pilgrim_lifestyle.model.event.EventData;
 import com.systemsekkei.base.test.model.BaseModelTest;
 
 @RunWith( Enclosed.class )
@@ -24,17 +24,13 @@ public class PeriodTest
         @Before
         public void setup()
         {
-            DateStampFormat startDateDateStamp = new DateStampFormat( "2011/01/aa" );
-            HourMinuteFormat startDateHourMinutes = new HourMinuteFormat( "10:30" );
-            TimeStampFormat startDateFormat = new TimeStampFormat( startDateDateStamp, startDateHourMinutes );
-            StartDate startDate = new StartDate( startDateFormat );
+            Map<EventData, String> eventData = new HashMap<EventData, String>();
+            eventData.put( EventData.応募開始日にち, "2011/01/aa" );
+            eventData.put( EventData.応募開始時間, "10:30" );
+            eventData.put( EventData.応募終了日にち, "2011/03/aa" );
+            eventData.put( EventData.応募終了時間, "10:30" );
 
-            DateStampFormat eneDateDateStamp = new DateStampFormat( "2011/03/01" );
-            HourMinuteFormat endDateHourMinutes = new HourMinuteFormat( "10:aa" );
-            TimeStampFormat endDateFormat = new TimeStampFormat( eneDateDateStamp, endDateHourMinutes );
-            EndDate endDate = new EndDate( endDateFormat );
-
-            period = new Period( startDate, endDate );
+            period = CreatingGuideline.instansOf( eventData ).createPeriod();
         }
 
         @Test
@@ -51,17 +47,13 @@ public class PeriodTest
         @Before
         public void setup()
         {
-            DateStampFormat startDateDateStamp = new DateStampFormat( "2011/05/11" );
-            HourMinuteFormat startDateHourMinutes = new HourMinuteFormat( "10:30" );
-            TimeStampFormat startDateFormat = new TimeStampFormat( startDateDateStamp, startDateHourMinutes );
-            StartDate startDate = new StartDate( startDateFormat );
+            Map<EventData, String> eventData = new HashMap<EventData, String>();
+            eventData.put( EventData.応募開始日にち, "2011/05/11" );
+            eventData.put( EventData.応募開始時間, "10:30" );
+            eventData.put( EventData.応募終了日にち, "2011/03/01" );
+            eventData.put( EventData.応募終了時間, "10:30" );
 
-            DateStampFormat eneDateDateStamp = new DateStampFormat( "2011/03/01" );
-            HourMinuteFormat endDateHourMinutes = new HourMinuteFormat( "10:00" );
-            TimeStampFormat endDateFormat = new TimeStampFormat( eneDateDateStamp, endDateHourMinutes );
-            EndDate endDate = new EndDate( endDateFormat );
-
-            period = new Period( startDate, endDate );
+            period = CreatingGuideline.instansOf( eventData ).createPeriod();
         }
 
         @Test
