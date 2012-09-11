@@ -77,6 +77,7 @@ public class EventTest
         {
             Map<EventData, String> eventData = new HashMap<EventData, String>();
             eventData.put( EventData.応募人数, "" );
+            eventData.put( EventData.開催日にち, "2011/06/01" );
 
             eventData.put( EventData.ID, "1" );
             eventData.put( EventData.イベント名, "イベント" );
@@ -84,7 +85,6 @@ public class EventTest
             eventData.put( EventData.応募開始時間, "10:30" );
             eventData.put( EventData.応募終了日にち, "2011/03/01" );
             eventData.put( EventData.応募終了時間, "10:30" );
-            eventData.put( EventData.開催日にち, "2011/06/01" );
             eventData.put( EventData.開催時間, "10:30" );
             eventData.put( EventData.説明, "イベントです。楽しいですよ" );
 
