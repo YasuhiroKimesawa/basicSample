@@ -30,18 +30,4 @@ public class ContactTest extends BaseModelTest<Contact>
         validateAndAssertCount( 1, contact );
     }
 
-    @Test
-    public void notest()
-    {
-        Contact contact = new Contact();
-        contact.equals( null );
-        contact.equals( contact );
-        contact.equals( new Contact() );
-        contact.getMailAddress();
-        contact.getTelephoneNumber();
-        contact.setMailAddress( null );
-        contact.setTelephoneNumber( null );
-        contact.hashCode();
-    }
-
 }

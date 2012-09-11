@@ -1,12 +1,13 @@
 package com.pilgrim_lifestyle.model.eventer.personInfomation.contact;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.ParameterSignature;
@@ -17,6 +18,7 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
+import com.pilgrim_lifestyle.model.eventer.EventerData;
 import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.TelephoneNumber;
 import com.systemsekkei.base.test.model.BaseModelTest;
 
@@ -28,7 +30,11 @@ public class TelephoneNumberTest extends BaseModelTest<TelephoneNumber>
         @Test
         public void 電話番号が空の場合はエラー()
         {
-            TelephoneNumber telephoneNumber = new TelephoneNumber( "" );
+            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+            eventerData.put( EventerData.電話番号, "" );
+
+            TelephoneNumber telephoneNumber = CreatingContact.instansOf( eventerData ).createTelephoneNumber();
+
             validateAndAssert( "number", NotEmpty.class, telephoneNumber );
 
         }
@@ -36,8 +42,10 @@ public class TelephoneNumberTest extends BaseModelTest<TelephoneNumber>
         @Test
         public void 電話番号が正常の場合はエラーなし()
         {
-            TelephoneNumber telephoneNumber = new TelephoneNumber( "000-1111-2222" );
-            telephoneNumber.toString();
+            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+            eventerData.put( EventerData.電話番号, "000-1111-2222" );
+
+            TelephoneNumber telephoneNumber = CreatingContact.instansOf( eventerData ).createTelephoneNumber();
 
             validateAndAssertCount( 0, telephoneNumber );
 
@@ -54,39 +62,22 @@ public class TelephoneNumberTest extends BaseModelTest<TelephoneNumber>
             public List<PotentialAssignment> getValueSources( ParameterSignature arg0 )
             {
                 return Arrays.asList( new PotentialAssignment[]{
-                        PotentialAssignment.forValue( "ハイフンがない", new TelephoneNumber( "090-11112222" ) ),
-                        PotentialAssignment.forValue( "文字が入る", new TelephoneNumber( "亜90-1111-2222" ) ),
-                        PotentialAssignment.forValue( "文字数が足りない", new TelephoneNumber( "1-2-3" ) )
+                        PotentialAssignment.forValue( "ハイフンがない", "090-11112222" ),
+                        PotentialAssignment.forValue( "文字が入る", "亜90-1111-2222" ),
+                        PotentialAssignment.forValue( "文字数が足りない", "1-2-3" )
                 } );
             }
         }
 
         @Theory
-        public void エラーになる( @ParametersSuppliedBy( TelephoneNumberSupplier.class ) TelephoneNumber telephoneNumber )
+        public void エラーになる( @ParametersSuppliedBy( TelephoneNumberSupplier.class ) String number )
         {
+            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+            eventerData.put( EventerData.電話番号, number );
+
+            TelephoneNumber telephoneNumber = CreatingContact.instansOf( eventerData ).createTelephoneNumber();
+
             validateAndAssert( "number", Pattern.class, telephoneNumber );
-        }
-    }
-
-    public static class notest
-    {
-        TelephoneNumber telephoneNumber;
-
-        @Before
-        public void setup()
-        {
-            telephoneNumber = new TelephoneNumber();
-        }
-
-        @Test
-        public void notests()
-        {
-            telephoneNumber.equals( null );
-            telephoneNumber.equals( telephoneNumber );
-            telephoneNumber.equals( new TelephoneNumber() );
-            telephoneNumber.getNumber();
-            telephoneNumber.setNumber( null );
-            telephoneNumber.hashCode();
         }
     }
 

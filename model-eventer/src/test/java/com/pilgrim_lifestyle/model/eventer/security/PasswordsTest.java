@@ -3,10 +3,15 @@ package com.pilgrim_lifestyle.model.eventer.security;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
+
+import com.pilgrim_lifestyle.model.eventer.EventerData;
 
 @RunWith( Enclosed.class )
 public class PasswordsTest
@@ -18,13 +23,11 @@ public class PasswordsTest
         @Before
         public void setup()
         {
-            Password password = new Password( "testpassword" );
-            Password confirm = new Password( "testpassword" );
-            passwords = new Passwords( password, confirm );
+            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+            eventerData.put( EventerData.パスワード, "testpassword" );
+            eventerData.put( EventerData.確認パスワード, "testpassword" );
 
-            // no test
-            passwords.toString();
-            Passwords.draft();
+            passwords = CreatingPasswords.instansOf( eventerData ).createPasswords();
         }
 
         @Test
@@ -41,9 +44,11 @@ public class PasswordsTest
         @Before
         public void setup()
         {
-            Password password = new Password( "testpassword" );
-            Password confirm = new Password( "falsepassword" );
-            passwords = new Passwords( password, confirm );
+            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+            eventerData.put( EventerData.パスワード, "testpassword" );
+            eventerData.put( EventerData.確認パスワード, "falsepassword" );
+
+            passwords = CreatingPasswords.instansOf( eventerData ).createPasswords();
         }
 
         @Test
@@ -52,29 +57,4 @@ public class PasswordsTest
             assertThat( passwords.isMatch(), is( false ) );
         }
     }
-
-    public static class notest
-    {
-        Passwords passwords;
-
-        @Before
-        public void setup()
-        {
-            passwords = new Passwords();
-        }
-
-        @Test
-        public void notests()
-        {
-            passwords.equals( null );
-            passwords.equals( passwords );
-            passwords.equals( new Passwords() );
-            passwords.getConfirm();
-            passwords.getPassword();
-            passwords.setConfirm( null );
-            passwords.setPassword( null );
-            passwords.hashCode();
-        }
-    }
-
 }

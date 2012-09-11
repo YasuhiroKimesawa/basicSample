@@ -3,10 +3,14 @@ package com.pilgrim_lifestyle.model.eventer.personInfomation.contact;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.junit.Test;
 
+import com.pilgrim_lifestyle.model.eventer.EventerData;
 import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.MailAddress;
 import com.systemsekkei.base.test.model.BaseModelTest;
 
@@ -15,51 +19,58 @@ public class MailAddressTest extends BaseModelTest<MailAddress>
     @Test
     public void メールアドレスが不正()
     {
-        MailAddress mailAddress = new MailAddress( "not-mailaddress" );
+        Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+        eventerData.put( EventerData.メールアドレス, "not-mailaddress" );
+
+        MailAddress mailAddress = CreatingContact.instansOf( eventerData ).createMailAddress();
+
         validateAndAssert( "mailAddress", Email.class, mailAddress );
     }
 
     @Test
     public void 空は不正()
     {
-        MailAddress mailAddress = new MailAddress( "" );
+        Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+        eventerData.put( EventerData.メールアドレス, "" );
+
+        MailAddress mailAddress = CreatingContact.instansOf( eventerData ).createMailAddress();
+
         validateAndAssert( "mailAddress", NotEmpty.class, mailAddress );
     }
 
     @Test
-    public void 文字90以上は不正()
+    public void 文字50以上は不正()
+    {
+        Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+        eventerData.put( EventerData.メールアドレス, createMailAddress( 51 ) );
+
+        MailAddress mailAddress = CreatingContact.instansOf( eventerData ).createMailAddress();
+
+        validateAndAssertCount( 2, mailAddress );
+    }
+
+    private String createMailAddress( int length )
     {
         StringBuffer mailAddressBuffer = new StringBuffer();
-        int maxLength = 51;
 
-        for( int i = 0; i < maxLength;  i++ )
+        for( int i = 0; i < length;  i++ )
         {
             mailAddressBuffer.append( "a" );
         }
 
-        MailAddress mailAddress = new MailAddress( mailAddressBuffer.toString() );
+        assertThat( mailAddressBuffer.length(), is( length ) );
 
-        assertThat( mailAddressBuffer.length(), is( 51 ) );
-        validateAndAssertCount( 2, mailAddress );
+        return mailAddressBuffer.toString();
     }
 
     @Test
     public void エラーなし()
     {
-        MailAddress mailAddress = new MailAddress( "abcde@mail.com" );
-        mailAddress.toString();
-        validateAndAssertCount( 0, mailAddress );
-    }
+        Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+        eventerData.put( EventerData.メールアドレス, "abcde@mail.com" );
 
-    @Test
-    public void notest()
-    {
-        MailAddress mailAddress = new MailAddress();
-        mailAddress.equals( null );
-        mailAddress.equals( mailAddress );
-        mailAddress.equals( new MailAddress() );
-        mailAddress.getMailAddress();
-        mailAddress.setMailAddress( null );
-        mailAddress.hashCode();
+        MailAddress mailAddress = CreatingContact.instansOf( eventerData ).createMailAddress();
+
+        validateAndAssertCount( 0, mailAddress );
     }
 }

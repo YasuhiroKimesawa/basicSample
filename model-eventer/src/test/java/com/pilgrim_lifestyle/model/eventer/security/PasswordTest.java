@@ -1,12 +1,13 @@
 package com.pilgrim_lifestyle.model.eventer.security;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.ParameterSignature;
@@ -17,6 +18,7 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
+import com.pilgrim_lifestyle.model.eventer.EventerData;
 import com.systemsekkei.base.test.model.BaseModelTest;
 
 @RunWith( Enclosed.class )
@@ -27,10 +29,11 @@ public class PasswordTest extends BaseModelTest<Password>
         @Test
         public void パスワードが入力されていればエラーなし()
         {
-            Password password = new Password( "!!assaa*" );
-            password.toString();
-            password.equals( password );
-            password.hashCode();
+            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+            eventerData.put( EventerData.パスワード, "!!assaa*" );
+
+            Password password = CreatingPasswords.instansOf( eventerData ).createPassword();
+
             validateAndAssertCount( 0, password );
         }
     }
@@ -45,15 +48,20 @@ public class PasswordTest extends BaseModelTest<Password>
             public List<PotentialAssignment> getValueSources( ParameterSignature arg0 )
             {
                 return Arrays.asList( new PotentialAssignment[]{
-                        PotentialAssignment.forValue( "２バイト", new Password( "あああああ" ) ),
-                        PotentialAssignment.forValue( "カナ", new Password( "ｱｱｱｱｱ" ) )
+                        PotentialAssignment.forValue( "２バイト", "あああああ" ),
+                        PotentialAssignment.forValue( "カナ", "ｱｱｱｱｱ" )
                 } );
             }
         }
 
         @Theory
-        public void エラーになる( @ParametersSuppliedBy( PasswordSupplier.class ) Password password )
+        public void エラーになる( @ParametersSuppliedBy( PasswordSupplier.class ) String pass )
         {
+            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+            eventerData.put( EventerData.パスワード, pass );
+
+            Password password = CreatingPasswords.instansOf( eventerData ).createPassword();
+
             validateAndAssert( "password", Pattern.class, password );
         }
     }
@@ -68,38 +76,21 @@ public class PasswordTest extends BaseModelTest<Password>
             public List<PotentialAssignment> getValueSources( ParameterSignature arg0 )
             {
                 return Arrays.asList( new PotentialAssignment[]{
-                        PotentialAssignment.forValue( "3文字", new Password( "aaa" ) ),
-                        PotentialAssignment.forValue( "9文字", new Password( "123456789" ) )
+                        PotentialAssignment.forValue( "3文字", "aaa" ),
+                        PotentialAssignment.forValue( "9文字", "123456789" )
                 } );
             }
         }
 
         @Theory
-        public void エラーになる( @ParametersSuppliedBy( PasswordSupplier.class ) Password password )
+        public void エラーになる( @ParametersSuppliedBy( PasswordSupplier.class ) String pass )
         {
+            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+            eventerData.put( EventerData.パスワード, pass );
+
+            Password password = CreatingPasswords.instansOf( eventerData ).createPassword();
+
             validateAndAssert( "password", Length.class, password );
-        }
-    }
-
-    public static class notest
-    {
-        Password password;
-
-        @Before
-        public void setup()
-        {
-            password = new Password();
-        }
-
-        @Test
-        public void notests()
-        {
-            password.equals( null );
-            password.equals( password );
-            password.equals( new Password() );
-            password.getPassword();
-            password.setPassword( null );
-            password.hashCode();
         }
     }
 

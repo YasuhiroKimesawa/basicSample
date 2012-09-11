@@ -1,7 +1,9 @@
 package com.pilgrim_lifestyle.model.eventer.personInfomation;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -16,6 +18,7 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
+import com.pilgrim_lifestyle.model.eventer.EventerData;
 import com.pilgrim_lifestyle.model.eventer.personInfomation.PersonName;
 import com.systemsekkei.base.test.model.BaseModelTest;
 
@@ -30,7 +33,11 @@ public class PersonNameTest extends BaseModelTest<PersonName>
         @Before
         public void setup()
         {
-            name = new PersonName( "１２３４５６７８９０１２", "１２３４５６７８９０１２" );
+            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+            eventerData.put( EventerData.姓, "１２３４５６７８９０１２" );
+            eventerData.put( EventerData.名, "１２３４５６７８９０１２" );
+
+            name = CreatingPersonalInfomation.instansOf( eventerData ).createPersonName();
         }
 
         @Test
@@ -42,21 +49,30 @@ public class PersonNameTest extends BaseModelTest<PersonName>
 
     public static class 空状態 extends BaseModelTest<PersonName>
     {
-        PersonName lastNameEmpty;
-        PersonName firstNameEmpty;
+        PersonName name;
 
-        @Before
-        public void setup()
+        @Test
+        public void 姓が空()
         {
-            lastNameEmpty = new PersonName( "", "達也" );
-            firstNameEmpty = new PersonName( "田中", "" );
+            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+            eventerData.put( EventerData.姓, "" );
+            eventerData.put( EventerData.名, "達也" );
+
+            name = CreatingPersonalInfomation.instansOf( eventerData ).createPersonName();
+
+            validateAndAssert( "lastName", NotEmpty.class, name );
         }
 
         @Test
-        public void 空だとエラー()
+        public void 名が空()
         {
-            validateAndAssert( "lastName", NotEmpty.class, lastNameEmpty );
-            validateAndAssert( "firstName", NotEmpty.class, firstNameEmpty );
+            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+            eventerData.put( EventerData.姓, "田中" );
+            eventerData.put( EventerData.名, "" );
+
+            name = CreatingPersonalInfomation.instansOf( eventerData ).createPersonName();
+
+            validateAndAssert( "lastName", NotEmpty.class, name );
         }
     }
 
@@ -97,30 +113,6 @@ public class PersonNameTest extends BaseModelTest<PersonName>
         public void 名が14文字の場合はエラー( @ParametersSuppliedBy( FirstNameSupplier.class ) PersonName personName )
         {
             validateAndAssert( "firstName", Length.class, personName );
-        }
-    }
-
-    public static class notest extends BaseModelTest<PersonName>
-    {
-        PersonName name;
-
-        @Before
-        public void setup()
-        {
-            name = new PersonName();
-        }
-
-        @Test
-        public void notests()
-        {
-            name.equals( null );
-            name.equals( name );
-            name.equals( new PersonName() );
-            name.getFirstName();
-            name.getLastName();
-            name.setFirstName( null );
-            name.setLastName( null );
-            name.hashCode();
         }
     }
 

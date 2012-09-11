@@ -1,8 +1,9 @@
 package com.pilgrim_lifestyle.model.eventer.personInfomation;
 
-import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.Contact;
-import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.MailAddress;
-import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.TelephoneNumber;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.pilgrim_lifestyle.model.eventer.EventerData;
 import com.systemsekkei.base.test.model.BaseModelTest;
 
 import org.junit.Before;
@@ -20,45 +21,19 @@ public class PersonalInfomationTest
         @Before
         public void setup()
         {
-            MailAddress mailAddress = new MailAddress( "mail@mail.com" );
-            TelephoneNumber telephoneNumber = new TelephoneNumber( "090-1111-2222" );
-            Contact contact = new Contact( mailAddress, telephoneNumber );
+            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
+            eventerData.put( EventerData.メールアドレス, "mail@mail.com" );
+            eventerData.put( EventerData.電話番号, "090-1111-2222" );
+            eventerData.put( EventerData.姓, "" );
+            eventerData.put( EventerData.名, "達也" );
 
-            PersonName personName = new PersonName( "", "達也" );
-            Profile profile = new Profile( personName );
-
-            personalInfomation = new PersonalInfomation( profile, contact );
+            personalInfomation = CreatingPersonalInfomation.instansOf( eventerData ).createPersonalInfomation();
         }
 
         @Test
         public void EventerDetailのバリデーションが実行される()
         {
             validateAndAssertCount( 1, personalInfomation );
-        }
-    }
-
-    public static class notest extends BaseModelTest<PersonalInfomation>
-    {
-        PersonalInfomation personalInfomation;
-
-        @Before
-        public void setup()
-        {
-            personalInfomation = new PersonalInfomation();
-        }
-
-        @Test
-        public void notests()
-        {
-            PersonalInfomation.draft();
-            personalInfomation.equals( null );
-            personalInfomation.equals( personalInfomation );
-            personalInfomation.equals( new PersonalInfomation() );
-            personalInfomation.getContact();
-            personalInfomation.getProfile();
-            personalInfomation.setContact( null );
-            personalInfomation.setProfile( null );
-            personalInfomation.hashCode();
         }
     }
 }
