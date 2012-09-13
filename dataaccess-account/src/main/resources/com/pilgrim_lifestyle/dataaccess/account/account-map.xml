@@ -28,8 +28,8 @@
 	        , trim_full_width(#{eventerDetail.personalInfomation.profile.personName.lastName})
 	        , trim_full_width(#{eventerDetail.personalInfomation.profile.personName.firstName})
 	        , trim_full_width(#{eventerDetail.personalInfomation.contact.telephoneNumber.number})
-	        , current_date
-	        , current_date
+	        , current_timestamp
+	        , current_timestamp
 	    )
   </insert>
 
@@ -45,8 +45,8 @@
       (
           #{id}
           , #{authority}
-          , current_date
-          , current_date
+          , current_timestamp
+          , current_timestamp
       )
     </insert>
 

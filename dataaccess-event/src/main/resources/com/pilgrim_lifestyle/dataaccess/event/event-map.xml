@@ -31,8 +31,8 @@
             , #{event.eventDetail.content.explanation.explanation}
             , #{event.eventDetail.guideline.period.startDate.timeStamp.date}
             , #{event.eventDetail.guideline.period.endDate.timeStamp.date}
-            , current_date
-            , current_date
+            , current_timestamp
+            , current_timestamp
          );
 
   </insert>
