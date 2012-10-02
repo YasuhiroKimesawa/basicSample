@@ -7,15 +7,27 @@ import jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat;
 
 import org.apache.commons.lang.time.DateUtils;
 
-class TimeStampParsing
+public class TimeStampParsing
 {
+    private static TimeStampParsing instance;
+
     private static String[] formats = { "yyyy/MM/dd kk:mm" };
 
     private final String timeStamp;
 
-    public TimeStampParsing( TimeStampFormat timeStamp )
+    public static TimeStampParsing instansOf( TimeStampFormat timeStampFormat )
     {
-        this.timeStamp =  String.format( "%s %s", timeStamp.dateStampAsText(), timeStamp.hourMinuteAsText() );
+        if( instance == null )
+        {
+            return new TimeStampParsing( timeStampFormat );
+        }
+
+        return instance;
+    }
+
+    private TimeStampParsing( TimeStampFormat timeStamp )
+    {
+        this.timeStamp =  timeStamp.timeStampAsText();
     }
 
     public boolean canParse()

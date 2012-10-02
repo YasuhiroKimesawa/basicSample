@@ -1,6 +1,6 @@
-package com.pilgrim_lifestyle.model.event.content;
+package com.pilgrim_lifestyle.model.event.period;
 
-import jp.pilgrim_ericclapton.model.primitive.date.TimeStamp;
+import jp.pilgrim_ericclapton.model.primitive.date.TimeStampParsing;
 import jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat;
 
 import javax.validation.constraints.AssertFalse;
@@ -22,11 +22,6 @@ public class DateOf
         this.timeStampFormat = timeStampFormat;
     }
 
-    public TimeStamp getTimeStamp() throws ParseException
-    {
-        return timeStampFormat.getTimeStamp();
-    }
-
     public static DateOf draft()
     {
         TimeStampFormat timeStampFormat = TimeStampFormat.draft();
@@ -43,7 +38,7 @@ public class DateOf
     @AssertTrue( message = "日付が正しくありません。" )
     public boolean isCollectFormat() throws ParseException
     {
-        return timeStampFormat.canParse();
+        return TimeStampParsing.instansOf( timeStampFormat ).canParse();
     }
 
     @AssertFalse( message = "開催日を入力して下さい。" )

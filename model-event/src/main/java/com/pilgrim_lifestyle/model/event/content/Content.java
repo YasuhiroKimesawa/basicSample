@@ -11,24 +11,24 @@ public class Content
 {
 
     @Valid
-    private DateOf dateOf;
+    private HeadCount headCount;
 
     @Valid
     private Explanation explanation;
 
-    public Content( DateOf dateOf, Explanation explanation )
+    public Content( HeadCount headCount, Explanation explanation )
     {
-        this.dateOf = dateOf;
+        this.headCount = headCount;
         this.explanation = explanation;
     }
 
     public static Content draft()
     {
-        DateOf dateOf = DateOf.draft();
+        HeadCount headCount = new HeadCount( "" );
 
         Explanation explanation = new Explanation( "" );
 
-        return new Content( dateOf, explanation );
+        return new Content( headCount, explanation );
     }
 
 }

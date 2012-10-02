@@ -1,14 +1,9 @@
 package com.pilgrim_lifestyle.model.event;
 
-import java.text.ParseException;
-
 import javax.validation.Valid;
-import javax.validation.constraints.AssertTrue;
 
-import jp.pilgrim_ericclapton.model.primitive.date.TimeStamp;
-
-import com.pilgrim_lifestyle.model.event.application.Guideline;
 import com.pilgrim_lifestyle.model.event.content.Content;
+import com.pilgrim_lifestyle.model.event.period.Period;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,32 +13,23 @@ import lombok.NoArgsConstructor;
 public class EventDetail
 {
     @Valid
-    private Guideline guideline;
+    private Period period;
 
     @Valid
     private Content content;
 
-    public EventDetail( Guideline guideline, Content content )
+    public EventDetail( Period period, Content content )
     {
-        this.guideline = guideline;
+        this.period = period;
         this.content = content;
     }
 
     public static EventDetail draft()
     {
-        Guideline guideline = Guideline.draft();
+        Period period = Period.draft();
         Content content = Content.draft();
 
-        return new EventDetail( guideline, content );
+        return new EventDetail( period, content );
     }
 
-    @AssertTrue( message="イベント日時は募集終了日時より後の日時にして下さい。")
-    public boolean isAfterDateOf() throws ParseException
-    {
-        TimeStamp dateOf = content.getDateOf().getTimeStamp();
-
-        TimeStamp endDate = guideline.endDateTimeStamp();
-
-        return endDate.before( dateOf );
-    }
 }

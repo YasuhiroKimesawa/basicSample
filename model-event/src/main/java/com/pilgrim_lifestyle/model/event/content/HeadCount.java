@@ -1,4 +1,4 @@
-package com.pilgrim_lifestyle.model.event.application;
+package com.pilgrim_lifestyle.model.event.content;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
