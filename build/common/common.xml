@@ -29,9 +29,6 @@
 	      target: resolve
 	     ================================= -->
 	<target name="resolve" depends="load-ivy" description="--> resolve and retrieve dependencies with ivy">
-		<!-- <mkdir dir="${lib.dir}"/> not usually necessary, ivy creates the directory IF there are dependencies -->
-
-		<!-- the call to resolve is not mandatory, retrieve makes an implicit call if we don't -->
 		<ivy:resolve file="${ivy.file}" />
 		<ivy:retrieve pattern="${project.lib.dir}/[artifact]-[revision].[ext]" overwritemode="always"/>
 	</target>
@@ -157,7 +154,7 @@
 	<!-- =================================
           target: clean-build
          ================================= -->
-	<target name="clean-build" description="--> clean the project built files">
+	<target name="clean-build" description="--> clean the project target dir's files">
 		<delete includeemptydirs="true" dir="${build.dir}" />
 	</target>
 
