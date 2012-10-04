@@ -1,6 +1,6 @@
 <project name="unit" xmlns:jacoco="antlib:org.jacoco.ant">
 
-	<property name="test.buildfile.dir" location="${basedir}/../../build/test" />
+	<property name="test.buildfile.dir" location="${basedir}/../../automation-build/test" />
 	<property file="${test.buildfile.dir}/test.properties" />
 
 	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
