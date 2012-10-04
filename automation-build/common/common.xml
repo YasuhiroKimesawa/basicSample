@@ -29,6 +29,7 @@
 	      target: resolve
 	     ================================= -->
 	<target name="resolve" depends="load-ivy" description="--> resolve and retrieve dependencies with ivy">
+		<ivy:settings file="${common.dir}/../ivysettings.xml" />
 		<ivy:resolve file="${ivy.file}" />
 		<ivy:retrieve pattern="${project.lib.dir}/[artifact]-[revision].[ext]" overwritemode="always"/>
 	</target>
