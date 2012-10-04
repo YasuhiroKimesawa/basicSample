@@ -30,7 +30,6 @@
 	     ================================= -->
 	<target name="resolve" depends="load-ivy" description="--> resolve and retrieve dependencies with ivy">
 		<ivy:settings file="${common.dir}/../ivysettings.xml" />
-		<echo message="${ivy.settings.dir}"></echo>
 		<ivy:resolve file="${ivy.file}" />
 		<ivy:retrieve pattern="${project.lib.dir}/[artifact]-[revision].[ext]" overwritemode="always"/>
 	</target>
@@ -59,11 +58,13 @@
 	<!-- =================================
 	          target: versioning
 	         ================================= -->
+	<!-- TODO:warとjarでversionの取り方が異なっているようなのでチェック(ivy.settingsの定義チェック) -->
 	<target name="ivy-new-version" depends="load-ivy" unless="ivy.new.revision">
 		<!-- default module version prefix value -->
 		<property name="module.version.prefix" value="${module.version.target}-dev-b" />
 
 		<!-- asks to ivy an available version number -->
+		<ivy:settings file="${common.dir}/../ivysettings.xml" />
 		<ivy:info file="${ivy.file}" />
 		<ivy:buildnumber organisation="${ivy.organisation}" module="${ivy.module}" revision="${module.version.prefix}" defaultBuildNumber="1" revSep="" />
 	</target>
@@ -72,6 +73,7 @@
 		<tstamp>
 			<format property="now" pattern="yyyyMMddHHmmss" />
 		</tstamp>
+		<ivy:settings file="${common.dir}/../ivysettings.xml" />
 		<property name="ivy.new.revision" value="${module.version.target}-local-${now}" />
 	</target>
 
