@@ -1,6 +1,6 @@
 <project name="deploy" default="tomcat-start" xmlns:ivy="antlib:org.apache.ivy.ant">
 
-	<property file="build-deploy.properties" />
+	<property file="deploy.properties" />
 
 	<target name="tomcat-stop">
 		<exec executable="/etc/init.d/tomcat">
