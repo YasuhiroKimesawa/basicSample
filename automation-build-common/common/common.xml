@@ -1,6 +1,6 @@
 <project name="common" xmlns:ivy="antlib:org.apache.ivy.ant">
 
-	<property name="common.dir" location="${basedir}/../../automation-build/common" />
+	<property name="common.dir" location="${basedir}/../../automation-build-common/common" />
 	<property file="${common.dir}/build.properties" />
 	<import file="${common.dir}/../test/test.xml"/>
 
@@ -30,6 +30,7 @@
 	     ================================= -->
 	<target name="resolve" depends="load-ivy" description="--> resolve and retrieve dependencies with ivy">
 		<ivy:settings file="${common.dir}/../ivysettings.xml" />
+		<echo message="${ivy.settings.dir}"></echo>
 		<ivy:resolve file="${ivy.file}" />
 		<ivy:retrieve pattern="${project.lib.dir}/[artifact]-[revision].[ext]" overwritemode="always"/>
 	</target>

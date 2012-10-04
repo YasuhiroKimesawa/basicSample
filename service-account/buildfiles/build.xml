@@ -1,5 +1,10 @@
 <project name="service-account" default="compile" basedir=".">
-	<property file="build.properties"/>
+
+	<property location="../../automation-build-common/common" name="common.dir" />
+	<property file="${common.dir}/build.properties"/>
+
 
 	<import file="${common.dir}/common.xml"/>
+
+
 </project>

@@ -13,6 +13,7 @@
 	</target>
 
 	<target name="resolve" depends="load-ivy">
+		<ivy:settings file="${wkspace.dir}/automation-build-common/ivysettings.xml" />
 		<ivy:resolve file="${basedir}/ivy.xml" />
 		<ivy:retrieve pattern="${ivy.lib.dir}/[artifact]-[revision].[ext]" />
 	</target>
