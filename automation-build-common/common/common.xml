@@ -31,13 +31,6 @@
 	</target>
 
 	<!-- =================================
-	      target: report
-	     ================================= -->
-	<target name="report" depends="resolve" description="--> generates a report of dependencies">
-		<ivy:report todir="${build.dir}" />
-	</target>
-
-	<!-- =================================
           target: compile
          ================================= -->
 	<target name="compile" depends="resolve" description="--> compile the project">
@@ -45,50 +38,18 @@
 		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
 	</target>
 
-	<target name="test-compile" description="--> compile the project">
-		<mkdir dir="${test.classes.dir}" />
-		<javac srcdir="${test.src.dir}" destdir="${test.classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
-	</target>
-
 	<!-- =================================
 	          target: versioning
-	         ================================= -->
-	<!-- TODO:warとjarでversionの取り方が異なっているようなのでチェック(ivy.settingsの定義チェック) -->
-	<target name="ivy-new-version" depends="load-ivy" unless="ivy.new.revision">
-		<!-- default module version prefix value -->
-		<property name="module.version.prefix" value="${module.version.target}-dev-b" />
-
-		<!-- asks to ivy an available version number -->
-		<ivy:settings file="${common.dir}/../ivysettings.xml" />
-		<ivy:info file="${ivy.file}" />
-		<ivy:buildnumber organisation="${ivy.organisation}" module="${ivy.module}" revision="${module.version.prefix}" defaultBuildNumber="1" revSep="" />
-	</target>
-
-	<target name="local-version">
-		<tstamp>
-			<format property="now" pattern="yyyyMMddHHmmss" />
-		</tstamp>
-		<ivy:settings file="${common.dir}/../ivysettings.xml" />
-		<property name="ivy.new.revision" value="${module.version.target}-local-${now}" />
-	</target>
-
+	    ================================= -->
 	<target name="snapshot-version">
 		<property name="ivy.new.revision" value="${module.version.target}-SNAPSHOT" />
-	</target>
-
-	<target name="version" depends="ivy-new-version">
-		<!-- create version file in classpath for later inclusion in jar  -->
-		<mkdir dir="${classes.dir}" />
-		<echo message="version=${ivy.new.revision}" file="${classes.dir}/${ant.project.name}.properties" append="false" />
-
-		<!-- load generated version properties file -->
-		<property file="${classes.dir}/${ant.project.name}.properties" />
 	</target>
 
 	<!-- =================================
           target: jar
          ================================= -->
-	<target name="jar" depends="version, compile" unless="target.webapps.dir" description="--> make a jar file for this project">
+	<target name="jar" depends="compile" unless="target.webapps.dir" description="--> make a jar file for this project">
+		<mkdir dir="${classes.dir}" />
 		<jar destfile="${jar.file}">
 			<fileset dir="${classes.dir}" excludes="**/*Test*.class"/>
 			<manifest>
@@ -105,6 +66,7 @@
           target: war
          ================================= -->
 	<target name="war" depends="compile" if="target.webapps.dir">
+		<mkdir dir="${classes.dir}" />
 		<copy todir="${target.webapps.dir}">
 			<fileset dir="${projects.dir}/src/main/webapp" />
 		</copy>
@@ -115,22 +77,6 @@
 			<fileset dir="${target.webapps.dir}" />
 			<classes dir="${classes.dir}" />
 		</war>
-	</target>
-
-	<!-- =================================
-          target: publish
-         ================================= -->
-	<target name="publish" depends="clean-target-dir, jar, war" description="--> publish this project in the ivy repository">
-		<ivy:publish artifactspattern="${build.dir}/[artifact].[ext]" resolver="main" pubrevision="${version}" status="release" overwrite="true"   />
-		<echo message="project ${ant.project.name} released with version ${version}" />
-	</target>
-
-	<!-- =================================
-          target: publish-local
-         ================================= -->
-	<target name="publish-local" depends="clean-target-dir, local-version, jar, war" description="--> publish this project in the local ivy repository">
-		<ivy:publish artifactspattern="${build.dir}/[artifact].[ext]" resolver="local" pubrevision="${version}" pubdate="${now}" status="integration" forcedeliver="true" />
-		<echo message="project ${ant.project.name} published locally with version ${version}" />
 	</target>
 
 	<!-- =================================

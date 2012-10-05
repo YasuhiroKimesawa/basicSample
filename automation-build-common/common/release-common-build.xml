@@ -1,0 +1,33 @@
+<project name="all" xmlns:ivy="antlib:org.apache.ivy.ant" >
+
+    <property name="common.dir" location="${basedir}/../../automation-build-common/common" />
+	<property file="${common.dir}/build.properties" />
+	<import file="${common.dir}/common.xml"/>
+
+    <!-- =================================
+          target: publish
+         ================================= -->
+  <target name="publish" depends="clean-target-dir, jar, war" description="--> publish this project in the ivy repository">
+    <ivy:publish artifactspattern="${build.dir}/[artifact].[ext]" resolver="main" pubrevision="${version}" status="release" overwrite="true"   />
+    <echo message="project ${ant.project.name} released with version ${version}" />
+  </target>
+
+    <target name="version" depends="ivy-new-version">
+    <!-- create version file in classpath for later inclusion in jar  -->
+    <echo message="version=${ivy.new.revision}" file="${classes.dir}/${ant.project.name}.properties" append="false" />
+
+    <!-- load generated version properties file -->
+    <property file="${classes.dir}/${ant.project.name}.properties" />
+  </target>
+
+  <target name="ivy-new-version" depends="load-ivy" unless="ivy.new.revision">
+    <!-- default module version prefix value -->
+    <property name="module.version.prefix" value="${module.version.target}-dev-b" />
+
+    <!-- asks to ivy an available version number -->
+    <ivy:settings file="${common.dir}/../ivysettings.xml" />
+    <ivy:info file="${ivy.file}" />
+    <ivy:buildnumber organisation="${ivy.organisation}" module="${ivy.module}" revision="${module.version.prefix}" defaultBuildNumber="1" revSep="" />
+  </target>
+
+</project>

@@ -1,6 +1,6 @@
 <project name="unit" xmlns:jacoco="antlib:org.jacoco.ant">
 
-	<property name="test.buildfile.dir" location="${basedir}/../../automation-build/test" />
+	<property name="test.buildfile.dir" location="${basedir}/../../automation-build-common/test" />
 	<property file="${test.buildfile.dir}/test.properties" />
 
 	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
@@ -12,6 +12,17 @@
 		<classpath path="${test.lib.dir}/org.jacoco.report-0.5.9.201207300726.jar" />
 		<classpath path="${test.lib.dir}/org.jacoco.agent-0.5.9.201207300726.jar" />
 	</taskdef>
+
+	<path id="lib.path.id">
+		<fileset dir="${lib.dir}" />
+		<fileset dir="${test.lib.dir}" />
+		<fileset dir="${project.lib.dir}" />
+	</path>
+
+	<target name="test-compile" description="--> compile the project">
+		<mkdir dir="${test.classes.dir}" />
+		<javac srcdir="${test.src.dir}" destdir="${test.classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
+	</target>
 
 	<target name="unittest">
 		<mkdir dir="${junit.report.dir}"/>
