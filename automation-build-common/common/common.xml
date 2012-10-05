@@ -109,7 +109,7 @@
 	<!-- =================================
           target: war
          ================================= -->
-	<target name="war" depends="version, compile" if="target.webapps.dir">
+	<target name="war" depends="compile" if="target.webapps.dir">
 		<copy todir="${target.webapps.dir}">
 			<fileset dir="${projects.dir}/src/main/webapp" />
 		</copy>
@@ -141,7 +141,7 @@
 	<!-- =================================
 	          target: publish-snapshot
 	     ================================= -->
-	<target name="publish-snapshot" depends="clean-build, snapshot-version, jar, war" description="--> publish this project in the snapshot ivy repository">
+	<target name="publish-snapshot" depends="clean-build, snapshot-version, jar" description="--> publish this project in the snapshot ivy repository">
 		<ivy:publish artifactspattern="${build.dir}/[artifact].[ext]" resolver="project" pubrevision="${version}" status="integration" overwrite="true" />
 		<echo message="project ${ant.project.name} published locally with version ${version}" />
 	</target>

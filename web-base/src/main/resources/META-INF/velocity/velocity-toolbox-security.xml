@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!DOCTYPE tools>
 <tools>
   <toolbox scope="application">
     <tool class="com.pilgrim_lifestyle.security.base.SpringSecurityTools"/>
