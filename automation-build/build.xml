@@ -42,16 +42,14 @@
 		<mkdir dir="../web-basic_sample/target/classes" />
 	</target>
 
-	<target name="publish-all" depends="clean-underDevRepository-dir, resolve, buildlist" description="compile, jar and publish all projects in the right order">
+	<target name="publish-all" depends="clear-sharedlib-underDev-dir, resolve, buildlist" description="compile, jar and publish all projects in the right order">
 		<subant target="publish-snapshot" buildpathref="build-path" />
 		<subant target="test-compile" buildpathref="unittest-path"/>
 		<subant target="war" buildpathref="web-build-path" />
 	</target>
 
-	<target name="clean-underDevRepository-dir" depends="load-ivy" description="--> cleans the local repository for the current module">
-		<ivy:info file="${ivy.file}" />
-		<delete dir="${ivy.local.default.root}/${ivy.organisation}/${ivy.module}" />
-		<delete dir="${ivy.shared.default.root}/${ivy.organisation}/${ivy.module}" />
+	<target name="clear-sharedlib-underDev-dir" depends="load-ivy" description="--> cleans the local repository for the current module">
+		<delete dir="${ivy.shared.default.root}" />
 	</target>
 
 	<target name="unittest" depends="publish-all">

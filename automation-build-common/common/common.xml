@@ -43,6 +43,7 @@
 	    ================================= -->
 	<target name="snapshot-version">
 		<property name="ivy.new.revision" value="${module.version.target}-SNAPSHOT" />
+		<echo message="version=${ivy.new.revision}" />
 	</target>
 
 	<!-- =================================
@@ -83,8 +84,8 @@
 	          target: publish-snapshot
 	     ================================= -->
 	<target name="publish-snapshot" depends="clean-target-dir, snapshot-version, jar" description="--> publish this project in the snapshot ivy repository">
-		<ivy:publish artifactspattern="${build.dir}/[artifact].[ext]" resolver="project" pubrevision="${version}" status="integration" overwrite="true" />
-		<echo message="project ${ant.project.name} published locally with version ${version}" />
+		<ivy:publish artifactspattern="${build.dir}/[artifact].[ext]" resolver="project" pubrevision="${ivy.new.revision}" status="integration" overwrite="true" />
+		<echo message="project ${ant.project.name} published locally with version ${ivy.new.revision}" />
 	</target>
 
 	<!-- =================================
