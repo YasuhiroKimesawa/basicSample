@@ -10,6 +10,10 @@
 	<property name="build.dir" value="build" />
 	<property name="src.dir" value="src" />
 
+	<!-- setup ivy default configuration with some custom info -->
+	<property name="ivy.local.default.root" location="${repository.dir}/local" />
+	<property name="ivy.shared.default.root" location="${repository.dir}/project" />
+
 	<target name="load-ivy">
 		<path id="ivy.lib.path">
 			<pathelement location="${ivy.jar.file}" />
@@ -38,18 +42,16 @@
 		<mkdir dir="../web-basic_sample/target/classes" />
 	</target>
 
-	<target name="publish-all" depends="clean, resolve, buildlist" description="compile, jar and publish all projects in the right order">
+	<target name="publish-all" depends="clean-underDevRepository-dir, resolve, buildlist" description="compile, jar and publish all projects in the right order">
 		<subant target="publish-snapshot" buildpathref="build-path" />
 		<subant target="test-compile" buildpathref="unittest-path"/>
 		<subant target="war" buildpathref="web-build-path" />
 	</target>
 
-	<target name="clean-all" depends="buildlist" description="clean all projects">
-		<subant target="clean" buildpathref="build-path" />
-	</target>
-
-	<target name="clean" depends="clean-all, load-ivy" description="delete repository, ivy cache, and all projects">
-		<delete dir="repository" />
+	<target name="clean-underDevRepository-dir" depends="load-ivy" description="--> cleans the local repository for the current module">
+		<ivy:info file="${ivy.file}" />
+		<delete dir="${ivy.local.default.root}/${ivy.organisation}/${ivy.module}" />
+		<delete dir="${ivy.shared.default.root}/${ivy.organisation}/${ivy.module}" />
 	</target>
 
 	<target name="unittest" depends="publish-all">
