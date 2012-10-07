@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project basedir="." default="report" name="resolve" xmlns:ivy="antlib:org.apache.ivy.ant">
 
-	<property file="./build.properties" />
+	<property file="./ivy.properties" />
 
-	<property name="ivy.lib.dir" value="${lib.dir}/[conf]/lib" />
+	<property name="ivy.lib.dir" value="${shared.lib.src.dir}/[conf]/lib" />
 
 	<target name="load-ivy">
 		<path id="ivy.lib.path">
@@ -13,12 +13,12 @@
 	</target>
 
 	<target name="resolve" depends="load-ivy">
-		<ivy:settings file="${wkspace.dir}/automation-build-common/ivysettings.xml" />
+		<ivy:settings file="${common.dir}/ivysettings.xml" />
 		<ivy:resolve file="${basedir}/ivy.xml" />
 		<ivy:retrieve pattern="${ivy.lib.dir}/[artifact]-[revision].[ext]" />
 	</target>
 
 	<target name="report" depends="resolve" description="--> generates a report of dependencies">
-		<ivy:report todir="${report.dir}" />
+		<ivy:report todir="${shared.lib.report.dir}" />
 	</target>
 </project>

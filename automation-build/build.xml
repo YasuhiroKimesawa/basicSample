@@ -1,18 +1,10 @@
 <project name="all" xmlns:ivy="antlib:org.apache.ivy.ant" default="publish-all">
 
 	<import file="./ivy-build.xml"/>
+	<property file="./build.properties"></property>
 
-	<property name="ivy.jar.dir" value="${basedir}/../shared-lib/src/main/lib" />
-	<property name="ivy.jar.project.dir" value="${basedir}/../shared-lib/src/project/lib" />
-	<property name="ivy.jar.test.dir" value="${basedir}/../shared-lib/src/test/lib" />
 	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
-
-	<property name="build.dir" value="build" />
-	<property name="src.dir" value="src" />
-
-	<!-- setup ivy default configuration with some custom info -->
-	<property name="ivy.local.default.root" location="${repository.dir}/local" />
-	<property name="ivy.shared.default.root" location="${repository.dir}/project" />
+	<property name="shared.underDev.dir" location="${shared.lib.dir}/src/project/lib" />
 
 	<target name="load-ivy">
 		<path id="ivy.lib.path">
@@ -49,7 +41,7 @@
 	</target>
 
 	<target name="clear-sharedlib-underDev-dir" depends="load-ivy" description="--> cleans the local repository for the current module">
-		<delete dir="${ivy.shared.default.root}" />
+		<delete dir="${shared.underDev.dir}" includes="*.jar" />
 	</target>
 
 	<target name="unittest" depends="publish-all">
