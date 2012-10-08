@@ -4,7 +4,7 @@
 	<property file="./build.properties"></property>
 
 	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
-	<property name="shared.underDev.dir" location="${shared.lib.dir}/src/project/lib" />
+	<property name="shared.underDev.dir" location="${shared.lib.dir}/src/underDev/lib" />
 
 	<target name="load-ivy">
 		<path id="ivy.lib.path">

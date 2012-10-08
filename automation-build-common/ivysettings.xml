@@ -10,8 +10,8 @@
 
       <filesystem name="main"></filesystem>
 
-      <filesystem name="project" checkmodified="true" changingPattern=".*SNAPSHOT">
-        <artifact pattern="${ivy.settings.dir}/../automation-build/repository/project/[artifact]-[revision].[ext]" />
+      <filesystem name="underDev" checkmodified="true" changingPattern=".*SNAPSHOT">
+        <artifact pattern="${ivy.settings.dir}/../automation-build/repository/underDev/[artifact]-[revision].[ext]" />
       </filesystem>
 
     </chain>
