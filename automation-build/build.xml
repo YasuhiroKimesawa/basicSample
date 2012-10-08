@@ -29,9 +29,7 @@
 		<ivy:buildlist reference="unittest-path">
 			<fileset dir="../" includes="model-*/**/build.xml" excludes="model-base/**/build.xml" />
 		</ivy:buildlist>
-		<delete dir="../web-basic_sample/target" />
-		<mkdir dir="../web-basic_sample/target/webapp" />
-		<mkdir dir="../web-basic_sample/target/classes" />
+
 	</target>
 
 	<target name="publish-all" depends="clear-sharedlib-underDev-dir, resolve, buildlist" description="compile, jar and publish all projects in the right order">

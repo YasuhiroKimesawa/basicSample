@@ -67,7 +67,10 @@
           target: war
          ================================= -->
 	<target name="war" depends="compile" if="target.webapps.dir">
+		<delete dir="${build.target.dir}" />
+		<mkdir dir="${build.target.dir}/webapp" />
 		<mkdir dir="${classes.dir}" />
+
 		<copy todir="${target.webapps.dir}">
 			<fileset dir="${projects.dir}/src/main/webapp" />
 		</copy>
