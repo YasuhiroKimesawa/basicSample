@@ -4,7 +4,6 @@
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.apache.log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/main/lib/commons-beanutils-1.7.0.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/log4j-1.2.16.jar"/>

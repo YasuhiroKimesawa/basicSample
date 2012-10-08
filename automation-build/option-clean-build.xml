@@ -19,6 +19,9 @@
 		<ivy:cleancache/>
 	</target>
 
+	<target name="clean-shared-lib-build" depends="clean-shared-lib, publish-all">
+	</target>
+
 	<target name="all-clean-build" depends="clean-shared-lib, load-ivy, publish-all">
 	</target>
 </project>

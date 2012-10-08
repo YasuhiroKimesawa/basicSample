@@ -25,7 +25,6 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.apache.poi-3.0.2.FINAL.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.h2-1.0.71.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.systemsekkei.base-1.0.0.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/main/lib/commons-beanutils-1.7.0.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/commons-beanutils-1.8.0.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/commons-cli-1.2.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/commons-collections-3.2.1.jar"/>
