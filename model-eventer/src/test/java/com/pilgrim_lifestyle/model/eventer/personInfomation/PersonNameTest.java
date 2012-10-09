@@ -72,7 +72,7 @@ public class PersonNameTest extends BaseModelTest<PersonName>
 
             name = CreatingPersonalInfomation.instansOf( eventerData ).createPersonName();
 
-            validateAndAssert( "lastName", NotEmpty.class, name );
+            validateAndAssert( "firstName", NotEmpty.class, name );
         }
     }
 
