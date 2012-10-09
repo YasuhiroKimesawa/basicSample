@@ -27,7 +27,7 @@
 	<target name="unittest">
 		<mkdir dir="${junit.report.dir}"/>
 		<jacoco:coverage destfile="${test.result.dir}/jacoco.exec">
-			<junit haltonfailure="false" fork="true" forkmode="once">
+			<junit haltonfailure="false" fork="true" forkmode="once" maxmemory="1024m">
 				<formatter type="xml" />
 				<classpath>
 					<fileset dir="${main.lib.dir}" includes="*.jar" />
