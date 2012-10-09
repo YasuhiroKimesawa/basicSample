@@ -26,7 +26,12 @@ public class DateStampFormat
     {
         DateStamp date = DateStamp.create( this );
 
-        return date.afterToday();
+        return date.isAfterToday();
     }
 
+    @Override
+    public String toString()
+    {
+        return dateStamp;
+    }
 }

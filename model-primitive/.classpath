@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/lombok-0.11.2.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/model-base"/>
+	<classpathentry kind="lib" path="/shared-lib/src/main/lib/joda-time-1.6.jar"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>

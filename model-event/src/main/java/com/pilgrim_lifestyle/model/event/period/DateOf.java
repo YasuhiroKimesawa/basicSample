@@ -32,12 +32,14 @@ public class DateOf
     @AssertTrue( message = "本日以降の日付を入力して下さい。")
     public boolean isAfterToday() throws ParseException
     {
+        if( isEmpty() || !isCollectFormat() ) return true;
         return timeStampFormat.getDateStamp().afterToday();
     }
 
     @AssertTrue( message = "日付が正しくありません。" )
     public boolean isCollectFormat() throws ParseException
     {
+        if( isEmpty() ) return true;
         return TimeStampParsing.instansOf( timeStampFormat ).canParse();
     }
 

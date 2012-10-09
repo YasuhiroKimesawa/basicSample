@@ -28,12 +28,14 @@ public class ApplicantDateRange
     @AssertTrue( message = "終了日は開始日より後の日付で入力して下さい。")
     public boolean isCollect() throws ParseException
     {
+        if( isEmpty() ) return true;
         return TimeStampRange.instanceOf( start, end ).isCollect();
     }
 
     @AssertTrue( message = "終了日は本日以降の日付を入力して下さい。")
     public boolean isAfterToday() throws ParseException
     {
+        if( isEmpty() ) return true;
         return end.getDateStamp().afterToday();
     }
 

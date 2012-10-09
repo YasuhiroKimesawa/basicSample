@@ -42,7 +42,7 @@ public class DateStampTest
     {
         DateStamp dateStamp = createDateFormat( plusFromTodayDate( 1 ) );
 
-        assertTrue( dateStamp.afterToday() );
+        assertTrue( dateStamp.isAfterToday() );
     }
 
     @Test
@@ -50,7 +50,7 @@ public class DateStampTest
     {
         DateStamp dateStamp = createDateFormat( plusFromTodayDate( 0 ) );
 
-        assertFalse( dateStamp.afterToday() );
+        assertFalse( dateStamp.isAfterToday() );
     }
 
     private String plusFromTodayDate( int plus )

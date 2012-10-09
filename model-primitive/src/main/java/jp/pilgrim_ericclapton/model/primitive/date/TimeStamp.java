@@ -46,6 +46,8 @@ public class TimeStamp
 
     public boolean before( TimeStamp timeStamp )
     {
+        if( timeStamp.getClass() == TimeStampEmpty.class) return false;
+
         return date.before( timeStamp.date );
     }
 
