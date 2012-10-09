@@ -10,9 +10,9 @@
 	</target>
 
 	<target name="clean-shared-lib" description="delete shared-lib">
-		<delete includeemptydirs="true" dir="${ivy.jar.dir}" excludes="ivy.jar, com.systemsekkei.base-1.0.0.jar" />
-		<delete includeemptydirs="true" dir="${ivy.jar.project.dir}" includes="*.jar" />
-		<delete includeemptydirs="true" dir="${ivy.jar.test.dir}" excludes="com.systemsekkei.base.test-1.0.0.jar"/>
+		<delete includeemptydirs="true" dir="${shared.main.dir}" excludes="ivy.jar, com.systemsekkei.base-1.0.0.jar" />
+		<delete includeemptydirs="true" dir="${shared.underDev.dir}" includes="*.jar" />
+		<delete includeemptydirs="true" dir="${shared.test.dir}" excludes="com.systemsekkei.base.test-1.0.0.jar"/>
 	</target>
 
 	<target name="clean-ivy-cache" depends="load-ivy" description="delete ~/ivy2/cache">
