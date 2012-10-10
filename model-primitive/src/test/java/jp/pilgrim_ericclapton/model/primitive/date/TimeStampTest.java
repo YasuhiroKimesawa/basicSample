@@ -19,7 +19,7 @@ public class TimeStampTest
         HourMinuteFormat hourMinuteFormat = new HourMinuteFormat( hour );
         TimeStampFormat timeStampFormat = new TimeStampFormat( dateStampFormat, hourMinuteFormat );
 
-        return TimeStamp.instanceOf( timeStampFormat );
+        return timeStampFormat.toTimeStamp();
     }
 
     @Test

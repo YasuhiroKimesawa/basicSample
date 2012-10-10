@@ -26,11 +26,11 @@
             #{event.id}
             , #{event.name}
             , #{accountId}
-            , #{event.eventDetail.content.dateOf.timeStamp.date}
-            , #{event.eventDetail.guideline.headCount.intHeadCount}
+            , #{event.eventDetail.period.dateOf.timeStamp.date}
+            , #{event.eventDetail.content.headCount.intHeadCount}
             , #{event.eventDetail.content.explanation.explanation}
-            , #{event.eventDetail.guideline.period.startDate.timeStamp.date}
-            , #{event.eventDetail.guideline.period.endDate.timeStamp.date}
+            , #{event.eventDetail.period.applicantDateRange.start.timeStamp.date}
+            , #{event.eventDetail.period.applicantDateRange.end.timeStamp.date}
             , current_timestamp
             , current_timestamp
          );

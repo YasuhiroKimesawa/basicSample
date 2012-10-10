@@ -2,15 +2,13 @@
 #if( $status.error )
 <div class="alert alert-error">
 <p class="error-message">#errorMessage( "event.name" )</p>
-<p class="error-message">#errorMessage( "event.eventDetail.afterDateOf" )</p>
-<p class="error-message">#errorMessage( "event.eventDetail.guideline.period.afterEndDate" )</p>
-<p class="error-message">#errorMessage( "event.eventDetail.guideline.period.startDate.collectFormat" )</p>
-<p class="error-message">#errorMessage( "event.eventDetail.guideline.period.startDate.empty" )</p>
-<p class="error-message">#errorMessage( "event.eventDetail.guideline.period.endDate.collectFormat" )</p>
-<p class="error-message">#errorMessage( "event.eventDetail.guideline.period.endDate.empty" )</p>
-<p class="error-message">#errorMessage( "event.eventDetail.content.dateOf.afterToday" )</p>
-<p class="error-message">#errorMessage( "event.eventDetail.content.dateOf.collectFormat" )</p>
-<p class="error-message">#errorMessage( "event.eventDetail.content.dateOf.empty" )</p>
 <p class="error-message">#errorMessage( "event.eventDetail.content.explanation.explanation" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.content.headCount.headCount" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.period.applicantDateRange.collect" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.period.applicantDateRange.empty" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.period.dateOf.afterToday" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.period.dateOf.collectFormat" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.period.dateOf.empty" )</p>
+<p class="error-message">#errorMessage( "event.eventDetail.period.collect" )</p>
 </div><br />
 #end

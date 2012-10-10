@@ -9,32 +9,13 @@ import org.apache.commons.lang.time.DateUtils;
 
 public class TimeStampParsing
 {
-    private static TimeStampParsing instance;
-
     private static String[] formats = { "yyyy/MM/dd kk:mm" };
 
-    private final String timeStamp;
-
-    public static TimeStampParsing instansOf( TimeStampFormat timeStampFormat )
-    {
-        if( instance == null )
-        {
-            return new TimeStampParsing( timeStampFormat );
-        }
-
-        return instance;
-    }
-
-    private TimeStampParsing( TimeStampFormat timeStamp )
-    {
-        this.timeStamp =  timeStamp.timeStampAsText();
-    }
-
-    public boolean canParse()
+    public static boolean canParse( TimeStampFormat timeStampFormat )
     {
         try
         {
-            DateUtils.parseDateStrictly( timeStamp, formats );
+            DateUtils.parseDateStrictly( timeStampFormat.toString(), formats );
         }
         catch ( ParseException parseException )
         {
@@ -44,8 +25,8 @@ public class TimeStampParsing
         return true;
     }
 
-    public Date parse() throws ParseException
+    public static Date parse( TimeStampFormat timeStampFormat ) throws ParseException
     {
-        return DateUtils.parseDateStrictly( timeStamp, formats );
+        return DateUtils.parseDateStrictly( timeStampFormat.toString(), formats );
     }
 }

@@ -35,9 +35,9 @@ public class TimeStampRange
 
     public boolean isCollect() throws ParseException
     {
-        TimeStamp start = TimeStamp.instanceOf( startTimeStampFormat );
+        TimeStamp start = startTimeStampFormat.toTimeStamp();
 
-        TimeStamp end = TimeStamp.instanceOf( endTimeStampFormat );
+        TimeStamp end = endTimeStampFormat.toTimeStamp();
 
         return start.before( end );
     }

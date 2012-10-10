@@ -1,5 +1,10 @@
 package jp.pilgrim_ericclapton.model.primitive.date.format;
 
+import java.text.ParseException;
+
+import jp.pilgrim_ericclapton.model.primitive.date.TimeStamp;
+import jp.pilgrim_ericclapton.model.primitive.date.TimeStampEmpty;
+import jp.pilgrim_ericclapton.model.primitive.date.TimeStampParsing;
 import lombok.NoArgsConstructor;
 import lombok.Data;
 
@@ -39,4 +44,13 @@ public class TimeStampFormat
         return String.format( "%s %s", dateStampAsText,  hourMinuteAsText );
     }
 
+    public TimeStamp toTimeStamp() throws ParseException
+    {
+        if( ! TimeStampParsing.canParse( this ) )
+        {
+            return new TimeStampEmpty();
+        }
+
+        return new TimeStamp( TimeStampParsing.parse( this ) );
+    }
 }

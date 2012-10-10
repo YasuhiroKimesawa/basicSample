@@ -40,7 +40,7 @@ public class DateOf
     public boolean isCollectFormat() throws ParseException
     {
         if( isEmpty() ) return true;
-        return TimeStampParsing.instansOf( timeStampFormat ).canParse();
+        return TimeStampParsing.canParse( timeStampFormat );
     }
 
     @AssertFalse( message = "開催日を入力して下さい。" )
