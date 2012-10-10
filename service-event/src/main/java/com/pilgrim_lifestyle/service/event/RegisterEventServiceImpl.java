@@ -10,16 +10,16 @@ import com.pilgrim_lifestyle.model.event.EventRepository;
 public class RegisterEventServiceImpl implements RegisterEventService
 {
     @Autowired
-    private EventRepository eventerRepository;
+    private EventRepository eventRepository;
 
     @Override
     public void register( Event event )
     {
-        Integer id = eventerRepository.nextId();
+        //Integer id = eventRepository.nextId();
 
-        Event newEvent = new Event( id, event.getName(), event.getEventDetail() );
+        //Event newEvent = new Event( id, event.getName(), event.getEventDetail() );
 
-        eventerRepository.register( newEvent );
+        eventRepository.register( event );
 
     }
 

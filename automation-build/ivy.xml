@@ -48,10 +48,16 @@
 		<!-- test -->
 		<dependency org="org.springframework" name="org.springframework.test" rev="3.1.2.RELEASE" conf="test->*,!sources,!javadoc" />
         <dependency org="info.cukes" name="cucumber-junit" rev="1.0.11" conf="test->*,!sources,!javadoc" />
-        <dependency org="info.cukes" name="cucumber-groovy" rev="1.0.11" conf="test->*,!sources,!javadoc"/>
+        <dependency org="info.cukes" name="cucumber-groovy" rev="1.0.11" conf="test->*,!sources,!javadoc">
+          <exclude org="org.codehaus.groovy" name="groovy-all"></exclude>
+        </dependency>
         <dependency org="info.cukes" name="cucumber-java" rev="1.0.11" conf="test->*,!sources,!javadoc" />
-        <dependency org="org.dbunit" name="dbunit" rev="2.4.8" conf="test->*,!sources,!javadoc"/>
-        <dependency org="com.googlecode.jmockit" name="jmockit" rev="0.999.8" conf="test->*,!sources,!javadoc" />
+        <dependency org="org.dbunit" name="dbunit" rev="2.4.8" conf="test->*,!sources,!javadoc" >
+          <exclude org="junit" name="junit"></exclude>
+        </dependency>
+        <dependency org="com.googlecode.jmockit" name="jmockit" rev="0.999.8" conf="test->*,!sources,!javadoc" >
+          <exclude org="junit" name="junit"></exclude>
+        </dependency>
 		<dependency org="org.jacoco" name="org.jacoco.agent" rev="0.5.9.201207300726" conf="test->*,!sources,!javadoc" />
 		<dependency org="org.jacoco" name="org.jacoco.ant" rev="0.5.9.201207300726" conf="test->*,!sources,!javadoc" />
 		<dependency org="org.jacoco" name="org.jacoco.core" rev="0.5.9.201207300726" conf="test->*,!sources,!javadoc" />
@@ -59,8 +65,12 @@
 		<dependency org="asm" name="asm" rev="3.3.1" conf="test->*,!sources,!javadoc" />
 		<dependency org="org.spockframework" name="spock-core" rev="0.7-groovy-2.0-SNAPSHOT" conf="test->*,!sources,!javadoc" >
 			<exclude org="cglib" name="cglib-nodep"></exclude>
+            <exclude org="org.codehaus.groovy" name="groovy-all"></exclude>
 		</dependency>
-		<dependency org="org.codehaus.geb" name="geb-core" rev="0.7.0" conf="test->*,!sources,!javadoc" />
+		<dependency org="org.codehaus.geb" name="geb-core" rev="0.7.0" conf="test->*,!sources,!javadoc" >
+            <exclude org="org.seleniumhq.selenium" name="selenium-api"></exclude>
+            <exclude org="org.seleniumhq.selenium" name="selenium-support"></exclude>
+        </dependency>
 		<dependency org="org.codehaus.geb" name="geb-spock" rev="0.7.0" conf="test->*,!sources,!javadoc" />
 		<dependency org="org.codehaus.geb" name="geb-junit4" rev="0.7.0" conf="test->*,!sources,!javadoc"/>
 		<dependency org="org.seleniumhq.selenium" name="selenium-chrome-driver" rev="2.24.1" conf="test->*,!sources,!javadoc" />
