@@ -12,7 +12,7 @@ public class RegisterEventServiceImplTest
 {
     RegisterEventServiceImpl registerEventService = new RegisterEventServiceImpl();
 
-    Event event = Event.draft();
+    Event event = Event.draft( 1 );
 
     @Test
     public void イベントを登録する(final EventRepository eventRepository)

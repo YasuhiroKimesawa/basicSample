@@ -28,9 +28,9 @@ public class Event
         this.eventDetail = eventDetail;
     }
 
-    public static Event draft()
+    public static Event draft( Integer newId )
     {
-        Integer id = 0;
+        Integer id = newId;
         String name = "";
         EventDetail eventDetail = EventDetail.draft();
 

@@ -1,6 +1,7 @@
 package com.pilgrim_lifestyle.web.event.register;
 
 import com.pilgrim_lifestyle.model.event.Event;
+import com.pilgrim_lifestyle.model.event.EventFactory;
 import com.pilgrim_lifestyle.web.tool.OnetimeToken;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class EventDraftController
     private static final String EVENT = "event";
 
     @Autowired
+    private EventFactory eventFactory;
+
+    @Autowired
     private OnetimeToken onetimeToken;
 
     @RequestMapping( value = "new", method = RequestMethod.GET )
@@ -34,7 +38,7 @@ public class EventDraftController
         request.removeAttribute( EVENT, RequestAttributes.SCOPE_SESSION );
         onetimeToken.removeToken( request );
 
-        Event event = Event.draft();
+        Event event = eventFactory.createDraft();
 
         model.addAttribute( EVENT, event );
 
