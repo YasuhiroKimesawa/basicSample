@@ -36,7 +36,7 @@ public class ApplicantDateRange
     public boolean isAfterToday() throws ParseException
     {
         if( isEmpty() ) return true;
-        return end.getDateStamp().afterToday();
+        return end.toDateStamp().isAfterToday();
     }
 
     @AssertFalse( message = "応募開始日と終了日を入力して下さい。" )

@@ -15,15 +15,12 @@ public class DateStamp
 
     private DateStamp( DateStampFormat dateStampFormat ) throws ParseException
     {
-        DateStampParsing parsing = new DateStampParsing( dateStampFormat );
-
-        date = parsing.parse();
+        date = DateStampParsing.parse( dateStampFormat );
     }
 
     public static DateStamp create( DateStampFormat dateStampFormat ) throws ParseException
     {
-        DateStampParsing parsing = new DateStampParsing( dateStampFormat );
-        if( ! parsing.canParse() )
+        if( ! DateStampParsing.canParse( dateStampFormat ) )
         {
             return new DateStampEmpty();
         }

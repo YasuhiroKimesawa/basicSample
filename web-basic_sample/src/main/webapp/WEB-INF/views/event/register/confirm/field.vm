@@ -12,7 +12,7 @@ $esc.html( ${event.name} )
 </tr>
 <tr>
 <td>開催日</td>
-<td>$esc.html( ${event.eventDetail.period.dateOf.timeStampFormat.timeStampAsText()} )</td>
+<td>$esc.html( ${event.eventDetail.period.dateOf.timeStampFormat.toString()} )</td>
 </tr>
 <tr>
 <td>募集人数</td>
@@ -20,11 +20,11 @@ $esc.html( ${event.name} )
 </tr>
 <tr>
 <td>応募開始日</td>
-<td>$esc.html( ${event.eventDetail.period.applicantDateRange.start.timeStampAsText()} )</td>
+<td>$esc.html( ${event.eventDetail.period.applicantDateRange.start.toString()} )</td>
 </tr>
 <tr>
 <td>応募終了日</td>
-<td>$esc.html( ${event.eventDetail.period.applicantDateRange.end.timeStampAsText()} )</td>
+<td>$esc.html( ${event.eventDetail.period.applicantDateRange.end.toString()} )</td>
 </tr>
 
 </tbody>

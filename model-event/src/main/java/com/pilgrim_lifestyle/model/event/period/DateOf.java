@@ -33,7 +33,7 @@ public class DateOf
     public boolean isAfterToday() throws ParseException
     {
         if( isEmpty() || !isCollectFormat() ) return true;
-        return timeStampFormat.getDateStamp().afterToday();
+        return timeStampFormat.toDateStamp().isAfterToday();
     }
 
     @AssertTrue( message = "日付が正しくありません。" )

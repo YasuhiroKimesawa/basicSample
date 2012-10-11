@@ -11,18 +11,11 @@ class DateStampParsing
 {
     private static String[] formats = { "yyyy/MM/dd" };
 
-    private final String dateStamp;
-
-    public DateStampParsing( DateStampFormat dateStampFormat )
-    {
-        this.dateStamp = String.format( "%s", dateStampFormat.getDateStamp() );
-    }
-
-    public boolean canParse()
+    public static boolean canParse( DateStampFormat dateStampFormat )
     {
         try
         {
-            DateUtils.parseDateStrictly( dateStamp, formats );
+            DateUtils.parseDateStrictly( dateStampFormat.toString(), formats );
         }
         catch ( ParseException parseException )
         {
@@ -32,9 +25,9 @@ class DateStampParsing
         return true;
     }
 
-    public Date parse() throws ParseException
+    public static Date parse( DateStampFormat dateStampFormat ) throws ParseException
     {
-        return DateUtils.parseDateStrictly( dateStamp, formats );
+        return DateUtils.parseDateStrictly( dateStampFormat.toString(), formats );
     }
 
 }

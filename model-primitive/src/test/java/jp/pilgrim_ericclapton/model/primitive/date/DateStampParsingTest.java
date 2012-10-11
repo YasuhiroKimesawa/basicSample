@@ -18,9 +18,7 @@ public class DateStampParsingTest
     {
         DateStampFormat dateStampFormat = new DateStampFormat( "2011/02/52" );
 
-        DateStampParsing dateStampParsing = new DateStampParsing( dateStampFormat );
-
-        assertFalse( dateStampParsing.canParse() );
+        assertFalse( DateStampParsing.canParse( dateStampFormat ) );
     }
 
     @Test
@@ -28,9 +26,7 @@ public class DateStampParsingTest
     {
         DateStampFormat dateStampFormat = new DateStampFormat( "2011/02/aあ" );
 
-        DateStampParsing dateStampParsing = new DateStampParsing( dateStampFormat );
-
-        assertFalse( dateStampParsing.canParse() );
+        assertFalse( DateStampParsing.canParse( dateStampFormat ) );
     }
 
     @Test
@@ -38,9 +34,7 @@ public class DateStampParsingTest
     {
         DateStampFormat dateStampFormat = new DateStampFormat( "2011/02/11" );
 
-        DateStampParsing dateStampParsing = new DateStampParsing( dateStampFormat );
-
-        assertTrue( dateStampParsing.canParse() );
+        assertTrue( DateStampParsing.canParse( dateStampFormat ) );
     }
 
     @Test
@@ -48,9 +42,7 @@ public class DateStampParsingTest
     {
         DateStampFormat dateStampFormat = new DateStampFormat( "2011/02/11" );
 
-        DateStampParsing dateStampParsing = new DateStampParsing( dateStampFormat );
-
-        assertThat( dateStampParsing.parse().getClass().getName(), is( new Date().getClass().getName() ) );
+        assertThat( DateStampParsing.parse( dateStampFormat ).getClass().getName(), is( new Date().getClass().getName() ) );
     }
 
 }
