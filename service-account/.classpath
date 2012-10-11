@@ -80,5 +80,7 @@
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/com.springsource.org.testng-5.12.1.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/junit-4.10.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/junit-dep-4.10.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/dbunit-2.4.8.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/org.springframework.test-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>
