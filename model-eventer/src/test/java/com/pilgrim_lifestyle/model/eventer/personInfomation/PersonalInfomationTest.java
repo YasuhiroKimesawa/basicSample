@@ -1,6 +1,5 @@
 package com.pilgrim_lifestyle.model.eventer.personInfomation;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.pilgrim_lifestyle.model.eventer.EventerData;
@@ -21,11 +20,8 @@ public class PersonalInfomationTest
         @Before
         public void setup()
         {
-            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-            eventerData.put( EventerData.メールアドレス, "mail@mail.com" );
-            eventerData.put( EventerData.電話番号, "090-1111-2222" );
-            eventerData.put( EventerData.姓, "" );
-            eventerData.put( EventerData.名, "達也" );
+            Map<EventerData.Data, String> eventerData = new EventerData().getData();
+            eventerData.put( EventerData.Data.姓, "" );
 
             personalInfomation = CreatingPersonalInfomation.instansOf( eventerData ).createPersonalInfomation();
         }

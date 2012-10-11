@@ -1,7 +1,6 @@
 package com.pilgrim_lifestyle.model.eventer.personInfomation;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,9 +32,9 @@ public class PersonNameTest extends BaseModelTest<PersonName>
         @Before
         public void setup()
         {
-            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-            eventerData.put( EventerData.姓, "１２３４５６７８９０１２" );
-            eventerData.put( EventerData.名, "１２３４５６７８９０１２" );
+            Map<EventerData.Data, String> eventerData = new EventerData().getData();
+            eventerData.put( EventerData.Data.姓, "１２３４５６７８９０１２" );
+            eventerData.put( EventerData.Data.名, "１２３４５６７８９０１２" );
 
             name = CreatingPersonalInfomation.instansOf( eventerData ).createPersonName();
         }
@@ -54,9 +53,8 @@ public class PersonNameTest extends BaseModelTest<PersonName>
         @Test
         public void 姓が空()
         {
-            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-            eventerData.put( EventerData.姓, "" );
-            eventerData.put( EventerData.名, "達也" );
+            Map<EventerData.Data, String> eventerData = new EventerData().getData();
+            eventerData.put( EventerData.Data.姓, "" );
 
             name = CreatingPersonalInfomation.instansOf( eventerData ).createPersonName();
 
@@ -66,9 +64,8 @@ public class PersonNameTest extends BaseModelTest<PersonName>
         @Test
         public void 名が空()
         {
-            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-            eventerData.put( EventerData.姓, "田中" );
-            eventerData.put( EventerData.名, "" );
+            Map<EventerData.Data, String> eventerData = new EventerData().getData();
+            eventerData.put( EventerData.Data.名, "" );
 
             name = CreatingPersonalInfomation.instansOf( eventerData ).createPersonName();
 

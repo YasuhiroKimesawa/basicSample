@@ -6,14 +6,14 @@ import com.pilgrim_lifestyle.model.eventer.EventerData;
 
 public class CreatingPasswords
 {
-    Map<EventerData, String> eventerData;
+    Map<EventerData.Data, String> eventerData;
 
-    public static CreatingPasswords instansOf( Map<EventerData, String> eventerData )
+    public static CreatingPasswords instansOf( Map<EventerData.Data, String> eventerData )
     {
         return new CreatingPasswords( eventerData );
     }
 
-    private CreatingPasswords( Map<EventerData, String> eventerData )
+    private CreatingPasswords( Map<EventerData.Data, String> eventerData )
     {
         this.eventerData = eventerData;
     }
@@ -25,13 +25,13 @@ public class CreatingPasswords
 
     public Password createPassword()
     {
-        String password = eventerData.get( EventerData.パスワード );
+        String password = eventerData.get( EventerData.Data.パスワード );
         return new Password( password );
     }
 
     public Password createConfirmPassword()
     {
-        String password = eventerData.get( EventerData.確認パスワード );
+        String password = eventerData.get( EventerData.Data.確認パスワード );
         return new Password( password );
     }
 }

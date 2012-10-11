@@ -19,8 +19,8 @@ public class MailAddressTest extends BaseModelTest<MailAddress>
     @Test
     public void メールアドレスが不正()
     {
-        Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-        eventerData.put( EventerData.メールアドレス, "not-mailaddress" );
+        Map<EventerData.Data, String> eventerData = new HashMap<EventerData.Data, String>();
+        eventerData.put( EventerData.Data.メールアドレス, "not-mailaddress" );
 
         MailAddress mailAddress = CreatingContact.instansOf( eventerData ).createMailAddress();
 
@@ -30,8 +30,8 @@ public class MailAddressTest extends BaseModelTest<MailAddress>
     @Test
     public void 空は不正()
     {
-        Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-        eventerData.put( EventerData.メールアドレス, "" );
+        Map<EventerData.Data, String> eventerData = new HashMap<EventerData.Data, String>();
+        eventerData.put( EventerData.Data.メールアドレス, "" );
 
         MailAddress mailAddress = CreatingContact.instansOf( eventerData ).createMailAddress();
 
@@ -41,8 +41,8 @@ public class MailAddressTest extends BaseModelTest<MailAddress>
     @Test
     public void 文字50以上は不正()
     {
-        Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-        eventerData.put( EventerData.メールアドレス, createMailAddress( 51 ) );
+        Map<EventerData.Data, String> eventerData = new HashMap<EventerData.Data, String>();
+        eventerData.put( EventerData.Data.メールアドレス, createMailAddress( 51 ) );
 
         MailAddress mailAddress = CreatingContact.instansOf( eventerData ).createMailAddress();
 
@@ -66,8 +66,8 @@ public class MailAddressTest extends BaseModelTest<MailAddress>
     @Test
     public void エラーなし()
     {
-        Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-        eventerData.put( EventerData.メールアドレス, "abcde@mail.com" );
+        Map<EventerData.Data, String> eventerData = new HashMap<EventerData.Data, String>();
+        eventerData.put( EventerData.Data.メールアドレス, "abcde@mail.com" );
 
         MailAddress mailAddress = CreatingContact.instansOf( eventerData ).createMailAddress();
 

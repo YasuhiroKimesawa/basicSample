@@ -1,7 +1,6 @@
 package com.pilgrim_lifestyle.model.eventer.security;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,8 +28,7 @@ public class PasswordTest extends BaseModelTest<Password>
         @Test
         public void パスワードが入力されていればエラーなし()
         {
-            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-            eventerData.put( EventerData.パスワード, "!!assaa*" );
+            Map<EventerData.Data, String> eventerData = new EventerData().getData();
 
             Password password = CreatingPasswords.instansOf( eventerData ).createPassword();
 
@@ -57,8 +55,8 @@ public class PasswordTest extends BaseModelTest<Password>
         @Theory
         public void エラーになる( @ParametersSuppliedBy( PasswordSupplier.class ) String pass )
         {
-            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-            eventerData.put( EventerData.パスワード, pass );
+            Map<EventerData.Data, String> eventerData = new EventerData().getData();
+            eventerData.put( EventerData.Data.パスワード, pass );
 
             Password password = CreatingPasswords.instansOf( eventerData ).createPassword();
 
@@ -85,8 +83,8 @@ public class PasswordTest extends BaseModelTest<Password>
         @Theory
         public void エラーになる( @ParametersSuppliedBy( PasswordSupplier.class ) String pass )
         {
-            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-            eventerData.put( EventerData.パスワード, pass );
+            Map<EventerData.Data, String> eventerData =new EventerData().getData();;
+            eventerData.put( EventerData.Data.パスワード, pass );
 
             Password password = CreatingPasswords.instansOf( eventerData ).createPassword();
 

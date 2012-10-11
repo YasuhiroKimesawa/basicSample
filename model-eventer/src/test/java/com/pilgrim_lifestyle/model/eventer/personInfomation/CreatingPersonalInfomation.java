@@ -8,14 +8,14 @@ import com.pilgrim_lifestyle.model.eventer.personInfomation.contact.CreatingCont
 
 public class CreatingPersonalInfomation
 {
-    Map<EventerData, String> eventerData;
+    Map<EventerData.Data, String> eventerData;
 
-    public static CreatingPersonalInfomation instansOf( Map<EventerData, String> eventerData )
+    public static CreatingPersonalInfomation instansOf( Map<EventerData.Data, String> eventerData )
     {
         return new CreatingPersonalInfomation( eventerData );
     }
 
-    private CreatingPersonalInfomation( Map<EventerData, String> eventerData )
+    private CreatingPersonalInfomation( Map<EventerData.Data, String> eventerData )
     {
         this.eventerData = eventerData;
     }
@@ -34,6 +34,6 @@ public class CreatingPersonalInfomation
 
     public PersonName createPersonName()
     {
-        return new PersonName( eventerData.get( EventerData.姓 ), eventerData.get( EventerData.名 ) );
+        return new PersonName( eventerData.get( EventerData.Data.姓 ), eventerData.get( EventerData.Data.名 ) );
     }
 }

@@ -30,8 +30,8 @@ public class TelephoneNumberTest extends BaseModelTest<TelephoneNumber>
         @Test
         public void 電話番号が空の場合はエラー()
         {
-            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-            eventerData.put( EventerData.電話番号, "" );
+            Map<EventerData.Data, String> eventerData = new HashMap<EventerData.Data, String>();
+            eventerData.put( EventerData.Data.電話番号, "" );
 
             TelephoneNumber telephoneNumber = CreatingContact.instansOf( eventerData ).createTelephoneNumber();
 
@@ -42,8 +42,8 @@ public class TelephoneNumberTest extends BaseModelTest<TelephoneNumber>
         @Test
         public void 電話番号が正常の場合はエラーなし()
         {
-            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-            eventerData.put( EventerData.電話番号, "000-1111-2222" );
+            Map<EventerData.Data, String> eventerData = new HashMap<EventerData.Data, String>();
+            eventerData.put( EventerData.Data.電話番号, "000-1111-2222" );
 
             TelephoneNumber telephoneNumber = CreatingContact.instansOf( eventerData ).createTelephoneNumber();
 
@@ -72,8 +72,8 @@ public class TelephoneNumberTest extends BaseModelTest<TelephoneNumber>
         @Theory
         public void エラーになる( @ParametersSuppliedBy( TelephoneNumberSupplier.class ) String number )
         {
-            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-            eventerData.put( EventerData.電話番号, number );
+            Map<EventerData.Data, String> eventerData = new HashMap<EventerData.Data, String>();
+            eventerData.put( EventerData.Data.電話番号, number );
 
             TelephoneNumber telephoneNumber = CreatingContact.instansOf( eventerData ).createTelephoneNumber();
 

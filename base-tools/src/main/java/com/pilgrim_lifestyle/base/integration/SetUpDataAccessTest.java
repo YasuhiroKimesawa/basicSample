@@ -1,4 +1,4 @@
-package com.pilgrim_lifestyle.service.account;
+package com.pilgrim_lifestyle.base.integration;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -35,6 +35,15 @@ public class SetUpDataAccessTest
         resetDb( resetTabels );
 
         initialDateSet( initialDataPath );
+
+        return dbunitConnection;
+    }
+
+    public DatabaseDataSourceConnection setup( String[] resetTabels ) throws SQLException, Exception
+    {
+        setProperties();
+
+        resetDb( resetTabels );
 
         return dbunitConnection;
     }

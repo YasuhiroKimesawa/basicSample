@@ -3,7 +3,6 @@ package com.pilgrim_lifestyle.model.eventer.security;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Before;
@@ -23,9 +22,7 @@ public class PasswordsTest
         @Before
         public void setup()
         {
-            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-            eventerData.put( EventerData.パスワード, "testpassword" );
-            eventerData.put( EventerData.確認パスワード, "testpassword" );
+            Map<EventerData.Data, String> eventerData = new EventerData().getData();
 
             passwords = CreatingPasswords.instansOf( eventerData ).createPasswords();
         }
@@ -44,9 +41,9 @@ public class PasswordsTest
         @Before
         public void setup()
         {
-            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-            eventerData.put( EventerData.パスワード, "testpassword" );
-            eventerData.put( EventerData.確認パスワード, "falsepassword" );
+            Map<EventerData.Data, String> eventerData = new EventerData().getData();
+            eventerData.put( EventerData.Data.パスワード, "testpassword" );
+            eventerData.put( EventerData.Data.確認パスワード, "falsepassword" );
 
             passwords = CreatingPasswords.instansOf( eventerData ).createPasswords();
         }

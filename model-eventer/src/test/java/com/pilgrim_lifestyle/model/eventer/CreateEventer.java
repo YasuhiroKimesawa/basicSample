@@ -9,21 +9,21 @@ import com.pilgrim_lifestyle.model.eventer.security.Passwords;
 
 public class CreateEventer
 {
-    Map<EventerData, String> eventerData;
+    Map<EventerData.Data, String> eventerData;
 
-    public static CreateEventer instansOf( Map<EventerData, String> eventerData )
+    public static CreateEventer instansOf( Map<EventerData.Data, String> eventerData )
     {
         return new CreateEventer( eventerData );
     }
 
-    private CreateEventer( Map<EventerData, String> eventerData )
+    private CreateEventer( Map<EventerData.Data, String> eventerData )
     {
         this.eventerData = eventerData;
     }
 
     public Eventer createEventer()
     {
-        String id = eventerData.get( EventerData.ID );
+        String id = eventerData.get( EventerData.Data.ID );
 
         return new Eventer( Integer.valueOf( id ), createEventerDetail() );
     }

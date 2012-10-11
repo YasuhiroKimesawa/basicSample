@@ -1,6 +1,5 @@
 package com.pilgrim_lifestyle.model.eventer;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.systemsekkei.base.test.model.BaseModelTest;
@@ -20,13 +19,9 @@ public class EventerDetailTest
         @Before
         public void setup()
         {
-            Map<EventerData, String> eventerData = new HashMap<EventerData, String>();
-            eventerData.put( EventerData.メールアドレス, "mail@mail.com" );
-            eventerData.put( EventerData.電話番号, "090-1111-2222" );
-            eventerData.put( EventerData.姓, "" );
-            eventerData.put( EventerData.名, "達也" );
-            eventerData.put( EventerData.パスワード, "testtes" );
-            eventerData.put( EventerData.確認パスワード, "testtes" );
+            Map<EventerData.Data, String> eventerData = new EventerData().getData();
+            eventerData.put( EventerData.Data.姓, "" );
+
 
             eventer = CreateEventer.instansOf( eventerData ).createEventerDetail();
         }

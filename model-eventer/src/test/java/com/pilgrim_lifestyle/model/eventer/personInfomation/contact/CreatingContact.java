@@ -6,14 +6,14 @@ import com.pilgrim_lifestyle.model.eventer.EventerData;
 
 public class CreatingContact
 {
-    Map<EventerData, String> eventerData;
+    Map<EventerData.Data, String> eventerData;
 
-    public static CreatingContact instansOf( Map<EventerData, String> eventerData )
+    public static CreatingContact instansOf( Map<EventerData.Data, String> eventerData )
     {
         return new CreatingContact( eventerData );
     }
 
-    private CreatingContact( Map<EventerData, String> eventerData )
+    private CreatingContact( Map<EventerData.Data, String> eventerData )
     {
         this.eventerData = eventerData;
     }
@@ -25,11 +25,11 @@ public class CreatingContact
 
     public TelephoneNumber createTelephoneNumber()
     {
-        return new TelephoneNumber( eventerData.get( EventerData.電話番号 ) );
+        return new TelephoneNumber( eventerData.get( EventerData.Data.電話番号 ) );
     }
 
     public MailAddress createMailAddress()
     {
-        return new MailAddress( eventerData.get( EventerData.メールアドレス ) );
+        return new MailAddress( eventerData.get( EventerData.Data.メールアドレス ) );
     }
 }

@@ -1,4 +1,4 @@
-package com.pilgrim_lifestyle.service.account;
+package com.pilgrim_lifestyle.base.integration;
 
 import org.dbunit.Assertion;
 import org.dbunit.database.DatabaseDataSourceConnection;
