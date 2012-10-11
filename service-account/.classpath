@@ -4,6 +4,7 @@
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/jmockit-0.999.8.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/aopalliance-1.0.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/asm-3.1.jar"/>
@@ -40,7 +41,6 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/jgrapht-jdk1.5-0.7.3.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/joda-time-1.6.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/jug-2.0.0.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/main/lib/junit-4.9.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/liquibase-core-2.0.5.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/lombok-0.11.2.jar"/>
@@ -78,7 +78,6 @@
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/asm-commons-3.3.1.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/asm-tree-3.3.1.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/com.springsource.org.testng-5.12.1.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/test/lib/jmockit-0.999.8.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/junit-4.10.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/junit-dep-4.10.jar"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>

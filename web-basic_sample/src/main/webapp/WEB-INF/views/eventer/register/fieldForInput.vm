@@ -1,4 +1,5 @@
 <form id="eventer" method="post" action="$link.relative("/eventers/new")" >
+#springFormHiddenInput ( "eventer.id" )
 <table class="table table-bordered">
 <tbody>
 <tr>

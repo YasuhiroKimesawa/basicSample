@@ -35,12 +35,10 @@ public class Eventer implements Account
         return "ROLE_EVENTER";
     }
 
-    public static Eventer draft()
+    public static Eventer draft( Integer id )
     {
         EventerDetail eventerDetail = EventerDetail.draft();
 
-        Integer id = 0;
-
-        return new Eventer( id, eventerDetail );
+         return new Eventer( id, eventerDetail );
     }
 }

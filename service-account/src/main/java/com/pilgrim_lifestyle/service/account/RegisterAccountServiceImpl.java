@@ -15,15 +15,6 @@ public class RegisterAccountServiceImpl implements RegisterAccountService
     @Override
     public void register( Account account )
     {
-        Integer id = accountRepository.nextId();
-
-        Account registerEventer = account.create( id );
-
-        add( registerEventer );
-    }
-
-    private void add( Account account )
-    {
         accountRepository.add( account );
     }
 }

@@ -1,6 +1,7 @@
 package com.pilgrim_lifestyle.web.eventer.register;
 
 import com.pilgrim_lifestyle.model.eventer.Eventer;
+import com.pilgrim_lifestyle.model.eventer.EventerFactory;
 import com.pilgrim_lifestyle.web.tool.OnetimeToken;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class EventerDraftController
 {
     @Autowired
+    private EventerFactory eventerFactory;
+
+    @Autowired
     private OnetimeToken onetimeToken;
 
     private static final String EVENTER = "eventer";
@@ -34,7 +38,7 @@ public class EventerDraftController
         request.removeAttribute( EVENTER, RequestAttributes.SCOPE_SESSION );
         onetimeToken.removeToken( request );
 
-        Eventer eventer = Eventer.draft();
+        Eventer eventer = eventerFactory.createDraft();
 
         model.addAttribute( EVENTER, eventer );
 
