@@ -44,6 +44,12 @@ public class TimeStampFormat
         return DateStamp.create( this.dateStamp );
     }
 
+    @Deprecated
+    public String getText()
+    {
+        return toString();
+    }
+
     @Override
     public String toString()
     {
@@ -53,6 +59,5 @@ public class TimeStampFormat
 
         return String.format( "%s %s", dateStampAsText,  hourMinuteAsText );
     }
-
 
 }

@@ -3,7 +3,7 @@
 <tbody>
 <tr>
 <td>イベント名</td>
-<td>
+<td>#springFormHiddenInput ( "event.id" )
 <dd>#springFormInput( "event.name", 'class="formtext" maxlength="30" size=""' )</dd>
 </td>
 </tr>

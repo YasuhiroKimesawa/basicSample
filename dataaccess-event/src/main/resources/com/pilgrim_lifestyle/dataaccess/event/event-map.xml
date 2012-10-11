@@ -26,11 +26,11 @@
             #{event.id}
             , #{event.name}
             , #{accountId}
-            , #{event.eventDetail.period.dateOf.timeStamp.date}
+            , to_timestamp( #{event.eventDetail.period.dateOf.timeStampFormat.text}, 'YYYY/MM/DD HH24:MI' )
             , #{event.eventDetail.content.headCount.intHeadCount}
             , #{event.eventDetail.content.explanation.explanation}
-            , #{event.eventDetail.period.applicantDateRange.start.timeStamp.date}
-            , #{event.eventDetail.period.applicantDateRange.end.timeStamp.date}
+            , to_timestamp( #{event.eventDetail.period.applicantDateRange.start.text}, 'YYYY/MM/DD HH24:MI' )
+            , to_timestamp( #{event.eventDetail.period.applicantDateRange.end.text}, 'YYYY/MM/DD HH24:MI' )
             , current_timestamp
             , current_timestamp
          );
