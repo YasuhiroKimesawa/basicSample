@@ -74,5 +74,10 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/validation-api-1.0.0.GA.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/velocity-1.7.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/velocity-tools-2.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/base-tools"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/dbunit-2.4.8.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/org.springframework.test-3.1.2.RELEASE.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/model-eventer"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>
