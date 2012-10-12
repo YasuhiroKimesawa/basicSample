@@ -14,5 +14,7 @@
     <dependencies>
     	<dependency org="com.pilgrim-lifestyle" name="dataaccess-base" rev="latest.integration" ></dependency>
     	<dependency org="com.pilgrim-lifestyle" name="model-account" rev="latest.integration" ></dependency>
+        <dependency org="com.pilgrim-lifestyle" name="model-eventer" rev="latest.integration" ></dependency>
+        <dependency org="com.pilgrim-lifestyle" name="base-tools" rev="latest.integration" ></dependency>
     </dependencies>
 </ivy-module>

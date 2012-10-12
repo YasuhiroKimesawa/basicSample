@@ -4,6 +4,7 @@
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/jmockit-0.999.8.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/dataaccess-base"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/model-event"/>
@@ -75,5 +76,9 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/velocity-1.7.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/velocity-tools-2.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/base-security"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/dbunit-2.4.8.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/org.springframework.test-3.1.2.RELEASE.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/base-tools"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>
