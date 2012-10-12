@@ -83,5 +83,6 @@
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/dbunit-2.4.8.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/org.springframework.test-3.1.2.RELEASE.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/base-tools"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/service-base"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>

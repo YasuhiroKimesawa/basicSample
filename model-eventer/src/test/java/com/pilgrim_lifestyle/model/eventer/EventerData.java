@@ -21,6 +21,7 @@ public class EventerData
     {
         data.put( Data.ID, "1" );
         data.put( Data.姓, "田中" );
+        data.put( Data.名, "達也" );
         data.put( Data.メールアドレス, "t.tanaka@urawareds.com" );
         data.put( Data.パスワード, "urawa" );
         data.put( Data.電話番号, "090-1111-2222" );

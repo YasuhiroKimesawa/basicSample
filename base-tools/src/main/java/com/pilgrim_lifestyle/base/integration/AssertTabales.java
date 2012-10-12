@@ -7,7 +7,7 @@ import org.dbunit.dataset.filter.DefaultColumnFilter;
 
 public class AssertTabales
 {
-    private ActualTables acuActualTables;
+    private ActualTables actualTables;
 
     private ExpectedTables expectedTables;
 
@@ -15,7 +15,7 @@ public class AssertTabales
     {
         expectedTables = new ExpectedTables( expectedCSVPath );
 
-        acuActualTables = new ActualTables( connection, expectedTables.getTables() );
+        actualTables = new ActualTables( connection, expectedTables.getTables() );
     }
 
     public void assertTables() throws Exception
@@ -36,7 +36,7 @@ public class AssertTabales
     private ITable filetring( String tableName ) throws Exception
     {
         return DefaultColumnFilter.includedColumnsTable(
-                acuActualTables.getTable( tableName ),
+                actualTables.getTable( tableName ),
                 expectedTables.getTable( tableName ).getTableMetaData().getColumns()
                 );
     }

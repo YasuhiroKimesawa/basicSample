@@ -10,7 +10,7 @@ import com.pilgrim_lifestyle.service.account.integration.RegisterAccountServiceI
 @SuiteClasses( value = {
         RegisterAccountServiceImplTest.class
 })
-public class IntegrationAllTest
+public class IntegrationTestAll
 {
 
 }

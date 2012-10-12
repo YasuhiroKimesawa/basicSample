@@ -9,17 +9,17 @@ import javax.sql.DataSource;
 
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseDataSourceConnection;
-import org.dbunit.database.QueryDataSet;
+import org.dbunit.dataset.DefaultDataSet;
+import org.dbunit.dataset.DefaultTable;
 import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.csv.CsvDataSet;
 import org.dbunit.dataset.datatype.IDataTypeFactory;
 import org.dbunit.ext.postgresql.PostgresqlDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.test.context.ContextConfiguration;
 
-@ContextConfiguration( value = "classpath:META-INF/spring/beans-all.xml" )
 @Component( "setUpDataAccessTest" )
 public class SetUpDataAccessTest
 {
@@ -67,14 +67,12 @@ public class SetUpDataAccessTest
     {
         if( resetTabel.length == 0 ) return;
 
-        QueryDataSet partialDataSet = new QueryDataSet( dbunitConnection );
-
         for( String each : resetTabel )
         {
-            partialDataSet.addTable( each );
+            ITable table = new DefaultTable( each );
+            IDataSet dataSet = new DefaultDataSet( table );
+            DatabaseOperation.DELETE_ALL.execute( dbunitConnection, dataSet );
         }
-
-        DatabaseOperation.DELETE_ALL.execute( dbunitConnection, partialDataSet );
     }
 
     private void initialDateSet( String pathName ) throws Exception, URISyntaxException

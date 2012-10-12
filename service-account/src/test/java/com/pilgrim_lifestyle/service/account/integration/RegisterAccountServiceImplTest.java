@@ -1,7 +1,5 @@
 package com.pilgrim_lifestyle.service.account.integration;
 
-
-
 import java.util.Map;
 
 import org.dbunit.database.DatabaseDataSourceConnection;
@@ -19,7 +17,13 @@ import com.pilgrim_lifestyle.model.eventer.Eventer;
 import com.pilgrim_lifestyle.model.eventer.EventerData;
 import com.pilgrim_lifestyle.service.account.RegisterAccountService;
 
-@ContextConfiguration( value = "classpath:META-INF/spring/service-base.xml" )
+@ContextConfiguration( locations = {
+        "classpath:META-INF/spring/beans-service-base.xml"
+        , "classpath:META-INF/spring/beans-model-base.xml"
+        , "classpath:META-INF/spring/beans-dataaccess-base.xml"
+        , "classpath:META-INF/spring/beans-dataaccess-datasource-basic.xml"
+        , "classpath:META-INF/spring/beans-integration-dataaccess-base.xml"
+        } )
 @RunWith( SpringJUnit4ClassRunner.class )
 public class RegisterAccountServiceImplTest
 {
@@ -34,7 +38,7 @@ public class RegisterAccountServiceImplTest
     @Before
     public void before() throws Exception
     {
-        String[] resetTables = { "account.account" };
+        String[] resetTables = { "event.event", "account.authority", "account.account"  };
 
         dbunitConnection = setUpDataAccessTest.setup( resetTables );
     }

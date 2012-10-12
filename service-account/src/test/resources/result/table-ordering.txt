@@ -1,2 +1,2 @@
-hiring_process.noaction_alert_mail_request_events
-hiring_process.noaction_alert_mail_request
+account.account
+account.authority
