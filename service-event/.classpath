@@ -80,5 +80,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/model-base"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/dataaccess-base"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/dataaccess-event"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/base-tools"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/base-security"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>

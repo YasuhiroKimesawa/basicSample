@@ -15,10 +15,6 @@ public class RegisterEventServiceImpl implements RegisterEventService
     @Override
     public void register( Event event )
     {
-        //Integer id = eventRepository.nextId();
-
-        //Event newEvent = new Event( id, event.getName(), event.getEventDetail() );
-
         eventRepository.register( event );
 
     }
