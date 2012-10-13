@@ -28,7 +28,7 @@
 
 		<ivy:buildlist reference="unittest-path">
 			<fileset dir="../" includes="model-*/**/build.xml" excludes="model-base/**/build.xml" />
-			<fileset dir="../" includes="service-*/**/build.xml" excludes="service-base/**/build.xml" />
+			<fileset dir="../" includes="service-*/**/build.xml" excludes="service-base/**/build.xml, service-eventer/**/build.xml" />
 		</ivy:buildlist>
 
 	</target>

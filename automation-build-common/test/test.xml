@@ -30,14 +30,15 @@
 			<junit haltonfailure="false" fork="true" forkmode="once" maxmemory="1024m">
 				<formatter type="xml" />
 				<classpath>
+					<path path="${test.lib.dir}/jmockit-0.999.8.jar"></path>
 					<fileset dir="${main.lib.dir}" includes="*.jar" />
-					<fileset dir="${test.lib.dir}" includes="*.jar" />
+					<fileset dir="${test.lib.dir}" includes="*.jar"/>
 					<fileset dir="${underDev.lib.dir}" includes="*.jar" excludes="${ant.project.name}-*.jar" />
 					<pathelement location="${test.classes.dir}" />
 					<pathelement location="${classes.dir}" />
 				</classpath>
 				<batchtest fork="true" todir="${junit.report.dir}">
-					<fileset dir="${projects.dir}/src/test/java" includes="**/*All*.java"/>
+					<fileset dir="${projects.dir}/src/test/java" includes="**/*AllTest.java"/>
 				</batchtest>
 			</junit>
 		</jacoco:coverage>
