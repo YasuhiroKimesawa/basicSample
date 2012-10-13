@@ -28,14 +28,14 @@
 
 		<ivy:buildlist reference="unittest-path">
 			<fileset dir="../" includes="model-*/**/build.xml" excludes="model-base/**/build.xml" />
-			<fileset dir="../" includes="service-*/**/build.xml" excludes="model-base/**/build.xml" />
+			<fileset dir="../" includes="service-*/**/build.xml" excludes="service-base/**/build.xml" />
 		</ivy:buildlist>
 
 	</target>
 
 	<target name="publish-all" depends="clear-sharedlib-underDev-dir, resolve, buildlist" description="compile, jar and publish all projects in the right order">
-		<subant target="publish-snapshot" buildpathref="build-path" />
-		<subant target="test-compile" buildpathref="unittest-path"/>
+		<subant target="publish-snapshot" buildpathref="build-path"/>
+		<!-- <subant  ="test-compile" buildpathref="unittest-path"/> -->
 		<subant target="war" buildpathref="web-build-path" />
 	</target>
 

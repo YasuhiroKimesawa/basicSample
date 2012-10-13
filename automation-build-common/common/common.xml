@@ -35,7 +35,9 @@
          ================================= -->
 	<target name="compile" depends="resolve" description="--> compile the project">
 		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${test.classes.dir}" />
 		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
+		<javac srcdir="${src.test.dir}" destdir="${classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
 	</target>
 
 	<!-- =================================
@@ -52,7 +54,7 @@
 	<target name="jar" depends="compile" unless="target.webapps.dir" description="--> make a jar file for this project">
 		<mkdir dir="${classes.dir}" />
 		<jar destfile="${jar.file}">
-			<fileset dir="${classes.dir}" excludes="**/*Test*.class"/>
+			<fileset dir="${classes.dir}"/>
 			<manifest>
 				<attribute name="Built-By" value="${user.name}" />
 				<attribute name="Build-Version" value="${module.version.target}" />
@@ -87,14 +89,15 @@
 	          target: publish-snapshot
 	     ================================= -->
 	<target name="publish-snapshot" depends="clean-target-dir, snapshot-version, jar" description="--> publish this project in the snapshot ivy repository">
+		<echo message="${ant.project.name} publish-snapshot start" />
 		<ivy:publish artifactspattern="${build.target.dir}/[artifact].[ext]" resolver="underDev" pubrevision="${ivy.new.revision}" status="integration" overwrite="true" />
-		<echo message="project ${ant.project.name} published locally with version ${ivy.new.revision}" />
 	</target>
 
 	<!-- =================================
           target: clean-build
          ================================= -->
 	<target name="clean-target-dir" description="--> clean the project target dir's files">
+		<echo message="${ant.project.name} clean-build start" />
 		<delete includeemptydirs="true" dir="${build.target.dir}" />
 	</target>
 </project>

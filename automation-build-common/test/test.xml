@@ -14,9 +14,9 @@
 	</taskdef>
 
 	<path id="lib.path.id">
-		<fileset dir="${lib.dir}" />
+		<fileset dir="${main.lib.dir}" />
 		<fileset dir="${test.lib.dir}" />
-		<fileset dir="${project.lib.dir}" />
+		<fileset dir="${underDev.lib.dir}" />
 	</path>
 
 	<target name="test-compile" description="--> compile the project">
@@ -32,7 +32,7 @@
 				<classpath>
 					<fileset dir="${main.lib.dir}" includes="*.jar" />
 					<fileset dir="${test.lib.dir}" includes="*.jar" />
-					<fileset dir="${project.lib.dir}" includes="*.jar" excludes="${ant.project.name}-*.jar" />
+					<fileset dir="${underDev.lib.dir}" includes="*.jar" excludes="${ant.project.name}-*.jar" />
 					<pathelement location="${test.classes.dir}" />
 					<pathelement location="${classes.dir}" />
 				</classpath>
