@@ -31,11 +31,15 @@
 			<fileset dir="../" includes="service-*/**/build.xml" excludes="service-base/**/build.xml, service-eventer/**/build.xml" />
 		</ivy:buildlist>
 
+		<ivy:buildlist reference="integrationtest-path">
+			<fileset dir="../" includes="dataaccess-*/**/build.xml" excludes="dataaccess-base/**/build.xml" />
+			<fileset dir="../" includes="service-*/**/build.xml" excludes="service-base/**/build.xml, service-eventer/**/build.xml" />
+		</ivy:buildlist>
+
 	</target>
 
 	<target name="publish-all" depends="clear-sharedlib-underDev-dir, resolve, buildlist" description="compile, jar and publish all projects in the right order">
 		<subant target="publish-snapshot" buildpathref="build-path"/>
-		<!-- <subant  ="test-compile" buildpathref="unittest-path"/> -->
 		<subant target="war" buildpathref="web-build-path" />
 	</target>
 
@@ -44,6 +48,10 @@
 	</target>
 
 	<target name="unittest" depends="publish-all">
-		<subant target="coverage-report" buildpathref="unittest-path" />
+		<subant target="unit" buildpathref="unittest-path" />
+	</target>
+
+	<target name="integrationtest" depends="publish-all">
+		<subant target="integration" buildpathref="integrationtest-path" />
 	</target>
 </project>

@@ -44,7 +44,29 @@
 		</jacoco:coverage>
 	</target>
 
-	<target name="coverage-report" depends="unittest">
+	<target name="integration-test">
+	    <mkdir dir="${junit.report.dir}"/>
+	    <jacoco:coverage destfile="${test.result.dir}/jacoco.exec">
+	      <junit haltonfailure="false" fork="true" forkmode="once" maxmemory="1024m">
+	        <formatter type="xml" />
+	        <classpath>
+	          <path path="${test.lib.dir}/jmockit-0.999.8.jar"></path>
+	          <fileset dir="${main.lib.dir}" includes="*.jar" />
+	          <fileset dir="${test.lib.dir}" includes="*.jar"/>
+	          <fileset dir="${underDev.lib.dir}" includes="*.jar" excludes="${ant.project.name}-*.jar" />
+	          <pathelement location="${test.classes.dir}" />
+	          <pathelement location="${classes.dir}" />
+	          <pathelement location="${projects.dir}/src/test/resources"/>
+	          <pathelement location="${projects.dir}/src/main/resources"/>
+	        </classpath>
+	        <batchtest fork="true" todir="${junit.report.dir}">
+	          <fileset dir="${projects.dir}/src/test/java" includes="**/IntegrationTestAll.java"/>
+	        </batchtest>
+	      </junit>
+	    </jacoco:coverage>
+	</target>
+
+	<target name="coverage-report">
 		<mkdir dir="${jacoco.report.dir}" />
 		<jacoco:report >
 			<executiondata>
@@ -59,8 +81,11 @@
 				</sourcefiles>
 			</structure>
 			<xml destfile="${jacoco.report.dir}/coverage.xml" />
-
 		</jacoco:report>
 	</target>
+
+	<target name="unit" depends="unittest, coverage-report"></target>
+
+	<target name="integration" depends="integration-test, coverage-report"></target>
 
 </project>

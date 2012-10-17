@@ -1,5 +1,14 @@
 package com.pilgrim_lifestyle.service.event.integration;
 
+import com.pilgrim_lifestyle.base.integration.AssertTabales;
+import com.pilgrim_lifestyle.base.integration.SetUpDataAccessTest;
+import com.pilgrim_lifestyle.model.event.CreateEvent;
+import com.pilgrim_lifestyle.model.event.Event;
+import com.pilgrim_lifestyle.model.event.EventData;
+import com.pilgrim_lifestyle.security.model.AccountUser;
+import com.pilgrim_lifestyle.security.model.AccountUserHelper;
+import com.pilgrim_lifestyle.service.event.RegisterEventService;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
@@ -17,14 +26,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.pilgrim_lifestyle.base.integration.AssertTabales;
-import com.pilgrim_lifestyle.base.integration.SetUpDataAccessTest;
-import com.pilgrim_lifestyle.model.event.CreateEvent;
-import com.pilgrim_lifestyle.model.event.Event;
-import com.pilgrim_lifestyle.model.event.EventData;
-import com.pilgrim_lifestyle.security.model.AccountUser;
-import com.pilgrim_lifestyle.security.model.AccountUserHelper;
-import com.pilgrim_lifestyle.service.event.RegisterEventService;
+
 
 @ContextConfiguration( locations = {
         "classpath:META-INF/spring/beans-service-base.xml"
