@@ -47,9 +47,9 @@ public class AccountDataAccessTest
     public void addTest() throws Exception
     {
         Map<EventerData.Data, String> eventerData = new EventerData().getData();
-        Account eventer = CreateEventer.instansOf( eventerData ).createEventer();
+        Account eventer = CreateEventer.createEventer( eventerData );
 
-        accountRepository.add( eventer );
+        accountRepository.register( eventer );
 
         AssertTabales assertTabales = new AssertTabales( dbunitConnection, "./result" );
         assertTabales.assertTables();
@@ -60,7 +60,7 @@ public class AccountDataAccessTest
     {
         Map<EventerData.Data, String> eventerData = new EventerData().getData();
         eventerData.put( EventerData.Data.メールアドレス, "t99.tanaka@urawareds.com" );
-        Account eventer = CreateEventer.instansOf( eventerData ).createEventer();
+        Account eventer = CreateEventer.createEventer( eventerData );
 
         boolean expected = accountRepository.isEmailExist( eventer );
 
