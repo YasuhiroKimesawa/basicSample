@@ -47,7 +47,7 @@ public class RegisterAccountServiceImplTest
     public void registerTest() throws Exception
     {
         Map<EventerData.Data, String> eventerData = new EventerData().getData();
-        Eventer eventer = CreateEventer.instansOf( eventerData ).createEventer();
+        Eventer eventer = CreateEventer.createEventer( eventerData );
 
         registerAccountService.register( eventer );
 
