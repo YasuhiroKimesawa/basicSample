@@ -56,7 +56,7 @@ public class RegisterAccountTest
             setField( accountService, accountRepository );
             accountRepository.nextId(); result = 1;
 
-            accountRepository.add( eventer );
+            accountRepository.register( eventer );
         }};
 
         accountService.register( eventer );
@@ -66,7 +66,7 @@ public class RegisterAccountTest
             {
                 accountRepository.nextId();
 
-                accountRepository.add( eventer );
+                accountRepository.register( eventer );
             }
 
         };

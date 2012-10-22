@@ -15,6 +15,6 @@ public class RegisterAccountServiceImpl implements RegisterAccountService
     @Override
     public void register( Account account )
     {
-        accountRepository.add( account );
+        accountRepository.register( account );
     }
 }

@@ -25,7 +25,7 @@ public class RegisterAccountServiceImplTest
 
         new Expectations()
         {{
-            accountRepository.add( eventer );
+            accountRepository.register( eventer );
         }};
 
         registerAccountService.register( eventer );

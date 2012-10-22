@@ -20,7 +20,7 @@ public class AccountDataAccess implements AccountRepository
     }
 
     @Override
-    public void add( Account account )
+    public void register( Account account )
     {
         sqlSessionTemplate.insert( this.getClass().getName() + ".insert", account );
 

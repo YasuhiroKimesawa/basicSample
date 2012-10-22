@@ -6,7 +6,7 @@ public interface AccountRepository
 {
     Integer nextId();
 
-    void add( Account accountMember );
+    void register( Account accountMember );
 
     boolean isEmailExist( Account account );
 }
