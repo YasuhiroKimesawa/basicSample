@@ -23,7 +23,7 @@ public class PersonalInfomationTest
             Map<EventerData.Data, String> eventerData = new EventerData().getData();
             eventerData.put( EventerData.Data.姓, "" );
 
-            personalInfomation = CreatingPersonalInfomation.instansOf( eventerData ).createPersonalInfomation();
+            personalInfomation = CreatingPersonalInfomation.createPersonalInfomation( eventerData );
         }
 
         @Test

@@ -30,7 +30,7 @@ public class PasswordTest extends BaseModelTest<Password>
         {
             Map<EventerData.Data, String> eventerData = new EventerData().getData();
 
-            Password password = CreatingPasswords.instansOf( eventerData ).createPassword();
+            Password password = CreatingPasswords.createPassword( eventerData );
 
             validateAndAssertCount( 0, password );
         }
@@ -58,7 +58,7 @@ public class PasswordTest extends BaseModelTest<Password>
             Map<EventerData.Data, String> eventerData = new EventerData().getData();
             eventerData.put( EventerData.Data.パスワード, pass );
 
-            Password password = CreatingPasswords.instansOf( eventerData ).createPassword();
+            Password password = CreatingPasswords.createPassword( eventerData );
 
             validateAndAssert( "password", Pattern.class, password );
         }
@@ -86,7 +86,7 @@ public class PasswordTest extends BaseModelTest<Password>
             Map<EventerData.Data, String> eventerData =new EventerData().getData();;
             eventerData.put( EventerData.Data.パスワード, pass );
 
-            Password password = CreatingPasswords.instansOf( eventerData ).createPassword();
+            Password password = CreatingPasswords.createPassword( eventerData );
 
             validateAndAssert( "password", Length.class, password );
         }

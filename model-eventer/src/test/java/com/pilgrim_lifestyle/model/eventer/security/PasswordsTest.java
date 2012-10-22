@@ -24,7 +24,7 @@ public class PasswordsTest
         {
             Map<EventerData.Data, String> eventerData = new EventerData().getData();
 
-            passwords = CreatingPasswords.instansOf( eventerData ).createPasswords();
+            passwords = CreatingPasswords.createPasswords( eventerData );
         }
 
         @Test
@@ -45,7 +45,7 @@ public class PasswordsTest
             eventerData.put( EventerData.Data.パスワード, "testpassword" );
             eventerData.put( EventerData.Data.確認パスワード, "falsepassword" );
 
-            passwords = CreatingPasswords.instansOf( eventerData ).createPasswords();
+            passwords = CreatingPasswords.createPasswords( eventerData );
         }
 
         @Test

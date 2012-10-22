@@ -22,7 +22,7 @@ public class MailAddressTest extends BaseModelTest<MailAddress>
         Map<EventerData.Data, String> eventerData = new HashMap<EventerData.Data, String>();
         eventerData.put( EventerData.Data.メールアドレス, "not-mailaddress" );
 
-        MailAddress mailAddress = CreatingContact.instansOf( eventerData ).createMailAddress();
+        MailAddress mailAddress = CreatingContact.createMailAddress( eventerData );
 
         validateAndAssert( "mailAddress", Email.class, mailAddress );
     }
@@ -33,7 +33,7 @@ public class MailAddressTest extends BaseModelTest<MailAddress>
         Map<EventerData.Data, String> eventerData = new HashMap<EventerData.Data, String>();
         eventerData.put( EventerData.Data.メールアドレス, "" );
 
-        MailAddress mailAddress = CreatingContact.instansOf( eventerData ).createMailAddress();
+        MailAddress mailAddress = CreatingContact.createMailAddress( eventerData );
 
         validateAndAssert( "mailAddress", NotEmpty.class, mailAddress );
     }
@@ -44,7 +44,7 @@ public class MailAddressTest extends BaseModelTest<MailAddress>
         Map<EventerData.Data, String> eventerData = new HashMap<EventerData.Data, String>();
         eventerData.put( EventerData.Data.メールアドレス, createMailAddress( 51 ) );
 
-        MailAddress mailAddress = CreatingContact.instansOf( eventerData ).createMailAddress();
+        MailAddress mailAddress = CreatingContact.createMailAddress( eventerData );
 
         validateAndAssertCount( 2, mailAddress );
     }
@@ -69,7 +69,7 @@ public class MailAddressTest extends BaseModelTest<MailAddress>
         Map<EventerData.Data, String> eventerData = new HashMap<EventerData.Data, String>();
         eventerData.put( EventerData.Data.メールアドレス, "abcde@mail.com" );
 
-        MailAddress mailAddress = CreatingContact.instansOf( eventerData ).createMailAddress();
+        MailAddress mailAddress = CreatingContact.createMailAddress( eventerData );
 
         validateAndAssertCount( 0, mailAddress );
     }

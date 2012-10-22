@@ -33,7 +33,7 @@ public class TelephoneNumberTest extends BaseModelTest<TelephoneNumber>
             Map<EventerData.Data, String> eventerData = new HashMap<EventerData.Data, String>();
             eventerData.put( EventerData.Data.電話番号, "" );
 
-            TelephoneNumber telephoneNumber = CreatingContact.instansOf( eventerData ).createTelephoneNumber();
+            TelephoneNumber telephoneNumber = CreatingContact.createTelephoneNumber( eventerData );
 
             validateAndAssert( "number", NotEmpty.class, telephoneNumber );
 
@@ -45,7 +45,7 @@ public class TelephoneNumberTest extends BaseModelTest<TelephoneNumber>
             Map<EventerData.Data, String> eventerData = new HashMap<EventerData.Data, String>();
             eventerData.put( EventerData.Data.電話番号, "000-1111-2222" );
 
-            TelephoneNumber telephoneNumber = CreatingContact.instansOf( eventerData ).createTelephoneNumber();
+            TelephoneNumber telephoneNumber = CreatingContact.createTelephoneNumber( eventerData );
 
             validateAndAssertCount( 0, telephoneNumber );
 
@@ -75,7 +75,7 @@ public class TelephoneNumberTest extends BaseModelTest<TelephoneNumber>
             Map<EventerData.Data, String> eventerData = new HashMap<EventerData.Data, String>();
             eventerData.put( EventerData.Data.電話番号, number );
 
-            TelephoneNumber telephoneNumber = CreatingContact.instansOf( eventerData ).createTelephoneNumber();
+            TelephoneNumber telephoneNumber = CreatingContact.createTelephoneNumber( eventerData );
 
             validateAndAssert( "number", Pattern.class, telephoneNumber );
         }

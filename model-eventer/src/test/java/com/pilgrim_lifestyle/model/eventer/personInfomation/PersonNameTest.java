@@ -36,7 +36,7 @@ public class PersonNameTest extends BaseModelTest<PersonName>
             eventerData.put( EventerData.Data.姓, "１２３４５６７８９０１２" );
             eventerData.put( EventerData.Data.名, "１２３４５６７８９０１２" );
 
-            name = CreatingPersonalInfomation.instansOf( eventerData ).createPersonName();
+            name = CreatingPersonalInfomation.createPersonName( eventerData );
         }
 
         @Test
@@ -56,7 +56,7 @@ public class PersonNameTest extends BaseModelTest<PersonName>
             Map<EventerData.Data, String> eventerData = new EventerData().getData();
             eventerData.put( EventerData.Data.姓, "" );
 
-            name = CreatingPersonalInfomation.instansOf( eventerData ).createPersonName();
+            name = CreatingPersonalInfomation.createPersonName( eventerData );
 
             validateAndAssert( "lastName", NotEmpty.class, name );
         }
@@ -67,7 +67,7 @@ public class PersonNameTest extends BaseModelTest<PersonName>
             Map<EventerData.Data, String> eventerData = new EventerData().getData();
             eventerData.put( EventerData.Data.名, "" );
 
-            name = CreatingPersonalInfomation.instansOf( eventerData ).createPersonName();
+            name = CreatingPersonalInfomation.createPersonName( eventerData );
 
             validateAndAssert( "firstName", NotEmpty.class, name );
         }

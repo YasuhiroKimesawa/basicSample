@@ -22,7 +22,7 @@ public class EventerTest extends BaseModelTest<Eventer>
             Map<EventerData.Data, String> eventerData = new EventerData().getData();
             eventerData.put( EventerData.Data.姓, "" );
 
-            eventer = CreateEventer.instansOf( eventerData ).createEventer();
+            eventer = CreateEventer.createEventer( eventerData );
         }
 
         @Test

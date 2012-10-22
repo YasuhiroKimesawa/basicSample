@@ -23,7 +23,7 @@ public class EventerDetailTest
             eventerData.put( EventerData.Data.姓, "" );
 
 
-            eventer = CreateEventer.instansOf( eventerData ).createEventerDetail();
+            eventer = CreateEventer.createEventerDetail( eventerData );
         }
 
         @Test

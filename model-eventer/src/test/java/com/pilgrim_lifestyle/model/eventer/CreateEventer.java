@@ -9,29 +9,17 @@ import com.pilgrim_lifestyle.model.eventer.security.Passwords;
 
 public class CreateEventer
 {
-    Map<EventerData.Data, String> eventerData;
-
-    public static CreateEventer instansOf( Map<EventerData.Data, String> eventerData )
-    {
-        return new CreateEventer( eventerData );
-    }
-
-    private CreateEventer( Map<EventerData.Data, String> eventerData )
-    {
-        this.eventerData = eventerData;
-    }
-
-    public Eventer createEventer()
+    public static Eventer createEventer( Map<EventerData.Data, String> eventerData )
     {
         String id = eventerData.get( EventerData.Data.ID );
 
-        return new Eventer( Integer.valueOf( id ), createEventerDetail() );
+        return new Eventer( Integer.valueOf( id ), createEventerDetail( eventerData ) );
     }
 
-    public EventerDetail createEventerDetail()
+    public static EventerDetail createEventerDetail( Map<EventerData.Data, String> eventerData )
     {
-        PersonalInfomation personalInfomation = CreatingPersonalInfomation.instansOf( eventerData ).createPersonalInfomation();
-        Passwords passwords = CreatingPasswords.instansOf( eventerData ).createPasswords();
+        PersonalInfomation personalInfomation = CreatingPersonalInfomation.createPersonalInfomation( eventerData );
+        Passwords passwords = CreatingPasswords.createPasswords( eventerData );
 
         return new EventerDetail( personalInfomation, passwords );
     }
