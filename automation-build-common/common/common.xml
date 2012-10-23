@@ -52,7 +52,6 @@
           target: jar
          ================================= -->
 	<target name="jar" depends="compile" unless="target.webapps.dir" description="--> make a jar file for this project">
-		<mkdir dir="${classes.dir}" />
 		<jar destfile="${jar.file}">
 			<fileset dir="${classes.dir}"/>
 			<fileset dir="${src.resources.dir}"/>
@@ -70,9 +69,7 @@
           target: war
          ================================= -->
 	<target name="war" depends="compile" if="target.webapps.dir">
-		<delete dir="${build.target.dir}" />
 		<mkdir dir="${build.target.dir}/webapp" />
-		<mkdir dir="${classes.dir}" />
 
 		<copy todir="${target.webapps.dir}">
 			<fileset dir="${projects.dir}/src/main/webapp" />
