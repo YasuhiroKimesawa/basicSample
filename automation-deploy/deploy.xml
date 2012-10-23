@@ -17,7 +17,7 @@
 			<fileset dir="${shared-lib.main.dir}">
 				<include name="*.jar" />
 			</fileset>
-			<fileset dir="${shared-lib.project.dir}">
+			<fileset dir="${shared-lib.underDev.dir}">
 				<include name="*.jar" />
 			</fileset>
 		</copy>
