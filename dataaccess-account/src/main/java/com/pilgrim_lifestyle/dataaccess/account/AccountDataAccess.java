@@ -16,7 +16,7 @@ public class AccountDataAccess implements AccountRepository
     @Override
     public Integer nextId()
     {
-        return sqlSessionTemplate.selectOne( this.getClass().getName() + ".selectNextId" );
+        return sqlSessionTemplate.selectOne( this.getClass().getName() + ".nextId" );
     }
 
     @Override

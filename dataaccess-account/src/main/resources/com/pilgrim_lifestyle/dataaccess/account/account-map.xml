@@ -3,7 +3,7 @@
 
 <mapper namespace="com.pilgrim_lifestyle.dataaccess.account.AccountDataAccess">
 
-  <select id="selectNextId" resultType="java.lang.Integer">
+  <select id="nextId" resultType="java.lang.Integer">
     SELECT nextval('account.account_id')
   </select>
 
