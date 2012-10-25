@@ -1,0 +1,9 @@
+[windows]
+1. vertual boxをインストール
+2. vagrantをインストール(Windows インストーラあり) http://downloads.vagrantup.com/tags/v1.0.5
+(1.0より前だとruby内にインストールするため、インストール前に削除しておく)
+3. baseのボックス一覧
+ http://www.vagrantbox.es/
+4. .vagrant.dの場所変更
+(インストールフォルダ)\vagrant\vagrant\embedded\lib\ruby\gems\1.9.1\gems\vagrant-1.0.5\lib\vagrant\environment.rb
+DEFAULT_HOME = "D:/home/yasuhiro/document/04_virtualbox/vagrant/.vagrant.d"
