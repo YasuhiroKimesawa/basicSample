@@ -39,6 +39,8 @@
 	</target>
 
 	<target name="publish-all" depends="clear-sharedlib-underDev-dir, resolve, buildlist" description="compile, jar and publish all projects in the right order">
+		<delete dir="${wkspace.dir}/web-basic_sample/target" description="各jar作成時にmapをwebにコピーするためここで対応"></delete>
+		<mkdir dir="${wkspace.dir}/web-basic_sample/target"/>
 		<subant target="publish-snapshot" buildpathref="build-path"/>
 		<subant target="war" buildpathref="web-build-path" />
 	</target>
