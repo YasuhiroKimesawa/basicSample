@@ -61,7 +61,7 @@
 			</manifest>
 		</jar>
 		<copy todir="../../web-basic_sample/target/classes">
-			<fileset dir="${projects.dir}/src/main/resources" />
+			<fileset dir="${projects.dir}/src/main/resources" excludes="*-map.xml" />
 		</copy>
 	</target>
 
