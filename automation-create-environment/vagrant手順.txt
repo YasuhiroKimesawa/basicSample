@@ -1,9 +1,27 @@
 [windows]
 1. vertual boxをインストール
+
 2. vagrantをインストール(Windows インストーラあり) http://downloads.vagrantup.com/tags/v1.0.5
 (1.0より前だとruby内にインストールするため、インストール前に削除しておく)
-3. baseのボックス一覧
- http://www.vagrantbox.es/
-4. .vagrant.dの場所変更
+
+3. .vagrant.dの場所変更
 (インストールフォルダ)\vagrant\vagrant\embedded\lib\ruby\gems\1.9.1\gems\vagrant-1.0.5\lib\vagrant\environment.rb
 DEFAULT_HOME = "D:/home/yasuhiro/document/04_virtualbox/vagrant/.vagrant.d"
+
+4. baseのボックス一覧
+ http://www.vagrantbox.es/
+
+5. vagrant box add (box名) (baseのurl)
+
+6. vagrant init (box名)
+
+7. vagrant up
+
+8. sahara(sandboxモードで起動できる)install
+vagrant gem install sahara --> インストールできず
+-> C:\Program Files (x86)\vagrant\vagrant\embedded\binに移動して[gem install sahara]でインストール可能
+
+※上記がだめなら上記実行前にC:\Program Files (x86)\vagrant\vagrant\embedded\lib\ruby\site_ruby\1.9.1\rubygems\defaults\operating_system.rb内の
+パスを全て[/]表示でかつ正しいパスに変更してみる。
+
+9.　vagrant sandbox on/off/rollback/commit が使用可能

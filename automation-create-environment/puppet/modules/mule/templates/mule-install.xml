@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>
+
+<project name="mule" default="all">
+
+	<description>${ant.project.name} build file</description>
+
+	<property name="download.url"   value="http://dist.codehaus.org/mule/distributions/mule-standalone-3.2.1.zip" />
+
+	<property name="download.dir"   value="/tmp/" />
+	<property name="install.dir"    value="/usr/local/" />
+	<property name="resource.name"  value="mule.zip" />
+	<property name="resource.shell" value="${install.dir}/mule-standalone-3.2.1/bin/mule" />
+
+	<condition property="isInstalled">
+		<available file="${resource.shell}" />
+	</condition>
+
+	<target name="cleanup">
+		<delete file="${download.dir}/${resource.name}" />
+	</target>
+
+	<target name="download" depends="cleanup" unless="isInstalled">
+		<get src="${download.url}" dest="${download.dir}/${resource.name}" />
+	</target>
+
+	<target name="install" depends="download" unless="isInstalled">
+		<exec executable="/usr/bin/unzip">
+			<arg line="${download.dir}/${resource.name}" />
+		</exec>
+
+		<move todir="${install.dir}/mule-standalone-3.2.1">
+			<fileset dir="${download.dir}/mule-standalone-3.2.1"/>
+		</move>
+	</target>
+
+	<target name="all">
+		<antcall target="install" />
+	</target>
+
+</project>
+
