@@ -1,29 +1,29 @@
-class openjdk 
+class openjdk
 {
     include openjdk::install, openjdk::config, openjdk::service
 }
 
-class openjdk::install 
+class openjdk::install
 {
-    package 
-	{ 
+    package
+	{
 	  "java-1.6.0-openjdk-devel":
         ensure => installed
     }
 }
 
-class openjdk::config 
+class openjdk::config
 {
-    exec 
-    { 
-      "update-alternatives ":
+    exec
+    {
+      "update-alternatives":
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
-         command => "update-alternatives --set java /usr/lib/jvm/jre-1.6.0-openjdk/bin/java",
-         unless => "sudo test `readlink /etc/alternatives/java` = '/usr/lib/jvm/jre-1.6.0-openjdk/bin/java'",
+         command => "update-alternatives --set java /usr/lib/jvm/jre-1.6.0-openjdk.x86_64/bin/java",
+         unless => "sudo test `readlink /etc/alternatives/java` = '/usr/lib/jvm/jre-1.6.0-openjdk.x86_64/bin/java'",
          require => Package["java-1.6.0-openjdk-devel"],
 	}
 }
 
-class openjdk::service 
+class openjdk::service
 {
 }

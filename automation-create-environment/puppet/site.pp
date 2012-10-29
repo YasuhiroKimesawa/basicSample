@@ -30,6 +30,22 @@ node default {
     include "openjdk"
 }
 
+node 'localhost' {
+    include "files"
+    include "localtime"
+    include "ant"
+    include "apache"
+    include "tomcat"
+    include "h2database"
+    include "mule"
+    include "james"
+    include "git"
+    include "postgresql"
+    include "postfix"
+    include "php"
+    include "openjdk"
+}
+
 node 'pilgrim-lifestyle.com' {
     include "files"
     include "localtime"

@@ -3,38 +3,32 @@ class php
     include php::install, php::config, php::service
 }
 
-class php::install 
+class php::install
 {
-    package 
-	{ 
+    package
+	{
 	  php:
         ensure => installed
     }
 
-	package 
-	{ 
+	package
+	{
 	  php-mbstring:
         ensure => installed
     }
 
-	package 
-	{ 
+	package
+	{
 	  php-mysql:
         ensure => installed
     }
-
-	package 
-	{ 
-	  php-mcrypt:
-        ensure => installed
-    }
 }
 
-class php::config 
+class php::config
 {
 }
 
-class php::service 
+class php::service
 {
 }
 

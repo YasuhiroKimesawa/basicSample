@@ -1,37 +1,37 @@
 import "../../php/manifests/*"
 
-class apache 
+class apache
 {
     include apache::install, apache::config, apache::service
 }
 
-class apache::install 
+class apache::install
 {
-    package 
-	{ 
+    package
+	{
 	  httpd:
         ensure => installed,
         require => Class['php']
     }
 }
 
-class apache::config 
+class apache::config
 {
-    file 
-	{ 
+    file
+	{
 	  "/etc/httpd/conf/httpd.conf":
         owner => "root",
         group => "root",
         mode  => "777",
         require => Package["httpd"],
-        content => template("apache/httpd.conf ")
+        content => template("/etc/puppet/modules/apache/templates/httpd.conf ")
     }
 }
 
-class apache::service 
+class apache::service
 {
-    service 
-	{ 
+    service
+	{
 	  httpd:
         enable => true,
         ensure => running,

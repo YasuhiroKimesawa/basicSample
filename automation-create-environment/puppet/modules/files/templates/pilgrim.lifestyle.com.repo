@@ -1,23 +1,23 @@
 [activemq]
 name=pilgrim.lifestyle.com-CentOS-activemq - additional
-baseurl=http://46.51.227.88/activemq/5/i386
+baseurl=http://176.32.89.89/activemq/5/i386
 enabled=1
 gpgcheck=0
 
 [mule]
 name=pilgrim.lifestyle.com-CentOS-mule - additional
-baseurl=http://46.51.227.88/mule/3/i386/
+baseurl=http://176.32.89.89/mule/3/i386/
 enabled=1
 gpgcheck=0
 
 [h2]
 name=pilgrim.lifestyle.com-CentOS-h2 - additional
-baseurl=http://46.51.227.88/h2/1/noarch/
+baseurl=http://176.32.89.89/h2/1/noarch/
 enabled=1
 gpgcheck=0
 
 [james]
 name=pilgrim.lifestyle.com-CentOS-james - additional
-baseurl=http://46.51.227.88/james/3/i386/
+baseurl=http://176.32.89.89/james/3/i386/
 enabled=1
 gpgcheck=0

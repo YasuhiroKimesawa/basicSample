@@ -1,91 +1,97 @@
 import "../../files/manifests/*"
 import "../../openjdk/manifests/*"
 
-class tomcat 
+class tomcat
 {
     include tomcat::install, tomcat::config, tomcat::service
 }
 
-class tomcat::install 
+class tomcat::install
 {
-    package 
-	{ 
+    package
+	{
 	  tomcat6:
         ensure => installed,
         require => [Class['files'], Class['openjdk']]
     }
-    package 
-	{ 
+    package
+	{
 	  tomcat6-webapps:
         ensure => installed,
         require => [Class['files'], Class['openjdk']]
     }
-    package 
-	{ 
+    package
+	{
 	  tomcat6-admin-webapps:
         ensure => installed,
         require => [Class['files'], Class['openjdk']]
     }
 }
 
-class tomcat::config 
+class tomcat::config
 {
-    file 
-	{ 
+    file
+	{
 	  "/var/lib/tomcat6/webapps":
         owner => "root",
         group => "tomcat",
-        mode  => "777"
+        mode  => "777",
+        require => Package["tomcat6"],
     }
-    
-	file 
-	{ 
+
+	file
+	{
 	  "/usr/share/tomcat6/conf/context.xml":
         owner => "root",
         group => "tomcat",
-        mode  => "777"
+        mode  => "777",
+        require => Package["tomcat6"],
     }
-    
-	file 
-	{ 
+
+	file
+	{
 	  "/usr/share/tomcat6/conf/catalina.properties":
         owner => "root",
         group => "tomcat",
-        mode  => "777"
+        mode  => "777",
+        require => Package["tomcat6"],
     }
-    
-	file 
-	{ 
+
+	file
+	{
 	  "/usr/share/tomcat6/shared-lib":
 		ensure => directory,
         owner => "root",
         group => "tomcat",
-        mode  => "777"
+        mode  => "777",
+        require => Package["tomcat6"],
     }
-    
-	file 
-	{ 
+
+	file
+	{
 	  "/usr/share/tomcat6/shared-lib/conf":
 		ensure => directory,
         owner => "root",
         group => "tomcat",
-        mode  => "777"
+        mode  => "777",
+        require => Package["tomcat6"],
     }
-    
-	file 
-	{ 
+
+	file
+	{
 	  "/etc/tomcat6/tomcat-users.xml":
         owner => "root",
         group => "tomcat",
         mode  => "664",
-        content => template("tomcat/tomcat-users.xml")
+        content => template("/etc/puppet/modules/tomcat/templates/tomcat-users.xml"),
+        require => Package["tomcat6"],
     }
 }
 
-class tomcat::service 
+class tomcat::service
 {
-    service 
-	{ 
+    service
+	{
 	  tomcat6:
         enable => true,
         ensure => running,

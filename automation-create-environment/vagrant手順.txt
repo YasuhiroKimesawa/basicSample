@@ -13,15 +13,34 @@ DEFAULT_HOME = "D:/home/yasuhiro/document/04_virtualbox/vagrant/.vagrant.d"
 
 5. vagrant box add (box名) (baseのurl)
 
-6. vagrant init (box名)
+6. プロジェクトフォルダに移動(ここにVagrantFileが生成される)、またはVagrantFileがあるフォルダに移動
 
-7. vagrant up
+7. vagrant init (box名)
 
-8. sahara(sandboxモードで起動できる)install
+8. vagrant up
+
+9. sahara(sandboxモードで起動できる)install
 vagrant gem install sahara --> インストールできず
 -> C:\Program Files (x86)\vagrant\vagrant\embedded\binに移動して[gem install sahara]でインストール可能
 
 ※上記がだめなら上記実行前にC:\Program Files (x86)\vagrant\vagrant\embedded\lib\ruby\site_ruby\1.9.1\rubygems\defaults\operating_system.rb内の
 パスを全て[/]表示でかつ正しいパスに変更してみる。
 
-9.　vagrant sandbox on/off/rollback/commit が使用可能
+10.　vagrant sandbox on/off/rollback/commit が使用可能
+
+-----------------------------
+puppetが入っていない場合 ここから
+------------------------------
+11. epelをyumで使えるようにする設定(puppet利用のため)
+sudo rpm --import http://ftp.riken.jp/Linux/fedora/epel/RPM-GPG-KEY-EPEL-6
+sudo rpm -ivh http://ftp.riken.jp/Linux/fedora/epel/6/x86_64/epel-release-6-7.noarch.rpm
+
+12. puppetインストール
+yum -y install puppet-server
+-----------------------------
+puppetが入っていない場合 ここまで
+------------------------------
+13. puppetフォルダをVagrantがあるフォルダに移動
+13. puppet実行
+puppet apply /etc/puppet/site.pp
+
