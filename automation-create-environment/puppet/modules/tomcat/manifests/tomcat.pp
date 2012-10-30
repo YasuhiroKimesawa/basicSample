@@ -4,6 +4,8 @@ import "../../openjdk/manifests/*"
 class tomcat
 {
     include tomcat::install, tomcat::config, tomcat::service
+
+	require files, openjdk
 }
 
 class tomcat::install
@@ -11,20 +13,17 @@ class tomcat::install
     package
 	{
 	  tomcat6:
-        ensure => installed,
-        require => [Class['files'], Class['openjdk']]
+        ensure => installed
     }
     package
 	{
 	  tomcat6-webapps:
-        ensure => installed,
-        require => [Class['files'], Class['openjdk']]
+        ensure => installed
     }
     package
 	{
 	  tomcat6-admin-webapps:
-        ensure => installed,
-        require => [Class['files'], Class['openjdk']]
+        ensure => installed
     }
 }
 

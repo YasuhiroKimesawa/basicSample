@@ -23,7 +23,7 @@ class postgresql::service
     {
       "initdb":
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
-         command => "sudo service postgresql initdb",
+         command => "service postgresql initdb",
          require => Package["postgresql-server"],
 	}
 
