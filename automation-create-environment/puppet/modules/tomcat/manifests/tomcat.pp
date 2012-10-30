@@ -4,12 +4,12 @@ import "../../openjdk/manifests/*"
 class tomcat
 {
     include tomcat::install, tomcat::config, tomcat::service
-
-	require files, openjdk
 }
 
 class tomcat::install
 {
+    require files, openjdk
+
     package
 	{
 	  tomcat6:
