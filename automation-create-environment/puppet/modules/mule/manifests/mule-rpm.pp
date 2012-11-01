@@ -50,8 +50,9 @@ class mulerpm::createSource
     {
       "compression-mule":
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
-         command => "cd /home/vagrant/rpmbuild/SOURCES;tar czvf mule-standalone-3.3.0.tar.gz mule-standalone-3.3.0;rm -rf /home/vagrant/rpmbuild/SOURCES/mule-standalone-3.3.0",
+         command => "tar czvf mule-standalone-3.3.0.tar.gz mule-standalone-3.3.0;rm -rf /home/vagrant/rpmbuild/SOURCES/mule-standalone-3.3.0",
          require => File["/home/vagrant/rpmbuild/SOURCES/mule-standalone-3.3.0/mule"],
+         cwd => "/home/vagrant/rpmbuild/SOURCES"
 	}
 
 
