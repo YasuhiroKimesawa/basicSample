@@ -77,7 +77,9 @@ class mulerpm::createRPM
          command => "rpmbuild -bb /home/vagrant/rpmbuild/SPECS/mule.spec",
          require => Exec["compression-mule"],
          creates => "/home/vagrant/rpmbuild/RPMS/mule-standalone-3.3.0",
-         user => vagrant,
+         user => "vagrant",
+         cwd => "/home/vagrant/",
+         logoutput => "on_failure",
 	}
 }
 

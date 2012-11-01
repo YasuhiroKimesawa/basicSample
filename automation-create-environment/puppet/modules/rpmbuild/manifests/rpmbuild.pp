@@ -88,6 +88,16 @@ class rpmbuild::config
     {
       "create-rpmmacros":
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
-         command => 'echo "%_topdir /home/vagrant/rpmbuild/" > ./.rpmmacros',
+         command => 'echo "_topdir /home/vagrant/rpmbuild/" > ./.rpmmacros',
+         user => "vagrant",
 	}
+
+	file
+	{
+	  "/home/vagrant/.rpmbuild":
+        owner => "vagrant",
+        group => "vagrant",
+        mode  => "777",
+        require => Exec["create-rpmmacros"],
+    }
 }
