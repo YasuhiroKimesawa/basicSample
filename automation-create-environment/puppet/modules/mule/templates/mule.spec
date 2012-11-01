@@ -24,16 +24,16 @@ mule ESB
 %build
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT%{installdir}
-cp -pr * $RPM_BUILD_ROOT%{installdir}
+sudo rm -rf $RPM_BUILD_ROOT
+sudo mkdir -p $RPM_BUILD_ROOT%{installdir}
+sudo cp -pr * $RPM_BUILD_ROOT%{installdir}
 
 %pre
 
 %post
 sudo cp -p %{installdir}/mule /etc/rc.d/init.d/mule
 
-chmod +x /etc/rc.d/init.d/mule
+sudo chmod +x /etc/rc.d/init.d/mule
 sudo chkconfig --add mule
 sudo chkconfig mule on
 
@@ -41,7 +41,7 @@ sudo chkconfig mule on
 sudo rm -rf /etc/rc.d/init.d/mule
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+sudo rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)

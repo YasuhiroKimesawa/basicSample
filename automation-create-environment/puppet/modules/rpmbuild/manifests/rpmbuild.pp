@@ -8,97 +8,86 @@ class rpmbuild::install
     package
 	{
 	   rpm-build:
-        ensure => installed
+        ensure => installed,
     }
 }
 
 class rpmbuild::config
 {
-	user
-	{
-	  'rpm':
-	      home => '/home/rpm',
-	      managehome => true,
-	      shell => '/bin/bash',
-	      password => 'd839ee45896e6fd6af263edfd34014da50964f0b',
-	      ensure => present,
-	}
-
 	file
 	{
-	  "/home/rpm/rpmbuild":
+	  "/home/vagrant/rpmbuild":
 		ensure => directory,
-        owner => "rpm",
-        group => "rpm",
+        owner => "vagrant",
+        group => "vagrant",
         mode  => "777",
-        require => [Package["rpm-build"], User["rpm"]],
+        require => Package["rpm-build"],
     }
 
 	file
 	{
-	  "/home/rpm/rpmbuild/BUILD":
+	  "/home/vagrant/rpmbuild/BUILD":
 		ensure => directory,
-        owner => "rpm",
-        group => "rpm",
+        owner => "vagrant",
+        group => "vagrant",
         mode  => "777",
-        require => File["/home/rpm/rpmbuild"],
+        require => File["/home/vagrant/rpmbuild"],
     }
 
     file
 	{
-	  "/home/rpm/rpmbuild/BUILDROOT":
+	  "/home/vagrant/rpmbuild/BUILDROOT":
 		ensure => directory,
-        owner => "rpm",
-        group => "rpm",
+        owner => "vagrant",
+        group => "vagrant",
         mode  => "777",
-        require => File["/home/rpm/rpmbuild"],
+        require => File["/home/vagrant/rpmbuild"],
     }
 
     file
 	{
-	  "/home/rpm/rpmbuild/RPMS":
+	  "/home/vagrant/rpmbuild/RPMS":
 		ensure => directory,
-        owner => "rpm",
-        group => "rpm",
+        owner => "vagrant",
+        group => "vagrant",
         mode  => "777",
-        require => File["/home/rpm/rpmbuild"],
+        require => File["/home/vagrant/rpmbuild"],
     }
 
     file
 	{
-	  "/home/rpm/rpmbuild/SOURCES":
+	  "/home/vagrant/rpmbuild/SOURCES":
 		ensure => directory,
-        owner => "rpm",
-        group => "rpm",
+        owner => "vagrant",
+        group => "vagrant",
         mode  => "777",
-        require => File["/home/rpm/rpmbuild"],
+        require => File["/home/vagrant/rpmbuild"],
     }
 
     file
 	{
-	  "/home/rpm/rpmbuild/SPECS":
+	  "/home/vagrant/rpmbuild/SPECS":
 		ensure => directory,
-        owner => "rpm",
-        group => "rpm",
+        owner => "vagrant",
+        group => "vagrant",
         mode  => "777",
-        require => File["/home/rpm/rpmbuild"],
+        require => File["/home/vagrant/rpmbuild"],
     }
 
     file
 	{
-	  "/home/rpm/rpmbuild/SRPMS":
+	  "/home/vagrant/rpmbuild/SRPMS":
 		ensure => directory,
-        owner => "rpm",
-        group => "rpm",
+        owner => "vagrant",
+        group => "vagrant",
         mode  => "777",
-        require => File["/home/rpm/rpmbuild"],
+        require => File["/home/vagrant/rpmbuild"],
     }
 
     exec
     {
       "create-rpmmacros":
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
-         command => 'echo "%_topdir /home/rpm/rpmbuild/" > ./.rpmmacros',
-         require => User["rpm"],
+         command => 'echo "%_topdir /home/vagrant/rpmbuild/" > ./.rpmmacros',
 	}
 }
