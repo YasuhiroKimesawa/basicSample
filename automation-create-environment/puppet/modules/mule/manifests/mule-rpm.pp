@@ -63,8 +63,8 @@ class mulerpm::createRPM
 	file
 	{
 	  "/home/vagrant/rpmbuild/SPECS/mule.spec":
-        owner => "root",
-        group => "root",
+        owner => "vagrant",
+        group => "vagrant",
         mode  => "777",
         require => File["/home/vagrant/rpmbuild/SPECS"],
         content => template("/etc/puppet/modules/mule/templates/mule.spec")
@@ -74,12 +74,13 @@ class mulerpm::createRPM
     {
       "rpmbuild-mule":
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
-         command => "rpmbuild -bb /home/vagrant/rpmbuild/SPECS/mule.spec",
+         command => "rpmbuild -bb SPECS/mule.spec",
          require => Exec["compression-mule"],
          creates => "/home/vagrant/rpmbuild/RPMS/mule-standalone-3.3.0",
          user => "vagrant",
-         cwd => "/home/vagrant/",
-         logoutput => "on_failure",
+         cwd => "/home/vagrant/rpmbuild",
+         logoutput => "true",
+         environment =>"HOME=/home/vagrant"
 	}
 }
 

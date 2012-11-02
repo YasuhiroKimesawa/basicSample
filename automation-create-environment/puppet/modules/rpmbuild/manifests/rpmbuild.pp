@@ -88,8 +88,10 @@ class rpmbuild::config
     {
       "create-rpmmacros":
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
-         command => 'echo "_topdir /home/vagrant/rpmbuild/" > ./.rpmmacros',
+         command => 'echo "%_topdir /home/vagrant/rpmbuild" > /home/vagrant/.rpmmacros',
          user => "vagrant",
+         cwd => "/home/vagrant/",
+         environment =>"HOME=/home/vagrant"
 	}
 
 	file
