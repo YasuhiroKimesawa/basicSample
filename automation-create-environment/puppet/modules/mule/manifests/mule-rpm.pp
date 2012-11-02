@@ -79,7 +79,7 @@ class mulerpm::createRPM
          creates => "/home/vagrant/rpmbuild/RPMS/mule-standalone-3.3.0",
          user => "vagrant",
          cwd => "/home/vagrant/rpmbuild",
-         logoutput => "true",
+         logoutput => "on_failure",
          environment =>"HOME=/home/vagrant"
 	}
 }

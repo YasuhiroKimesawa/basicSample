@@ -2,7 +2,6 @@
 %define installdir /usr/local/mule
 %define debug_package %{nil}
 %define __os_install_post %{nil}
-%define _topdir /home/vagrant/rpmbuild
 
 Summary: Mule ESB
 Name: mule
