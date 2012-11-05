@@ -1,9 +1,75 @@
 import "../../rpmbuild/manifests/*"
+import "../../files/manifests/*"
 
 class rubyrpm
 {
-    include rubyrpm::download, rubyrpm::createRPM
+    include rubyrpm::dependencies, rubyrpm::download, rubyrpm::createRPM
 }
+
+class rubyrpm::dependencies
+{
+    package
+    {
+       zlib-devel:
+         ensure => installed,
+	}
+
+	package
+    {
+       openssl-devel:
+         ensure => installed,
+	}
+
+	package
+    {
+       readline-devel:
+         ensure => installed,
+	}
+
+	package
+    {
+       ncurses-devel:
+         ensure => installed,
+	}
+
+	package
+    {
+       gdbm-devel:
+         ensure => installed,
+	}
+
+	package
+    {
+       db4-devel:
+         ensure => installed,
+	}
+
+	package
+    {
+       libffi-devel:
+         ensure => installed,
+	}
+
+	package
+    {
+       tk-devel:
+         ensure => installed,
+	}
+
+	package
+    {
+       libyaml-devel:
+         ensure => installed,
+         require => Exec["epel"],
+	}
+
+	package
+    {
+       byacc:
+         ensure => installed,
+	}
+}
+
 
 class rubyrpm::download
 {
@@ -42,11 +108,21 @@ class rubyrpm::createRPM
       "rpmbuild-ruby":
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
          command => "rpmbuild -bb SPECS/ruby.spec",
-         require => File["/home/vagrant/rpmbuild/SPECS/ruby.spec"],
+         require => [File["/home/vagrant/rpmbuild/SPECS/ruby.spec"],
+                     Package["zlib-devel"],
+                     Package["openssl-devel"],
+                     Package["readline-devel"],
+                     Package["ncurses-devel"],
+                     Package["gdbm-devel"],
+                     Package["db4-devel"],
+                     Package["libffi-devel"],
+                     Package["tk-devel"],
+                     Package["libyaml-devel"]],
          user => "vagrant",
          cwd => "/home/vagrant/rpmbuild",
          logoutput => "on_failure",
-         environment =>"HOME=/home/vagrant"
+         environment =>"HOME=/home/vagrant",
+         timeout => 0,
 	}
 }
 

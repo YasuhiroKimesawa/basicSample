@@ -13,6 +13,7 @@ Source0: http://ftp.meisei-u.ac.jp/mirror/apache/dist//james/apache-james/%{vers
 License: Apache software License
 Group: Networking/Daemons
 BuildRoot: %{_tmppath}/%{name}-root
+BuildArch: noarch
 
 %description
 james
