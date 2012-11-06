@@ -4,6 +4,8 @@ import "./modules/ruby/manifests/*"
 import "./modules/activemq/manifests/*"
 import "./modules/rpmbuild/manifests/*"
 import "./modules/files/manifests/*"
+import "./modules/createrepo/manifests/*"
+import "./modules/apache/manifests/*"
 
 
 node 'localhost' {
@@ -13,6 +15,10 @@ node 'localhost' {
     include "rubyrpm"
     include "activemqrpm"
     include "files"
+    include "createrepo"
+
+	include "apache"
+    include "activemqyum"
 }
 
 
