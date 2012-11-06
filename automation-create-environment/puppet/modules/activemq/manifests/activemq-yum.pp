@@ -1,16 +1,18 @@
 import "./*"
 import "../../createrepo/manifests/*"
 
+$acticemq_folder=[ "/var/www/html/activemq/", "/var/www/html/activemq/5", "/var/www/html/activemq/5/noarch"]
+
 class activemqyum
 {
-    include activemqyum::download, activemqyum::rpmbuildCopy, activemqyum::createYum
+    include activemqyum::yum, activemqyum::rpmbuildCopy, activemqyum::createYum
 }
 
 class activemqyum::yum
 {
 	file
 	{
-	  "/var/www/html/activemq/5/noarch":
+	  $acticemq_folder:
         ensure => directory,
         owner => "root",
         group => "root",
@@ -25,7 +27,7 @@ class activemqyum::rpmbuildCopy
       "rpmbuildCopy":
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
          command => "cp -f /home/vagrant/rpmbuild/RPMS/noarch/activemq-5.7.0-1.noarch.rpm /var/www/html/activemq/5/noarch/activemq-5.7.0-1.noarch.rpm",
-         require => File["/var/www/html/activemq/5/noarch"],
+         require => File[$acticemq_folder],
          creates => "/var/www/html/activemq/5/noarch/activemq-5.7.0-1.noarch.rpm"
 	}
 }
@@ -38,7 +40,7 @@ class activemqyum::createYum
         path => "/bin:/sbin:/usr/bin:/usr/sbin",
          command => "createrepo /var/www/html/activemq/5/noarch/",
          creates => "/var/www/html/activemq/5/noarch/repodata",
-         require => Package["createrepo"],
+         require => [Package["createrepo"],File["/var/www/html/activemq/5/noarch"]],
     }
 }
 
