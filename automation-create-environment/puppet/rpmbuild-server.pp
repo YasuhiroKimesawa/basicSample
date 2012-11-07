@@ -21,7 +21,11 @@ node 'localhost' {
 
 	include "apache"
     include "activemqyum"
+    include "muleyum"
+    include "jamesyum"
+    include "rubyyum"
     include "php"
+
 
     include "iptables"
 }

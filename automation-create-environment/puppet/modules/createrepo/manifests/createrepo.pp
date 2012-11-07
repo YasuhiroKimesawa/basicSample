@@ -1,6 +1,6 @@
 class createrepo
 {
-    include createrepo::install
+    include createrepo::install, createrepo::htppdfolder
 }
 
 class createrepo::install
