@@ -7,6 +7,7 @@ import "./modules/files/manifests/*"
 import "./modules/createrepo/manifests/*"
 import "./modules/apache/manifests/*"
 import "./modules/php/manifests/*"
+import "./modules/iptables/manifests/*"
 
 
 node 'localhost' {
@@ -21,6 +22,8 @@ node 'localhost' {
 	include "apache"
     include "activemqyum"
     include "php"
+
+    include "iptables"
 }
 
 

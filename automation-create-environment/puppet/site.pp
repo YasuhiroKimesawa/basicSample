@@ -12,6 +12,7 @@ import "./modules/mysql/manifests/*"
 import "./modules/postfix/manifests/*"
 import "./modules/php/manifests/*"
 import "./modules/openjdk/manifests/*"
+import "./modules/iptables/manifests/*"
 
 node default {
     include "files"
@@ -28,6 +29,8 @@ node default {
     include "postfix"
     include "php"
     include "openjdk"
+
+    include "iptables"
 }
 
 node 'localhost' {
@@ -44,6 +47,8 @@ node 'localhost' {
     include "postfix"
     include "php"
     include "openjdk"
+
+    include "iptables"
 }
 
 node 'pilgrim-lifestyle.com' {
@@ -61,5 +66,7 @@ node 'pilgrim-lifestyle.com' {
     include "postfix"
     include "php"
     include "openjdk"
+
+    include "iptables"
 }
 
