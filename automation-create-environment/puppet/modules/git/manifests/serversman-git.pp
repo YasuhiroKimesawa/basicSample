@@ -24,7 +24,17 @@ class serversman-git::sampleproject
         owner => "root",
         group => "root",
         mode  => "777",
-        require => Package["git"],
+        require => [Package["git"], File["/usr/local/myproject"]],
+    }
+
+    file
+	{
+	  "/usr/local/myproject/basic-sample/basicSample.git":
+		ensure => directory,
+        owner => "root",
+        group => "root",
+        mode  => "777",
+        require => [Package["git"], File["/usr/local/myproject/basic-sample"]],
     }
 
 
@@ -33,9 +43,9 @@ class serversman-git::sampleproject
       "create-sampleproject-git":
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
          command => "git init --bare --shared=true",
-         require => File["/usr/local/myproject/basic-sample"],
-         creates => "/usr/local/myproject/basic-sample/basicsample.git",
-         cwd => "/usr/local/myproject/basic-sample",
+         require => File["/usr/local/myproject/basic-sample/basicSample.git"],
+         creates => "/usr/local/myproject/basic-sample/basicSample.git/HEAD",
+         cwd => "/usr/local/myproject/basic-sample/basicSample.git",
 	}
 
 	file

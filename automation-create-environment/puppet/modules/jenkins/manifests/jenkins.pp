@@ -1,6 +1,6 @@
 import "../../tomcat/manifests/*"
 
-$jenkinsapp_folder=["/usr/local/tomcat6/jenkins", "/usr/local/tomcat6/jenkins/ROOT"]
+$jenkinsapp_folder=["/usr/share/tomcat6/jenkins", "/usr/share/tomcat6/jenkins/ROOT"]
 
 class jenkins
 {
@@ -22,10 +22,10 @@ class jenkins::download
 	exec
     {
       "download-jenkins":
-         command => "/usr/bin/wget -nc -P /usr/local/tomcat/jenkins/ROOT http://mirrors.jenkins-ci.org/war/latest/jenkins.war",
+         command => "/usr/bin/wget -nc -P /usr/share/tomcat6/jenkins/ROOT http://mirrors.jenkins-ci.org/war/latest/jenkins.war;mv /usr/share/tomcat6/jenkins/ROOT/jenkins.war /usr/share/tomcat6/jenkins/ROOT/ROOT.war",
          timeout => 0,
          logoutput => "on_failure",
-         creates => "/var/www/html/index.php",
+         creates => "/usr/share/tomcat6/jenkins/ROOT/ROOT.war",
          require => File[$jenkinsapp_folder],
 	}
 }
