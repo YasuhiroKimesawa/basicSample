@@ -1,6 +1,12 @@
 import "../../files/manifests/*"
 import "../../openjdk/manifests/*"
 
+$server_name = $virtual ?
+{
+    virtualbox => 'virtualbox',
+    openvzve => 'serversman',
+}
+
 class tomcat
 {
     include tomcat::install, tomcat::config, tomcat::service
@@ -78,11 +84,21 @@ class tomcat::config
 
 	file
 	{
-	  "/etc/tomcat6/tomcat-users.xml":
+	  "/usr/share/tomcat6/conf/tomcat-users.xml":
         owner => "root",
         group => "tomcat",
         mode  => "664",
         content => template("/etc/puppet/modules/tomcat/templates/tomcat-users.xml"),
+        require => Package["tomcat6"],
+    }
+
+    file
+	{
+	  "/usr/share/tomcat6/conf/server.xml":
+        owner => "root",
+        group => "tomcat",
+        mode  => "664",
+        content => template("/etc/puppet/modules/tomcat/templates/$server_name/server.xml"),
         require => Package["tomcat6"],
     }
 }
@@ -94,6 +110,9 @@ class tomcat::service
 	  tomcat6:
         enable => true,
         ensure => running,
-        require => [ Package["tomcat6"], Package["tomcat6-webapps"], Package["tomcat6-admin-webapps"] ]
+        require => [ Package["tomcat6"],
+                     Package["tomcat6-webapps"],
+                     Package["tomcat6-admin-webapps"]
+                   ]
     }
 }

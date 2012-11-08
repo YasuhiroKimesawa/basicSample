@@ -1,23 +1,13 @@
-class git 
+class git
 {
-    include git::install, git::config, git::service
+    include git::install
 }
 
-class git::install 
+class git::install
 {
-    package 
-	{ 
+    package
+	{
 	  git:
         ensure => installed ,
     }
 }
-
-class git::config 
-{
-}
-
-class git::service 
-{
-}
-
-

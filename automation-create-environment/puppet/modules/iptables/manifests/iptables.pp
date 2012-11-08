@@ -78,6 +78,14 @@ class iptables::openService
          command => "iptables -A INPUT -p tcp --dport 443 -m state --state NEW -j ACCEPT",
 		 require => Exec["iptables-http"],
 	}
+
+	exec
+    {
+      "iptables-tomcat":
+         path => "/bin:/sbin:/usr/bin:/usr/sbin",
+         command => "iptables -A INPUT -p tcp --dport 8080 -m state --state NEW -j ACCEPT",
+		 require => Exec["iptables-http"],
+	}
 }
 
 class iptables::saveStart
