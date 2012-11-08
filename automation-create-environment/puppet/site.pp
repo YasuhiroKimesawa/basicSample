@@ -2,7 +2,6 @@ import "./modules/localtime/manifests/*"
 import "./modules/ant/manifests/*"
 import "./modules/apache/manifests/*"
 import "./modules/tomcat/manifests/*"
-import "./modules/h2database/manifests/*"
 import "./modules/mule/manifests/*"
 import "./modules/james/manifests/*"
 import "./modules/files/manifests/*"
@@ -14,13 +13,13 @@ import "./modules/php/manifests/*"
 import "./modules/openjdk/manifests/*"
 import "./modules/iptables/manifests/*"
 
-node default {
+node default
+{
     include "files"
     include "localtime"
     include "ant"
     include "apache"
     include "tomcat"
-    include "h2database"
     include "mule"
     include "james"
     include "git"
@@ -33,13 +32,13 @@ node default {
     include "iptables"
 }
 
-node 'localhost' {
+node 'localhost'
+{
     include "files"
     include "localtime"
     include "ant"
     include "apache"
     include "tomcat"
-    include "h2database"
     include "mule"
     include "james"
     include "git"
@@ -51,13 +50,13 @@ node 'localhost' {
     include "iptables"
 }
 
-node 'pilgrim-lifestyle.com' {
+node 'pilgrim-lifestyle.com'
+{
     include "files"
     include "localtime"
     include "ant"
     include "apache"
     include "tomcat"
-    include "h2database"
     include "mule"
     include "james"
     include "git"

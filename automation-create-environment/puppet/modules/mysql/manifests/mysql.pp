@@ -1,21 +1,24 @@
+
+$mysql_password = "myT0pS3cretPa55worD"
+
 class mysql
 {
     include mysql::install, mysql::config, mysql::service
 }
 
-class mysql::install 
+class mysql::install
 {
-     package 
-	{ 
+     package
+	{
 	  mysql-server:
         ensure => installed
     }
 }
 
-class mysql::config 
+class mysql::config
 {
-	file 
-	{ 
+	file
+	{
 	  "/etc/my.cnf":
         owner => "root",
         group => "root",
@@ -24,9 +27,9 @@ class mysql::config
 	    subscribe => Package['mysql-server']
     }
 
-    $mysql_password = "myT0pS3cretPa55worD"
-    exec 
-    { 
+
+    exec
+    {
       "set-mysql-password":
       unless => "mysqladmin -uroot -p$mysql_password status",
       path => ["/bin", "/usr/bin"],
@@ -35,10 +38,10 @@ class mysql::config
     }
 }
 
-class mysql::service 
+class mysql::service
 {
-	service 
-    { 
+	service
+    {
 	  'mysqld':
         ensure => 'running',
         enable => true,
@@ -46,5 +49,24 @@ class mysql::service
         hasstatus => true,
         subscribe => Package['mysql-server'],
     }
+}
+
+define mysqldb( $user, $password )
+{
+      exec
+      {
+        "create-${name}-db":
+        	unless => "/usr/bin/mysql -uroot -p$mysql_password ${name}",
+       		command => "/usr/bin/mysql -uroot -p$mysql_password -e \"create database ${name};\"",
+        	require => [Service["mysqld"], Exec["set-mysql-password"]],
+      }
+
+      exec
+      {
+      	"grant-${name}-db":
+        	unless => "/usr/bin/mysql -u${user} -p${password} ${name}",
+        	command => "/usr/bin/mysql -uroot -p$mysql_password -e \"grant all on ${name}.* to ${user}@localhost identified by '$password';\"",
+        	require => [Service["mysqld"], Exec["create-${name}-db"], Exec["set-mysql-password"]]
+      }
 }
 
