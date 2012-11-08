@@ -32,7 +32,7 @@ class serversman-git::sampleproject
     {
       "create-sampleproject-git":
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
-         command => "sudo git init --bare --shared=true",
+         command => "git init --bare --shared=true",
          require => File["/usr/local/myproject/basic-sample"],
          creates => "/usr/local/myproject/basic-sample/basicsample.git",
          cwd => "/usr/local/myproject/basic-sample",

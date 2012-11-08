@@ -1,6 +1,6 @@
 import "../../tomcat/manifests/*"
 
-$jenkinsapp_folder=["/usr/local/tomcat/jenkins", "/usr/local/tomcat/jenkins/ROOT"]
+$jenkinsapp_folder=["/usr/local/tomcat6/jenkins", "/usr/local/tomcat6/jenkins/ROOT"]
 
 class jenkins
 {
