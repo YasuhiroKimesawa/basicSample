@@ -84,7 +84,15 @@ class iptables::openService
       "iptables-tomcat":
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
          command => "iptables -A INPUT -p tcp --dport 8080 -m state --state NEW -j ACCEPT",
-		 require => Exec["iptables-http"],
+		 require => Exec["iptables-https"],
+	}
+
+	exec
+    {
+      "iptables-gitssh":
+         path => "/bin:/sbin:/usr/bin:/usr/sbin",
+         command => "iptables -A INPUT -p tcp --dport 3843 -m state --state NEW -j ACCEPT",
+		 require => Exec["iptables-tomcat"],
 	}
 }
 
@@ -95,7 +103,7 @@ class iptables::saveStart
       "iptables-save":
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
          command => "service iptables save",
-         require => Exec["iptables-https"],
+         require => Exec["iptables-gitssh"],
 	}
 
 	exec

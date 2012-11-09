@@ -27,3 +27,9 @@ class jenkins::download
          require => File["/usr/local/jenkins"],
 	}
 }
+
+#############################
+# backupのリストア
+#1.JENKINS_HOMEにファイルを配置
+#2.権限変更 chmod 777 -R ./jenkins
+#################################
