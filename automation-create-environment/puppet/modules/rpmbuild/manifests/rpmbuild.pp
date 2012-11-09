@@ -1,3 +1,9 @@
+$server_name = $virtual ?
+{
+    virtualbox => 'virtualbox',
+    openvzve => 'serversman',
+}
+
 class rpmbuild
 {
     include rpmbuild::install, rpmbuild::config
