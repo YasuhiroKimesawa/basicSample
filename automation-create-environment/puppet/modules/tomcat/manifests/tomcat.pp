@@ -1,6 +1,13 @@
 import "../../files/manifests/*"
 import "../../openjdk/manifests/*"
 
+$server_name = $virtual ?
+{
+    virtualbox => 'serversman',
+    openvzve => 'serversman',
+    default => 'sampleproject',
+}
+
 class tomcat
 {
     include tomcat::install, tomcat::config, tomcat::service
@@ -44,7 +51,7 @@ class tomcat::config
         owner => "root",
         group => "tomcat",
         mode  => "777",
-        content  => template("/etc/puppet/modules/tomcat/templates/context.xml"),
+        content  => template("/etc/puppet/modules/tomcat/templates/$server_name/context.xml"),
         require => Package["tomcat6"],
     }
 

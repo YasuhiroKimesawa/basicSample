@@ -2,6 +2,7 @@ $server_name = $virtual ?
 {
     virtualbox => 'virtualbox',
     openvzve => 'serversman',
+    default => '',
 }
 
 class rpmbuild

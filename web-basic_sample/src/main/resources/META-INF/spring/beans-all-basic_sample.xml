@@ -7,7 +7,7 @@
   <import resource="/beans-service-base.xml"/>
 
   <import resource="/beans-dataaccess-base.xml"/>
-  <import resource="/beans-dataaccess-datasource-basic.xml"/>
+  <import resource="/beans-dataaccess-datasource.xml"/>
 
   <import resource="/beans-web-base.xml"/>
   <import resource="/beans-web-mvc-velocity-view-resolver.xml"/>

@@ -24,7 +24,7 @@ class apache::config
         group => "root",
         mode  => "777",
         require => Package["httpd"],
-        content => template("/etc/puppet/modules/apache/templates/httpd.conf ")
+        content => template("/etc/puppet/modules/apache/templates/httpd.conf")
     }
 }
 
