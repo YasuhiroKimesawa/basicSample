@@ -1,4 +1,4 @@
-<project name="acceptance-test" default="runcukes" basedir=".">
+<project name="acceptance-test" default="test" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
 	<property file="build.properties" />
 
 	<path id="lib.path.id">
@@ -6,6 +6,16 @@
 		<fileset dir="${test.lib.dir}" includes="*.jar" excludes="groovy-all-2.0.1.jar, hamcrest-core-1.1.jar, guava-10.0.1.jar, selenium-api-2.15.0.jar, asm-3.3.1.jar"/>
 		<fileset dir="${project.lib.dir}" includes="*.jar" />
 	</path>
+
+	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+		<classpath path="${test.lib.dir}/org.jacoco.ant-0.5.9.201207300726.jar" />
+		<classpath path="${test.lib.dir}/org.jacoco.core-0.5.9.201207300726.jar" />
+		<classpath path="${test.lib.dir}/asm-3.3.1.jar" />
+		<classpath path="${test.lib.dir}/asm-commons-3.3.1.jar" />
+		<classpath path="${test.lib.dir}/asm-tree-3.3.1.jar" />
+		<classpath path="${test.lib.dir}/org.jacoco.report-0.5.9.201207300726.jar" />
+		<classpath path="${test.lib.dir}/org.jacoco.agent-0.5.9.201207300726.jar" />
+	</taskdef>
 
 	<path id="groovy.path">
 		<fileset dir="${test.lib.dir}" includes="groovy-all-2.0.0.jar" />
@@ -35,6 +45,7 @@
 			<fileset dir="${resources.dir}" />
 		</copy>
 
+		<jacoco:coverage destfile="${classes.dir}/jacoco.exec">
 		<junit haltonfailure="false" fork="true" forkmode="once">
 			<formatter type="xml" />
 			<test name="dataaccess.DataBaseSetup" todir="${classes.dir}" />
@@ -44,6 +55,27 @@
 				<pathelement location="${classes.dir}" />
 			</classpath>
 		</junit>
+		</jacoco:coverage>
 	</target>
+
+	<target name="coverage-report" depends="runcukes">
+
+		<jacoco:report >
+			<executiondata>
+				<fileset file="${classes.dir}/jacoco.exec" />
+			</executiondata>
+			<structure name="Example Project">
+				<classfiles>
+					<fileset dir="${project.lib.dir}" />
+				</classfiles>
+				<sourcefiles encoding="UTF-8">
+					<fileset dir="${project.lib.dir}"/>
+				</sourcefiles>
+			</structure>
+			<xml destfile="${classes.dir}/coverage.xml" />
+		</jacoco:report>
+	</target>
+
+	<target name="test" depends="coverage-report"></target>
 
 </project>
