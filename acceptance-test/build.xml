@@ -23,7 +23,7 @@
 	<taskdef name="groovyc" classname="org.codehaus.groovy.ant.Groovyc" classpathref="groovy.path" />
 
 	<target name="compile" description="--> compile the project">
-		<delete dir="${classes.dir}" />
+
 		<mkdir dir="${classes.dir}" />
 		<javac srcdir="${dbsetup.src.dir}" destdir="${classes.dir}" classpathref="lib.path.id" debug="true" includeAntRuntime="false" />
 		<groovyc encoding="UTF-8" srcdir="${cucumber.src.dir}" destdir="${classes.dir}" classpathref="lib.path.id">
