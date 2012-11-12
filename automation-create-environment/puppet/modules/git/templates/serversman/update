@@ -29,15 +29,10 @@ $refname = ARGV[0]
 $oldrev  = ARGV[1]
 $newrev  = ARGV[2]
 
-#$command = "git log --pretty=format:'%an, %cn' " <<  $oldrev << ".." << $newrev << "  >> /usr/local/myproject/pomodoro/refname"
-#$log = system($command )
 if $refname != "refs/heads/master"
-# system( $log << " >> /usr/local/myproject/pomodoro/refname")
- #fl = open("/usr/local/myproject/pomodoro/refname", 'a')
- #fl.print $refname
- #fl.close
  system("touch ./null")
  system("chmod 600 ./null")
- system("wget -O ./null http://jenkins.pilgrim-lifestyle.com:8080/job/pomodoro-personal/build?token=POMODORO_SAMPLE")
+ system("wget -O ./null http://pilgrim-lifestyle.com:8080/jenkins/job/basicSample-personal/build?token=BASIC_SAMPLE")
  system("rm -rf ./null")
 end
+

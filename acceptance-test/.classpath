@@ -71,10 +71,6 @@
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/jna-3.4.0.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/json-20080701.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/platform-3.4.0.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/test/lib/selenium-api-2.24.1.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/test/lib/selenium-chrome-driver-2.24.1.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/test/lib/selenium-firefox-driver-2.24.1.jar"/>
-	<classpathentry kind="lib" path="/shared-lib/src/test/lib/selenium-remote-driver-2.24.1.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/cucumber-java-1.0.11.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/geb-junit4-0.7.0.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/groovy-all-2.0.0.jar"/>
@@ -82,5 +78,9 @@
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/slf4j-log4j12-1.6.2.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/commons-dbcp-20030825.184428.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/main/lib/com.springsource.org.apache.commons.pool-1.5.3.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/selenium-api-2.25.0.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/selenium-chrome-driver-2.25.0.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/selenium-firefox-driver-2.25.0.jar"/>
+	<classpathentry kind="lib" path="/shared-lib/src/test/lib/selenium-remote-driver-2.25.0.jar"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>

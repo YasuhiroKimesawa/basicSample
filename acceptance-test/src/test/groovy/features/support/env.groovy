@@ -8,7 +8,7 @@ this.metaClass.mixin (cucumber.runtime.groovy.Hooks)
 def bindingUpdater
 
 Before () {
-    bindingUpdater = new BindingUpdater(binding, new Browser ())
+    bindingUpdater = new BindingUpdater(binding, new Browser())
     bindingUpdater.initialize ()
 }
 
