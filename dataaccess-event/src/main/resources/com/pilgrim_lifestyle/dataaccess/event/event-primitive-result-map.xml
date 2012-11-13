@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pilgrim_lifestyle.dataaccess.event.EventDataAccess">
+
+  <!--
+    primitive dateOf
+   -->
+   <resultMap type="jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat" id="timeStampFormat-dateOf">
+    <constructor>
+      <arg resultMap="dateStamp-dateOf" javaType="jp.pilgrim_ericclapton.model.primitive.date.format.DateStampFormat" />
+      <arg resultMap="hourMinute-dateOf" javaType="jp.pilgrim_ericclapton.model.primitive.date.format.HourMinuteFormat"/>
+    </constructor>
+  </resultMap>
+
+  <resultMap type="jp.pilgrim_ericclapton.model.primitive.date.format.DateStampFormat" id="dateStamp-dateOf">
+    <constructor>
+      <arg column="date_day" javaType="java.lang.String"/>
+    </constructor>
+  </resultMap>
+
+  <resultMap type="jp.pilgrim_ericclapton.model.primitive.date.format.HourMinuteFormat" id="hourMinute-dateOf">
+    <constructor>
+      <arg column="date_time" javaType="java.lang.String"/>
+    </constructor>
+  </resultMap>
+
+  <!--
+    primitive start
+   -->
+   <resultMap type="jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat" id="timeStampFormat-start">
+    <constructor>
+      <arg resultMap="dateStamp-start" javaType="jp.pilgrim_ericclapton.model.primitive.date.format.DateStampFormat" />
+      <arg resultMap="hourMinute-start" javaType="jp.pilgrim_ericclapton.model.primitive.date.format.HourMinuteFormat"/>
+    </constructor>
+  </resultMap>
+
+  <resultMap type="jp.pilgrim_ericclapton.model.primitive.date.format.DateStampFormat" id="dateStamp-start">
+    <constructor>
+      <arg column="application_start_date_day" javaType="java.lang.String"/>
+    </constructor>
+  </resultMap>
+
+  <resultMap type="jp.pilgrim_ericclapton.model.primitive.date.format.HourMinuteFormat" id="hourMinute-start">
+    <constructor>
+      <arg column="application_start_date_time" javaType="java.lang.String"/>
+    </constructor>
+  </resultMap>
+
+  <!--
+    primitive end
+   -->
+   <resultMap type="jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat" id="timeStampFormat-end">
+    <constructor>
+      <arg resultMap="dateStamp-end" javaType="jp.pilgrim_ericclapton.model.primitive.date.format.DateStampFormat" />
+      <arg resultMap="hourMinute-end" javaType="jp.pilgrim_ericclapton.model.primitive.date.format.HourMinuteFormat"/>
+    </constructor>
+  </resultMap>
+
+  <resultMap type="jp.pilgrim_ericclapton.model.primitive.date.format.DateStampFormat" id="dateStamp-end">
+    <constructor>
+      <arg column="application_end_date_day" javaType="java.lang.String"/>
+    </constructor>
+  </resultMap>
+
+  <resultMap type="jp.pilgrim_ericclapton.model.primitive.date.format.HourMinuteFormat" id="hourMinute-end">
+    <constructor>
+      <arg column="application_end_date_time" javaType="java.lang.String"/>
+    </constructor>
+  </resultMap>
+</mapper>
+

@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pilgrim_lifestyle.dataaccess.event.EventDataAccess">
-
   <select id="nextId" resultType="java.lang.Integer">
     SELECT nextval('event.event_id')
   </select>
@@ -36,5 +35,28 @@
          );
 
   </insert>
+
+  <select id="list" resultMap="summary">
+  <![CDATA[
+    SELECT
+            id
+            , name
+            , to_char( "date" , 'YYYY/MM/DD') as date_day
+            , to_char( "date" , 'HH24:MI') as date_time
+            , head_count
+            , explanation
+            , to_char( application_start_date , 'YYYY/MM/DD') as application_start_date_day
+            , to_char( application_start_date , 'HH24:MI') as application_start_date_time
+            , to_char( application_end_date , 'YYYY/MM/DD') as application_end_date_day
+            , to_char( application_end_date , 'HH24:MI') as application_end_date_time
+    FROM
+            event.event
+    WHERE
+          application_start_date <= current_date
+          AND
+          "date"                 >= current_date
+    ORDER BY "date"
+  ]]>
+  </select>
 
 </mapper>

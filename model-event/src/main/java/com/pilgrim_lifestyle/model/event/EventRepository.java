@@ -1,8 +1,12 @@
 package com.pilgrim_lifestyle.model.event;
 
+import com.pilgrim_lifestyle.model.event.summary.EventSummaries;
+
 public interface EventRepository
 {
-    public Integer nextId();
+    Integer nextId();
 
-    public void register( Event event );
+    void register( Event event );
+
+    EventSummaries list();
 }

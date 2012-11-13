@@ -1,5 +1,6 @@
 package com.pilgrim_lifestyle.web.dashboard;
 
+import com.pilgrim_lifestyle.model.event.EventRepository;
 import com.pilgrim_lifestyle.security.model.LoginForm;
 import com.pilgrim_lifestyle.web.tool.OnetimeToken;
 
@@ -25,6 +26,9 @@ public class DashBoardController
 
     private String loginFormAttributeName = "loginForm";
 
+    @Autowired
+    private EventRepository eventRepository;
+
     @RequestMapping( value = "" )
     public String dashboard( WebRequest request, Model model )
     {
@@ -36,6 +40,8 @@ public class DashBoardController
         LoginForm preparedAccount = prepareShowLoginForm( loginForm, request );
 
         request.setAttribute( loginFormAttributeName, preparedAccount, WebRequest.SCOPE_REQUEST );
+
+        eventRepository.list();
 
         return "dashboard/dashboard";
     }

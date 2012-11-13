@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pilgrim_lifestyle.dataaccess.event.EventDataAccess">
+
+  <resultMap type="com.pilgrim_lifestyle.model.event.summary.EventSummary" id="summary">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer"/>
+      <arg column="name" javaType="java.lang.String"/>
+      <arg resultMap="detail" javaType="com.pilgrim_lifestyle.model.event.summary.EventSummaryDetail" />
+    </constructor>
+  </resultMap>
+
+  <resultMap type="com.pilgrim_lifestyle.model.event.summary.EventSummaryDetail" id="detail">
+    <constructor>
+      <arg resultMap="period" javaType="com.pilgrim_lifestyle.model.event.period.Period"/>
+      <arg resultMap="content" javaType="com.pilgrim_lifestyle.model.event.content.Content"/>
+    </constructor>
+  </resultMap>
+
+  <resultMap type="com.pilgrim_lifestyle.model.event.period.Period" id="period">
+    <constructor>
+      <arg resultMap="dateOf" javaType="com.pilgrim_lifestyle.model.event.period.DateOf"/>
+      <arg resultMap="applicantDateRange" javaType="com.pilgrim_lifestyle.model.event.period.ApplicantDateRange"/>
+    </constructor>
+  </resultMap>
+
+  <resultMap type="com.pilgrim_lifestyle.model.event.period.DateOf" id="dateOf">
+    <constructor>
+      <arg resultMap="timeStampFormat-dateOf" javaType="jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat"/>
+    </constructor>
+  </resultMap>
+
+  <resultMap type="com.pilgrim_lifestyle.model.event.period.ApplicantDateRange" id="applicantDateRange">
+    <constructor>
+      <arg resultMap="timeStampFormat-start" javaType="jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat"/>
+      <arg resultMap="timeStampFormat-end" javaType="jp.pilgrim_ericclapton.model.primitive.date.format.TimeStampFormat"/>
+    </constructor>
+  </resultMap>
+
+  <resultMap type="com.pilgrim_lifestyle.model.event.content.Content" id="content">
+    <constructor>
+      <arg resultMap="headCount" javaType="com.pilgrim_lifestyle.model.event.content.HeadCount"/>
+      <arg resultMap="explanation" javaType="com.pilgrim_lifestyle.model.event.content.Explanation"/>
+    </constructor>
+  </resultMap>
+
+  <resultMap type="com.pilgrim_lifestyle.model.event.content.HeadCount" id="headCount">
+    <constructor>
+      <arg column="head_count" javaType="java.lang.String"/>
+    </constructor>
+  </resultMap>
+
+  <resultMap type="com.pilgrim_lifestyle.model.event.content.Explanation" id="explanation">
+    <constructor>
+      <arg column="explanation" javaType="java.lang.String"/>
+    </constructor>
+  </resultMap>
+</mapper>
+

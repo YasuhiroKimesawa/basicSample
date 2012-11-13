@@ -80,5 +80,6 @@
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/junit-4.10.jar"/>
 	<classpathentry kind="lib" path="/shared-lib/src/test/lib/org.springframework.test-3.1.2.RELEASE.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/base-tools"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/model-primitive"/>
 	<classpathentry kind="output" path="target/eclipse-output"/>
 </classpath>
