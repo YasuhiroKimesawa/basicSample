@@ -46,4 +46,10 @@ public class EventDataAccess implements EventRepository
         return new EventSummaries( list );
     }
 
+    @Override
+    public EventSummary selectById( Integer id )
+    {
+        return sqlSessionTemplate.selectOne( getClass().getName() + ".selectById", id );
+    }
+
 }

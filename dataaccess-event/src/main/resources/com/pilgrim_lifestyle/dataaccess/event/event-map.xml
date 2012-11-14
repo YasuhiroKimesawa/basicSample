@@ -51,12 +51,46 @@
             , to_char( application_end_date , 'HH24:MI') as application_end_date_time
     FROM
             event.event
+    ]]>
+    <include refid="whereBasic"/>
+    <include refid="orderByDate"/>
+  </select>
+
+  <select id="selectById" resultMap="summary">
+  <![CDATA[
+    SELECT
+            id
+            , name
+            , to_char( "date" , 'YYYY/MM/DD') as date_day
+            , to_char( "date" , 'HH24:MI') as date_time
+            , head_count
+            , explanation
+            , to_char( application_start_date , 'YYYY/MM/DD') as application_start_date_day
+            , to_char( application_start_date , 'HH24:MI') as application_start_date_time
+            , to_char( application_end_date , 'YYYY/MM/DD') as application_end_date_day
+            , to_char( application_end_date , 'HH24:MI') as application_end_date_time
+    FROM
+            event.event
+    ]]>
+    <include refid="whereById"/>
+    <include refid="orderByDate"/>
+  </select>
+
+  <sql id="whereBasic">
     WHERE
           application_start_date <= current_date
           AND
           "date"                 >= current_date
+  </sql>
+
+  <sql id="whereById">
+    <include refid="whereBasic"/>
+    AND
+          id = #{id}
+  </sql>
+
+  <sql id="orderByDate">
     ORDER BY "date"
-  ]]>
-  </select>
+  </sql>
 
 </mapper>
