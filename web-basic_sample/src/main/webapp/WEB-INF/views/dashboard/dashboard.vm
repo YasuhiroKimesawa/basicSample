@@ -8,19 +8,23 @@
 <script src="$link.contextPath/bootstrap/js/bootstrap.js"></script>
 </head>
 <body id="dashboard">
+
 <div class="container">
 <div class="row">
 <div class="span12">
+
 #if($auth.anonymous)
 <div class="well">
   <a href="$link.relative('/eventers/new')" class="btn large disabled">主催者側登録</a>
 </div><!--.well-->
 #end
+
 #if($auth.eventer)
 <div class="well">
   <a href="$link.relative('/events/new')" class="btn large disabled">イベント登録</a>
 </div><!--.well-->
 #end
+
 #if(!$auth.anonymous)
 <div class="well">
 <p>
@@ -32,13 +36,18 @@ $!auth.user.fullName
 <a id="logout" href="$link.relative('/logout')" class="btn large disabled">logout</a>
 </div>
 #end
+
 #if($auth.anonymous)
 <div class="well">
 #parse( "dashboard/loginForm.vm" )
 </div><!--.well-->
 #end
+
+<div id="events" class="row">
+#parse( "dashboard/events.vm" )
 </div>
-</div>
-</div>
+</div><!-- span12 -->
+</div><!-- row -->
+</div><!-- container -->
 </body>
 </html>

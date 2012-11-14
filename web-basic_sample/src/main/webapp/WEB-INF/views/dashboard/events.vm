@@ -1,0 +1,6 @@
+#foreach( $event in $eventSummaries.list )
+<div class="well span11">
+	<span>$event.id</span>
+	<h3>$event.name</h3>
+</div>
+#end
