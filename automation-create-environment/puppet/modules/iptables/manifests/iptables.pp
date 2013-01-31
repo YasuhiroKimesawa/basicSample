@@ -5,11 +5,18 @@ class iptables
 
 class iptables::settings
 {
+	package
+	{
+	  policycoreutils:
+        ensure => installed
+    }
+
     exec
     {
       "iptables-init":
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
          command => "iptables -F",
+         require => Package["policycoreutils"],
 	}
 
 	exec

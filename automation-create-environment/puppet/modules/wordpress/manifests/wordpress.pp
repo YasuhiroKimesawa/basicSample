@@ -8,10 +8,13 @@ class wordpress
 
 class wordpress::download
 {
+
+	$version="3.5.1"
+
 	exec
     {
       "download-wordpress":
-         command => "/usr/bin/wget -nc http://ja.wordpress.org/wordpress-3.4.2-ja.tar.gz",
+         command => "/usr/bin/wget -nc http://ja.wordpress.org/wordpress-${version}-ja.tar.gz",
          timeout => 0,
          logoutput => "on_failure",
          creates => "/usr/share/nginx/html/index.php",
@@ -21,7 +24,7 @@ class wordpress::download
 	exec
     {
       "deploy-wordpress":
-         command => "tar vxfz ./wordpress-3.4.2-ja.tar.gz; cp -R ./wordpress/* /usr/share/nginx/html/; rm -rf ./wordpress-3.4.2-ja.tar.gz ./wordpress",
+         command => "tar vxfz ./wordpress-${version}-ja.tar.gz; cp -R ./wordpress/* /usr/share/nginx/html/; rm -rf ./wordpress-${version}-ja.tar.gz ./wordpress",
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
          logoutput => "on_failure",
          require => Exec["download-wordpress"],
@@ -35,7 +38,7 @@ class wordpress::download
         group => "root",
         mode  => "777",
         require => Exec["deploy-wordpress"],
-        content => template("/etc/puppet/modules/wordpress/templates/wp-config.php ")
+        content => template("/etc/puppet/modules/wordpress/templates/wp-config.php")
     }
 }
 

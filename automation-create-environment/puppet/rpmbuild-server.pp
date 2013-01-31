@@ -10,7 +10,8 @@ import "./modules/php/manifests/*"
 import "./modules/iptables/manifests/*"
 
 
-node 'localhost' {
+node default
+{
     include "rpmbuild"
     include "mulerpm"
     include "jamesrpm"

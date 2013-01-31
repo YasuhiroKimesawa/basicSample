@@ -3,12 +3,13 @@ $mysql_password = "myT0pS3cretPa55worD"
 
 class mysql
 {
+
     include mysql::install, mysql::config, mysql::service
 }
 
 class mysql::install
 {
-     package
+    package
 	{
 	  mysql-server:
         ensure => installed
@@ -56,8 +57,8 @@ define mysqldb( $user, $password )
       exec
       {
         "create-${name}-db":
-        	unless => "/usr/bin/mysql -uroot -p$mysql_password ${name}",
-       		command => "/usr/bin/mysql -uroot -p$mysql_password -e \"create database ${name};\"",
+        	unless => "/usr/bin/mysql -uroot -p$mysql::mysql_password ${name}",
+       		command => "/usr/bin/mysql -uroot -p$mysql::mysql_password -e \"create database ${name};\"",
         	require => [Service["mysqld"], Exec["set-mysql-password"]],
       }
 
@@ -65,7 +66,7 @@ define mysqldb( $user, $password )
       {
       	"grant-${name}-db":
         	unless => "/usr/bin/mysql -u${user} -p${password} ${name}",
-        	command => "/usr/bin/mysql -uroot -p$mysql_password -e \"grant all on ${name}.* to ${user}@localhost identified by '$password';\"",
+        	command => "/usr/bin/mysql -uroot -p$mysql::mysql_password -e \"grant all on ${name}.* to ${user}@localhost identified by '$password';\"",
         	require => [Service["mysqld"], Exec["create-${name}-db"], Exec["set-mysql-password"]]
       }
 }
