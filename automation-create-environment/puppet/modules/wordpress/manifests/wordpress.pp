@@ -1,4 +1,5 @@
 import "../../mysql/manifests/*"
+import "../../nginx/manifests/*"
 
 class wordpress
 {
@@ -13,22 +14,23 @@ class wordpress::download
          command => "/usr/bin/wget -nc http://ja.wordpress.org/wordpress-3.4.2-ja.tar.gz",
          timeout => 0,
          logoutput => "on_failure",
-         creates => "/var/www/html/index.php",
+         creates => "/usr/share/nginx/html/index.php",
+         require => Package["nginx"],
 	}
 
 	exec
     {
       "deploy-wordpress":
-         command => "tar vxfz ./wordpress-3.4.2-ja.tar.gz; cp -R ./wordpress/* /var/www/html/; rm -rf ./wordpress-3.4.2-ja.tar.gz ./wordpress",
+         command => "tar vxfz ./wordpress-3.4.2-ja.tar.gz; cp -R ./wordpress/* /usr/share/nginx/html/; rm -rf ./wordpress-3.4.2-ja.tar.gz ./wordpress",
          path => "/bin:/sbin:/usr/bin:/usr/sbin",
          logoutput => "on_failure",
          require => Exec["download-wordpress"],
-         creates => "/var/www/html/index.php",
+         creates => "/usr/share/nginx/html/index.php",
 	}
 
 	file
 	{
-	  "/var/www/html/wp-config.php":
+	  "/usr/share/nginx/html/wp-config.php":
         owner => "root",
         group => "root",
         mode  => "777",

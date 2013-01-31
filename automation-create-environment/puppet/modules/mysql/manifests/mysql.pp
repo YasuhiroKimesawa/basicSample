@@ -23,7 +23,7 @@ class mysql::config
         owner => "root",
         group => "root",
         mode  => "660",
-        content  => template("mysql/my.cnf"),
+        content  => template("/etc/puppet/modules/mysql/templates/my.cnf"),
 	    subscribe => Package['mysql-server']
     }
 

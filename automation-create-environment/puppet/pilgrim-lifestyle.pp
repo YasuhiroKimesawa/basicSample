@@ -1,5 +1,4 @@
 import "./modules/localtime/manifests/*"
-import "./modules/apache/manifests/*"
 import "./modules/tomcat/manifests/*"
 import "./modules/git/manifests/*"
 import "./modules/files/manifests/*"
@@ -9,22 +8,18 @@ import "./modules/openjdk/manifests/*"
 import "./modules/iptables/manifests/*"
 import "./modules/wordpress/manifests/*"
 import "./modules/jenkins/manifests/*"
+import "./modules/nginx/manifests/*"
 
 node default
 {
     include "files"
     include "localtime"
-    include "git"
-    include "apache"
-    include "mysql"
+	include "mysql"
+    include "nginx"
     include "php"
-    include "openjdk"
-    include "tomcat"
 
     include "iptables"
 
     include "wordpress"
-    include "jenkins"
 
-    include "serversman-git"
 }

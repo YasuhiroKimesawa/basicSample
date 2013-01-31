@@ -34,7 +34,7 @@ class apache::service
 	{
 	  httpd:
         enable => true,
-        ensure => running,
+        ensure => 'running',
         require => Package["httpd"]
     }
 }
