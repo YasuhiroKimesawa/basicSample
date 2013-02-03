@@ -9,6 +9,7 @@ import "./modules/iptables/manifests/*"
 import "./modules/wordpress/manifests/*"
 import "./modules/jenkins/manifests/*"
 import "./modules/nginx/manifests/*"
+import "./modules/vsftpd/manifests/*"
 
 node default
 {
@@ -21,5 +22,6 @@ node default
     include "iptables"
 
     include "wordpress"
+    include "vsftpd"
 
 }

@@ -75,6 +75,9 @@ $table_prefix  = 'wp_';
  */
 define('WPLANG', 'ja');
 
+/* FTP 利用設定 */
+define('FS_METHOD', 'direct');
+
 /**
  * 開発者へ: WordPress デバッグモード
  *

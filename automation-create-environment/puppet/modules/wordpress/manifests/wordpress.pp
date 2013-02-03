@@ -40,6 +40,16 @@ class wordpress::download
         require => Exec["deploy-wordpress"],
         content => template("/etc/puppet/modules/wordpress/templates/wp-config.php")
     }
+
+    file
+    {
+      "/usr/share/nginx/html/wp-content":
+    	ensure => "directory",
+    	owner  => "root",
+    	group  => "wheel",
+    	mode   => 777,
+    	require => Exec["deploy-wordpress"],
+	}
 }
 
 class wordpress::setup
